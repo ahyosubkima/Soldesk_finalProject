@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: MSI
 Build-Jdk: 14
+=======
+Built-By: p_hye
+Build-Jdk: 11.0.14
+>>>>>>> c4ab4e55910c12a9360d99e4ef0610aad9113510
 Created-By: Maven Integration for Eclipse
 

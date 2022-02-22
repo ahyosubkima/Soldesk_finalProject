@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.team2</groupId>
 	<artifactId>danim</artifactId>
-	<name>DANIM</name>
+	<name>FinalProject_Danim</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>

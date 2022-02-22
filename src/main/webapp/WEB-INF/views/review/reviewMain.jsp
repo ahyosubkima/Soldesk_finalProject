@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +28,6 @@ justify-content: center;
 <body>
 
 
-<nav></nav>
 <div class="flex-container" >
 <div>#인원수</div>
 <div>#예산</div>
@@ -53,6 +54,13 @@ justify-content: center;
 <button>신규순</button>
 
 <div class="flex-container">
+<c:forEach items="${reviews }" var="reviews">
+<div>
+${reviews.rb_title }
+${reviews.rb_date }
+</div>
+</c:forEach>
+
 <div>
 사진,제목,좋아요,뷰수,댓글수,작성일자, 작성자프사, 작성자 아이디, 검색키워드
 
@@ -64,7 +72,7 @@ justify-content: center;
 </div>
 
 <div class="flex-container">
-<div>후기쓰기</div>
+<div> <a href="reviewWrite.go">후기쓰기</a> </div>
 <div>내후기보기</div>
 </div>
 

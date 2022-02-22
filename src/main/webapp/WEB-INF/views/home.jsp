@@ -16,7 +16,7 @@
 		</div>
 		<ul class="nav">
 			<li><a href="#">계획 짜기</a></li>
-			<li><a href="#">여행 후기</a></li>
+			<li><a href="review.go">여행 후기</a></li>
 			<li><a href="#">커뮤니티</a></li>
 			<li><a href="#">이벤트</a></li>
 		</ul>

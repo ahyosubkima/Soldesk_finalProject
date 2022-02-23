@@ -22,21 +22,111 @@ justify-content: center;
 
 }
 
+.selector_unit{
+
+border-radius: 2em;
+padding: 5px;
+margin-right: 5px;
+border: 1px solid gray;
+
+
+}
+
+.section {
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  height: auto;
+  max-height: 600px;
+}
+
+.section.collapsed {
+  max-height: 0;
+}
+.section2 {
+  overflow: hidden;
+  transition: max-height 0.5s ease-out;
+  height: auto;
+  max-height: 600px;
+}
+
+.section2.collapsed {
+  max-height: 0;
+}
+
+
+
 
 </style>
+<script type="text/javascript" src="resources/review/js/jquery.js"></script>
+<script type="text/javascript" src="resources/review/js/review.js"></script>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 
 
 <div class="flex-container" >
-<div>#인원수</div>
-<div>#예산</div>
-<div>#테마</div>
-<div>#지역</div>
+<div class="selector_unit" id="toggle_membercount" value="1">#인원수</div>
+<div class="selector_unit" value="2">#예산</div>
+<div class="selector_unit"value="3">#테마</div>
+<div class="selector_unit"value="4">#지역</div>
 
 </div>
 
-<div style="text-align: center;">숨겨진 선택창</div>
+<!-- 인원수 선택 -->
+<div class="section collapsible flex-container" style="text-align: center; visibility: hidden;">
+
+<div>
+인원수
+<input type="range" id="headcount" min="1" max="10" value="1" step="1" >
+  <span id="headcount_value"></span><span>명</span>
+</div>
+
+<div>
+직접입력 : <input >명
+</div>
+
+</div>
+<div class="section collapsible2 flex-container" style="text-align: center; visibility: hidden;">
+
+<div>
+aaaaa
+<input type="range" id="headcount" min="1" max="10" value="1" step="1" >
+  <span id="headcount_value"></span><span>명</span>
+</div>
+
+<div>
+aaaa : <input >명
+</div>
+
+</div>
+<div class="section collapsible3 flex-container" style="text-align: center; visibility: hidden;">
+
+<div>
+bbb
+<input type="range" id="headcount" min="1" max="10" value="1" step="1"  >
+  <span id="headcount_value"></span><span>명</span>
+</div>
+
+<div>
+bbb : <input >명
+</div>
+
+</div>
+<div class="section collapsible4 flex-container" style="text-align: center; visibility: hidden;">
+
+<div>
+ccc
+<input type="range" id="headcount" min="1" max="10" value="1" step="1" >
+  <span id="headcount_value"></span><span>명</span>
+</div>
+
+<div>
+ccc : <input >명
+</div>
+
+</div>
+
 
 <div class="flex-container">
 

@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
+<link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 </head>
 <body>
 	<header>
@@ -17,7 +18,7 @@
 		<ul class="nav">
 			<li><a href="#">계획 짜기</a></li>
 			<li><a href="#">여행 후기</a></li>
-			<li><a href="#">커뮤니티</a></li>
+			<li><a href="/danim/comm_picture">커뮤니티</a></li>
 			<li><a href="#">이벤트</a></li>
 		</ul>
 		<ul class="btns">

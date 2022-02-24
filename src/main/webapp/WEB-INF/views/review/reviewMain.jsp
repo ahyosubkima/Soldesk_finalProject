@@ -73,6 +73,7 @@ li {
 }
 .tab-container {
   display: flex;
+  justify-content: center;
 }
 .tab-container__item {
   cursor: pointer;
@@ -85,9 +86,9 @@ li {
   color: #fff;
   transition: color 0.4s ease-in-out;
 }
-.tab-container__item.active {
+/* .tab-container__item.active {
   border-bottom: 2px solid #369fff;
-}
+} */
 .tab-container__item.active .tab-container__item--title {
   color: #369fff;
 }
@@ -125,28 +126,6 @@ li {
 <body>
 
 
-<div class="flex-container" >
-<div class="selector_unit" id="toggle_membercount">#인원수</div>
-<div class="selector_unit" >#예산</div>
-<div class="selector_unit">#테마</div>
-<div class="selector_unit">#지역</div>
-
-</div>
-
-<!-- 인원수 선택 -->
-<!-- <div class="aa flex-container bb" style="text-align: center ;" id="qqq">
-
-<div>
-인원수
-<input type="range" id="headcount" min="1" max="10" value="1" step="1" >
-  <span id="headcount_value"></span><span>명</span>
-</div>
-
-<div>
-직접입력 : <input >명
-</div>
-
-</div> -->
 
  <div class="container">
       <ul class="tab-container">
@@ -216,10 +195,10 @@ li {
 
 
 
-<div class="flex-container" id="choosedVal" >
+<div class="flex-container"  >
 
-<div>선택해제</div>
-
+<div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
+<div class="flex-container" id="choosedVal"></div>
 </div>
 
 <div >

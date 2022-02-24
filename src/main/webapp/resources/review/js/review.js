@@ -132,4 +132,9 @@ document.querySelectorAll('.selector_btn').forEach(function(aaa){
   aa.appendTo('#dailyDetail');
 } 
 
+function cancelingSelect(){
+document.getElementById('choosedVal').innerHTML = "" ;
+
+}
+
 

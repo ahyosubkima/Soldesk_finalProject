@@ -30,7 +30,9 @@
 		
 		<tr>
 			<td>출발: <input type="date"></td>
-			<td>일정: <input type="number" min="1">박<input type="number" min="1">일</td>
+			<td>일정: <input type="number" min="1">박
+					<input type="number" min="1" id="p_lastDay">일
+			</td>
 		</tr>
 
 		<tr>
@@ -56,8 +58,9 @@
  
 	
 	
+	<div id="p_openDayWrite"><span>일정등록하기</span></div>
 	
-	
+
 	
 	
 	
@@ -67,26 +70,28 @@
 	
 	
 	<!-- 예산결과 보여주는 곳 -->
+	<div id="p_BudgetAll">
+	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
 	<table border="1" id="p_writeBudget">
-		<tr>
-			<td id="p_writeSubTitle">💲예산 계산 결과</td>
-		</tr>	
+			
 		<tr>
 			<td id="p_writeBudgetWrite">OO님,<p>여행에 필요한 최소 비용은 00,000원으로 0명이 여행할 경우 1인당 0,000원입니다.</td>
 		</tr>
 	</table>
+</div>
+
+
 	
 	<!-- 자유 한마디 -->
+	<div id="p_FreeWordAll">
+	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
 	<table border="1" id="p_writeFree">
-		<tr>
-			<td id="p_writeSubTitle">💪여행 전 한마디</td>
-		</tr>	
 		
 		<tr>
 			<td id="p_writeFreeWrite">작성하는 곳 input or textarea (100글자 제한두기)</td>
 		</tr>
 	</table>
-	
+</div>
 	
 		<div id="p_writeBtn"><button>플래너 등록</button></div>
 	

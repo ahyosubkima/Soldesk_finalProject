@@ -22,6 +22,15 @@ justify-content: center;
 
 }
 
+.selector_btn{
+
+border-radius: 2em;
+padding: 5px;
+margin-right: 5px;
+border: 1px solid gray;
+
+
+}
 .selector_unit{
 
 border-radius: 2em;
@@ -32,29 +41,71 @@ border: 1px solid gray;
 
 }
 
-.section {
-  overflow: hidden;
+.bb {
   transition: max-height 0.5s ease-out;
-  height: auto;
+	height: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.aa {
   max-height: 600px;
 }
 
-.section.collapsed {
-  max-height: 0;
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.section2 {
-  overflow: hidden;
-  transition: max-height 0.5s ease-out;
-  height: auto;
-  max-height: 600px;
+.container {
+  margin: 0 auto;
 }
-
-.section2.collapsed {
-  max-height: 0;
+.tab-container {
+  display: flex;
 }
-
-
-
+.tab-container__item {
+  cursor: pointer;
+}
+.tab-container__item:hover {
+  background-color: #369fff;
+  transition: background-color 0.4s ease-in-out;
+}
+.tab-container__item:hover .tab-container__item--title {
+  color: #fff;
+  transition: color 0.4s ease-in-out;
+}
+.tab-container__item.active {
+  border-bottom: 2px solid #369fff;
+}
+.tab-container__item.active .tab-container__item--title {
+  color: #369fff;
+}
+.tab-container__item.active:hover {
+  background-color: #369fff;
+  transition: background-color 0.4s ease-in-out;
+}
+.tab-container__item.active:hover .tab-container__item--title {
+  color: #fff;
+  transition: color 0.4s ease-in-out;
+}
+.tab-container__item--title {
+  display: inline-block;
+  color: #999;
+  font-weight: 700;
+  text-decoration: none;
+  margin: 15px;
+}
+.content-container {
+  padding: 10px;
+}
+.content-container__content {
+  display: none;
+}
+.content-container__content.target {
+  display: block;
+}
 
 </style>
 <script type="text/javascript" src="resources/review/js/jquery.js"></script>
@@ -66,15 +117,15 @@ border: 1px solid gray;
 
 
 <div class="flex-container" >
-<div class="selector_unit" id="toggle_membercount" value="1">#인원수</div>
-<div class="selector_unit" value="2">#예산</div>
-<div class="selector_unit"value="3">#테마</div>
-<div class="selector_unit"value="4">#지역</div>
+<div class="selector_unit" id="toggle_membercount">#인원수</div>
+<div class="selector_unit" >#예산</div>
+<div class="selector_unit">#테마</div>
+<div class="selector_unit">#지역</div>
 
 </div>
 
 <!-- 인원수 선택 -->
-<div class="section collapsible flex-container" style="text-align: center; visibility: hidden;">
+<!-- <div class="aa flex-container bb" style="text-align: center ;" id="qqq">
 
 <div>
 인원수
@@ -86,46 +137,72 @@ border: 1px solid gray;
 직접입력 : <input >명
 </div>
 
-</div>
-<div class="section collapsible2 flex-container" style="text-align: center; visibility: hidden;">
+</div> -->
 
+ <div class="container">
+      <ul class="tab-container">
+        <li class="tab-container__item active" data-tab="tab1">
+        <div class="selector_unit" >#인원수</div>
+        </li>
+        <li class="tab-container__item" data-tab="tab2">
+          <div class="selector_unit" >#예산</div>
+        </li>
+        <li class="tab-container__item" data-tab="tab3">
+          <div class="selector_unit" >#테마</div>
+        </li>
+        <li class="tab-container__item" data-tab="tab4">
+          <div class="selector_unit" >#지역</div>
+        </li>
+      </ul>
+     
+      <section class="content-container">
+        <article id="tab1" class="content-container__content">
+         <div class="flex-container" style="text-align: center ;">
 <div>
-aaaaa
+인원수
 <input type="range" id="headcount" min="1" max="10" value="1" step="1" >
   <span id="headcount_value"></span><span>명</span>
 </div>
 
 <div>
-aaaa : <input >명
+직접입력 : <input >명
 </div>
 
 </div>
-<div class="section collapsible3 flex-container" style="text-align: center; visibility: hidden;">
-
-<div>
-bbb
-<input type="range" id="headcount" min="1" max="10" value="1" step="1"  >
-  <span id="headcount_value"></span><span>명</span>
+        </article>
+        <article id="tab2" class="content-container__content">
+          <div class="flex-container" style="text-align: center ;">
+          <div class="selector_btn" >예산1</div>
+          <div class="selector_btn" >예산2</div>
+          <div class="selector_btn" >예산3</div>
+          <div class="selector_btn" >예산4</div>
+          <div class="selector_btn" >예산5</div>
+          <div>
+직접입력 : <input >명
 </div>
+          </div>
+        </article>
+        <article id="tab3" class="content-container__content">
+           <div class="flex-container" style="text-align: center ;">
+          <div class="selector_btn" >테마1</div>
+          <div class="selector_btn" >테마2</div>
+          <div class="selector_btn" >테마3</div>
+          <div class="selector_btn" >테마4</div>
+          <div class="selector_btn" >테마5</div>
+          </div>
+        </article>
+        <article id="tab4" class="content-container__content">
+          <div class="flex-container" style="text-align: center ;">
+          <div class="selector_btn" >지역1</div>
+          <div class="selector_btn" >지역2</div>
+          <div class="selector_btn" >지역3</div>
+          <div class="selector_btn" >지역4</div>
+          <div class="selector_btn" >지역5</div>
+          </div>
+        </article>
+      </section>
+    </div>
 
-<div>
-bbb : <input >명
-</div>
-
-</div>
-<div class="section collapsible4 flex-container" style="text-align: center; visibility: hidden;">
-
-<div>
-ccc
-<input type="range" id="headcount" min="1" max="10" value="1" step="1" >
-  <span id="headcount_value"></span><span>명</span>
-</div>
-
-<div>
-ccc : <input >명
-</div>
-
-</div>
 
 
 <div class="flex-container">

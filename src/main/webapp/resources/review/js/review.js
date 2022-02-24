@@ -15,26 +15,30 @@ document.addEventListener('DOMContentLoaded', function () {
         output.innerHTML = this.value;
     }
 	  
-    
-    //인원수 슬라이더 토글
-    $('.selector_unit').click(function name() {
-    	let aa= $(this).attr('value');
-    	
-    	//  $(this).addEventListener('click', function() {
-    		  if(aa==1){
-    			  $('.section.collapsible').css('visibility', "visible");
-    		  }else if(aa==2){
-    			  $('.section.collapsible2').css('visibility', "visible");
-    		  }else if(aa==3){
-    			  document.querySelector('.section.collapsible3').classList.toggle('collapsed');
-    		  }else if(aa==4){
-    			  document.querySelector('.section.collapsible4').classList.toggle('collapsed');
-    		  }
-    		  
-    		  
-    	 //   });
-	});
+//탭메뉴
+
+       const tabItem = document.querySelectorAll(".tab-container__item");
+const tabContent = document.querySelectorAll(".content-container__content");
+
+let cc = tabItem.forEach(function(item){
+
+     item.addEventListener("click", tabHandler);
+});
+
+function tabHandler(item) {
+  const tabTarget = item.currentTarget;
  
+  const target = tabTarget.dataset.tab;
+
+  // tabItem.forEach((title) => {
+  //   title.classList.remove("active");
+  // });
+  tabContent.forEach(function(content) {
+    content.classList.remove("target");
+  });
+  document.querySelector("#"+target).classList.add("target");
+  // tabTarget.classList.add("active");
+}
 
 	  
 	  

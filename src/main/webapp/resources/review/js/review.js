@@ -3,18 +3,18 @@
  */
 
 
+
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
 
-	//인원수 슬라이더 value표시
-	var slider = document.getElementById("headcount");
-    var output = document.getElementById("headcount_value");
-    output.innerHTML = slider.value;
+	  //인원수 슬라이더 value표시
+let slider = document.getElementById("headcount");
+let output = document.getElementById("headcount_value");
+//output.innerHTML = slider.value;
 
-    slider.oninput = function() {
-        output.innerHTML = this.value;
-    }
-	  
+slider.oninput = function() {
+    output.innerHTML = this.value;
+}
 //탭메뉴
 
        const tabItem = document.querySelectorAll(".tab-container__item");
@@ -40,8 +40,26 @@ function tabHandler(item) {
   // tabTarget.classList.add("active");
 }
 
+
+// 선택메뉴생성
+
+document.querySelectorAll('.selector_btn').forEach(function(aaa){
+  
+  
+  aaa.addEventListener("click",function(){
+    let word = aaa.innerHTML;
+    let newDiv = document.createElement('div');
+    
+  newDiv.classList.add('selected_btn')
+  newDiv.append(word);
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+})
+
+});
+
 	  
-	  
+
     var tag = {};
     var counter = 0;
 

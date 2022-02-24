@@ -31,6 +31,15 @@ border: 1px solid gray;
 
 
 }
+.selected_btn{
+
+border-radius: 2em;
+padding: 5px;
+margin-right: 5px;
+border: 1px solid gray;
+
+
+}
 .selector_unit{
 
 border-radius: 2em;
@@ -167,6 +176,7 @@ li {
 <div>
 직접입력 : <input >명
 </div>
+<button class="selector_btn">선택</button>
 
 </div>
         </article>
@@ -180,6 +190,7 @@ li {
           <div>
 직접입력 : <input >명
 </div>
+<button class="selector_btn">선택</button>
           </div>
         </article>
         <article id="tab3" class="content-container__content">
@@ -205,14 +216,9 @@ li {
 
 
 
-<div class="flex-container">
+<div class="flex-container" id="choosedVal" >
 
-<div >선택시 선택된목록표시창</div>
 <div>선택해제</div>
-<div>1인</div>
-<div>20만원이하</div>
-<div>맛집투어</div>
-<div>서울</div>
 
 </div>
 

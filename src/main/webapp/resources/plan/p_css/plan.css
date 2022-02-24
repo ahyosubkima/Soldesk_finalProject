@@ -111,6 +111,7 @@
 #p_openBudget{
 	font-size: 20pt;
 	cursor: pointer;
+	clear: both;
 }
 
 #p_openFreeWord{
@@ -121,13 +122,11 @@
 
 /* 테스트 */
 #p_dayWriteDiv{
-	border: 2px solid black;
-	text-align: center;
 }
 
 #p_dayWrite{
 	width: 100px;
-	height: 50px;
+	height: 30px;
 }
 
 #p_test{
@@ -139,8 +138,13 @@
 #p_openDayWrite{
 	margin: auto;
 	margin-top: 50px;
-	text-align: center;
 	
+}
+
+#p_DayWriteAll{
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20pt;
 }
 
 
@@ -151,11 +155,18 @@
 
 
 
+/* section > table {
+	text-align: center; float: left;
+}
+ */
 
 
 
-
-
-
+/* #p_openDayWrite::after {
+    content:"";
+    display:block;
+    clear:both;
+}
+  */
 
 

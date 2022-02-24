@@ -18,8 +18,9 @@ function dayWrite() {
 	
 $(document).on("click","#p_dayWrite", function() {
 		
-		$("#p_dayWriteDiv").append('<tr><td rowspan="2">지도</td><td>주소:<input></td></tr><tr><td>메뉴: <input></td></tr><tr><td colspan="2">|</td></tr>');
-
+		$("#eeeg").append('<table border="1">'+
+			'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
+			'<tr><td>주소</td><td>메뉴</td></tr></table>');
 	});
 }
 
@@ -30,15 +31,21 @@ function pptest(){
 	$(document).ready(function() {
 		
            $("#p_lastDay").keyup(function() {
+        	   
         	   let lastDay = $("#p_lastDay").val(); 
         	   alert(lastDay);  
         	   
-        	   for (var i = 0; i < lastDay; i++) {
-        		   $("#p_openDayWrite").append('<table border="1" id="p_test"><tr><td rowspan="2">지도</td><td>주소:<input></td></tr><tr><td>메뉴: <input></td></tr><tr><td colspan="2">|</td></tr></table>');
+        	   if (lastDay == null ) {
+        		   for (var i = 1; i <= lastDay; i++) {
+        			   $("#p_openDayWrite").append('<section><div>'+i+'일차</div><div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div><table id="eeeg" border="1"><tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
+        		   }
+        	   }else {
+        		   $("#p_openDayWrite *").remove();
+        		   for (var i = 1; i <= lastDay; i++) {
+        			   $("#p_openDayWrite").append('<section><div>'+i+'일차</div><div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div><table id="eeeg" border="1"><tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
+        			   /*$("#p_openDayWrite").append('<section><table border="1"><tr><td colspan="2">'+ i +'일차</td><td rowspan="3">➔</td></tr><tr><td colspan="2">지도</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');*/
+        		   }
 			}
-        	   
-        	   
-        	   
                 })
             }
         );

@@ -52,15 +52,30 @@
 	</table>
 
 
-<!-- 일정 상세등록 -->
 
-<div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정등록하기"></div>
  
 	
+<!-- 일정 상세등록 -->
+	<div id="p_DayWriteAll"><span>📅일정 작성</span></div>
+	<div id="p_openDayWrite">
 	
-	<div id="p_openDayWrite"><span>일정등록하기</span></div>
-	
+	<c:forEach var="p" begin="1" end="${param.p_days}">
+		<div>${p }일차</div>
+		<div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div>
+		<table border="1" id="eeeg">
+		<tr>
+			<td colspan="2">지도</td>
+			<td rowspan="3">➔</td>
+		</tr>
+		<tr>
+			<td>주소</td>
+			<td>메뉴</td>
+		</tr>
+		</table>
+	</c:forEach>
 
+
+	</div>
 	
 	
 	
@@ -69,7 +84,11 @@
 	
 	
 	
-	<!-- 예산결과 보여주는 곳 -->
+	
+	
+	
+	
+<!-- 예산결과 보여주는 곳 -->
 	<div id="p_BudgetAll">
 	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
 	<table border="1" id="p_writeBudget">
@@ -78,11 +97,11 @@
 			<td id="p_writeBudgetWrite">OO님,<p>여행에 필요한 최소 비용은 00,000원으로 0명이 여행할 경우 1인당 0,000원입니다.</td>
 		</tr>
 	</table>
-</div>
+	</div>
 
 
 	
-	<!-- 자유 한마디 -->
+<!-- 자유 한마디 -->
 	<div id="p_FreeWordAll">
 	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
 	<table border="1" id="p_writeFree">
@@ -91,7 +110,7 @@
 			<td id="p_writeFreeWrite">작성하는 곳 input or textarea (100글자 제한두기)</td>
 		</tr>
 	</table>
-</div>
+	</div>
 	
 		<div id="p_writeBtn"><button>플래너 등록</button></div>
 	

@@ -20,4 +20,25 @@
 	<select id="getCommPicture2" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
 	select * from comm_picture where comm_picture_no = #{comm_picture_no}
 	</select>
+	
+	<delete id="delPicture" parameterType="com.team2.danim.comm.Comm_picture">
+	delete from comm_picture where comm_picture_no = #{comm_picture_no}
+	</delete>
+	
+	<update id="updatePicture" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_name = #{comm_picture_name},comm_picture_write_name = #{comm_picture_write_name},comm_picture_txt = #{comm_picture_txt} where comm_picture_no = #{comm_picture_no}
+	</update>
+	
+	<select id="searchTitle" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_write_name LIKE '%'||#{comm_picture_write_name}||'%' order by comm_picture_date desc
+	</select>
+
+	<select id="searchWriter" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_writer LIKE '%'||#{comm_picture_writer}||'%' order by comm_picture_date desc
+	</select>
+	
+	<select id="searchTxt" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_txt LIKE '%'||#{comm_picture_txt}||'%' order by comm_picture_date desc
+	</select>
+	
 </mapper>

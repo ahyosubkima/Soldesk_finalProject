@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
+<script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
 </head>
 <body>
 	<header>

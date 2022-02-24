@@ -73,4 +73,125 @@ public void getCommPicture2(Comm_picture cp,HttpServletRequest req) {
 	}
 	
 }
+
+public void delPicture(Comm_picture cp, HttpServletRequest req) {
+	
+	try {
+		System.out.println(req.getParameter("no"));
+		cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).delPicture(cp)==1) {
+			System.out.println("삭제성공");
+		}
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	}
+
+public void updatePicture(Comm_picture cp, HttpServletRequest req) {
+	
+	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
+	MultipartRequest mr = null;
+	System.out.println(path);
+	try {
+		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		
+		
+		
+		
+		System.out.println(mr.getParameter("comm_picture_write_name"));
+		System.out.println(mr.getParameter("comm_picture_txt"));
+		System.out.println(mr.getParameter("comm_picture_no"));
+		
+		String newFile = mr.getFilesystemName("newFile");
+		String oldFile = mr.getParameter("oldFile");
+		
+		if (newFile != null) {
+			
+			cp.setComm_picture_name(newFile);
+			
+			
+		}
+		else {
+			cp.setComm_picture_name(oldFile);
+		}
+		
+		cp.setComm_picture_write_name(mr.getParameter("comm_picture_write_name"));
+		cp.setComm_picture_txt(mr.getParameter("comm_picture_txt"));
+		cp.setComm_picture_no(Integer.parseInt(mr.getParameter("comm_picture_no")));
+		if (ss.getMapper(CommMapper.class).updatePicture(cp) == 1) {
+			req.setAttribute("result", "수정성공");
+		}
+		
+		
+		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+	} catch (Exception e) {
+		e.printStackTrace();
+	/*	String fileName = mr.getFilesystemName("g_file");
+		new File(path + "/" + fileName).delete();*/
+		req.setAttribute("result", "업로드실패");
+	}
+		
+	
+		
+		
+	
+	
+	
+}
+
+public void serachPicture(Comm_picture cp, HttpServletRequest req) {
+	
+	if (req.getParameter("search_option").equals("title")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cp.setComm_picture_write_name(req.getParameter("search_input"));
+			
+			req.setAttribute("pictures", ss.getMapper(CommMapper.class).searchTitle(cp));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	else if (req.getParameter("search_option").equals("writer")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cp.setComm_picture_writer(req.getParameter("search_input"));
+			
+			req.setAttribute("pictures", ss.getMapper(CommMapper.class).searchWriter(cp));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+
+	else if (req.getParameter("search_option").equals("txt")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cp.setComm_picture_txt(req.getParameter("search_input"));
+			
+			req.setAttribute("pictures", ss.getMapper(CommMapper.class).searchTxt(cp));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	
+}
+
+
 }

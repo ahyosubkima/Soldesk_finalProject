@@ -57,6 +57,55 @@ public class CommController {
 		return "home";
 		
 	}
+
+	@RequestMapping(value = "/comm_picture_delete", method = RequestMethod.GET)
+	public String comm_picture_delete(HttpServletRequest req,Comm_picture cp) {
+		
+		
+		cDAO.delPicture(cp,req);
+		cDAO.getCommPicture(req);
+		
+		req.setAttribute("contentPage", "comm/comm_picture.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_picture_update", method = RequestMethod.GET)
+	public String comm_picture_update(HttpServletRequest req,Comm_picture cp) {
+		
+		
+		cDAO.getCommPicture2(cp,req);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_picture_update.jsp");
+		return "home";
+		
+	}
+	
+	@RequestMapping(value = "/comm_picture_update_do", method = RequestMethod.POST)
+	public String comm_picture_update_do(HttpServletRequest req,Comm_picture cp) {
+		
+		
+		cDAO.updatePicture(cp,req);
+		cDAO.getCommPicture(req);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_picture.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_picture_search", method = RequestMethod.GET)
+	public String comm_picture_search(HttpServletRequest req,Comm_picture cp) {
+		
+		cDAO.serachPicture(cp,req);
+
+		
+		
+		req.setAttribute("contentPage", "comm/comm_picture.jsp");
+		return "home";
+		
+	}
 	
 	
 

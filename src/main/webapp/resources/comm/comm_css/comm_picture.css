@@ -52,7 +52,7 @@ margin-top: 20px;
 
 #comm_picture_best_writer{
 
-text-align: right;
+text-align: center;
 font-weight: bold;
 border: solid 5px black;	
 
@@ -106,5 +106,38 @@ font-size: 15pt;
 #comm_picture_write_txt{
 	width: 300px;
 	height: 200px;
+	resize:none;
+}
+#comm_picture_detail_img{
+width: 500px;
+height: 300px;
+border-radius: 3%;
+}
+#comm_picture_detail_tbl td{
+border: 1px solid black;
+}
+#comm_picture_detail_tbl {
+width: 1200px;
+height: 600px;
+margin-left: 100px;
+text-align: center;
+}
+
+#comm_picture_detail_td{
+width: 300px;
+}
+#comm_picture_detail_td2{
+width: 100px;
+}
+
+#comm_picture_update_title{
+	width: 1000px;
+	text-align: center;
+}
+
+#comm_picture_update_txt{
+	width: 500px;
+	height: 300px;
+	text-align: center;
 	resize:none;
 }

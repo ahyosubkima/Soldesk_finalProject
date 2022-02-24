@@ -26,18 +26,20 @@
 
 
 <div id="comm_picture_content112">
+<form action="comm_picture_search">
 <table id="comm_picture_searchTbl">
 <tr><td>
-<select>
-<option>제목</option> 
-<option>작성자</option> 
-<option>내용</option> 
-<option>제목+내용</option> 
+<select name="search_option">
+<option value="title">제목</option> 
+<option value="writer">작성자</option> 
+<option value="txt">내용</option> 
 </select> 
-<input><button id="comm_picture_searchBtn">검색</button>
+<input name="search_input"><button id="comm_picture_searchBtn">검색</button>
 </td></tr>
 </table>
+</form>
 
+<c:if test="${param.search_input eq null }">
 <h2 id="comm_picture_content_title">이달의 사진</h2>
 <table id="comm_picture_bestTbl">
 <tr><td id=""><img id="comm_picture_best_img" src="resources/comm/comm_img/testimg1.jpg"></img></td>
@@ -50,6 +52,7 @@
 <td><img id="comm_picture_best_img" src="resources/comm/comm_img/testimg6.jpg"></img></td></tr>
 <tr><td id="comm_picture_best_writer">김진현님</td><td id="comm_picture_best_writer">박혜아님</td><td id="comm_picture_best_writer">서병관님</td></tr>
 </table>
+</c:if>
 
 <h2 id="comm_picture_content_title2">사진 게시판</h2>
 <div style="border: 1px solid; width: 1600px; float: left; ">
@@ -59,7 +62,7 @@
 <td><img id="comm_picture_best_img" src="resources/comm/file/${p.comm_picture_name }" onclick="location.href='comm_picture_detail?no=${p.comm_picture_no}'"></img></td>
 </tr>
 <tr>
-<td id="comm_picture_best_writer">${p.comm_picture_write_name }</td>
+<td id="comm_picture_best_writer">${p.comm_picture_write_name }<span style="float: right;">-${p.comm_picture_writer }님</span></td>
 </tr>
 
 

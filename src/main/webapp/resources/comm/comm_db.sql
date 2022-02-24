@@ -24,3 +24,5 @@ select * from comm_picture order by comm_picture_date desc;
 select * from comm_picture where comm_picture_no = 28;
 
 select * from comm_picture where comm_picture_no = #{comm_picture_no};
+
+delete from comm_picture where comm_picture_no = #{comm_picture_no}

@@ -16,6 +16,8 @@ var ps = new kakao.maps.services.Places();
 // 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
 var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
+var keyword = document.getElementById('keyword').value;
+
 //키워드로 장소를 검색합니다
 searchPlaces();
 }
@@ -26,7 +28,6 @@ searchPlaces();
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
 
-    var keyword = document.getElementById('keyword').value;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
         alert('키워드를 입력해주세요!');
@@ -70,7 +71,7 @@ function displayPlaces(places) {
     bounds = new kakao.maps.LatLngBounds(), 
     listStr = '';
     
-    // 검색 결과 목록에 추가된 항목들을 제거합니다
+    // 검색 결과 목록에 추가된 항목들을 제거합니다 
     removeAllChildNods(listEl);
 
     // 지도에 표시되고 있는 마커를 제거합니다

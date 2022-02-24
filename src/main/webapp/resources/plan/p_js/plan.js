@@ -21,9 +21,19 @@ function aaa(){
 }
 
 
+function dayWrite() {
+$(document).on("click","#p_dayWrite", function() {
+		
+		$("#p_dayWriteDiv").append('<tr><td rowspan="2">지도</td><td>주소:<input></td></tr><tr><td>메뉴: <input></td></tr><tr><td colspan="2">|</td></tr>');
+
+	});
+}
+
+
 
 $(function() {
 	aaa();
+	dayWrite();
  
 });
 

@@ -8,8 +8,9 @@
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
-
-<script>
+  <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
+<script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
+  <script>
 	function modalOpen() {
 		const body = document.querySelector('body');
 		body.style.overflow = 'hidden'
@@ -25,20 +26,18 @@
 		document.querySelector('.modal_background').style.display = 'none';
 	}
 </script>
-
-
-
 </head>
 <body>
 	<header>
 		<div class="logo">
 			<img src="resources/asset/index/img/logo.png" />
 		</div>
+
 		<div class="nav_wrap">
 			<ul class="nav">
 				<li><a href="#">계획 짜기</a>
 				<li><a href="#">여행 후기</a>
-				<li><a href="#">커뮤니티</a>
+				<li><a href="/danim/comm_picture">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>
 		</div>

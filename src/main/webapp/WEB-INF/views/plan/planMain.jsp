@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
 </head>
 <body>
@@ -42,6 +43,7 @@
 			<td align="center">플래너 타이틀4</td>
 		</tr>
 	</table>
+
 
 </body>
 </html>

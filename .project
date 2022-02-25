@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+
 	<name>FinalProject_Danim</name>
+
 	<comment></comment>
 	<projects>
 	</projects>
@@ -44,9 +46,12 @@
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+
+
 	<filteredResources>
 		<filter>
-			<id>0</id>
+			<id>1645410174827</id>
+
 			<name></name>
 			<type>30</type>
 			<matcher>
@@ -55,4 +60,5 @@
 			</matcher>
 		</filter>
 	</filteredResources>
+
 </projectDescription>

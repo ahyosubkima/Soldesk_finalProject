@@ -7,6 +7,7 @@ public class Comm_picture {
 	private String comm_picture_name;
 	private String comm_picture_write_name;
 	private String comm_picture_writer;
+
 	private int comm_picture_good;
 	private int comm_picture_view;
 	private Date comm_picture_date;
@@ -16,12 +17,17 @@ public class Comm_picture {
 	}
 
 	public Comm_picture(int comm_picture_no, String comm_picture_name, String comm_picture_write_name,
-			String comm_picture_writer, int comm_picture_good, int comm_picture_view, Date comm_picture_date) {
+
+			String comm_picture_writer, String comm_picture_txt, int comm_picture_good, int comm_picture_view,
+			Date comm_picture_date) {
+
 		super();
 		this.comm_picture_no = comm_picture_no;
 		this.comm_picture_name = comm_picture_name;
 		this.comm_picture_write_name = comm_picture_write_name;
 		this.comm_picture_writer = comm_picture_writer;
+
+		this.comm_picture_txt = comm_picture_txt;
 		this.comm_picture_good = comm_picture_good;
 		this.comm_picture_view = comm_picture_view;
 		this.comm_picture_date = comm_picture_date;
@@ -57,6 +63,15 @@ public class Comm_picture {
 
 	public void setComm_picture_writer(String comm_picture_writer) {
 		this.comm_picture_writer = comm_picture_writer;
+	}
+
+
+	public String getComm_picture_txt() {
+		return comm_picture_txt;
+	}
+
+	public void setComm_picture_txt(String comm_picture_txt) {
+		this.comm_picture_txt = comm_picture_txt;
 	}
 
 	public int getComm_picture_good() {

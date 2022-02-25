@@ -1,5 +1,7 @@
 package com.team2.danim.comm;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -26,16 +28,28 @@ public class CommDAO {
 	
 public void upload(HttpServletRequest req) {
 		
-		
+	
 	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	MultipartRequest mr = null;
 	System.out.println(path);
+	MultipartRequest mr = null;
+	String token = null;
 	try {
 		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		token = mr.getParameter("token");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		if (successToken != null && token.equals(successToken)) {
+			String fileName = mr.getFilesystemName("comm_picture_name");
+			new File(path + "/" + fileName).delete();
+			return;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+	
+	
+	try {
 		String fName = mr.getFilesystemName("comm_picture_name");
-		
-		
-		
 		System.out.println(mr.getParameter("comm_picture_write_name"));
 		System.out.println(fName);
 		System.out.println(mr.getParameter("comm_picture_txt"));
@@ -44,6 +58,7 @@ public void upload(HttpServletRequest req) {
 		cp.setComm_picture_txt(mr.getParameter("comm_picture_txt"));
 		cp.setComm_picture_write_name(mr.getParameter("comm_picture_write_name"));
 		if (ss.getMapper(CommMapper.class).upload(cp) == 1) {
+			req.getSession().setAttribute("successToken", token);
 			req.setAttribute("result", "업로드성공");
 		}
 		
@@ -61,6 +76,8 @@ public void upload(HttpServletRequest req) {
 	}
 
 public void getCommPicture2(Comm_picture cp,HttpServletRequest req) {
+	
+	
 	
 	try {
 		System.out.println(req.getParameter("no"));
@@ -189,6 +206,94 @@ public void serachPicture(Comm_picture cp, HttpServletRequest req) {
 			e.printStackTrace();
 		}	
 	}
+	
+	
+}
+
+public void viewPlus(Comm_picture cp, HttpServletRequest req) {
+	
+	try {
+		
+	String token = req.getParameter("token");
+	String successToken = (String) req.getSession().getAttribute("successToken");
+
+	if (token.equals(successToken)) {
+		return;
+	}
+
+	
+		System.out.println(req.getParameter("no"));
+		cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).viewPlus(cp)==1) {
+			req.getSession().setAttribute("successToken", token);
+			System.out.println("조회수증가 성공");
+		}
+		
+	
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void goodPlus(Comm_picture cp, HttpServletRequest req) {
+	
+	try {
+		System.out.println(req.getParameter("no"));
+		cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
+			System.out.println("추천수증가 성공");
+		}
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void getReply(Comm_picture_reply cpr, HttpServletRequest req) {
+	
+	try {
+		System.out.println(req.getParameter("no"));
+		
+		cpr.setCpr_cp_no(Integer.parseInt(req.getParameter("no")));
+		req.setAttribute("reply", ss.getMapper(CommMapper.class).getReply(cpr));
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
+	
+	try {
+		
+		System.out.println(req.getParameter("cpr_txt"));
+		System.out.println(req.getParameter("cpr_cp_no"));
+		
+		cpr.setCpr_txt(req.getParameter("cpr_txt"));
+		cpr.setCpr_cp_no(Integer.parseInt(req.getParameter("cpr_cp_no")));
+		
+		if (ss.getMapper(CommMapper.class).pictureReplyUpload(cpr) == 1) {
+			System.out.println("댓글등록 성공");
+		}
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

@@ -32,7 +32,7 @@
 <tr>
 <td>내용</td><td><textarea id="comm_picture_write_txt" name="comm_picture_txt"></textarea></td>
 </tr>
-<tr><td><button>작성</button></td></tr>
+<tr><td><button>작성</button><input name="token" type="hidden" value="${token }"> </td></tr>
 </table>
 </form>
 </div>

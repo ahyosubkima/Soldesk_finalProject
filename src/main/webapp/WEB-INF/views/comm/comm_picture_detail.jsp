@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
+
 </style>
 
 </head>
@@ -27,7 +28,7 @@
 <c:forEach var="picture" items="${picture }">
 <table id="comm_picture_detail_tbl" style="border: 1px solid black;">
 <tr>
-<td colspan="1" id="comm_picture_detail_td2">제목</td><td colspan="3">${picture.comm_picture_write_name }</td>
+<td colspan="1" id="comm_picture_detail_td2">제목</td><td colspan="3">${picture.comm_picture_write_name }<input name="token" type="hidden" value="${token }"></td>
 </tr>
 <tr>
 <td>조회수</td><td id="comm_picture_detail_td">${picture.comm_picture_view }</td><td id="comm_picture_detail_td2">추천수</td><td>${picture.comm_picture_good }</td>
@@ -45,8 +46,27 @@
 <tr><td colspan="4" style="text-align: right"><button style="width: 70px; margin-right: 10px; font-size: 15pt"  onclick="comm_updateOK(${picture.comm_picture_no})">수정</button>
 <button style="width: 70px; font-size: 15pt;" onclick="comm_delOK(${picture.comm_picture_no})">삭제</button>
 </td></tr>
+<tr>
+<td colspan="4" style="text-align: right;"><button style="width: 70px; font-size: 15pt;" onclick="comm_goodOK(${picture.comm_picture_no})">추천</button> </td>
+</tr>
 <!-- 여기에 지금 본인글이면 수정삭제 나오게 아니면 추천나오게 할꺼임 -->
 </table>
+
+<table id="comm_picture_detail_reply_title">
+<tr><td>댓글</td></tr>
+</table>
+
+<form action="comm_picture_reply">
+<table id="comm_picture_detail_reply">
+<c:forEach items="${reply }" var="r">
+<tr><td>${r.cpr_when }</td><td>${r.cpr_owner }</td><td>${r.cpr_txt }</td></tr>
+</c:forEach>
+<tr><td style="text-align: center;">아이디</td>
+<td style="text-align: center;"><input id="comm_picture_detail_replyInput" name="cpr_txt">
+<input type="hidden" name="cpr_cp_no" value="${picture.comm_picture_no }"></td>
+<td style="text-align: center;"><button style="width: 70px; font-size: 15pt;" >작성</button></td></tr>
+</table>
+</form>
 </c:forEach>
 </div>
 </div>

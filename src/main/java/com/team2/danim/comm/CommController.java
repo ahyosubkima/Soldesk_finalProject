@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team2.danim.TokenMaker;
+
 
 
 @Controller	
@@ -39,6 +41,7 @@ public class CommController {
 	public String comm_picture_upload(HttpServletRequest req) {
 		
 		
+		TokenMaker.make(req);
 		cDAO.upload(req);
 		cDAO.getCommPicture(req);
 		
@@ -48,9 +51,36 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_picture_detail", method = RequestMethod.GET)
-	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp) {
+	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
 		
+		TokenMaker.make(req);
+		cDAO.viewPlus(cp,req);
+		cDAO.getReply(cpr,req);
+		cDAO.getCommPicture2(cp,req);
 		
+		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_picture_reply", method = RequestMethod.GET)
+	public String comm_picture_reply(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
+		
+		TokenMaker.make(req);
+		cDAO.viewPlus(cp,req);
+		cDAO.pictureReplyUpload(cpr,req);
+		cDAO.getReply(cpr,req);
+		cDAO.getCommPicture2(cp,req);
+		
+		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_picture_good", method = RequestMethod.GET)
+	public String comm_picture_good(HttpServletRequest req,Comm_picture cp) {
+		
+		cDAO.goodPlus(cp,req);
 		cDAO.getCommPicture2(cp,req);
 		
 		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");

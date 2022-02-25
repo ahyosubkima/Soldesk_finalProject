@@ -41,4 +41,20 @@
 	SELECT * FROM comm_picture WHERE comm_picture_txt LIKE '%'||#{comm_picture_txt}||'%' order by comm_picture_date desc
 	</select>
 	
+	<update id="viewPlus" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_view = comm_picture_view + 1 where comm_picture_no = #{comm_picture_no}
+	</update>
+
+	<update id="goodPlus" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_good = comm_picture_good + 1 where comm_picture_no = #{comm_picture_no}
+	</update>
+	
+	<select id="getReply" resultType="com.team2.danim.comm.Comm_picture_reply">
+	select * from comm_picture_reply where cpr_cp_no = #{cpr_cp_no} order by cpr_when desc
+	</select>
+	
+	<insert id="pictureReplyUpload" parameterType="com.team2.danim.comm.Comm_picture_reply">
+	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},'김진현',#{cpr_txt},sysdate);
+	</insert>
+	
 </mapper>

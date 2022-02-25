@@ -25,4 +25,17 @@ select * from comm_picture where comm_picture_no = 28;
 
 select * from comm_picture where comm_picture_no = #{comm_picture_no};
 
-delete from comm_picture where comm_picture_no = #{comm_picture_no}
+delete from comm_picture where comm_picture_no = #{comm_picture_no};
+
+create table comm_picture_reply(
+	cpr_no number(5) primary key, 		
+	cpr_cp_no number(5) not null,		-- 소속된 글번호
+	cpr_owner varchar2(10 char) not null,
+	cpr_txt varchar2(100 char) not null,
+	cpr_when date not null
+);
+
+create sequence comm_picture_reply_seq;
+
+insert into comm_picture_reply values(comm_picture_reply_seq.nextval,'40','김진현','댓글입니다.',sysdate);
+

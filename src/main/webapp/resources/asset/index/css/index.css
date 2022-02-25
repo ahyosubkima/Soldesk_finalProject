@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
+
 div {
 	line-height: 1.6;
 }
+
 section {
 	margin-top: 20px;
 	text-align: center;
 }
+
 
 .section_wrap {
 	display: flex;

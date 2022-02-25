@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
+
   <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
   <script>
@@ -26,6 +27,7 @@
 		document.querySelector('.modal_background').style.display = 'none';
 	}
 </script>
+
 </head>
 <body>
 	<header>
@@ -35,7 +37,7 @@
 
 		<div class="nav_wrap">
 			<ul class="nav">
-				<li><a href="#">계획 짜기</a>
+				<li><a href="planMain">계획 짜기</a></li>
 				<li><a href="#">여행 후기</a>
 				<li><a href="/danim/comm_picture">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>
@@ -74,16 +76,17 @@
 		</div>
 	</header>
 
-
 	<div>
 		<jsp:include page="${contentPage}"></jsp:include>
 	</div>
 	<footer class="footer">
 		<div class="footer_wrap">
 			<div class="footer_column">
+
 				<div class="footer_title">
 					<h2>다님</h2>
 				</div>
+
 				<ul>
 					<li><a href="">계획짜기</a></li>
 					<li><a href="">여행후기</a></li>
@@ -92,9 +95,11 @@
 				</ul>
 			</div>
 			<div class="footer_column">
+
 				<div class="footer_title">
 					<h2>대충</h2>
 				</div>
+
 				<ul>
 					<li><a href="">하위메뉴1</a></li>
 					<li><a href="">하위메뉴2</a></li>
@@ -103,9 +108,11 @@
 				</ul>
 			</div>
 			<div class="footer_column">
+
 				<div class="footer_title">
 					<h2>대충</h2>
 				</div>
+
 				<ul>
 					<li><a href="">하위메뉴1</a></li>
 					<li><a href="">하위메뉴2</a></li>

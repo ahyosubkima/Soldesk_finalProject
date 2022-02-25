@@ -6,6 +6,7 @@
 	select * from comm_picture order by comm_picture_date desc
 	</select>
 	
+
 	<insert id="upload" parameterType="com.team2.danim.comm.Comm_picture">
 	insert into comm_picture values(comm_picture_seq.nextval,
 	#{comm_picture_name},
@@ -56,5 +57,5 @@
 	<insert id="pictureReplyUpload" parameterType="com.team2.danim.comm.Comm_picture_reply">
 	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},'김진현',#{cpr_txt},sysdate);
 	</insert>
-	
+
 </mapper>

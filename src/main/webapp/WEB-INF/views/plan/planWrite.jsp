@@ -6,69 +6,110 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script type="text/javascript" src="resources/js/jquery.js"></script>
-<script type="text/javascript" src="resources/js/plan.js"></script>
-<link rel="stylesheet" href="resources/css/plan.css">
+<title>Insert title here</title
+<script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=690dce1d74d365eaed8c4188052a77a1&libraries=services"></script>
+<script type="text/javascript" src="resources/plan/p_js/plan_map.js"></script>
+<script type="text/javascript" src="resources/plan/p_js/plan.js"></script>
+
+
+<link rel="stylesheet" href="resources/plan/p_css/plan_map.css">
+<link rel="stylesheet" href="resources/plan/p_css/plan.css">
 </head>
 <body>
 
-	<form action="">
-		<table border="1">
+<div id="p_writeTitle"><h1>여행 플래너 제작하기</h1></div>
 
-			<tr>
-				<td rowspan="4">플래너 표지 사진 업로드</td>
-				<td colspan="2">Title: <input></td>
-			</tr>
+<!-- 일정 기본정보 등록 -->
+	<table border="1" id="p_write">
 
-			<tr>
-				<td>Place: <input></td>
-				<td>Person: <input></td>
-			</tr>
+		<tr>
+			<td rowspan="3">플래너 표지 사진 업로드 <p><input type="file"></td>
+			<td colspan="2">제목: <input></td>
+		</tr>
+		
+		<tr>
+			<td>출발: <input type="date"></td>
+			<td>일정: <input type="number" min="1">박
+					<input type="number" min="1" id="p_lastDay">일
+			</td>
+		</tr>
 
-			<tr>
-				<td colspan="2">Route: 간단하게 여행루트를 선택해주세요 <input></td>
-			</tr>
+		<tr>
+			<td>장소: <input></td>
+			<td>인원: <input type="number"></td>
+		</tr>
 
-			<tr>
-				<td colspan="2">지도 들어갈자리</td>
-			</tr>
-		</table>
-	</form>
+		<tr>
+			<td colspan="3">간단 경로: </td>
+		</tr>
 
-	<c:forEach var="p" begin="1" end="${param.p_days}">
-		<!-- 추가하기 버튼 -->
-		<div class="btnWrap">
-			<button id="p_add">누르면 박스 추가!</button>
-		</div>
-
-		<div>
-			DAY${p}
-			<div>
-				<table border="1" id="aaad">
-					<tr>
-						<td rowspan="2">지도</td>
-						<td>주소:<input></td>
-					</tr>
-					<tr>
-						<td>메뉴: <input></td>
-					</tr>
-					<tr>
-						<td colspan="2">|</td>
-					</tr>
-
-				</table>
-
-			</div>
-		</div>
-
-	</c:forEach>
-	
-	<table border="1">
-	<tr>
-	<td>여행 계획 결과</td>
-	</tr>
+		<tr>
+			<td colspan="3">
+			지도?
+			</td>
+		</tr>
 	</table>
+
+
+
+ 
+	
+<!-- 일정 상세등록 -->
+	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
+	<div id="p_openDayWrite">
+	
+	<c:forEach var="p" begin="1" end="${param.p_days}">
+		<div id="p_DayWriteAll">
+		<div>${p }일차</div>
+		<div id="p_dayWriteDiv">
+		<input id="p_dayWrite"  type="button" value="${p }일정추가">
+		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
+		</div>
+		</div>
+	</c:forEach>
+
+
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 예산결과 보여주는 곳 -->
+	<div id="p_BudgetAll">
+	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
+	<table border="1" id="p_writeBudget">
+			
+		<tr>
+			<td id="p_writeBudgetWrite">OO님,<p>여행에 필요한 최소 비용은 00,000원으로 0명이 여행할 경우 1인당 0,000원입니다.</td>
+		</tr>
+	</table>
+	</div>
+
+
+	
+<!-- 자유 한마디 -->
+	<div id="p_FreeWordAll">
+	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
+	<table border="1" id="p_writeFree">
+		
+		<tr>
+			<td id="p_writeFreeWrite">작성하는 곳 input or textarea (100글자 제한두기)</td>
+		</tr>
+	</table>
+	</div>
+	
+		<div id="p_writeBtn"><button>플래너 등록</button></div>
+	
+
 
 
 

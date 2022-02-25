@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
 
-</style>
 </head>
 <body>
+
 
 <div id="comm_picture_area">
 <div id="comm_menu112">
@@ -26,6 +25,7 @@
 
 
 <div id="comm_picture_content112">
+
 <form action="comm_picture_search">
 <table id="comm_picture_searchTbl">
 <tr><td>
@@ -75,6 +75,7 @@
 
 </div>
 </div>
+
 
 </body>
 </html>

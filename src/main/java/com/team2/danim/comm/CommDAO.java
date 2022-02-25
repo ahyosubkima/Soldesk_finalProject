@@ -1,15 +1,9 @@
 package com.team2.danim.comm;
-
-import java.io.File;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowire
 import org.springframework.stereotype.Service;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @Service
 public class CommDAO {
@@ -25,7 +19,7 @@ public class CommDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 public void upload(HttpServletRequest req) {
 		
 	

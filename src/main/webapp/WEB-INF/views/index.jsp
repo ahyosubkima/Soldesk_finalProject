@@ -8,12 +8,13 @@
 </head>
 <link rel="stylesheet" href="resources/asset/index/css/style.css">
 <link rel="stylesheet" href="resources/asset/index/css/index.css">
+
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css">
 
 <body>
 	<section class="section_carousel">
 		<div class="carousel-wrapper">
-			
+	
 			<div class="carousel">
 				<img class="carousel_item" src="resources/asset/index/img/1.jpg" />
 				<img class="carousel_item" src="resources/asset/index/img/2.jpg" />
@@ -25,6 +26,7 @@
 		</div>
 	</section>
 	<section class="section_content1">
+
 		<div class="title_wrap">
 			<div class="section_title">
 				<h1>즐거운 여행, 다님</h1>
@@ -67,6 +69,7 @@
 					<h3>어쩌고 저쩌고 ㅇㅇㅇㅇ</h3>
 				</div>
 			</div>
+
 		</div>
 	</section>
 	<section class="section_content2">

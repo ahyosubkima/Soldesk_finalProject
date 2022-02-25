@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 header {
+
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -63,6 +64,7 @@ header {
 	padding: 10px;
 	color: #fff;
 	border-radius: 10px;
+
 }
 
 .footer {
@@ -88,6 +90,7 @@ header {
 	color: #38ceb5;
 	margin-bottom: 20px;
 }
+
 
 .footer_column li {
 	margin-bottom: 10px;
@@ -163,4 +166,5 @@ header {
 	font-size: 18px;
 	background: none;
 }
+
 

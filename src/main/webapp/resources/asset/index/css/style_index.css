@@ -1,27 +1,11 @@
-@charset "UTF-8";
-
-.carousel-wrapper *{
-  margin: 0;
-  padding: 0;
-
-  box-sizing: border-box;
-  font-family: "GOYANGDEOGYANG B", "GOYANGDEOGYANG EB", sans-serif;
-  scroll-behavior: smooth;
-  overflow: hidden;
-  
-  
-}
-
-.section_carousel {
-	background-color: #f6f6f6;
-	margin: 0;
-}
 .carousel-wrapper {
-  
-  width: 70%;
+  overflow: hidden;
+  width: 90%;
   margin: auto;
-  height: 70%;
+}
 
+.carousel-wrapper * {
+  box-sizing: border-box;
 }
 
 .carousel {

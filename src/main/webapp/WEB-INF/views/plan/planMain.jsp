@@ -14,7 +14,6 @@
 		<table border="1" id="p_mainWrite">
 			<tr>
 				<td>여행일정<input type="number" name="p_days"> 일 </td>
-				<td>출발일: <input type="date" name="p_startDate"></td>
 			</tr>
 			<tr>
 				<td colspan="2">

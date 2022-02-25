@@ -121,13 +121,7 @@
 
 
 /* 테스트 */
-#p_dayWriteDiv{
-}
 
-#p_dayWrite{
-	width: 100px;
-	height: 30px;
-}
 
 #p_test{
 	margin: auto;
@@ -141,7 +135,7 @@
 	
 }
 
-#p_DayWriteAll{
+#p_DayWriteTitle{
 	text-align: center;
 	margin-top: 50px;
 	font-size: 20pt;
@@ -149,16 +143,32 @@
 
 
 
+#p_DayWriteAll{
+	border: 2px solid black;
+	margin-bottom: 30px;
+	text-align: center;
+	
+}
 
 
+#p_dayWriteDiv{
+	display:inline-block;zoom:1;.display:inline;
+}
 
 
-
-
-/* section > table {
+#sese {
 	text-align: center; float: left;
 }
- */
+
+#p_dayWrite{
+	width: 100px;
+	height: 30px;
+	clear: both;
+	text-align: center;
+	margin: auto;
+	display: block;
+}
+
 
 
 

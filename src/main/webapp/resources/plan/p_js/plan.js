@@ -14,15 +14,55 @@ function connectAddrSearchEvent() {
 
 
 
-function dayWrite() {
+/*function dayWrite() {
 	
 $(document).on("click","#p_dayWrite", function() {
-		
-		$("#eeeg").append('<table border="1">'+
+
+	alert($(this).attr("value"));
+	
+		$("section").append('<table border="1">'+
 			'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
 			'<tr><td>주소</td><td>메뉴</td></tr></table>');
 	});
+}*/
+
+
+function dayWrite() {
+	
+	$(document).on("click","#p_dayWrite", function() {
+
+		alert($(this).attr("value"));
+		
+		$(this).after('<table border="1" id="sese">'+
+				'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
+				'<tr><td>주소</td><td>메뉴</td></tr></table>');
+		});
+	}
+
+
+
+	
+
+/*
+function eeeeeeeee(){
+	
+	$(document).ready(function() {
+		
+		$("#p_dayWrite").each(function() {
+			$(this).click(function() {
+				
+				$("section").append('<table border="1">'+
+						'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
+						'<tr><td>주소</td><td>메뉴</td></tr></table>');
+			});
+		});
+            }
+        );
 }
+*/
+	
+
+
 
 
 
@@ -94,6 +134,7 @@ function p_openFreeWord(){
 $(function() {
 	dayWrite();
 	pptest();
+	eeeeeeeee();
  
 });
 

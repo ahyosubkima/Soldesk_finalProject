@@ -56,22 +56,17 @@
  
 	
 <!-- 일정 상세등록 -->
-	<div id="p_DayWriteAll"><span>📅일정 작성</span></div>
+	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
 	<div id="p_openDayWrite">
 	
 	<c:forEach var="p" begin="1" end="${param.p_days}">
+		<div id="p_DayWriteAll">
 		<div>${p }일차</div>
-		<div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div>
-		<table border="1" id="eeeg">
-		<tr>
-			<td colspan="2">지도</td>
-			<td rowspan="3">➔</td>
-		</tr>
-		<tr>
-			<td>주소</td>
-			<td>메뉴</td>
-		</tr>
-		</table>
+		<div id="p_dayWriteDiv">
+		<input id="p_dayWrite"  type="button" value="${p }일정추가">
+		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
+		</div>
+		</div>
 	</c:forEach>
 
 

@@ -6,6 +6,56 @@
 	select * from comm_picture order by comm_picture_date desc
 	</select>
 	
+
+	<insert id="upload" parameterType="com.team2.danim.comm.Comm_picture">
+	insert into comm_picture values(comm_picture_seq.nextval,
+	#{comm_picture_name},
+	#{comm_picture_write_name},
+	'김진현',
+	#{comm_picture_txt},
+	1,
+	1,
+	sysdate)
+	</insert>
 	
+	<select id="getCommPicture2" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	select * from comm_picture where comm_picture_no = #{comm_picture_no}
+	</select>
+	
+	<delete id="delPicture" parameterType="com.team2.danim.comm.Comm_picture">
+	delete from comm_picture where comm_picture_no = #{comm_picture_no}
+	</delete>
+	
+	<update id="updatePicture" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_name = #{comm_picture_name},comm_picture_write_name = #{comm_picture_write_name},comm_picture_txt = #{comm_picture_txt} where comm_picture_no = #{comm_picture_no}
+	</update>
+	
+	<select id="searchTitle" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_write_name LIKE '%'||#{comm_picture_write_name}||'%' order by comm_picture_date desc
+	</select>
+
+	<select id="searchWriter" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_writer LIKE '%'||#{comm_picture_writer}||'%' order by comm_picture_date desc
+	</select>
+	
+	<select id="searchTxt" resultType="com.team2.danim.comm.Comm_picture" parameterType="com.team2.danim.comm.Comm_picture">
+	SELECT * FROM comm_picture WHERE comm_picture_txt LIKE '%'||#{comm_picture_txt}||'%' order by comm_picture_date desc
+	</select>
+	
+	<update id="viewPlus" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_view = comm_picture_view + 1 where comm_picture_no = #{comm_picture_no}
+	</update>
+
+	<update id="goodPlus" parameterType="com.team2.danim.comm.Comm_picture">
+	update comm_picture set comm_picture_good = comm_picture_good + 1 where comm_picture_no = #{comm_picture_no}
+	</update>
+	
+	<select id="getReply" resultType="com.team2.danim.comm.Comm_picture_reply">
+	select * from comm_picture_reply where cpr_cp_no = #{cpr_cp_no} order by cpr_when desc
+	</select>
+	
+	<insert id="pictureReplyUpload" parameterType="com.team2.danim.comm.Comm_picture_reply">
+	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},'김진현',#{cpr_txt},sysdate);
+	</insert>
 
 </mapper>

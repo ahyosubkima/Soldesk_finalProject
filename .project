@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 
+
 	<name>FinalProject_Danim</name>
 
 	<comment></comment>
@@ -48,6 +49,7 @@
 	</natures>
 
 
+
 	<filteredResources>
 		<filter>
 			<id>1645410174827</id>
@@ -60,5 +62,4 @@
 			</matcher>
 		</filter>
 	</filteredResources>
-
 </projectDescription>

@@ -199,6 +199,9 @@ li {
 
 <div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
 <div class="flex-container" id="choosedVal"></div>
+<h1>AJAX GET TEST</h1>
+	Name: <input type="text" id="inputTitle"></input>
+	<button id="ajaxCall">호출</button>
 </div>
 
 <div >

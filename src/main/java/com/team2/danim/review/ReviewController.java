@@ -34,12 +34,13 @@ public class ReviewController {
 		}
 		
 		@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-		public @ResponseBody String getTitleByJSON(ReviewBean reviewBean ) {
+		public @ResponseBody AA getTitleByJSON( ReviewBean rb ) {
 			
-			//req.setAttribute("contentPage", "review/reviewWrite.jsp");
+			AA rdj = reviewDAO.getTitleJSON(rb);
 			
 			
-			return "home";
+			
+			return rdj;
 		}
 		
 }

@@ -6,6 +6,8 @@ public interface ReviewMapper {
 
 	public List<ReviewBean> getAllReview();
 
+	public List<ReviewBean> getTitleJSON(ReviewBean rb);
+
 	
 	
 }

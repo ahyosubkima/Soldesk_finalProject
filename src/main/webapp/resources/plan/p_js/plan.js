@@ -134,7 +134,6 @@ function p_openFreeWord(){
 $(function() {
 	dayWrite();
 	pptest();
-	eeeeeeeee();
  
 });
 

@@ -6,14 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title
-<script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=690dce1d74d365eaed8c4188052a77a1&libraries=services"></script>
+<title>Insert title here</title>
+<script type="text/javascript" src="resources/plan/p_js/jQuery.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10c7423289ef4af1c8687b735db21075&libraries=services"></script>
 <script type="text/javascript" src="resources/plan/p_js/plan_map.js"></script>
 <script type="text/javascript" src="resources/plan/p_js/plan.js"></script>
 
-
-<link rel="stylesheet" href="resources/plan/p_css/plan_map.css">
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
 </head>
 <body>
@@ -41,12 +39,16 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로: </td>
+			<td colspan="3">간단 경로:<div id="p_route">경로보여주는 곳</div> </td>
 		</tr>
 
 		<tr>
 			<td colspan="3">
-			지도?
+				<input placeholder="검색하기" id="p_search">
+			<div id="map" style="width:800px;height:400px;"></div>
+			
+			
+			
 			</td>
 		</tr>
 	</table>

@@ -149,23 +149,23 @@ li {
 <div>
 인원수
 <input type="range" id="headcount" min="1" max="10" value="1" step="1" >
-  <span id="headcount_value"></span><span>명</span>
+ <span id="headcount_value"></span><span>명</span>
 </div>
 
 <div>
-직접입력 : <input >명
+직접입력 : <input id="headcount_value1" value="1">명
 </div>
-<button class="selector_btn">선택</button>
+<button>선택</button>
 
 </div>
         </article>
         <article id="tab2" class="content-container__content">
           <div class="flex-container" style="text-align: center ;">
-          <div class="selector_btn" >예산1</div>
-          <div class="selector_btn" >예산2</div>
-          <div class="selector_btn" >예산3</div>
-          <div class="selector_btn" >예산4</div>
-          <div class="selector_btn" >예산5</div>
+          <div class="budget_select_btn" >예산1</div>
+          <div class="budget_select_btn" >예산2</div>
+          <div class="budget_select_btn" >예산3</div>
+          <div class="budget_select_btn" >예산4</div>
+          <div class="budget_select_btn" >예산5</div>
           <div>
 직접입력 : <input >명
 </div>
@@ -174,20 +174,20 @@ li {
         </article>
         <article id="tab3" class="content-container__content">
            <div class="flex-container" style="text-align: center ;">
-          <div class="selector_btn" >테마1</div>
-          <div class="selector_btn" >테마2</div>
-          <div class="selector_btn" >테마3</div>
-          <div class="selector_btn" >테마4</div>
-          <div class="selector_btn" >테마5</div>
+          <div class="theme_select_btn" >테마1</div>
+          <div class="theme_select_btn" >테마2</div>
+          <div class="theme_select_btn" >테마3</div>
+          <div class="theme_select_btn" >테마4</div>
+          <div class="theme_select_btn" >테마5</div>
           </div>
         </article>
         <article id="tab4" class="content-container__content">
           <div class="flex-container" style="text-align: center ;">
-          <div class="selector_btn" >지역1</div>
-          <div class="selector_btn" >지역2</div>
-          <div class="selector_btn" >지역3</div>
-          <div class="selector_btn" >지역4</div>
-          <div class="selector_btn" >지역5</div>
+          <div class="location_select_btn" >지역1</div>
+          <div class="location_select_btn" >지역2</div>
+          <div class="location_select_btn" >지역3</div>
+          <div class="location_select_btn" >지역4</div>
+          <div class="location_select_btn" >지역5</div>
           </div>
         </article>
       </section>
@@ -198,7 +198,13 @@ li {
 <div class="flex-container"  >
 
 <div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
-<div class="flex-container" id="choosedVal"></div>
+<div class="flex-container" id="choosedVal">
+<div id="choosed_head" ></div>
+<div id="choosedVal1"></div>
+<div id="choosedVal2"></div>
+<div id="choosedVal3"></div>
+
+</div>
 <h1>AJAX GET TEST</h1>
 	Name: <input type="text" id="inputTitle"></input>
 	<button id="ajaxCall">호출</button>
@@ -220,7 +226,7 @@ ${reviews.rb_date }
 사진,제목,좋아요,뷰수,댓글수,작성일자, 작성자프사, 작성자 아이디, 검색키워드
 
 </div>
-<div>게시글표시2</div>
+<div id="name">게시글표시2</div>
 <div>게시글표시3</div>
 </div>
 

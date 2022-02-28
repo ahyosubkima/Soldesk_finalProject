@@ -8,6 +8,11 @@ select * from REVIEW_BOARD
 
 </select>
 
+<select id="getTitleJSON" resultType="ReviewBean">
 
+select * from REVIEW_BOARD
+where rb_title like '%'||#{rb_title}||'%'
+
+</select>
 
 </mapper>

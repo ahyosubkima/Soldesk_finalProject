@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title
+<title>Insert title here</title>
 <script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=690dce1d74d365eaed8c4188052a77a1&libraries=services"></script>
 <script type="text/javascript" src="resources/plan/p_js/plan_map.js"></script>

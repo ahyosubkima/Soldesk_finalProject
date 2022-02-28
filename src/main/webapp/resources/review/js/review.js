@@ -7,7 +7,63 @@
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
 
+  let cdf = document.getElementById('choosedVal1').hasChildNodes();
+  console.log(cdf);
+
+  var target = document.getElementById('choosedVal');
+ 
+  // 감시자 인스턴스 만들기
+  var observer = new MutationObserver((mutations) => {
+    // 노드가 변경 됐을 때의 작업
+    console.log("event 발생!");
+  })
+   
+  // 감시자 옵션 포함, 대상 노드에 전달
+  var config = {
+    attributes: true, 
+    childList: true,
+    characterData: true
+  };
+   
+  // 대상 노드에 감시자 전달
+  observer.observe(target, config);
+
   var httpRequest;
+	/* button이 클릭되었을때 이벤트 */ //테스트
+	document.getElementById("choosed_head").addEventListener('change', () => {
+		console.log('변화감지');
+    // /* textBox에 작성된 name 데이터를 가져옴 */
+		// var inputTitle = document.getElementById("inputTitle").value;
+		// /* 통신에 사용 될 XMLHttpRequest 객체 정의 */
+		// httpRequest = new XMLHttpRequest();
+		// /* httpRequest의 readyState가 변화했을때 함수 실행 */
+	  //   httpRequest.onreadystatechange = function() {
+	  //   	/* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+		//     if (httpRequest.readyState === XMLHttpRequest.DONE) {
+		// 	      if (httpRequest.status === 200) {
+		// 	    	var result = httpRequest.response;
+    //         console.log(result);
+    //         console.log(result.reviewTitles[0].rb_title);
+    //         //let df = JSON.parse(result).rb_title
+    //          // console.log(df);
+            
+
+		// 	        // document.getElementById("name").innerText = result.rb_title;
+		// 	        // document.getElementById("age").innerText = result.age;
+		// 	      } else {
+		// 	        alert('Request Error!');
+		// 	      }
+		//     }
+	  //   };
+	  //   /* Get 방식으로 name 파라미터와 함께 요청 */
+	  //   httpRequest.open('GET', 'http://localhost/danim/getTitleByJSON?rb_title=' + inputTitle);
+	  //   /* Response Type을 Json으로 사전 정의 */
+	  //   httpRequest.responseType = "json";
+	  //   /* 정의된 서버에 요청을 전송 */
+	  //   httpRequest.send();
+	});
+
+
 	/* button이 클릭되었을때 이벤트 */
 	document.getElementById("ajaxCall").addEventListener('click', () => {
 		/* textBox에 작성된 name 데이터를 가져옴 */

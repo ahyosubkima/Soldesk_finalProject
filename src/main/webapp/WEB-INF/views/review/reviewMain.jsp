@@ -10,6 +10,10 @@
 
 <style type="text/css">
 
+.itsActive{
+background-color: green;
+}
+
 div{
 
 border: 1px solid red;
@@ -21,6 +25,7 @@ justify-content: center;
 
 
 }
+
 
 .selector_btn{
 
@@ -155,7 +160,7 @@ li {
 <div>
 직접입력 : <input id="headcount_value1" value="1">명
 </div>
-<button>선택</button>
+<button id="headcount_select_btn">선택</button>
 
 </div>
         </article>

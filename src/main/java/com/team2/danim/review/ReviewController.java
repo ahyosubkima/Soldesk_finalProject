@@ -42,6 +42,15 @@ public class ReviewController {
 			
 			return rdj;
 		}
+		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody AA getfilterdByJSON( ReviewBean rb ) {
+			
+			AA rdj = reviewDAO.getfilterdByJSON(rb);
+			
+			
+			
+			return rdj;
+		}
 		
 }
 

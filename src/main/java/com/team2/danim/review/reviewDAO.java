@@ -30,4 +30,12 @@ public class reviewDAO {
 		return rbs;
 	}
 
+	public AA getfilterdByJSON(ReviewBean rb) {
+List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb);
+		
+		AA rbs = new AA(reviews);
+		
+		return rbs;
+	}
+
 }

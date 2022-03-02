@@ -37,3 +37,5 @@ insert into comm_picture_reply values(comm_picture_reply_seq.nextval,,'김진현
 select * from comm_picture_reply
 
 SELECT * FROM comm_picture WHERE ROWNUM < 6 order by comm_picture_good
+
+

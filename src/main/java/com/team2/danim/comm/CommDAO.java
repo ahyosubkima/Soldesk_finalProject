@@ -334,5 +334,29 @@ public void getGoodPicture(HttpServletRequest req) {
 	}
 }
 
-
+public void paging(int page,HttpServletRequest req) {
+		req.setAttribute("curPageNo", page);
+		
+/*		int cnt = 10; //한페이지당 보여줄 개수
+		int total = pictures.size(); //총 데이터 개수
+		
+		if (total != 0) {
+			int pageCount = (int)Math.ceil((double)total / cnt); 
+			req.setAttribute("pageCount", pageCount);
+				
+			int start = total - (cnt * (page - 1));
+				
+			int end = (page == pageCount) ? -1 : start - (cnt + 1);	
+				
+				
+			ArrayList<WavveReview> items = new ArrayList<WavveReview>();
+			for (int i = start-1; i > end; i--) {
+				items.add(reviews.get(i));
+			}
+			
+			request.setAttribute("reviews", items);
+			
+			} */
+	
+	}
 }

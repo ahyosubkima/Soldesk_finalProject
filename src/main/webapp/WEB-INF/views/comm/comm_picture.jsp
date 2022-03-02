@@ -79,7 +79,7 @@
 			</c:if>
 
 			<div style="border: 1px solid; width: 1600px; float: left;">
-			<h2 id="comm_picture_content_title2">사진 게시판</h2>
+			<h2 <c:if test="${param.search_input eq null }">id="comm_picture_content_title2"</c:if>>사진 게시판</h2>
 				<c:forEach var="p" items="${pictures }" varStatus="status">
 					<table class="comm_picture_bestTbl2" style="">
 						<tr>

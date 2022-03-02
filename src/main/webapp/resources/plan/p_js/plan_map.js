@@ -39,9 +39,8 @@ $(function() {
 	/*검색하기*/
 	//"https://dapi.kakao.com/v2/local/search/keyword.json?
 	
-	$("#p_search").keyup(function(eeeeee) {
-		if (eeeeee.keyCode == 13) {
-			let search = $(this).val();
+	$("#p_searchBtn").click(function() {
+			let search = $("#p_search").val();
 			
 			$.ajax({
 				url : "https://dapi.kakao.com/v2/local/search/keyword.json",
@@ -94,15 +93,15 @@ $(function() {
 				        removable : iwRemoveable
 				    });
 				    
+
 				    
 				    
-				    
-					
-					
 				}
 			});
-		}
 	});
+	
+	
+	
 	
 	
 });

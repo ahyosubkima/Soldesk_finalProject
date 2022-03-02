@@ -16,39 +16,32 @@
 </head>
 <body>
 
-<div id="p_writeTitle"><h1>여행 플래너 제작하기</h1></div>
+<div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
 
 <!-- 일정 기본정보 등록 -->
-<form action="plan.detailPlanner" name="planWrite" method="post" enctype="multipart/form-data">
 	<table border="1" id="p_write">
-	            <!-- 아이디정보 가져가기 -->
-		<tr><td><input type="hidden" name="p_writer" value="login값넣기"></td></tr>
 
 		<tr>
-			<td rowspan="3">플래너 표지 사진 업로드 <p><input type="file" name="p_TitleFile"></td>
-			<td colspan="2">제목: <input name="p_title"></td>
+			<td rowspan="3">플래너 표지 사진 업로드 <p> </td>
+			<td colspan="2">제목:  </td>
 		</tr>
 		
 		<tr>
-			<td>출발: <input type="date" name="p_startDate"></td>
-			<td>인원: <input type="number" name="p_person"></td>
+			<td>출발:  </td>
+			<td>인원:  </td>
 		</tr>
 
 		<tr>
-			<td>장소: <input name="p_place"></td>
+			<td>장소:  </td>
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로:<div id="p_route">경로보여주는 곳</div> </td>
+			<td colspan="3">간단 경로:<div id="">경로보여주는 곳</div> </td>
 		</tr>
 
 		<tr>
 			<td colspan="3">
-				<input placeholder="입력해주세요" id="p_search"><input type="button" id="p_searchBtn" value="검색">
-			<div id="map" style="width:800px;height:400px;"></div>
-			
-			
-			
+					상세보여주기			
 			</td>
 		</tr>
 	</table>
@@ -61,18 +54,12 @@
 	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
 	<div id="p_openDayWrite">
 	
-	<c:forEach var="p" begin="1" end="${param.p_days}">
-		<div id="p_DayWriteAll">
-		<div>${p }일차</div>
-		<div id="p_dayWriteDiv">
-		<input id="p_dayWrite"  type="button" value="일정추가">
-		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
-		</div>
-		</div>
-	</c:forEach>
+
 
 
 	</div>
+	
+	
 	
 	
 	
@@ -98,16 +85,11 @@
 	<table border="1" id="p_writeFree">
 		
 		<tr>
-			<td id="p_writeFreeWrite"><input name="p_freeWrite"></td>
+			<td id="p_writeFreeWrite">작성하는 곳 input or textarea (100글자 제한두기)</td>
 		</tr>
 	</table>
 	</div>
 	
-	<div id="p_regOk"><input type="submit" value="플래너 등록"></div> 
-	
-</form> 
-
-
 
 
 </body>

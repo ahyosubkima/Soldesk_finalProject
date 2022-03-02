@@ -3,7 +3,17 @@
 <mapper namespace="com.team2.danim.plan.PlanMapper">
 
 
-
+<insert id="upload" parameterType="com.team2.danim.plan.Plan_write">
+	insert into plan_write values(plan_write_seq.nextval,
+	#{p_writer},
+	#{p_title},
+	#{p_TitleFile},
+	#{p_startDate},
+	#{p_person},
+	#{p_place},
+	#{p_freeWrite},
+	sysdate)
+	</insert>
 
 
 </mapper>

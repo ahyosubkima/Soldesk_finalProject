@@ -7,7 +7,7 @@ public class Comm_picture {
 	private String comm_picture_name;
 	private String comm_picture_write_name;
 	private String comm_picture_writer;
-
+	private String comm_picture_txt;
 	private int comm_picture_good;
 	private int comm_picture_view;
 	private Date comm_picture_date;

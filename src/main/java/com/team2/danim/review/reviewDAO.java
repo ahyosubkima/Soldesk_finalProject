@@ -21,13 +21,23 @@ public class reviewDAO {
 		
 	}
 
-	public AA getTitleJSON(ReviewBean rb) {
+
+	/*public ReviewsAjaxDTO getTitleJSON(ReviewBean rb) {
 
 		List<ReviewBean> reviewTitles =	ss.getMapper(ReviewMapper.class).getTitleJSON(rb);
 		
-		AA rbs = new AA(reviewTitles);
+		ReviewsAjaxDTO rbs = new ReviewsAjaxDTO(reviewTitles);
 		
 		return rbs;
+	}*/
+
+	public ReviewsAjaxDTO getfilterdByJSON(ReviewBean rb) {
+List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb);
+		
+		ReviewsAjaxDTO reviewsArr = new ReviewsAjaxDTO(reviews);
+		
+		return reviewsArr;
+
 	}
 
 }

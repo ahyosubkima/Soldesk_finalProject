@@ -213,11 +213,14 @@ public void serachPicture(Comm_picture cp, HttpServletRequest req) {
 public void viewPlus(Comm_picture cp, HttpServletRequest req) {
 	
 	try {
-		
-	String token = req.getParameter("token");
+	String token = (String)req.getSession().getAttribute("token"); // 디테일 진입시 생성된 토큰 값
+	
+	System.out.println(token);
+	
 	String successToken = (String) req.getSession().getAttribute("successToken");
-
-	if (token.equals(successToken)) {
+	System.out.println(successToken + "?????????????");
+	
+	if(successToken == token) {
 		return;
 	}
 
@@ -239,6 +242,8 @@ public void viewPlus(Comm_picture cp, HttpServletRequest req) {
 public void goodPlus(Comm_picture cp, HttpServletRequest req) {
 	
 	try {
+		
+				
 		System.out.println(req.getParameter("no"));
 		cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
 		if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
@@ -270,16 +275,45 @@ public void getReply(Comm_picture_reply cpr, HttpServletRequest req) {
 
 public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
 	
+	
+	
 	try {
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		// 새로고침 하면 이거 396 첫 등록때 세팅된 그거니까
+
+		if (token2.equals(successToken)) {
+			return;
+		}
 		
+		
+		
+		System.out.println(req.getParameter("no"));
 		System.out.println(req.getParameter("cpr_txt"));
-		System.out.println(req.getParameter("cpr_cp_no"));
 		
 		cpr.setCpr_txt(req.getParameter("cpr_txt"));
-		cpr.setCpr_cp_no(Integer.parseInt(req.getParameter("cpr_cp_no")));
+		cpr.setCpr_cp_no(Integer.parseInt(req.getParameter("no")));
 		
 		if (ss.getMapper(CommMapper.class).pictureReplyUpload(cpr) == 1) {
 			System.out.println("댓글등록 성공");
+			req.getSession().setAttribute("successToken", token2);
+		}
+	
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	System.out.println(req.getParameter("cpr_txt"));
+
+	
+}
+
+public void delPictureReply(Comm_picture_reply cpr, HttpServletRequest req) {
+	
+	try {
+		System.out.println(req.getParameter("no"));
+		cpr.setCpr_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).delPictureReply(cpr)==1) {
+			System.out.println("삭제성공");
 		}
 		
 		
@@ -288,15 +322,41 @@ public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
 		e.printStackTrace();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 }
 
+public void getGoodPicture(HttpServletRequest req) {
+	
+	try {
+		req.setAttribute("good_pictures", ss.getMapper(CommMapper.class).getGoodPicture());
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
 
+public void paging(int page,HttpServletRequest req) {
+		req.setAttribute("curPageNo", page);
+		
+/*		int cnt = 10; //한페이지당 보여줄 개수
+		int total = pictures.size(); //총 데이터 개수
+		
+		if (total != 0) {
+			int pageCount = (int)Math.ceil((double)total / cnt); 
+			req.setAttribute("pageCount", pageCount);
+				
+			int start = total - (cnt * (page - 1));
+				
+			int end = (page == pageCount) ? -1 : start - (cnt + 1);	
+				
+				
+			ArrayList<WavveReview> items = new ArrayList<WavveReview>();
+			for (int i = start-1; i > end; i--) {
+				items.add(reviews.get(i));
+			}
+			
+			request.setAttribute("reviews", items);
+			
+			} */
+	
+	}
 }

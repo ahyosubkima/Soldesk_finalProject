@@ -3,65 +3,196 @@
  */
 
 
+ let rb_budget = "";
+ let rb_theme = "";
+ let rb_location = "";
+ let rb_headNum = "";
 
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
 
-  let cdf = document.getElementById('choosedVal1').hasChildNodes();
-  console.log(cdf);
+
+  
+
+  document.querySelectorAll('.budget_select_btn, .theme_select_btn, .location_select_btn').forEach(function(target,curin) {
+
+
+    //console.log(target,curin);
+
+    target.addEventListener('click',function(){
+
+      console.log('체에크');
+
+      if(target.classList.contains('itsActive')){
+
+        target.classList.remove('itsActive')
+
+        if(target.classList.contains('budget_select_btn')){
+          rb_budget ="";
+        }else if(target.classList.contains('theme_select_btn')){
+          rb_theme ="";
+        }else if(target.classList.contains('location_select_btn')){
+          rb_location ="";
+        }
+        callAjax();
+      }else{
+         if(this.classList.contains('budget_select_btn')){
+  let budgetsActive = document.getElementById('tab2').querySelectorAll('.itsActive');
+
+  for(let i of budgetsActive){
+    i.classList.remove('itsActive');
+  }
+}
+else if(this.classList.contains('theme_select_btn')){
+  let themesActive = document.getElementById('tab3').querySelectorAll('.itsActive');
+
+  for(let i of themesActive){
+    i.classList.remove('itsActive');
+  }
+}
+else if(this.classList.contains('location_select_btn')){
+  let locationsActive = document.getElementById('tab4').querySelectorAll('.itsActive');
+
+  for(let i of locationsActive){
+    i.classList.remove('itsActive');
+  }
+}
+
+        target.classList.add('itsActive');
+      
+ document.querySelectorAll('.itsActive').forEach(function(db){
+
+  console.log(db.classList.contains('location_select_btn'));
+
+  
+
+
+  if(db.classList.contains('location_select_btn')){
+    
+    rb_location = db.textContent;
+    console.log(rb_location);
+
+  }else if(db.classList.contains('budget_select_btn')){
+    rb_budget = db.textContent;
+  }else if(db.classList.contains('theme_select_btn')){
+    rb_theme = db.textContent;
+  }
+
+ 
+ 
+
+ });
+
+ console.log(rb_budget,rb_location,rb_theme)
+ callAjax();
+//  let bbs= Array.from(document.querySelectorAll('.itsActive'));
+
+//  console.log(bbs);
+
+
+      }
+
+
+})
+});
+    
+
+  
 
   var target = document.getElementById('choosedVal');
  
-  // 감시자 인스턴스 만들기
-  var observer = new MutationObserver((mutations) => {
-    // 노드가 변경 됐을 때의 작업
-    console.log("event 발생!");
-  })
-   
-  // 감시자 옵션 포함, 대상 노드에 전달
-  var config = {
-    attributes: true, 
-    childList: true,
-    characterData: true
-  };
-   
-  // 대상 노드에 감시자 전달
-  observer.observe(target, config);
+//   // 감시자 인스턴스 만들기
+//   var observer = new MutationObserver(function() {
+//     // 노드가 변경 됐을 때의 작업
+//     console.log("event 발생!");
 
-  var httpRequest;
-	/* button이 클릭되었을때 이벤트 */ //테스트
-	document.getElementById("choosed_head").addEventListener('change', () => {
-		console.log('변화감지');
-    // /* textBox에 작성된 name 데이터를 가져옴 */
-		// var inputTitle = document.getElementById("inputTitle").value;
-		// /* 통신에 사용 될 XMLHttpRequest 객체 정의 */
-		// httpRequest = new XMLHttpRequest();
-		// /* httpRequest의 readyState가 변화했을때 함수 실행 */
-	  //   httpRequest.onreadystatechange = function() {
-	  //   	/* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
-		//     if (httpRequest.readyState === XMLHttpRequest.DONE) {
-		// 	      if (httpRequest.status === 200) {
-		// 	    	var result = httpRequest.response;
-    //         console.log(result);
-    //         console.log(result.reviewTitles[0].rb_title);
-    //         //let df = JSON.parse(result).rb_title
-    //          // console.log(df);
+//     console.log(document.querySelectorAll('.location_selected_btn, .budget_selected_btn, .theme_selected_btn').forEach(function(aaa,currentIndex){
+//       console.log(aaa);
+//       console.log(currentIndex);
+//       console.log(aaa.innerHTML);
+      
+
+
+//     }))
+
+//  /* textBox에 작성된 name 데이터를 가져옴 */
+//  var inputTitle = document.getElementById("inputTitle").value;
+//  /* 통신에 사용 될 XMLHttpRequest 객체 정의 */
+//  httpRequest = new XMLHttpRequest();
+//  /* httpRequest의 readyState가 변화했을때 함수 실행 */
+//    httpRequest.onreadystatechange = function() {
+//      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+//      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+//          if (httpRequest.status === 200) {
+//          var result = httpRequest.response;
+//          console.log(result);
+//          console.log(result.reviewTitles[0].rb_title);
+//          let df = JSON.parse(result).rb_title
+//            console.log(df);
+        
+
+//            document.getElementById("name").innerText = result.rb_title;
+//             document.getElementById("age").innerText = result.age;
+//          } else {
+//           alert('Request Error!');
+//         }
+//      }
+//    };
+//    /* Get 방식으로 name 파라미터와 함께 요청 */
+//    httpRequest.open('GET', 'http://localhost/danim/getTitleByJSON?rb_title=' + inputTitle);
+//    /* Response Type을 Json으로 사전 정의 */
+//    httpRequest.responseType = "json";
+//   /* 정의된 서버에 요청을 전송 */
+//    httpRequest.send();
+
+
+//   })
+   
+//   // 감시자 옵션 포함, 대상 노드에 전달
+//   var config = {
+//     attributes: true, 
+//     childList: true,
+//     characterData: true
+//   };
+   
+//   // 대상 노드에 감시자 전달
+//   observer.observe(target, config);
+
+  // var httpRequest;
+	// /* button이 클릭되었을때 이벤트 */ //테스트
+	// document.getElementById("choosed_head").addEventListener('change', () => {
+	// 	console.log('변화감지');
+  //   /* textBox에 작성된 name 데이터를 가져옴 */
+	// 	 var inputTitle = document.getElementById("inputTitle").value;
+	// 	 /* 통신에 사용 될 XMLHttpRequest 객체 정의 */
+	// 	 httpRequest = new XMLHttpRequest();
+	// 	 /* httpRequest의 readyState가 변화했을때 함수 실행 */
+	//      httpRequest.onreadystatechange = function() {
+	//      	/* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+	// 	     if (httpRequest.readyState === XMLHttpRequest.DONE) {
+	// 	 	      if (httpRequest.status === 200) {
+	// 	 	    	var result = httpRequest.response;
+  //            console.log(result);
+  //            console.log(result.reviewTitles[0].rb_title);
+  //            let df = JSON.parse(result).rb_title
+  //              console.log(df);
             
 
-		// 	        // document.getElementById("name").innerText = result.rb_title;
-		// 	        // document.getElementById("age").innerText = result.age;
-		// 	      } else {
-		// 	        alert('Request Error!');
-		// 	      }
-		//     }
-	  //   };
-	  //   /* Get 방식으로 name 파라미터와 함께 요청 */
-	  //   httpRequest.open('GET', 'http://localhost/danim/getTitleByJSON?rb_title=' + inputTitle);
-	  //   /* Response Type을 Json으로 사전 정의 */
-	  //   httpRequest.responseType = "json";
-	  //   /* 정의된 서버에 요청을 전송 */
-	  //   httpRequest.send();
-	});
+	// 		         document.getElementById("name").innerText = result.rb_title;
+	// 	 	         document.getElementById("age").innerText = result.age;
+	// 	 	      } else {
+	// 		        alert('Request Error!');
+	// 		      }
+	// 	     }
+	//      };
+	//      /* Get 방식으로 name 파라미터와 함께 요청 */
+	//      httpRequest.open('GET', 'http://localhost/danim/getTitleByJSON?rb_title=' + inputTitle);
+	//      /* Response Type을 Json으로 사전 정의 */
+	//      httpRequest.responseType = "json";
+	//     /* 정의된 서버에 요청을 전송 */
+	//      httpRequest.send();
+	// });
+
 
 
 	/* button이 클릭되었을때 이벤트 */
@@ -100,13 +231,59 @@ document.addEventListener('DOMContentLoaded', function () {
 	  //인원수 슬라이더 value표시
 let slider = document.getElementById("headcount");
 let output = document.getElementById("headcount_value");
+
 //output.innerHTML = slider.value;
+
 
 slider.oninput = function() {
     output.innerHTML = this.value;
     document.getElementById("headcount_value1").value = this.value;
-    document.getElementById("choosed_head").innerHTML = this.value +'명';
+
+   // document.getElementById("choosed_head").innerHTML = this.value +'명';
+    
+
 }
+
+document.getElementById('headcount_select_btn').addEventListener('click',function(){
+
+
+let newDiv = document.createElement('div')
+newDiv.append(document.getElementById('headcount_value1').value +'명');
+newDiv.classList.add('selected_headcount');
+
+
+console.log(document.getElementById('choosedVal').querySelectorAll('.selected_headcount'));
+
+if(document.getElementById('choosedVal').querySelectorAll('.selected_headcount').length >= 1){
+
+  document.querySelector('.selected_headcount').remove();
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
+  
+
+  console.log(rb_headNum);
+  rb_headNum = document.getElementById("headcount_value1").value;
+
+  eraseJSTL();
+  callAjax();
+
+}else{
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
+rb_headNum = document.getElementById("headcount_value1").value;
+
+console.log(rb_headNum);
+
+eraseJSTL();
+callAjax();
+
+
+}
+
+})
+
 //탭메뉴
 
        const tabItem = document.querySelectorAll(".tab-container__item");
@@ -165,30 +342,37 @@ document.querySelectorAll('.location_select_btn, .budget_select_btn, .theme_sele
 
 if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length == 0 && word.indexOf('예산')==0){
  
-  document.getElementById('choosedVal1').appendChild(newDiv);
+  document.getElementById('choosedVal').appendChild(newDiv);
 
 }else if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length >=1 && word.indexOf('예산')==0){
   document.querySelector('.budget_selected_btn').remove();
-  document.getElementById('choosedVal1').appendChild(newDiv);
+  document.getElementById('choosedVal').appendChild(newDiv);
 
 }else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length == 0 && word.indexOf('테마')==0){
 
-  document.getElementById('choosedVal2').appendChild(newDiv);
+  document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length  >= 1 && word.indexOf('테마')==0){
 
   document.querySelector('.theme_selected_btn').remove();
-  document.getElementById('choosedVal2').appendChild(newDiv);
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }
 else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 && word.indexOf('지역')==0){
 
-  document.getElementById('choosedVal3').appendChild(newDiv);
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length  >= 1 && word.indexOf('지역')==0){
 
   document.querySelector('.location_selected_btn').remove();
-  document.getElementById('choosedVal3').appendChild(newDiv);
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }
 
@@ -273,9 +457,55 @@ else if(document.getElementById('choosedVal').querySelectorAll('.location_select
 
 
 // 검색필터선택해제
+function eraseJSTL(){
+document.getElementById('contentTable').innerHTML = "" ;
+
+}
+// 검색필터선택해제
 function cancelingSelect(){
 document.getElementById('choosedVal').innerHTML = "" ;
 
 }
 
+function callAjax(){
+  httpRequest = new XMLHttpRequest();
+  /* httpRequest의 readyState가 변화했을때 함수 실행 */
+    httpRequest.onreadystatechange = function() {
+      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+          if (httpRequest.status === 200) {
+          let result = httpRequest.response;
+          //console.log(result);
+         // console.log(result.reviewTitles[0].rb_title);
+          //let df = JSON.parse(result).rb_title
+           // console.log(df);
 
+              //console.log(result.reviews);
+
+              getReviews(result);
+
+          } else {
+            alert('Request Error!');
+          }
+      }
+    };
+    /* Get 방식으로 name 파라미터와 함께 요청 */
+    httpRequest.open('GET', 'http://localhost/danim/getfilterdByJSON?rb_location='+rb_location+'&rb_budget='+rb_budget+'&rb_theme='+rb_theme+'&rb_headNum='+rb_headNum);
+
+    /* Response Type을 Json으로 사전 정의 */
+    httpRequest.responseType = "json";
+    /* 정의된 서버에 요청을 전송 */
+    httpRequest.send();
+}
+
+function getReviews(result){
+ // console.log(result.reviews.forEach());
+  result.reviews.forEach(function(i, indexNum){
+    
+       console.log(indexNum);
+  
+    console.log(i.rb_title);
+
+     });
+
+};

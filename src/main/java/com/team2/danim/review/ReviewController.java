@@ -33,14 +33,27 @@ public class ReviewController {
 			return "home";
 		}
 		
-		@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-		public @ResponseBody AA getTitleByJSON( ReviewBean rb ) {
+
+		/*@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReviewsAjaxDTO getTitleByJSON( ReviewBean rb ) {
 			
-			AA rdj = reviewDAO.getTitleJSON(rb);
+			ReviewsAjaxDTO rdj = reviewDAO.getTitleJSON(rb);
+
 			
 			
 			
 			return rdj;
+
+		}*/
+		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReviewsAjaxDTO getfilterdByJSON( ReviewBean rb ) {
+			
+			ReviewsAjaxDTO reviews = reviewDAO.getfilterdByJSON(rb);
+			
+			
+			
+			return reviews;
+
 		}
 		
 }

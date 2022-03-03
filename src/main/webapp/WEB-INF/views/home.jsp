@@ -32,7 +32,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<img src="resources/asset/index/img/logo.png" />
+			<a href="/danim"><img src="resources/asset/index/img/logo.png" /></a>
 		</div>
 
 		<div class="nav_wrap">

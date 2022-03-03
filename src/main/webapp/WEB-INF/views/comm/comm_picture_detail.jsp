@@ -28,7 +28,7 @@
 <c:forEach var="picture" items="${picture }">
 <table id="comm_picture_detail_tbl" style="border: 1px solid black;">
 <tr>
-<td colspan="1" id="comm_picture_detail_td2">제목</td><td colspan="3">${picture.comm_picture_write_name }<input name="token" type="hidden" value="${token }"></td>
+<td colspan="1" id="comm_picture_detail_td2">제목</td><td colspan="3">${picture.comm_picture_write_name }<input name="token"  type="hidden" value="${token }"></td>
 </tr>
 <tr>
 <td>조회수</td><td id="comm_picture_detail_td">${picture.comm_picture_view }</td><td id="comm_picture_detail_td2">추천수</td><td>${picture.comm_picture_good }</td>
@@ -59,12 +59,18 @@
 <form action="comm_picture_reply">
 <table id="comm_picture_detail_reply">
 <c:forEach items="${reply }" var="r">
-<tr><td>${r.cpr_when }</td><td>${r.cpr_owner }</td><td>${r.cpr_txt }</td></tr>
+<tr><td style="text-align: center;">${r.cpr_when }</td>
+<td style="text-align: center;">${r.cpr_txt }</td>
+<td style="text-align: center;">${r.cpr_owner }</td>
+<td style="text-align: center;"><button>수정</button>
+<button onclick="pictureReplyDel(${r.cpr_no})">삭제</button></td>
+</tr>
 </c:forEach>
 <tr><td style="text-align: center;">아이디</td>
 <td style="text-align: center;"><input id="comm_picture_detail_replyInput" name="cpr_txt">
-<input type="hidden" name="cpr_cp_no" value="${picture.comm_picture_no }"></td>
-<td style="text-align: center;"><button style="width: 70px; font-size: 15pt;" >작성</button></td></tr>
+<input type="hidden" name="no" value="${picture.comm_picture_no }">
+<input type="hidden" name="token2" value="${token2}"></td>
+<td colspan="2" style="text-align: center;"><button style="width: 70px; font-size: 15pt;" >작성</button></td></tr>
 </table>
 </form>
 </c:forEach>

@@ -10,6 +10,12 @@
 
 <style type="text/css">
 
+#contentTable{
+display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+
+}
+
 .itsActive{
 background-color: green;
 }
@@ -167,11 +173,11 @@ li {
         </article>
         <article id="tab2" class="content-container__content">
           <div class="flex-container" style="text-align: center ;">
-          <div class="budget_select_btn" >예산1</div>
-          <div class="budget_select_btn" >예산2</div>
-          <div class="budget_select_btn" >예산3</div>
-          <div class="budget_select_btn" >예산4</div>
-          <div class="budget_select_btn" >예산5</div>
+          <div class="budget_select_btn" id="budget1">~ 100,000</div>
+          <div class="budget_select_btn" id="budget2">~ 300,000</div>
+          <div class="budget_select_btn" id="budget3">~ 500,000</div>
+          <div class="budget_select_btn" id="budget4">~ 700,000</div>
+          <div class="budget_select_btn" id="budget5">~ 1,000,000</div>
           <div>
 직접입력 : <input >명
 </div>
@@ -180,20 +186,20 @@ li {
         </article>
         <article id="tab3" class="content-container__content">
            <div class="flex-container" style="text-align: center ;">
-          <div class="theme_select_btn" >테마1</div>
-          <div class="theme_select_btn" >테마2</div>
-          <div class="theme_select_btn" >테마3</div>
-          <div class="theme_select_btn" >테마4</div>
-          <div class="theme_select_btn" >테마5</div>
+          <div class="theme_select_btn" id="theme1">커플여행</div>
+          <div class="theme_select_btn" id="theme2">럭셔리여행</div>
+          <div class="theme_select_btn" id="theme3">감성카페찾기</div>
+          <div class="theme_select_btn" id="theme4">맛집투어</div>
+          <div class="theme_select_btn" id="theme5">비즈니스여행</div>
           </div>
         </article>
         <article id="tab4" class="content-container__content">
           <div class="flex-container" style="text-align: center ;">
-          <div class="location_select_btn" >지역1</div>
-          <div class="location_select_btn" >지역2</div>
-          <div class="location_select_btn" >지역3</div>
-          <div class="location_select_btn" >지역4</div>
-          <div class="location_select_btn" >지역5</div>
+          <div class="location_select_btn" id="location1">서울</div>
+          <div class="location_select_btn" id="location2">대전</div>
+          <div class="location_select_btn" id="location3">대구</div>
+          <div class="location_select_btn" id="location4">부산</div>
+          <div class="location_select_btn" id="location5">인천</div>
           </div>
         </article>
       </section>
@@ -220,9 +226,11 @@ li {
 <button>추천순</button>
 <button>신규순</button>
 
-<div class="flex-container" id="contentTable">
+<div class="" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
-<div>
+<div id="contents">
+<div><img src="resources/img/sns.png"></div>
+$ {reviews.rb_}
 ${reviews.rb_title }
 ${reviews.rb_date }
 </div>

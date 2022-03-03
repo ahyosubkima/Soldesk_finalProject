@@ -11,7 +11,6 @@ public class Comm_picture {
 	private int comm_picture_good;
 	private int comm_picture_view;
 	private Date comm_picture_date;
-	private String comm_picture_txt;
 	public Comm_picture() {
 		// TODO Auto-generated constructor stub
 	}

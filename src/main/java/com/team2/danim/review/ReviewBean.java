@@ -13,13 +13,14 @@ public class ReviewBean {
 	private String rb_budget;
 	private String rb_theme;
 	private String rb_location;
+	private String rb_img;
 	
 	public ReviewBean() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public ReviewBean(int rb_no, String rb_title, int rb_likecount, int rb_viewcount, int commentcount, String rb_date,
-			String rb_text, String rb_headNum, String rb_budget, String rb_theme, String rb_location) {
+			String rb_text, String rb_headNum, String rb_budget, String rb_theme, String rb_location, String rb_img) {
 		super();
 		this.rb_no = rb_no;
 		this.rb_title = rb_title;
@@ -32,6 +33,7 @@ public class ReviewBean {
 		this.rb_budget = rb_budget;
 		this.rb_theme = rb_theme;
 		this.rb_location = rb_location;
+		this.rb_img = rb_img;
 	}
 
 	public int getRb_no() {
@@ -122,6 +124,13 @@ public class ReviewBean {
 		this.rb_location = rb_location;
 	}
 
-	
+	public String getRb_img() {
+		return rb_img;
+	}
+
+	public void setRb_img(String rb_img) {
+		this.rb_img = rb_img;
+	}
+
 	
 }

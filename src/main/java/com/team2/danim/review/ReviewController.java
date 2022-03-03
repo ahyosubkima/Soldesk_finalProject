@@ -48,6 +48,9 @@ public class ReviewController {
 		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 		public @ResponseBody ReviewsAjaxDTO getfilterdByJSON( ReviewBean rb ) {
 			
+			
+			System.out.println( rb.getRb_budget());
+			
 			ReviewsAjaxDTO reviews = reviewDAO.getfilterdByJSON(rb);
 			
 			

@@ -1,4 +1,4 @@
-package com.team2.danim;
+package com.team2.danim.account;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,21 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class HomeController {
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+public class AccountController {
+
+	@RequestMapping(value = "account.login", method = RequestMethod.POST)
 	public String home(HttpServletRequest req) {
-		
 		
 		req.setAttribute("contentPage", "index.jsp");
 		return "home";
 	}
-	
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String indexGo(HttpServletRequest req) {
-		
-		return home(req);
-	}
-	
 	
 }

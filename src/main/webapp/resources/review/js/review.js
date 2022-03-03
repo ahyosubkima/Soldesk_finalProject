@@ -11,6 +11,7 @@
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
 
+
   
 
   document.querySelectorAll('.budget_select_btn, .theme_select_btn, .location_select_btn').forEach(function(target,curin) {
@@ -193,6 +194,7 @@ else if(this.classList.contains('location_select_btn')){
 	// });
 
 
+
 	/* button이 클릭되었을때 이벤트 */
 	document.getElementById("ajaxCall").addEventListener('click', () => {
 		/* textBox에 작성된 name 데이터를 가져옴 */
@@ -236,8 +238,10 @@ let output = document.getElementById("headcount_value");
 slider.oninput = function() {
     output.innerHTML = this.value;
     document.getElementById("headcount_value1").value = this.value;
+
    // document.getElementById("choosed_head").innerHTML = this.value +'명';
     
+
 }
 
 document.getElementById('headcount_select_btn').addEventListener('click',function(){
@@ -348,20 +352,27 @@ if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn'
 
   document.getElementById('choosedVal').appendChild(newDiv);
 
+
 }else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length  >= 1 && word.indexOf('테마')==0){
 
   document.querySelector('.theme_selected_btn').remove();
+
   document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }
 else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 && word.indexOf('지역')==0){
 
+
   document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length  >= 1 && word.indexOf('지역')==0){
 
   document.querySelector('.location_selected_btn').remove();
+
   document.getElementById('choosedVal').appendChild(newDiv);
+
 
 }
 

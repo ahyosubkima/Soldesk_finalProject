@@ -21,6 +21,7 @@ public class reviewDAO {
 		
 	}
 
+
 	/*public ReviewsAjaxDTO getTitleJSON(ReviewBean rb) {
 
 		List<ReviewBean> reviewTitles =	ss.getMapper(ReviewMapper.class).getTitleJSON(rb);
@@ -36,6 +37,7 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 		ReviewsAjaxDTO reviewsArr = new ReviewsAjaxDTO(reviews);
 		
 		return reviewsArr;
+
 	}
 
 }

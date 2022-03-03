@@ -3,14 +3,15 @@
  */
 
 
-
+ let rb_budget = "";
+ let rb_theme = "";
+ let rb_location = "";
+ let rb_headNum = "";
 
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
 
-  let rb_budget = "";
-  let rb_theme = "";
-  let rb_location = "";
+  
 
   document.querySelectorAll('.budget_select_btn, .theme_select_btn, .location_select_btn').forEach(function(target,curin) {
 
@@ -24,6 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
       if(target.classList.contains('itsActive')){
 
         target.classList.remove('itsActive')
+
+        if(target.classList.contains('budget_select_btn')){
+          rb_budget ="";
+        }else if(target.classList.contains('theme_select_btn')){
+          rb_theme ="";
+        }else if(target.classList.contains('location_select_btn')){
+          rb_location ="";
+        }
+        callAjax();
       }else{
          if(this.classList.contains('budget_select_btn')){
   let budgetsActive = document.getElementById('tab2').querySelectorAll('.itsActive');
@@ -67,37 +77,13 @@ else if(this.classList.contains('location_select_btn')){
     rb_theme = db.textContent;
   }
 
-  httpRequest = new XMLHttpRequest();
-  /* httpRequest의 readyState가 변화했을때 함수 실행 */
-    httpRequest.onreadystatechange = function() {
-      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
-      if (httpRequest.readyState === XMLHttpRequest.DONE) {
-          if (httpRequest.status === 200) {
-          var result = httpRequest.response;
-          console.log(result);
-         // console.log(result.reviewTitles[0].rb_title);
-          //let df = JSON.parse(result).rb_title
-           // console.log(df);
-          
-
-            // document.getElementById("name").innerText = result.rb_title;
-            // document.getElementById("age").innerText = result.age;
-          } else {
-            alert('Request Error!');
-          }
-      }
-    };
-    /* Get 방식으로 name 파라미터와 함께 요청 */
-    httpRequest.open('GET', 'http://localhost/danim/getfilterdByJSON?rb_location='+rb_location+'&rb_budget='+rb_budget+'&rb_theme='+rb_theme);
-
-    /* Response Type을 Json으로 사전 정의 */
-    httpRequest.responseType = "json";
-    /* 정의된 서버에 요청을 전송 */
-    httpRequest.send();
-
+ 
+ 
 
  });
 
+ console.log(rb_budget,rb_location,rb_theme)
+ callAjax();
 //  let bbs= Array.from(document.querySelectorAll('.itsActive'));
 
 //  console.log(bbs);
@@ -243,6 +229,7 @@ else if(this.classList.contains('location_select_btn')){
 	  //인원수 슬라이더 value표시
 let slider = document.getElementById("headcount");
 let output = document.getElementById("headcount_value");
+
 //output.innerHTML = slider.value;
 
 
@@ -255,17 +242,41 @@ slider.oninput = function() {
 
 document.getElementById('headcount_select_btn').addEventListener('click',function(){
 
-console.log(document.getElementById("headcounted_select_btn"));
+
+let newDiv = document.createElement('div')
+newDiv.append(document.getElementById('headcount_value1').value +'명');
+newDiv.classList.add('selected_headcount');
 
 
+console.log(document.getElementById('choosedVal').querySelectorAll('.selected_headcount'));
 
-// if(document.getElementById('choosedVal').querySelectorAll('.headcount_selected_btn').length == 0 && word.indexOf('예산')==0){
- 
-//   document.getElementById('choosedVal').appendChild(newDiv);
+if(document.getElementById('choosedVal').querySelectorAll('.selected_headcount').length >= 1){
 
-// }else if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length >=1 && word.indexOf('예산')==0){
-//   document.querySelector('.budget_selected_btn').remove();
-//   document.getElementById('choosedVal').appendChild(newDiv))
+  document.querySelector('.selected_headcount').remove();
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
+  
+
+  console.log(rb_headNum);
+  rb_headNum = document.getElementById("headcount_value1").value;
+
+  eraseJSTL();
+  callAjax();
+
+}else{
+
+  document.getElementById('choosedVal').appendChild(newDiv);
+
+rb_headNum = document.getElementById("headcount_value1").value;
+
+console.log(rb_headNum);
+
+eraseJSTL();
+callAjax();
+
+
+}
 
 })
 
@@ -435,9 +446,55 @@ else if(document.getElementById('choosedVal').querySelectorAll('.location_select
 
 
 // 검색필터선택해제
+function eraseJSTL(){
+document.getElementById('contentTable').innerHTML = "" ;
+
+}
+// 검색필터선택해제
 function cancelingSelect(){
 document.getElementById('choosedVal').innerHTML = "" ;
 
 }
 
+function callAjax(){
+  httpRequest = new XMLHttpRequest();
+  /* httpRequest의 readyState가 변화했을때 함수 실행 */
+    httpRequest.onreadystatechange = function() {
+      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+      if (httpRequest.readyState === XMLHttpRequest.DONE) {
+          if (httpRequest.status === 200) {
+          let result = httpRequest.response;
+          //console.log(result);
+         // console.log(result.reviewTitles[0].rb_title);
+          //let df = JSON.parse(result).rb_title
+           // console.log(df);
 
+              //console.log(result.reviews);
+
+              getReviews(result);
+
+          } else {
+            alert('Request Error!');
+          }
+      }
+    };
+    /* Get 방식으로 name 파라미터와 함께 요청 */
+    httpRequest.open('GET', 'http://localhost/danim/getfilterdByJSON?rb_location='+rb_location+'&rb_budget='+rb_budget+'&rb_theme='+rb_theme+'&rb_headNum='+rb_headNum);
+
+    /* Response Type을 Json으로 사전 정의 */
+    httpRequest.responseType = "json";
+    /* 정의된 서버에 요청을 전송 */
+    httpRequest.send();
+}
+
+function getReviews(result){
+ // console.log(result.reviews.forEach());
+  result.reviews.forEach(function(i, indexNum){
+    
+       console.log(indexNum);
+  
+    console.log(i.rb_title);
+
+     });
+
+};

@@ -219,7 +219,7 @@ li {
 <button>추천순</button>
 <button>신규순</button>
 
-<div class="flex-container">
+<div class="flex-container" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
 <div>
 ${reviews.rb_title }

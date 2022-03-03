@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hs.ajax.Menu;
-import com.hs.ajax.Menus;
-
 @Controller
 public class ReviewController {
 

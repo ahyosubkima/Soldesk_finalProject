@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +10,9 @@
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
 
-  <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
+<link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
-  <script>
+<script>
 	function modalOpen() {
 		const body = document.querySelector('body');
 		body.style.overflow = 'hidden'
@@ -32,7 +33,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<img src="resources/asset/index/img/logo.png" />
+			<a href="index"><img src="resources/asset/index/img/logo.png" /></a>
 		</div>
 
 		<div class="nav_wrap">
@@ -43,12 +44,19 @@
 				<li><a href="#">이벤트</a></li>
 			</ul>
 		</div>
-		<div class="btns_wrap">
-			<ul class="btns">
-				<li><a onclick="modalOpen()" class="loginBtn">로그인</a></li>
-				<li><a href="#" class="joinBtn">회원가입</a></li>
-			</ul>
-		</div>
+		<c:choose>
+			<c:when test="${sessionScope.loginAccount != null}">
+				<div>login success</div>
+			</c:when>
+			<c:otherwise>
+				<div class="btns_wrap">
+					<ul class="btns">
+						<li><a onclick="modalOpen()" class="loginBtn">로그인</a></li>
+						<li><a href="#" class="joinBtn">회원가입</a></li>
+					</ul>
+				</div>
+			</c:otherwise>
+		</c:choose>
 
 		<div class="modal_background"></div>
 		<div class="modal_wrap">
@@ -61,18 +69,15 @@
 				</div>
 			</div>
 			<div class="modal_content">
-				<form action="#" method="post" name="loginForm">
-				<input type="text" class="userId" name="userId" placeholder="ID"
-					required> 
-				<input type="text" class="userPw" name="userPw"
-					placeholder="PASSWORD" required>
-				<a onclick="#" class="modal_Login">로그인</a>
+				<form action="member.login" method="post" name="loginForm">
+					<input type="text" class="userId" name="userId" placeholder="ID"
+						required> <input type="text" class="userPw" name="userPw"
+						placeholder="PASSWORD" required> <a onclick="#"
+						class="modal_Login">로그인</a>
 				</form>
 			</div>
 			<hr>
-			<div class="modal_footer">
-			
-			</div>
+			<div class="modal_footer"></div>
 		</div>
 	</header>
 

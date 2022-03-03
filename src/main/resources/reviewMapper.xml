@@ -15,4 +15,12 @@ where rb_title like '%'||#{rb_title}||'%'
 
 </select>
 
+<select id="getfilterdByJSON" resultType="ReviewBean">
+
+select * from REVIEW_BOARD
+where rb_headNum = #{rb_headNum} and rb_budget like '%'||#{rb_budget}||'%' and rb_theme like '%'||#{rb_theme}||'%' and rb_location like '%'||#{rb_location}||'%'
+
+</select>
+
+
 </mapper>

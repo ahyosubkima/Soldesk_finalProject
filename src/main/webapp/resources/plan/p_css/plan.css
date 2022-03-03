@@ -86,13 +86,13 @@
 }
 
 
-#p_writeBtn{
+#p_regOk{
 	margin: auto;
 	margin-top: 50px;
 	text-align: center;
 }
 
-#p_writeBtn button{
+#p_regOk input{
 	width: 150px;
 	height: 40px;
 	font-size: 13pt;

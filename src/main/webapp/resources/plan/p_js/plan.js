@@ -34,8 +34,9 @@ function dayWrite() {
 		alert($(this).attr("value"));
 		
 		$(this).after('<table border="1" id="sese">'+
-				'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
-				'<tr><td>주소</td><td>메뉴</td></tr></table>');
+				'<tr><td colspan="2">지도</td><td rowspan="4">➔</td></tr>'+
+				'<tr><td colspan="2">주소</td></tr>'+
+				'<tr><td>메뉴</td><td>금액</td></tr></table>');
 		});
 	}
 
@@ -134,7 +135,6 @@ function p_openFreeWord(){
 $(function() {
 	dayWrite();
 	pptest();
-	eeeeeeeee();
  
 });
 

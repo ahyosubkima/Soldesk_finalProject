@@ -19,8 +19,9 @@ public class CommController {
 	
 	@RequestMapping(value = "/comm_picture", method = RequestMethod.GET)
 	public String comm_picture(HttpServletRequest req) {
-		
+		TokenMaker.make(req);
 		cDAO.getCommPicture(req);
+		cDAO.getGoodPicture(req);
 		
 		req.setAttribute("contentPage", "comm/comm_picture.jsp");
 		return "home";
@@ -44,6 +45,7 @@ public class CommController {
 		TokenMaker.make(req);
 		cDAO.upload(req);
 		cDAO.getCommPicture(req);
+		cDAO.getGoodPicture(req);
 		
 		req.setAttribute("contentPage", "comm/comm_picture.jsp");
 		return "home";
@@ -53,7 +55,6 @@ public class CommController {
 	@RequestMapping(value = "/comm_picture_detail", method = RequestMethod.GET)
 	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
 		
-		TokenMaker.make(req);
 		cDAO.viewPlus(cp,req);
 		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
@@ -66,8 +67,7 @@ public class CommController {
 	@RequestMapping(value = "/comm_picture_reply", method = RequestMethod.GET)
 	public String comm_picture_reply(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
 		
-		TokenMaker.make(req);
-		cDAO.viewPlus(cp,req);
+		TokenMaker.make2(req);
 		cDAO.pictureReplyUpload(cpr,req);
 		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
@@ -78,9 +78,11 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_picture_good", method = RequestMethod.GET)
-	public String comm_picture_good(HttpServletRequest req,Comm_picture cp) {
+	public String comm_picture_good(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
 		
+		TokenMaker.make(req);
 		cDAO.goodPlus(cp,req);
+		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
 		
 		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
@@ -94,8 +96,22 @@ public class CommController {
 		
 		cDAO.delPicture(cp,req);
 		cDAO.getCommPicture(req);
+		cDAO.getGoodPicture(req);
 		
 		req.setAttribute("contentPage", "comm/comm_picture.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_picture_reply_delete", method = RequestMethod.GET)
+	public String comm_picture_reply_delete(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
+		
+		
+		cDAO.delPictureReply(cpr,req);
+		cDAO.getReply(cpr,req);
+		cDAO.getCommPicture2(cp,req);
+		
+		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
 		return "home";
 		
 	}
@@ -139,14 +155,22 @@ public class CommController {
 	
 	
 	@RequestMapping(value = "/comm_video", method = RequestMethod.GET)
-	public String comm_video() {
+	public String comm_video(HttpServletRequest req) {
 		
-		return "comm/comm_video";
+		req.setAttribute("contentPage", "comm/comm_video.jsp");
+		
+		return "home";
+		
 	}
 	@RequestMapping(value = "/comm_free", method = RequestMethod.GET)
 	
-	public String comm_free() {
+	public String comm_free(HttpServletRequest req) {
+		TokenMaker.make(req);
 		
-		return "comm/comm_free";
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
+		
+		return "home";
+
 	}
 }

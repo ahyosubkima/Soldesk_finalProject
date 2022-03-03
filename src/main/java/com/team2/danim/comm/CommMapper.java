@@ -28,4 +28,9 @@ public interface CommMapper {
 
 	public List<Comm_picture_reply> getReply(Comm_picture_reply cpr);
 
+	public int delPictureReply(Comm_picture_reply cpr);
+
+
+	public List<Comm_picture> getGoodPicture();
+
 }

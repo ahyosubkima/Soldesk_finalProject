@@ -11,7 +11,7 @@ rb_commentcount number(10) not null,
 rb_date date not null,
 rb_text varchar2(500 char) not null
 
-)
+);
 
 
 

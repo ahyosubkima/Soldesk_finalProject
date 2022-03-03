@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hs.ajax.Menu;
-import com.hs.ajax.Menus;
-
 @Controller
 public class ReviewController {
 
@@ -36,13 +33,27 @@ public class ReviewController {
 			return "home";
 		}
 		
-		@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-		public @ResponseBody String getTitleByJSON(ReviewBean reviewBean ) {
+
+		/*@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReviewsAjaxDTO getTitleByJSON( ReviewBean rb ) {
 			
-			//req.setAttribute("contentPage", "review/reviewWrite.jsp");
+			ReviewsAjaxDTO rdj = reviewDAO.getTitleJSON(rb);
+
 			
 			
-			return "home";
+			
+			return rdj;
+
+		}*/
+		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReviewsAjaxDTO getfilterdByJSON( ReviewBean rb ) {
+			
+			ReviewsAjaxDTO reviews = reviewDAO.getfilterdByJSON(rb);
+			
+			
+			
+			return reviews;
+
 		}
 		
 }

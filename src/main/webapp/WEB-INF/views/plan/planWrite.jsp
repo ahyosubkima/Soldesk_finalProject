@@ -9,13 +9,23 @@
 <title>Insert title here</title>
 
 
-<script type="text/javascript" src="resources/plan/p_js/jQuery.js"></script>
+<script type="text/javascript" src="resources/plan/p_js/jquery.js" ></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10c7423289ef4af1c8687b735db21075&libraries=services"></script>
 
-<script type="text/javascript" src="resources/plan/p_js/plan_map.js"></script>
-<script type="text/javascript" src="resources/plan/p_js/plan.js"></script>
+<script type="text/javascript" src="resources/plan/p_js/plan_map.js" ></script>
+<script type="text/javascript" src="resources/plan/p_js/plan.js" ></script>
 
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
+<script>
+$(function() {
+	
+$("#dBtn").click(function() {
+	let aa = $("#p_openDayWrite").html();
+	console.log(aa);
+});
+});
+
+</script>	
 </head>
 <body>
 
@@ -42,13 +52,13 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로:<div id="p_route">경로보여주는 곳</div> </td>
+			<td colspan="3">간단 경로:<span id="sp"></span><div id="p_route">경로보여주는 곳</div> </td>
 		</tr>
 
 		<tr>
 			<td colspan="3">
 				<input placeholder="입력해주세요" id="p_search"><input type="button" id="p_searchBtn" value="검색">
-			<div id="map" style="width:800px;height:400px;"></div>
+			<div id="map" style="width:800px;height:400px;"> </div>
 			
 			
 			
@@ -61,23 +71,23 @@
  
 	
 <!-- 일정 상세등록 -->
-	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
+	<div id="p_DayWriteTitle"><span>📅일정 작성</span><button id="dBtn" type="button">일정 저장</button></div>
 	<div id="p_openDayWrite">
-	
+			<div id="confirmContent">
 	<c:forEach var="p" begin="1" end="${param.p_days}">
 		<div id="p_DayWriteAll">
 		<div>${p }일차</div>
 		<div id="p_dayWriteDiv">
-		<input id="p_dayWrite"  type="button" value="일정추가">
+		<input id="p_dayWrite"  type="button" value="${p }일 일정추가">
 		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
 		</div>
 		</div>
 	</c:forEach>
 
+			</div>
 
 	</div>
-	
-	
+
 	
 	
 	

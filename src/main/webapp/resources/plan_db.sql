@@ -22,6 +22,6 @@ select * from plan_write;
 
 -------------------------------------------------------
 create table plan_dayPlan(
-
-
+pd_no number(3) primary key,
+pd_p_no number(3) not null
 );

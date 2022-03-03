@@ -36,6 +36,7 @@
 #p_mainDetail{
 	margin: auto;
 	margin-bottom: 20px;
+	overflow: inherit;
 }
 
 #p_writeDetail{

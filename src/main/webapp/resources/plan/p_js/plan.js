@@ -63,10 +63,7 @@ function eeeeeeeee(){
 */
 	
 
-
-
-
-
+/*
 function pptest(){
 	
 	$(document).ready(function() {
@@ -84,14 +81,14 @@ function pptest(){
         		   $("#p_openDayWrite *").remove();
         		   for (var i = 1; i <= lastDay; i++) {
         			   $("#p_openDayWrite").append('<section><div>'+i+'일차</div><div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div><table id="eeeg" border="1"><tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
-        			   /*$("#p_openDayWrite").append('<section><table border="1"><tr><td colspan="2">'+ i +'일차</td><td rowspan="3">➔</td></tr><tr><td colspan="2">지도</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');*/
+        			   $("#p_openDayWrite").append('<section><table border="1"><tr><td colspan="2">'+ i +'일차</td><td rowspan="3">➔</td></tr><tr><td colspan="2">지도</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
         		   }
 			}
                 })
             }
         );
 }
-
+*/
 
 function p_openBudget(){
 	
@@ -118,7 +115,30 @@ function p_openFreeWord(){
 
 
 
+/* Javascript 샘플 코드 */
 
+$('#aaa').click(function() {
+	
+
+var xhr = new XMLHttpRequest();
+var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode'; /*URL*/
+var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'dwA0hhqKA%2BCMyaTqP8IlGmiKAw8jOfSCi6bW%2F0nzRxyJtDcxJ9J5lS8ehBSERa%2BXlHEf4Pi4gUvsQYaDgrRLHQ%3D%3D'; /*Service Key*/
+queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
+queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent('1'); /**/
+xhr.open('GET', url + queryParams);
+xhr.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+    }
+};
+
+xhr.send('');
+
+
+});
 
 
 
@@ -134,7 +154,7 @@ function p_openFreeWord(){
 
 $(function() {
 	dayWrite();
-	pptest();
+	//spptest();
  
 });
 

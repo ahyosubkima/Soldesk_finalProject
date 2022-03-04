@@ -6,7 +6,7 @@
  let rb_budget = "";
  let rb_theme = "";
  let rb_location = "";
- let rb_headNum = '';
+ let rb_headNum = "";
 
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
@@ -27,14 +27,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
         target.classList.remove('itsActive')
 
+
         if(target.classList.contains('budget_select_btn')){
           rb_budget ="";
-
+       //  console.log(document.getElementById('choosedVal').querySelector('.budget_selected_btn'));
+        // document.getElementById('choosedVal').querySelector('.budget_selected_btn').remove();
+        // document.getElementById('choosedVal').querySelector('.budget_selected_btn').remove();
 
         }else if(target.classList.contains('theme_select_btn')){
           rb_theme ="";
         }else if(target.classList.contains('location_select_btn')){
           rb_location ="";
+          document.getElementById('choosedVal').querySelector('.location_selected_btn').remove();
         }
         callAjax();
       }else{
@@ -73,6 +77,28 @@ else if(this.classList.contains('location_select_btn')){
     
     rb_location = db.textContent;
     console.log(rb_location);
+
+    let idVal = db.getAttribute('id');
+    let word = rb_location;
+    let newDiv = document.createElement('div');
+    newDiv.classList.add('location_selected_btn')
+    newDiv.append(word);
+    newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>');
+
+    if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 && idVal.indexOf('location')==0){
+
+
+         document.getElementById('choosedVal').appendChild(newDiv);
+      
+      
+       }else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length  >= 1 && idVal.indexOf('location')==0){
+      
+         document.querySelector('.location_selected_btn').remove();
+      
+         document.getElementById('choosedVal').appendChild(newDiv);
+       }
+
+    //document.getElementById('choosedVal').appendChild(newDiv);
 
   }else if(db.classList.contains('budget_select_btn')){
     //rb_budget = db.textContent;
@@ -223,79 +249,81 @@ function tabHandler(item) {
 
 // 선택메뉴생성
 
-document.querySelectorAll('.location_select_btn, .budget_select_btn, .theme_select_btn').forEach(function(aaa){
 
-  aaa.addEventListener("click",function(){
-    console.log(aaa.innerHTML);
-    let idVal = aaa.getAttribute('id');
-    let word = aaa.innerHTML;
-    let newDiv = document.createElement('div');
+// document.querySelectorAll('.location_select_btn, .budget_select_btn, .theme_select_btn').forEach(function(aaa){
 
-    //카테고리별 클래스 부여
-    if(idVal.indexOf('budget')==0){
-      console.log('예산')
-      newDiv.classList.add('budget_selected_btn')
-      newDiv.append(word);
-      newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
-      console.log(newDiv);
-    }
-    else if(idVal.indexOf('theme')==0){
-      console.log('테마')
-      newDiv.classList.add('theme_selected_btn')
-      newDiv.append(word);
-      newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
-    }
-    else if(idVal.indexOf('location')==0){
-      console.log('지역')
-      newDiv.classList.add('location_selected_btn')
-      newDiv.append(word);
-      newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
-    }
+//   aaa.addEventListener("click",function(){
+//     console.log(aaa.innerHTML);
+//     let idVal = aaa.getAttribute('id');
+//     let word = aaa.innerHTML;
+//     let newDiv = document.createElement('div');
+
+//     //카테고리별 클래스 부여
+//     if(idVal.indexOf('budget')==0){
+//       console.log('예산')
+//       newDiv.classList.add('budget_selected_btn')
+//       newDiv.append(word);
+//       newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
+//       console.log(newDiv);
+//     }
+//     else if(idVal.indexOf('theme')==0){
+//       console.log('테마')
+//       newDiv.classList.add('theme_selected_btn')
+//       newDiv.append(word);
+//       newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
+//     }
+//     else if(idVal.indexOf('location')==0){
+//       console.log('지역')
+//       newDiv.classList.add('location_selected_btn')
+//       newDiv.append(word);
+//       newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>')
+//     }
  
 
-    //클래스, id 를 이용하여 선택항목에 선택요소 표시
+//     //클래스, id 를 이용하여 선택항목에 선택요소 표시
 
-if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length == 0 && idVal.indexOf('budget')==0){
+// if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length == 0 && idVal.indexOf('budget')==0){
  
-  document.getElementById('choosedVal').appendChild(newDiv);
+//   document.getElementById('choosedVal').appendChild(newDiv);
 
-}else if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length >=1 && idVal.indexOf('budget')==0){
-  document.querySelector('.budget_selected_btn').remove();
-  document.getElementById('choosedVal').appendChild(newDiv);
+// }else if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length >=1 && idVal.indexOf('budget')==0){
+//   document.querySelector('.budget_selected_btn').remove();
+//   document.getElementById('choosedVal').appendChild(newDiv);
 
-}else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length == 0 && idVal.indexOf('theme')==0){
+// }else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length == 0 && idVal.indexOf('theme')==0){
 
-  document.getElementById('choosedVal').appendChild(newDiv);
-
-
-}else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length  >= 1 && idVal.indexOf('theme')==0){
-
-  document.querySelector('.theme_selected_btn').remove();
-
-  document.getElementById('choosedVal').appendChild(newDiv);
+//   document.getElementById('choosedVal').appendChild(newDiv);
 
 
-}
-else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 && idVal.indexOf('location')==0){
+// }else if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length  >= 1 && idVal.indexOf('theme')==0){
+
+//   document.querySelector('.theme_selected_btn').remove();
+
+//   document.getElementById('choosedVal').appendChild(newDiv);
 
 
-  document.getElementById('choosedVal').appendChild(newDiv);
+// }
+// else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 && idVal.indexOf('location')==0){
 
 
-}else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length  >= 1 && idVal.indexOf('location')==0){
-
-  document.querySelector('.location_selected_btn').remove();
-
-  document.getElementById('choosedVal').appendChild(newDiv);
+//   document.getElementById('choosedVal').appendChild(newDiv);
 
 
-}
+// }else if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length  >= 1 && idVal.indexOf('location')==0){
+
+//   document.querySelector('.location_selected_btn').remove();
+
+//   document.getElementById('choosedVal').appendChild(newDiv);
+
+
+// }
 
   
- })
+//  })
 
-});
+// });
 
+////////////선택메뉴선택종료.///
 	  
 
     var tag = {};

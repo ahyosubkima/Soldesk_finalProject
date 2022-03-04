@@ -16,16 +16,6 @@
 <script type="text/javascript" src="resources/plan/p_js/plan.js" ></script>
 
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
-<script>
-$(function() {
-	
-$("#dBtn").click(function() {
-	let aa = $("#p_openDayWrite").html();
-	console.log(aa);
-});
-});
-
-</script>	
 </head>
 <body>
 
@@ -79,6 +69,7 @@ $("#dBtn").click(function() {
 		<div>${p }일차</div>
 		<div id="p_dayWriteDiv">
 		<input id="p_dayWrite"  type="button" value="${p }일 일정추가">
+		<input id=""  type="button" value="일정을 api로 선택받아서 추가?">
 		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
 		</div>
 		</div>
@@ -88,10 +79,7 @@ $("#dBtn").click(function() {
 
 	</div>
 
-	
-	
-	
-	
+
 <!-- 예산결과 보여주는 곳 -->
 	<div id="p_BudgetAll">
 	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
@@ -120,6 +108,12 @@ $("#dBtn").click(function() {
 	
 </form> 
 
+<input id="aaa" value="ddd" type="button">
+
+<div id="ccity">
+ㅈㅈ
+
+</div>
 
 
 

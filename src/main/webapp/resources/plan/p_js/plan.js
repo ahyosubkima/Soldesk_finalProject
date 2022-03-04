@@ -115,35 +115,56 @@ function p_openFreeWord(){
 
 
 
-/* Javascript 샘플 코드 */
 
-$('#aaa').click(function() {
+
+
+function ddd() {
 	
+	$('#aaa').click(function() {
+		
+		var xhr = new XMLHttpRequest();
+		var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode'; /*URL*/
+		var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'YG3fNZlTK7RjxGU107s%2FAbCq%2Bc6PRrZXwZwR22ThIebtO3TUg9elZHoNM%2FqND5eQbIndczcgu%2FOGOn6lRY9hDw%3D%3D'; /*Service Key*/
 
-var xhr = new XMLHttpRequest();
-var url = 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode'; /*URL*/
-var queryParams = '?' + encodeURIComponent('serviceKey') + '='+'dwA0hhqKA%2BCMyaTqP8IlGmiKAw8jOfSCi6bW%2F0nzRxyJtDcxJ9J5lS8ehBSERa%2BXlHEf4Pi4gUvsQYaDgrRLHQ%3D%3D'; /*Service Key*/
-queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
-queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
-queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
-queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
-queryParams += '&' + encodeURIComponent('areaCode') + '=' + encodeURIComponent('1'); /**/
-xhr.open('GET', url + queryParams);
-xhr.onreadystatechange = function () {
-    if (this.readyState == 4) {
-        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
-    }
-};
+		queryParams += '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10'); /**/
+		queryParams += '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1'); /**/
+		queryParams += '&' + encodeURIComponent('MobileOS') + '=' + encodeURIComponent('ETC'); /**/
+		queryParams += '&' + encodeURIComponent('MobileApp') + '=' + encodeURIComponent('AppTest'); /**/
+		xhr.open('GET', url + queryParams);
+		
+		xhr.onreadystatechange = function () {
+		    if (this.readyState == 4) {
+		        alert('Status: '+this.status+'nHeaders: '+JSON.stringify(this.getAllResponseHeaders())+'nBody: '+this.responseText);
+		    	p_allDomestic(this);
+		    }
+		};
 
-xhr.send('');
-
-
-});
-
-
-
-
-
+		xhr.send('');
+	});
+	
+	function p_allDomestic(xml){
+		
+		//alert('확인용');
+		var i;
+		var xmlDoc = xml.responseXML;
+		
+        
+        var AllCity = "";
+        var cityName = xmlDoc.getElementsByTagName("name");
+        
+        for (i = 0; i < cityName.length; i++) { 
+        	
+            if (i != 0) { AllCity += ", "; }
+            AllCity += cityName[i].firstChild.data;
+            
+            //$("#ccity").append('지역: ' + AllCity);
+            
+            //alert(AllCity);
+        }
+       document.getElementById("ccity").innerHTML = AllCity;
+		
+	}
+}
 
 
 
@@ -154,7 +175,7 @@ xhr.send('');
 
 $(function() {
 	dayWrite();
-	//spptest();
+	ddd();
  
 });
 

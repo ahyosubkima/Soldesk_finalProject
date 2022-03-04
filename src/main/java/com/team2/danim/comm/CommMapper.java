@@ -33,4 +33,7 @@ public interface CommMapper {
 
 	public List<Comm_picture> getGoodPicture();
 
+
+	public int goodPlusById(Comm_Picture_good cpg);
+
 }

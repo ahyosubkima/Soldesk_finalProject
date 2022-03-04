@@ -11,9 +11,9 @@
 	insert into comm_picture values(comm_picture_seq.nextval,
 	#{comm_picture_name},
 	#{comm_picture_write_name},
-	'김진현',
+	#{comm_picture_writer},
 	#{comm_picture_txt},
-	1,
+	0,
 	1,
 	sysdate)
 	</insert>
@@ -55,7 +55,7 @@
 	</select>
 	
 	<insert id="pictureReplyUpload" parameterType="com.team2.danim.comm.Comm_picture_reply">
-	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},'김진현',#{cpr_txt},sysdate)
+	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},#{cpr_owner},#{cpr_owner_id},#{cpr_txt},sysdate)
 	</insert>
 	
 	<delete id="delPictureReply" parameterType="com.team2.danim.comm.Comm_picture_reply">
@@ -65,4 +65,11 @@
 	<select id="getGoodPicture" resultType="com.team2.danim.comm.Comm_picture">
 	SELECT * FROM comm_picture WHERE ROWNUM &lt;= 6 order by comm_picture_good desc
 	</select>
+	
+	<insert id="goodPlusById" parameterType="com.team2.danim.comm.Comm_Picture_good">
+	insert into comm_picture_good values()
+	</insert>
+
+
+
 </mapper>

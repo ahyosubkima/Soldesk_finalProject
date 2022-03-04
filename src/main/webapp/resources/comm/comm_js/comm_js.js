@@ -15,14 +15,16 @@ var ok = confirm('정말 수정하시겠습니까?')
 	}
 }
 
-function comm_goodOK(no) {
+function comm_goodOK(no,id) {
 	var ok = confirm('추천하시겠습니까?')
 	
 	if (ok) {
 		alert('추천되었습니다');
-		location.href='comm_picture_good?no='+no;
+		location.href="comm_picture_good?no=" + no + "&id=" + id;
 	}
 }
+
+
 
 function pictureReplyDel(no) {
 	
@@ -70,7 +72,6 @@ function pictureUpload() {
     // 확장자 명만 추출한 후 소문자로 변경
     var fileExt = picture.substring(lastDot, fileLen).toLowerCase();
 
-    alert(fileExt);
 	 
 	if (title == "") {
 		alert("제목을 입력해주세요");

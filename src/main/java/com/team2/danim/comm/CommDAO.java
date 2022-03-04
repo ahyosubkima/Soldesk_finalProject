@@ -57,6 +57,7 @@ public void upload(HttpServletRequest req) {
 		cp.setComm_picture_name(fName);
 		cp.setComm_picture_txt(mr.getParameter("comm_picture_txt"));
 		cp.setComm_picture_write_name(mr.getParameter("comm_picture_write_name"));
+		cp.setComm_picture_writer(mr.getParameter("comm_picture_writer"));
 		if (ss.getMapper(CommMapper.class).upload(cp) == 1) {
 			req.getSession().setAttribute("successToken", token);
 			req.setAttribute("result", "업로드성공");
@@ -239,15 +240,22 @@ public void viewPlus(Comm_picture cp, HttpServletRequest req) {
 	
 }
 
-public void goodPlus(Comm_picture cp, HttpServletRequest req) {
+public void goodPlus(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture cp) {
 	
 	try {
 		
 				
 		System.out.println(req.getParameter("no"));
-		cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
-		if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
-			System.out.println("추천수증가 성공");
+		cpg.setCpg_no(Integer.parseInt(req.getParameter("no")));
+		cpg.setCpg_id(req.getParameter("id"));
+		
+		
+		if (ss.getMapper(CommMapper.class).goodPlusById(cpg)==1) {
+			cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
+				System.out.println("조회수증가");
+			}
+			
 		}
 		
 		
@@ -291,6 +299,8 @@ public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
 		System.out.println(req.getParameter("no"));
 		System.out.println(req.getParameter("cpr_txt"));
 		
+		cpr.setCpr_owner(req.getParameter("cpr_owner"));
+		cpr.setCpr_owner_id(req.getParameter("cpr_owner_id"));
 		cpr.setCpr_txt(req.getParameter("cpr_txt"));
 		cpr.setCpr_cp_no(Integer.parseInt(req.getParameter("no")));
 		

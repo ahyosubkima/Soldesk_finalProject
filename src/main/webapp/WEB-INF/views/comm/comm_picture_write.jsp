@@ -43,9 +43,10 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt"
-								name="comm_picture_txt"></textarea> <input name="token"
-							type="hidden" value="${token }"></td>
+						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"></textarea> 
+							<input name="token"	type="hidden" value="${token }">
+							<input type="hidden" name="comm_picture_writer" value="${sessionScope.loginMember.dm_name }">
+						</td>
 					</tr>
 					<tr>
 						<td><button>작성</button></td>

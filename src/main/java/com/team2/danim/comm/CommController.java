@@ -78,10 +78,10 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_picture_good", method = RequestMethod.GET)
-	public String comm_picture_good(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
+	public String comm_picture_good(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
 		
 		TokenMaker.make(req);
-		cDAO.goodPlus(cp,req);
+		cDAO.goodPlus(cpg,req,cp);
 		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
 		

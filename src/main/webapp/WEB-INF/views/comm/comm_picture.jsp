@@ -98,9 +98,10 @@
 
 
 			</div>
+			<c:if test="${sessionScope.loginMember != null}">
 			<input type="button" id="comm_picture_writeBtn" value="글쓰기"
 				onclick="location.href='/danim/comm_picture_write'">
-
+			</c:if>
 		</div>
 	</div>
 

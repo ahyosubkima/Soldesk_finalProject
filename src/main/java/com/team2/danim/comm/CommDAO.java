@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team2.danim.SiteOption;
 
 
 @Service
@@ -16,6 +17,11 @@ public class CommDAO {
 	
 	@Autowired
 	SqlSession ss;
+	
+	@Autowired
+	SiteOption so;
+	
+	
 	
 	public void getCommPicture(HttpServletRequest req) {
 		try {
@@ -244,6 +250,13 @@ public void goodPlus(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture 
 	
 	try {
 		
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		
+
+		if (token2.equals(successToken)) {
+			return;
+		}
 				
 		System.out.println(req.getParameter("no"));
 		cpg.setCpg_no(Integer.parseInt(req.getParameter("no")));
@@ -253,7 +266,8 @@ public void goodPlus(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture 
 		if (ss.getMapper(CommMapper.class).goodPlusById(cpg)==1) {
 			cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
 			if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
-				System.out.println("조회수증가");
+				System.out.println("추천수증가");
+				req.getSession().setAttribute("successToken", token2);
 			}
 			
 		}
@@ -264,6 +278,32 @@ public void goodPlus(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture 
 	}
 	
 }
+
+public void goodCheck(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture cp) {
+	
+	try {
+		
+				
+		System.out.println(req.getParameter("no"));
+		System.out.println(req.getParameter("id"));
+		cpg.setCpg_no(Integer.parseInt(req.getParameter("no")));
+		cpg.setCpg_id(req.getParameter("id"));
+		Comm_Picture_good cg = ss.getMapper(CommMapper.class).goodCheck(cpg);
+		
+		req.setAttribute("checked",cg); 
+			System.out.println("------");
+			System.out.println(cg);
+			System.out.println(cg.getCpg_good());
+			
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
 
 public void getReply(Comm_picture_reply cpr, HttpServletRequest req) {
 	
@@ -288,7 +328,7 @@ public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
 	try {
 		String token2 = req.getParameter("token2");
 		String successToken = (String) req.getSession().getAttribute("successToken");
-		// 새로고침 하면 이거 396 첫 등록때 세팅된 그거니까
+		
 
 		if (token2.equals(successToken)) {
 			return;
@@ -344,29 +384,37 @@ public void getGoodPicture(HttpServletRequest req) {
 	}
 }
 
-public void paging(int page,HttpServletRequest req) {
-		req.setAttribute("curPageNo", page);
+
+public void goodMinus(Comm_Picture_good cpg, HttpServletRequest req, Comm_picture cp) {
+	try {
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
 		
-/*		int cnt = 10; //한페이지당 보여줄 개수
-		int total = pictures.size(); //총 데이터 개수
+
+		if (token2.equals(successToken)) {
+			return;
+		}
 		
-		if (total != 0) {
-			int pageCount = (int)Math.ceil((double)total / cnt); 
-			req.setAttribute("pageCount", pageCount);
-				
-			int start = total - (cnt * (page - 1));
-				
-			int end = (page == pageCount) ? -1 : start - (cnt + 1);	
-				
-				
-			ArrayList<WavveReview> items = new ArrayList<WavveReview>();
-			for (int i = start-1; i > end; i--) {
-				items.add(reviews.get(i));
+		System.out.println(req.getParameter("no"));
+		cpg.setCpg_no(Integer.parseInt(req.getParameter("no")));
+		cpg.setCpg_id(req.getParameter("id"));
+		
+		
+		if (ss.getMapper(CommMapper.class).goodMinuById(cpg)==1) {
+			cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).goodMinus(cp)==1) {
+				System.out.println("추천수 감소");
+				req.getSession().setAttribute("successToken", token2);
 			}
 			
-			request.setAttribute("reviews", items);
-			
-			} */
-	
+		}
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
 	}
+	
+}
+
+	
 }

@@ -36,4 +36,13 @@ public interface CommMapper {
 
 	public int goodPlusById(Comm_Picture_good cpg);
 
+
+	public Comm_Picture_good goodCheck (Comm_Picture_good cpg);
+
+
+	public int goodMinuById(Comm_Picture_good cpg);
+
+
+	public int goodMinus(Comm_picture cp);
+
 }

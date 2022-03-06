@@ -67,9 +67,18 @@
 	</select>
 	
 	<insert id="goodPlusById" parameterType="com.team2.danim.comm.Comm_Picture_good">
-	insert into comm_picture_good values()
+	insert into comm_picture_good values(#{cpg_id},1,#{cpg_no})
 	</insert>
+	
+	<select id="goodCheck" resultType="com.team2.danim.comm.Comm_Picture_good">
+	select * from comm_picture_good where cpg_id = #{cpg_id} and cpg_no= #{cpg_no}
+	</select>
 
-
-
+	<delete id="goodMinuById">
+	delete from comm_picture_good where cpg_id = #{cpg_id} and cpg_no= #{cpg_no}
+	</delete>
+	
+	<update id="goodMinus">
+	update comm_picture set comm_picture_good = comm_picture_good - 1 where comm_picture_no = #{comm_picture_no}
+	</update>
 </mapper>

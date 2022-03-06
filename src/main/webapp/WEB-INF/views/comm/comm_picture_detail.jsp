@@ -70,20 +70,39 @@
 									onclick="comm_delOK(${picture.comm_picture_no})">삭제</button></td>
 						</tr>
 					</c:if>
-					<c:if	test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null}">
+					<c:if
+						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">
-						<table style="padding-left: 75%;">
-						<tr>
-							<td colspan="4" style="text-align: right;">
-							<input name="no" type="hidden" value="${picture.comm_picture_no }">
-							<input name="id" type="hidden" value="${sessionScope.loginMember.dm_id }">
-							<button
-									style="width: 70px; font-size: 15pt;"
-									onclick="">추천</button></td>
-							</tr>
+							<table style="padding-left: 75%;">
+								<tr>
+									<td colspan="4" style="text-align: right;"><input
+										name="no" type="hidden" value="${picture.comm_picture_no }">
+										<input name="id" type="hidden"
+										value="${sessionScope.loginMember.dm_id }">
+										<input name="token2"  value="${token2 }" type="hidden">
+										<button class="comm_heart_btn"	onclick="return reallyGood();"><img  class="comm_heart_img" src="resources/comm/comm_img/heart.png"></button></td>
+								</tr>
+							</table>
+						</form>
+
+					</c:if>
+					<c:if
+						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
+						<form action="comm_picture_Nogood">
+							<table style="padding-left: 77%; padding-top: 10px;">
+								<tr>
+									<td colspan="4" style="text-align: right;"><input
+										name="no" type="hidden" value="${picture.comm_picture_no }">
+										<input name="id" type="hidden"
+										value="${sessionScope.loginMember.dm_id }">
+										<input name="token2"  value="${token2 }" type="hidden">
+										<button class="comm_heart_btn"
+											onclick="return reallyNoGood();"><img class="comm_heart_img" src="resources/comm/comm_img/heart2.png"></button></td>
+								</tr>
 							</table>
 						</form>
 					</c:if>
+
 				</table>
 
 				<table id="comm_picture_detail_reply_title">

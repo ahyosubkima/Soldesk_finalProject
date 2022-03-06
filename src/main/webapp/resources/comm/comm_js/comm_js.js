@@ -101,4 +101,29 @@ function pictureUpload() {
 	
 	return true;
 }	
+
+
+function reallyGood() {
+	
+	var ok = confirm('정말 추천하시겠습니까?')
+	
+	if(ok){
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+function reallyNoGood() {
+	
+	var ok = confirm('추천을 취소 하시겠습니까?')
+	
+	if(ok){
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 	

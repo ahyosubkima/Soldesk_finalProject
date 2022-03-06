@@ -59,5 +59,10 @@ foreign key(cpg_no)
 		on delete cascade
 )
 
+select * from comm_picture_good
+
+select * from comm_picture_good where cpg_id = 'jh' and cpg_no= 57
+
+drop table comm_picture_good
 
 

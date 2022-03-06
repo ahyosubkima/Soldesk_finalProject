@@ -53,9 +53,10 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_picture_detail", method = RequestMethod.GET)
-	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr) {
+	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
 		
 		cDAO.viewPlus(cp,req);
+		cDAO.goodCheck(cpg, req, cp);
 		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
 		
@@ -80,8 +81,23 @@ public class CommController {
 	@RequestMapping(value = "/comm_picture_good", method = RequestMethod.GET)
 	public String comm_picture_good(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
 		
-		TokenMaker.make(req);
+		TokenMaker.make2(req);
 		cDAO.goodPlus(cpg,req,cp);
+		cDAO.goodCheck(cpg, req, cp);
+		cDAO.getReply(cpr,req);
+		cDAO.getCommPicture2(cp,req);
+		
+		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
+		return "home";
+		
+}
+
+	@RequestMapping(value = "/comm_picture_Nogood", method = RequestMethod.GET)
+	public String comm_picture_Nogood(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
+		
+		TokenMaker.make2(req);
+		cDAO.goodMinus(cpg,req,cp);
+		cDAO.goodCheck(cpg, req, cp);
 		cDAO.getReply(cpr,req);
 		cDAO.getCommPicture2(cp,req);
 		
@@ -89,6 +105,7 @@ public class CommController {
 		return "home";
 		
 	}
+	
 
 	@RequestMapping(value = "/comm_picture_delete", method = RequestMethod.GET)
 	public String comm_picture_delete(HttpServletRequest req,Comm_picture cp) {

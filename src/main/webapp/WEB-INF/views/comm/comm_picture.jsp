@@ -63,7 +63,7 @@
 						<tr>
 							<td><img id="comm_picture_best_img"
 								src="resources/comm/file/${g.comm_picture_name }"
-								onclick="location.href='comm_picture_detail?no=${g.comm_picture_no}&t=${sessionScope.token }'"></img></td>
+								onclick="location.href='comm_picture_detail?no=${g.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></img></td>
 						</tr>
 						<tr>
 							<td id="comm_picture_best_writer">${g.comm_picture_write_name }<span
@@ -85,7 +85,7 @@
 						<tr>
 							<td><img id="comm_picture_best_img"
 								src="resources/comm/file/${p.comm_picture_name }"
-								onclick="location.href='comm_picture_detail?no=${p.comm_picture_no}&t=${sessionScope.token }'"></img></td>
+								onclick="location.href='comm_picture_detail?no=${p.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></img></td>
 						</tr>
 						<tr>
 							<td id="comm_picture_best_writer">${p.comm_picture_write_name }<span

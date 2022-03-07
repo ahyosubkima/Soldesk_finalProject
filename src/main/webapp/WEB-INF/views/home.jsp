@@ -33,7 +33,7 @@
 <body>
 	<header>
 		<div class="logo">
-			<a href="index"><img src="resources/asset/index/img/logo.png" /></a>
+			<a href="index"><img src="resources/asset/index/img/logo.png"/></a>
 		</div>
 
 		<div class="nav_wrap">
@@ -96,14 +96,19 @@
 				<div class="form registerForm">
 					<form action="member.register" method="post" name="registerForm">
 						<h3>회원가입</h3>
-						<input type="text" placeholder="아이디" name="dm_id"> <input
-							type="text" placeholder="비밀번호" name="dm_pw"> <input
-							type="text" placeholder="비밀번호 확인" name="dm_pw">
+						<input type="text" placeholder="아이디" name="dm_id"> 
+						<input type="text" placeholder="비밀번호" name="dm_pw"> 
+						<input type="text" placeholder="닉네임" name="dm_nickname"> 
+						<!-- <input type="text" placeholder="비밀번호 확인" name="dm_pw"> -->
+						<input type="text" placeholder="이메일" name="dm_email">
+						<input type="hidden" name="dm_isAdmin" value="N">
 						<button>회원가입</button>
 					</form>
 				</div>
 			</div>
 		</div>
+		
+	
 
 	</header>
 

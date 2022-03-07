@@ -13,6 +13,10 @@ header {
 	font-weight: 700;
 }
 
+.logo a{
+	height: 87px;
+}
+
 .nav, .btns {
 	position: relative;
 	display: flex;

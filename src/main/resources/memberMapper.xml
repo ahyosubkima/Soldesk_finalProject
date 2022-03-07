@@ -10,6 +10,6 @@
 		parameterType="com.team2.danim.member.Member">
 		insert into danim_member
 		values (#{dm_id}, #{dm_pw},
-		#{dm_name}, #{dm_nickname}, #{dm_addr}, #{dm_photo})
+		#{dm_nickname}, #{dm_email}, #{dm_addr, jdbcType=VARCHAR}, #{dm_photo, jdbcType=VARCHAR}, #{dm_isAdmin})
 	</insert>
 </mapper>

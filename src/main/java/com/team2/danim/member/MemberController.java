@@ -32,6 +32,7 @@ public class MemberController {
 	}
 	
 	//회원가입
+	@RequestMapping(value = "member.register", method = RequestMethod.POST)
 	public String register(Member m, HttpServletRequest req) {
 		
 		mDAO.register(m, req);

@@ -151,20 +151,37 @@ function ddd() {
         
         var AllCity = "";
         var cityName = xmlDoc.getElementsByTagName("name");
+        var cities = "";
         
         for (i = 0; i < cityName.length; i++) { 
-        	
-            if (i != 0) { AllCity += ", "; }
-            AllCity += cityName[i].firstChild.data;
-            
-            //$("#ccity").append('지역: ' + AllCity);
-            
-            //alert(AllCity);
+        alert(cityName[i].firstChild.data);
+/*        	if (i != 0) { 
+        		AllCity += ", "; 
+        	}
+           AllCity += cityName[i].firstChild.data;*/
+        
+        cities = cityName[i].firstChild.data
+        document.getElementById("ccity").innerHTML = '<button>'+cityName[i].firstChild.data+'</button>';
         }
-       document.getElementById("ccity").innerHTML = AllCity;
 		
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

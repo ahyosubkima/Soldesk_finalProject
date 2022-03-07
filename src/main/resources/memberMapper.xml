@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team2.danim.member.MemberMapper">
-	<select id="getMemberByID" resultType="com.team2.danim.member.Member">
+	<select id="getMemberByID"
+		resultType="com.team2.danim.member.Member">
 		select * from danim_member where dm_id = #{dm_id}
 	</select>
+
+	<insert id="register"
+		parameterType="com.team2.danim.member.Member">
+		insert into danim_member
+		values (#{dm_id}, #{dm_pw},
+		#{dm_name}, #{dm_nickname}, #{dm_addr}, #{dm_photo})
+	</insert>
 </mapper>

@@ -48,14 +48,6 @@
 				<input type="text" class="input_nick" name="dm_nickname"
 					id="input_nick" maxlength="20">
 			</div>
-			<!-- 생년월일 DB 추가 필요할까요? -->
-			<div class="register_row">
-				<h3 class="register_title">
-					<label for="input_birth">생년월일</label> 
-				</h3>
-				<input type="text" class="input_birth" name="dm_id"
-					id="input_pw2" maxlength="20">
-			</div>
 		</div>
 
 

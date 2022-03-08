@@ -153,7 +153,8 @@
 
 
 #p_dayWriteDiv{
-	display:inline-block;zoom:1;.display:inline;
+	display:inline-block;
+	zoom:1;
 }
 
 
@@ -162,18 +163,33 @@
 }
 
 #p_dayWrite{
-	width: 100px;
+	width: 30px;
 	height: 30px;
 	clear: both;
 	text-align: center;
+	background-color: transparent;
+	border: none;
+	font-size: 25pt;
 	margin: auto;
 	display: block;
 }
 
 
+#i_am_test{
+	width: 100px;
+	height: 100px;
+	border-radius: 30px;
+	word-break:break-all;
+	padding-top: 20px;
+	text-align: center;
+	background-color: #6D1E91;
+	float: left;
+	color: #38CEB5;
+}
 
-
-
+#i_am_test_all{
+	float: left;
+}
 
 
 

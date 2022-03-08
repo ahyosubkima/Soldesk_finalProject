@@ -78,18 +78,7 @@ $(function() {
 					    routeClick = $("#p_markerInfo").text();
 					  
 					    
-					    
-					    
-					    $("#p_markerInfo").click(function() {
-					    	alert($("#p_markerInfo").text());
-					    	$("#p_route").append(routeClick);
-					    });	 
-					    
-					    
-					    
 					});
-					    
-					    
 					});
 					
 					

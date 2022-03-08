@@ -42,22 +42,20 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로:<span id="sp"></span><div id="p_route">경로보여주는 곳</div> </td>
-		</tr>
-
-		<tr>
 			<td colspan="3">
 				<input placeholder="입력해주세요" id="p_search"><input type="button" id="p_searchBtn" value="검색">
-			<div id="map" style="width:800px;height:400px;"> </div>
+			<div id="map" style="width:600px;height:300px;"> </div>
+			</td>
 			
-			
-			
+		</tr>
+		
+		<tr>
+			<td colspan="3"><div id="p_route"></div>
+			<!-- <div id="i_am_test">그랜드 하얏트 리젠시 나하 오키나와 </div>  -->
 			</td>
 		</tr>
+		
 	</table>
-
-
-
  
 	
 <!-- 일정 상세등록 -->
@@ -66,10 +64,9 @@
 			<div id="confirmContent">
 	<c:forEach var="p" begin="1" end="${param.p_days}">
 		<div id="p_DayWriteAll">
-		<div>${p }일차</div>
+		<div>${p }일차 중요 일정</div>
 		<div id="p_dayWriteDiv">
-		<input id="p_dayWrite"  type="button" value="${p }일 일정추가">
-		<input id=""  type="button" value="일정을 api로 선택받아서 추가?">
+		<input id="p_dayWrite"  type="button" value="+">
 		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
 		</div>
 		</div>

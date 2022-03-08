@@ -176,11 +176,30 @@ function ddd() {
 
 
 
+function qqq() {
+	
+	$(document).ready(function () {
+		  $(document).on("click", "#p_markerInfo", function () {
+			  let MapText = document.getElementById('p_markerInfo').innerText;
+			  
+			  alert('확인용');
+			  alert(MapText);
+			  
+			  $("#p_route").append('<div id="i_am_test_all"><div id="i_am_test">' + MapText
+					  			+ '</div><img src="resources/plan/p_img/arrow_r.png" style="width: 50px; height: auto;"></div>');
+		  });
+		});
+}
 
 
 
+$(function(){
 
-
+	$("#dBtn").click(function(){
+	let aa = $("#p_openDayWrite").html();
+	console.log(aa);
+	});
+	});
 
 
 
@@ -193,6 +212,7 @@ function ddd() {
 $(function() {
 	dayWrite();
 	ddd();
+	qqq();
  
 });
 

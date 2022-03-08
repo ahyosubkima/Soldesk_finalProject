@@ -1,32 +1,37 @@
 package com.team2.danim.review;
 
+import java.util.Date;
+
 public class ReviewBean {
 
 	private int rb_no;
 	private String rb_title;
 	private int rb_likecount;
 	private int rb_viewcount;
-	private int commentcount;
-	private String rb_date;
+	private int rb_commentcount;
+	
+	private Date rb_date;
 	private String rb_text;
 	private String rb_headNum;
 	private String rb_budget;
 	private String rb_theme;
 	private String rb_location;
 	private String rb_img;
+	private String rb_username;
 	
 	public ReviewBean() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewBean(int rb_no, String rb_title, int rb_likecount, int rb_viewcount, int commentcount, String rb_date,
-			String rb_text, String rb_headNum, String rb_budget, String rb_theme, String rb_location, String rb_img) {
+	public ReviewBean(int rb_no, String rb_title, int rb_likecount, int rb_viewcount, int rb_commentcount, Date rb_date,
+			String rb_text, String rb_headNum, String rb_budget, String rb_theme, String rb_location, String rb_img,
+			String rb_username) {
 		super();
 		this.rb_no = rb_no;
 		this.rb_title = rb_title;
 		this.rb_likecount = rb_likecount;
 		this.rb_viewcount = rb_viewcount;
-		this.commentcount = commentcount;
+		this.rb_commentcount = rb_commentcount;
 		this.rb_date = rb_date;
 		this.rb_text = rb_text;
 		this.rb_headNum = rb_headNum;
@@ -34,6 +39,7 @@ public class ReviewBean {
 		this.rb_theme = rb_theme;
 		this.rb_location = rb_location;
 		this.rb_img = rb_img;
+		this.rb_username = rb_username;
 	}
 
 	public int getRb_no() {
@@ -68,19 +74,19 @@ public class ReviewBean {
 		this.rb_viewcount = rb_viewcount;
 	}
 
-	public int getCommentcount() {
-		return commentcount;
+	public int getRb_commentcount() {
+		return rb_commentcount;
 	}
 
-	public void setCommentcount(int commentcount) {
-		this.commentcount = commentcount;
+	public void setRb_commentcount(int rb_commentcount) {
+		this.rb_commentcount = rb_commentcount;
 	}
 
-	public String getRb_date() {
+	public Date getRb_date() {
 		return rb_date;
 	}
 
-	public void setRb_date(String rb_date) {
+	public void setRb_date(Date rb_date) {
 		this.rb_date = rb_date;
 	}
 
@@ -132,5 +138,16 @@ public class ReviewBean {
 		this.rb_img = rb_img;
 	}
 
+	public String getRb_username() {
+		return rb_username;
+	}
+
+	public void setRb_username(String rb_username) {
+		this.rb_username = rb_username;
+	}
+
+	
+	
+	
 	
 }

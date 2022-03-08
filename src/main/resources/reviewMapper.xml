@@ -3,19 +3,19 @@
 <mapper namespace="com.team2.danim.review.ReviewMapper">
 
 
-<select id="getAllReview" resultType="ReviewBean">
+<select id="getAllReview" resultType="com.team2.danim.review.ReviewBean">
 select * from REVIEW_BOARD
 
 </select>
 
-<select id="getTitleJSON" resultType="ReviewBean">
+<select id="getTitleJSON" resultType="com.team2.danim.review.ReviewBean">
 
 select * from REVIEW_BOARD
 where rb_title like '%'||#{rb_title}||'%'
 
 </select>
 
-<select id="getfilterdByJSON" resultType="ReviewBean">
+<select id="getfilterdByJSON" resultType="com.team2.danim.review.ReviewBean">
 
 select * from REVIEW_BOARD 
 where 

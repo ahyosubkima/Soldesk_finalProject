@@ -21,13 +21,13 @@ insert into REVIEW_BOARD values(review_board_seq.nextval, 'bbc', 0, 0, 0, sysdat
 insert into REVIEW_BOARD values(review_board_seq.nextval, '한글', 0, 0, 0, sysdate, 'test','5','100000','1','인천','1.jpg');
 
 insert into REVIEW_BOARD values(review_board_seq.nextval, '예산1', 0, 0, 0, sysdate, 'test','1','1','1','1','1.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test3', 0, 0, 0, sysdate, 'test','2','500','감성카페찾기','부산','2.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test1', 0, 0, 0, sysdate, 'test','3','700000','비즈니스여행','대구','2.jpg');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test1', 0, 0, 0, sysdate, 'test','8','80000','비즈니스여행','대구','2.jpg');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test1', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','멋쟁이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','예쁜이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test3', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','잘생이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test4', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','깍쟁이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test5', 0, 0, 0, sysdate, 'test','2','500','감성카페찾기','부산','2.jpg','ㅇㅇㅇ');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test6', 0, 0, 0, sysdate, 'test','3','700000','비즈니스여행','대구','2.jpg','ㅎㅎㅎ');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test7', 0, 0, 0, sysdate, 'test','8','80000','비즈니스여행','대구','2.jpg','ㅋㅋㅋ');
 
 select * from REVIEW_BOARD where rb_headnum like '1'
 select * from REVIEW_BOARD
@@ -51,3 +51,4 @@ alter table review_board add rb_img varchar2(100 char) not null;
 truncate table review_board;
 
 alter table review_board modify rb_budget number(20);
+alter table review_board add rb_username varchar2(100 char) not null;

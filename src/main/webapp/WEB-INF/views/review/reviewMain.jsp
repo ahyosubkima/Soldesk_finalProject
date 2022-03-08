@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
     
 <!DOCTYPE html>
 <html>
@@ -9,6 +10,21 @@
 <title>Insert title here</title>
 
 <style type="text/css">
+
+.img_box{
+
+height: 200px;
+}
+
+#contents{
+display: flex;
+
+
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
 
 #contentTable{
 display: grid;
@@ -178,10 +194,6 @@ li {
           <div class="budget_select_btn" id="budget3">~ 500,000</div>
           <div class="budget_select_btn" id="budget4">~ 700,000</div>
           <div class="budget_select_btn" id="budget5">~ 1,000,000</div>
-          <div>
-직접입력 : <input >명
-</div>
-<button class="selector_btn">선택</button>
           </div>
         </article>
         <article id="tab3" class="content-container__content">
@@ -207,19 +219,17 @@ li {
 
 
 
-<div class="flex-container"  >
+<div class="flex-container" id="selectedElements" style="display: none;" >
 
 <div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
 <div class="flex-container" id="choosedVal">
-<div id="choosed_head" ></div>
+<!-- <div id="choosed_head" ></div>
 <div id="choosedVal1"></div>
 <div id="choosedVal2"></div>
-<div id="choosedVal3"></div>
+<div id="choosedVal3"></div> -->
 
 </div>
-<h1>AJAX GET TEST</h1>
-	Name: <input type="text" id="inputTitle"></input>
-	<button id="ajaxCall">호출</button>
+
 </div>
 
 <div >
@@ -228,11 +238,13 @@ li {
 
 <div class="" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
-<div id="contents">
-<div><img src="resources/img/sns.png"></div>
-$ {reviews.rb_}
-${reviews.rb_title }
-${reviews.rb_date }
+<div class="flex-container" id="contents">
+<div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/testimg2.jpg" alt="이미지위치"></a> </div>
+<div class="content_title" style="font-size: 30px">${reviews.rb_title }</div> 
+<div>like :${reviews.rb_likecount } view :${reviews.rb_viewcount } comment :${reviews.rb_commentcount }</div>
+<div><fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="yyyy.MM.dd"/> 
+작성자 : ${reviews.rb_username } </div>
+<div> <span> <fmt:formatNumber value="${reviews.rb_budget }" type="currency"/> 이하 </span><span> ${reviews.rb_theme }</span><span> ${reviews.rb_location }</span> </div>
 </div>
 </c:forEach>
 

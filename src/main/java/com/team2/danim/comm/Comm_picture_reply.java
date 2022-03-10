@@ -7,6 +7,7 @@ public class Comm_picture_reply {
 	private int cpr_no;
 	private int cpr_cp_no;
 	private String cpr_owner;
+	private String cpr_owner_id;
 	private String cpr_txt;
 	private Date cpr_when;
 
@@ -14,11 +15,13 @@ public class Comm_picture_reply {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comm_picture_reply(int cpr_no, int cpr_cp_no, String cpr_owner, String cpr_txt, Date cpr_when) {
+	public Comm_picture_reply(int cpr_no, int cpr_cp_no, String cpr_owner, String cpr_owner_id, String cpr_txt,
+			Date cpr_when) {
 		super();
 		this.cpr_no = cpr_no;
 		this.cpr_cp_no = cpr_cp_no;
 		this.cpr_owner = cpr_owner;
+		this.cpr_owner_id = cpr_owner_id;
 		this.cpr_txt = cpr_txt;
 		this.cpr_when = cpr_when;
 	}
@@ -47,6 +50,14 @@ public class Comm_picture_reply {
 		this.cpr_owner = cpr_owner;
 	}
 
+	public String getCpr_owner_id() {
+		return cpr_owner_id;
+	}
+
+	public void setCpr_owner_id(String cpr_owner_id) {
+		this.cpr_owner_id = cpr_owner_id;
+	}
+
 	public String getCpr_txt() {
 		return cpr_txt;
 	}
@@ -62,6 +73,6 @@ public class Comm_picture_reply {
 	public void setCpr_when(Date cpr_when) {
 		this.cpr_when = cpr_when;
 	}
-	
+
 	
 }

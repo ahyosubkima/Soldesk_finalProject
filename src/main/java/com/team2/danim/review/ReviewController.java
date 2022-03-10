@@ -33,20 +33,22 @@ public class ReviewController {
 			return "home";
 		}
 		
+		@RequestMapping(value = "/reviewDeatil.go", method = RequestMethod.GET)
+		public String goReviewDetail(HttpServletRequest req) {
+			
+			req.setAttribute("contentPage", "review/reviewDetail.jsp");
+			
+			
+			return "home";
+		}
+		
+		
 
-		/*@RequestMapping(value = "/getTitleByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
-		public @ResponseBody ReviewsAjaxDTO getTitleByJSON( ReviewBean rb ) {
-			
-			ReviewsAjaxDTO rdj = reviewDAO.getTitleJSON(rb);
-
-			
-			
-			
-			return rdj;
-
-		}*/
 		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 		public @ResponseBody ReviewsAjaxDTO getfilterdByJSON( ReviewBean rb ) {
+			
+			
+			System.out.println( rb.getRb_budget());
 			
 			ReviewsAjaxDTO reviews = reviewDAO.getfilterdByJSON(rb);
 			

@@ -27,6 +27,16 @@ public class TokenMaker {
 		
 		
 	}
+	public static void make3	(HttpServletRequest req) {
+		Date d = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss:SS");
+		String token2 = sdf.format(d);
+		req.setAttribute("token2", token2);
+		req.getSession().setAttribute("token2", token2);
+		System.out.println(token2);
+		
+		
+	}
 	
 
 		

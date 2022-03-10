@@ -1,5 +1,15 @@
 @charset "UTF-8";
+#paging_div{
+	text-align: center;
+}
 
+#paging_Tbl{
+	border: 1px solid black;
+	display: inline-block;
+}
+#paging_Tbl_td{
+	margin-right: 10px;
+}
 #comm_picture_td{
 border: 1px solid black;
 }
@@ -167,4 +177,18 @@ margin-left: 100px;
 	width: 500px;
 	height: 50px;
 	text-align: center;
+}
+.comm_heart_img{
+	width: 50px; 
+}
+.comm_heart_btn{
+	outline: 0;
+	border: 0;
+	background-color: inherit; 
+}
+
+#comm_empty_write{
+	font-size: 15pt;
+	text-align: center;
+	
 }

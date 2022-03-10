@@ -40,13 +40,18 @@
 			<ul class="nav">
 				<li><a href="planMain">계획 짜기</a></li>
 				<li><a href="review.go">여행 후기</a></li>
-				<li><a href="/danim/comm_picture">커뮤니티</a></li>
+				<li><a href="/danim/comm_picture_page">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>
 		</div>
 		<c:choose>
-			<c:when test="${sessionScope.loginAccount != null}">
-				<div>login success</div>
+			<c:when test="${sessionScope.loginMember != null}">
+				<div>
+				<table>
+				<tr><td>${sessionScope.loginMember.dm_name }님 환영합니다.</td></tr>
+				<tr><td><button onclick="location.href='member.logout'">로그아웃</button></td></tr>
+				</table>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<div class="btns_wrap">
@@ -70,10 +75,10 @@
 			</div>
 			<div class="modal_content">
 				<form action="member.login" method="post" name="loginForm">
-					<input type="text" class="userId" name="userId" placeholder="ID"
-						required> <input type="text" class="userPw" name="userPw"
-						placeholder="PASSWORD" required> <a onclick="#"
-						class="modal_Login">로그인</a>
+					<input type="text" class="userId" name="dm_id" placeholder="ID"
+						required> <input type="text" class="userPw" name="dm_pw"
+						placeholder="PASSWORD" required><button
+						class="modal_Login">로그인</button>
 				</form>
 			</div>
 			<hr>

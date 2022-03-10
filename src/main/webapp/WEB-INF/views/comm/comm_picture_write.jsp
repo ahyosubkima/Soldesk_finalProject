@@ -15,10 +15,10 @@
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_picture">사진게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_video">동영상게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
@@ -43,9 +43,10 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt"
-								name="comm_picture_txt"></textarea> <input name="token"
-							type="hidden" value="${token }"></td>
+						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"></textarea> 
+							<input name="token"	type="hidden" value="${token }">
+							<input type="hidden" name="comm_picture_writer" value="${sessionScope.loginMember.dm_name }">
+						</td>
 					</tr>
 					<tr>
 						<td><button>작성</button></td>

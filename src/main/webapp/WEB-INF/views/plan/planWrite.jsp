@@ -9,7 +9,9 @@
 <title>Insert title here</title>
 
 
+
 <script type="text/javascript" src="resources/plan/p_js/jquery.js" ></script>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10c7423289ef4af1c8687b735db21075&libraries=services"></script>
 
 <script type="text/javascript" src="resources/plan/p_js/plan_map.js" ></script>

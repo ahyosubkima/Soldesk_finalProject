@@ -173,7 +173,9 @@
 								</c:if></td>
 						</tr>
 					</table>
+
 				</div>
+
 			</c:if>
 		</div>
 

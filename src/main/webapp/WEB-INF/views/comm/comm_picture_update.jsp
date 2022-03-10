@@ -17,10 +17,12 @@
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
+
 						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
@@ -36,11 +38,13 @@
 						style="border: 1px solid black;">
 						<tr>
 
+
 							<td colspan="1" id="comm_picture_detail_td2">제목</td>
 							<td colspan="3"><input
 								value="${picture.comm_picture_write_name }"
 								name="comm_picture_write_name" id="comm_picture_update_title">
 								</td>
+
 						</tr>
 						<tr>
 							<td>조회수</td>

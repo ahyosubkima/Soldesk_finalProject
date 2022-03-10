@@ -26,10 +26,12 @@ window.onpageshow = function(event) {
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
+
 						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
@@ -77,6 +79,7 @@ window.onpageshow = function(event) {
 									onclick="comm_delOK(${picture.comm_picture_no})">삭제</button></td>
 						</tr>
 					</c:if>
+
 					<c:if
 						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">

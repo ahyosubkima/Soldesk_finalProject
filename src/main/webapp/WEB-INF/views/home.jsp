@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>다님 :: Home</title>
+<title>다님 :: 즐거운 여행</title>
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
@@ -13,27 +13,27 @@
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
 <script>
-	function modalOpen() {
-		const body = document.querySelector('body');
-		body.style.overflow = 'hidden'
-		document.querySelector('.modal_wrap').style.display = 'flex';
-		document.querySelector('.modal_background').style.display = 'block';
+function modalOpen() {
+	const body = document.querySelector('body');
+	body.style.overflow = 'hidden'
+	document.querySelector('.modal_wrap').style.display = 'flex';
+	document.querySelector('.modal_background').style.display = 'block';
 
-	}
+}
 
-	function modalClose() {
-		const body = document.querySelector('body');
-		body.style.overflow = 'auto';
-		document.querySelector('.modal_wrap').style.display = 'none';
-		document.querySelector('.modal_background').style.display = 'none';
-	}
+function modalClose() {
+	const body = document.querySelector('body');
+	body.style.overflow = 'auto';
+	document.querySelector('.modal_wrap').style.display = 'none';
+	document.querySelector('.modal_background').style.display = 'none';
+}
 </script>
 
 </head>
 <body>
 	<header>
 		<div class="logo">
-			<a href="index"><img src="resources/asset/index/img/logo.png" /></a>
+			<a href="index"><img src="resources/asset/index/img/logo.png"/></a>
 		</div>
 
 		<div class="nav_wrap">
@@ -47,43 +47,74 @@
 		<c:choose>
 			<c:when test="${sessionScope.loginMember != null}">
 				<div>
-				<table>
-				<tr><td>${sessionScope.loginMember.dm_name }님 환영합니다.</td></tr>
-				<tr><td><button onclick="location.href='member.logout'">로그아웃</button></td></tr>
-				</table>
+
+					<table>
+						<tr>
+							<td>${sessionScope.loginMember.dm_nickname}님 환영합니다.</td>
+						</tr>
+						<tr>
+							<td><button onclick="location.href='member.logout'">로그아웃</button></td>
+							<td><button onclick="location.href='member.myPage'">마이페이지</button>
+						</tr>
+					</table>
+
 				</div>
 			</c:when>
 			<c:otherwise>
 				<div class="btns_wrap">
 					<ul class="btns">
 						<li><a onclick="modalOpen()" class="loginBtn">로그인</a></li>
-						<li><a href="#" class="joinBtn">회원가입</a></li>
 					</ul>
 				</div>
 			</c:otherwise>
 		</c:choose>
 
 		<div class="modal_background"></div>
+		
 		<div class="modal_wrap">
-			<div class="modal_header">
-				<div class="text">
-					<span>로그인</span>
-				</div>
-				<div class="closeBtn">
-					<a onclick="modalClose()" class="modal_close">✖</a>
-				</div>
-			</div>
+			 <div class="modal_header">
+				<a onclick="modalClose()" class="modal_close">✖</a>
+			</div> 
 			<div class="modal_content">
-				<form action="member.login" method="post" name="loginForm">
-					<input type="text" class="userId" name="dm_id" placeholder="ID"
-						required> <input type="text" class="userPw" name="dm_pw"
-						placeholder="PASSWORD" required><button
-						class="modal_Login">로그인</button>
-				</form>
+				<div class="modalBx login">
+					<h2>아이디가 있으신가요?</h2>
+					<button class="modal_loginBtn">로그인</button>
+				</div>
+				<div class="modalBx register">
+					<h2>아이디가 없으신가요?</h2>
+					<button class="registerBtn">회원가입</button>
+				</div>
+				
 			</div>
-			<hr>
-			<div class="modal_footer"></div>
+
+			<div class="formBx">
+				<div class="form loginForm">
+					<form action="member.login" method="post" name="loginForm">
+						<h3>로그인</h3>
+						<input type="text" placeholder="아이디" name="dm_id"> <input
+							type="text" placeholder="비밀번호" name="dm_pw">
+						<button>로그인</button>
+					</form>
+				</div>
+
+				<div class="form registerForm">
+					<form action="member.register" method="post" name="registerForm">
+						<h3>회원가입</h3>
+						<input type="text" placeholder="아이디" name="dm_id" class="reg_id"> 
+						<input type="text" placeholder="비밀번호" name="dm_pw" class="reg_pw">
+						<!-- <input type="password" placeholder="비밀번호 확인"  class="reg_pwCheck"> -->
+						<input type="text" placeholder="닉네임" name="dm_nickname" class="reg_nick"> 
+						<input type="text" placeholder="이메일" name="dm_email" class="reg_mail">
+						<input type="hidden" name="dm_isAdmin" value="N">
+						<button>회원가입</button>
+					</form>
+				</div>
+
+			</div>
 		</div>
+		
+	
+
 	</header>
 
 	<div>
@@ -132,5 +163,18 @@
 			</div>
 		</div>
 	</footer>
+	<script>
+	const modal_loginBtn = document.querySelector('.modal_loginBtn');
+	const registerBtn = document.querySelector('.registerBtn');
+	const formBx = document.querySelector('.formBx');
+
+	registerBtn.onclick = function() {
+		formBx.classList.add('active');
+	}
+
+	modal_loginBtn.onclick = function() {
+		formBx.classList.remove('active');
+	} 
+	</script>
 </body>
 </html>

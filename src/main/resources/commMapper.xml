@@ -18,6 +18,7 @@
 	#{comm_picture_writer},
 	#{comm_picture_txt},
 	0,
+
 	1,
 	sysdate)
 	</insert>
@@ -151,10 +152,12 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	
 	<insert id="pictureReplyUpload" parameterType="com.team2.danim.comm.Comm_picture_reply">
 	insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},#{cpr_owner},#{cpr_owner_id},#{cpr_txt},sysdate)
+
 	</insert>
 
 	<insert id="videoReplyUpload" parameterType="com.team2.danim.comm.Comm_Video_reply">
 	insert into comm_video_reply values(comm_video_reply_seq.nextval,#{cvr_cv_no},#{cvr_owner},#{cvr_owner_id},#{cvr_txt},sysdate)
+
 	</insert>
 	
 	<delete id="delPictureReply" parameterType="com.team2.danim.comm.Comm_picture_reply">
@@ -168,6 +171,7 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	<select id="getGoodPicture" resultType="com.team2.danim.comm.Comm_picture">
 	SELECT * FROM comm_picture WHERE ROWNUM &lt;= 6 order by comm_picture_good desc
 	</select>
+
 
 	<select id="getGoodVideo" resultType="com.team2.danim.comm.Comm_video">
 	SELECT * FROM comm_video WHERE ROWNUM &lt;= 6 order by cv_good desc
@@ -260,4 +264,5 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	<select id="getSearchTxtTotalVideo" resultType="java.lang.Integer" parameterType="com.team2.danim.comm.Comm_video">
 		select count(*) from comm_video where cv_txt LIKE '%'||#{cv_txt}||'%'
 	</select>
+
 </mapper>

@@ -13,6 +13,7 @@ foreign key(cpr_cp_no)
 		on delete cascade
 );
 
+
 create table comm_video_reply(
 cvr_no number(3) primary key,
 cvr_cv_no number(3) not null,
@@ -50,6 +51,7 @@ foreign key(cpg_no)
 		references comm_picture(comm_picture_no)
 		on delete cascade
 )
+
 
 create table comm_video_good(
 cvg_id varchar2(30 char) not null,
@@ -107,6 +109,7 @@ select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name
 				)
 			)
 			where rn <= 6 and rn >= 1
+
 
 			
 	

@@ -350,8 +350,10 @@ public void goodPlus(Comm_Picture_good cpg, HttpServletRequest req,Comm_picture 
 		if (ss.getMapper(CommMapper.class).goodPlusById(cpg)==1) {
 			cp.setComm_picture_no(Integer.parseInt(req.getParameter("no")));
 			if (ss.getMapper(CommMapper.class).goodPlus(cp)==1) {
+
 				System.out.println("추천수증가");
 				req.getSession().setAttribute("successToken", token2);
+
 			}
 			
 		}

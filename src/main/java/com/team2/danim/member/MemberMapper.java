@@ -4,4 +4,8 @@ public interface MemberMapper {
 
 	public Member getMemberByID(Member m);
 
+	int register(Member m);
+
+	int deleteMember(Member m);
+
 }

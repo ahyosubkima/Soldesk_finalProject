@@ -6,4 +6,6 @@ public interface MemberMapper {
 
 	int register(Member m);
 
+	int deleteMember(Member m);
+
 }

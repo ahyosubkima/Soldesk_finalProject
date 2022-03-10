@@ -41,5 +41,20 @@ public class MemberController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "member.myPage")
+	public String toMyPage(Member m, HttpServletRequest req) {
+		
+		
+		req.setAttribute("contentPage", "member/myPage.jsp");
+		return "home";
+	}
+	
+	public String deleteMember(HttpServletRequest req) {
+		
+		mDAO.deleteMember(req);
+		req.setAttribute("contentPage", "member/myPage.jsp");
+		return "home";
+	}
+	
 	
 }

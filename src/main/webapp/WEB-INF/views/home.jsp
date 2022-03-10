@@ -13,20 +13,20 @@
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
 <script>
-	function modalOpen() {
-		const body = document.querySelector('body');
-		body.style.overflow = 'hidden'
-		document.querySelector('.modal_wrap').style.display = 'flex';
-		document.querySelector('.modal_background').style.display = 'block';
+function modalOpen() {
+	const body = document.querySelector('body');
+	body.style.overflow = 'hidden'
+	document.querySelector('.modal_wrap').style.display = 'flex';
+	document.querySelector('.modal_background').style.display = 'block';
 
-	}
+}
 
-	function modalClose() {
-		const body = document.querySelector('body');
-		body.style.overflow = 'auto';
-		document.querySelector('.modal_wrap').style.display = 'none';
-		document.querySelector('.modal_background').style.display = 'none';
-	}
+function modalClose() {
+	const body = document.querySelector('body');
+	body.style.overflow = 'auto';
+	document.querySelector('.modal_wrap').style.display = 'none';
+	document.querySelector('.modal_background').style.display = 'none';
+}
 </script>
 
 </head>
@@ -49,10 +49,11 @@
 				<div>
 					<table>
 						<tr>
-							<td>${sessionScope.loginMember.dm_nickname}님환영합니다.</td>
+							<td>${sessionScope.loginMember.dm_nickname}님 환영합니다.</td>
 						</tr>
 						<tr>
 							<td><button onclick="location.href='member.logout'">로그아웃</button></td>
+							<td><button onclick="location.href='member.myPage'">마이페이지</button>
 						</tr>
 					</table>
 				</div>
@@ -96,11 +97,11 @@
 				<div class="form registerForm">
 					<form action="member.register" method="post" name="registerForm">
 						<h3>회원가입</h3>
-						<input type="text" placeholder="아이디" name="dm_id"> 
-						<input type="text" placeholder="비밀번호" name="dm_pw"> 
-						<input type="text" placeholder="닉네임" name="dm_nickname"> 
-						<!-- <input type="text" placeholder="비밀번호 확인" name="dm_pw"> -->
-						<input type="text" placeholder="이메일" name="dm_email">
+						<input type="text" placeholder="아이디" name="dm_id" class="reg_id"> 
+						<input type="text" placeholder="비밀번호" name="dm_pw" class="reg_pw">
+						<!-- <input type="password" placeholder="비밀번호 확인"  class="reg_pwCheck"> -->
+						<input type="text" placeholder="닉네임" name="dm_nickname" class="reg_nick"> 
+						<input type="text" placeholder="이메일" name="dm_email" class="reg_mail">
 						<input type="hidden" name="dm_isAdmin" value="N">
 						<button>회원가입</button>
 					</form>
@@ -159,17 +160,17 @@
 		</div>
 	</footer>
 	<script>
-		const modal_loginBtn = document.querySelector('.modal_loginBtn');
-		const registerBtn = document.querySelector('.registerBtn');
-		const formBx = document.querySelector('.formBx');
+	const modal_loginBtn = document.querySelector('.modal_loginBtn');
+	const registerBtn = document.querySelector('.registerBtn');
+	const formBx = document.querySelector('.formBx');
 
-		registerBtn.onclick = function() {
-			formBx.classList.add('active');
-		}
+	registerBtn.onclick = function() {
+		formBx.classList.add('active');
+	}
 
-		modal_loginBtn.onclick = function() {
-			formBx.classList.remove('active');
-		}
+	modal_loginBtn.onclick = function() {
+		formBx.classList.remove('active');
+	} 
 	</script>
 </body>
 </html>

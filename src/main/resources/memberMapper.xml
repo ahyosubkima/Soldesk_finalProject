@@ -12,4 +12,10 @@
 		values (#{dm_id}, #{dm_pw},
 		#{dm_nickname}, #{dm_email}, #{dm_addr, jdbcType=VARCHAR}, #{dm_photo, jdbcType=VARCHAR}, #{dm_isAdmin})
 	</insert>
+	
+	<delete id="deleteMember"
+		parameterType="com.team2.danim.member.Member">
+		delete from danim_member
+		where dm_id = #{dm_id}	
+	</delete>
 </mapper>

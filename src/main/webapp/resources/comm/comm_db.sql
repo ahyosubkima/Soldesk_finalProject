@@ -13,12 +13,7 @@ create sequence comm_picture_seq;
 
 drop table comm_picture;
 
-insert into comm_picture values(comm_picture_seq.nextval,'testimg1.jpg','풍경화','김진현','내용','1','1',sysdate);
-insert into comm_picture values(comm_picture_seq.nextval,'testimg2','ㅇㄹㅇ','서병관','내용','1','1',sysdate);
-insert into comm_picture values(comm_picture_seq.nextval,'testimg3','ㅇㅅㅇ','박혜아','내용','1','1',sysdate);
-insert into comm_picture values(comm_picture_seq.nextval,'testimg4','ㅇㅁㅇ','최재식','내용','1','1',sysdate);
-insert into comm_picture values(comm_picture_seq.nextval,'testimg5','ㅇㅂㅇ','김건우','내용','1','1',sysdate);
-
+	
 select * from comm_picture order by comm_picture_date desc;
 
 select * from comm_picture where comm_picture_no = 28;
@@ -33,6 +28,14 @@ create table comm_picture_reply(
 	cpr_owner varchar2(10 char) not null,
 	cpr_txt varchar2(100 char) not null,
 	cpr_when date not null
+);
+
+create table comm_video_reply(
+	cvr_no number(5) primary key, 		
+	cvr_cp_no number(5) not null,		-- 소속된 글번호
+	cvr_owner varchar2(10 char) not null,
+	cvr_txt varchar2(100 char) not null,
+	cvr_when date not null
 );
 
 create sequence comm_picture_reply_seq;

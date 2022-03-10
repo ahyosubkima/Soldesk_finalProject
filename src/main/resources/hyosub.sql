@@ -17,18 +17,27 @@ rb_text varchar2(500 char) not null
 
 create sequence review_board_seq;
 
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'bbc', 0, 0, 0, sysdate, 'test','10','10000','1','서울');
-insert into REVIEW_BOARD values(review_board_seq.nextval, '한글', 0, 0, 0, sysdate, 'test','5','100000','1','인천');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'bbc', 0, 0, 0, sysdate, 'test','10','10000','1','서울','1.jpg');
+insert into REVIEW_BOARD values(review_board_seq.nextval, '한글', 0, 0, 0, sysdate, 'test','5','100000','1','인천','1.jpg');
 
-insert into REVIEW_BOARD values(review_board_seq.nextval, '예산1', 0, 0, 0, sysdate, 'test','1','1','1','1');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','예산2','테마2','지역2');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test3', 0, 0, 0, sysdate, 'test','1','예산3','테마3','지역3');
-insert into REVIEW_BOARD values(review_board_seq.nextval, 'test1', 0, 0, 0, sysdate, 'test','1','예산1','테마1','지역1');
+insert into REVIEW_BOARD values(review_board_seq.nextval, '예산1', 0, 0, 0, sysdate, 'test','1','1','1','1','1.jpg');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test1', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','멋쟁이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test2', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','예쁜이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test3', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','잘생이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test4', 0, 0, 0, sysdate, 'test','1','500000','커플여행','서울','1.jpg','깍쟁이');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test5', 0, 0, 0, sysdate, 'test','2','500','감성카페찾기','부산','2.jpg','ㅇㅇㅇ');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test6', 0, 0, 0, sysdate, 'test','3','700000','비즈니스여행','대구','2.jpg','ㅎㅎㅎ');
+insert into REVIEW_BOARD values(review_board_seq.nextval, 'test7', 0, 0, 0, sysdate, 'test','8','80000','비즈니스여행','대구','2.jpg','ㅋㅋㅋ');
 
-select * from REVIEW_BOARD 
+select * from REVIEW_BOARD where rb_headnum like '1'
+select * from REVIEW_BOARD
 
 
-delete REVIEW_BOARD where rb_no = 1;
+
+select * from REVIEW_BOARD where  rb_budget <= '100000' and rb_theme like '%%' and rb_location like '%%';
+
+delete REVIEW_BOARD where rb_no = 102;
+
 
 alter table REVIEW_BOARD add (
 rb_headNum varchar2(50 char) not null,
@@ -37,3 +46,9 @@ rb_theme varchar2(50 char) not null,
 rb_location varchar2(50 char) not null
 )
 
+alter table review_board add rb_img varchar2(100 char) not null;
+
+truncate table review_board;
+
+alter table review_board modify rb_budget number(20);
+alter table review_board add rb_username varchar2(100 char) not null;

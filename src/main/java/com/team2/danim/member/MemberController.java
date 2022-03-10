@@ -12,7 +12,9 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mDAO;
 	
+
 	//로그인 처리
+
 	@RequestMapping(value = "member.login", method = RequestMethod.POST)
 	public String home(Member m, HttpServletRequest req) {
 		
@@ -21,6 +23,7 @@ public class MemberController {
 		req.setAttribute("contentPage", "index.jsp");
 		return "home";
 	}
+
 	
 	//로그아웃 처리
 	@RequestMapping(value = "member.logout", method = RequestMethod.GET)
@@ -55,6 +58,7 @@ public class MemberController {
 		req.setAttribute("contentPage", "member/myPage.jsp");
 		return "home";
 	}
-	
+
+
 	
 }

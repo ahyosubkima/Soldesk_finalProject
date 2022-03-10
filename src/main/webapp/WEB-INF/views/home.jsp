@@ -40,13 +40,14 @@ function modalClose() {
 			<ul class="nav">
 				<li><a href="planMain">계획 짜기</a></li>
 				<li><a href="review.go">여행 후기</a></li>
-				<li><a href="/danim/comm_picture">커뮤니티</a></li>
+				<li><a href="/danim/comm_picture_page">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>
 		</div>
 		<c:choose>
 			<c:when test="${sessionScope.loginMember != null}">
 				<div>
+
 					<table>
 						<tr>
 							<td>${sessionScope.loginMember.dm_nickname}님 환영합니다.</td>
@@ -56,6 +57,7 @@ function modalClose() {
 							<td><button onclick="location.href='member.myPage'">마이페이지</button>
 						</tr>
 					</table>
+
 				</div>
 			</c:when>
 			<c:otherwise>
@@ -84,6 +86,7 @@ function modalClose() {
 				</div>
 				
 			</div>
+
 			<div class="formBx">
 				<div class="form loginForm">
 					<form action="member.login" method="post" name="loginForm">
@@ -106,6 +109,7 @@ function modalClose() {
 						<button>회원가입</button>
 					</form>
 				</div>
+
 			</div>
 		</div>
 		

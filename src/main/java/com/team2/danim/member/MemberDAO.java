@@ -18,6 +18,7 @@ public class MemberDAO {
 	//로그인
 	public void login(Member m, HttpServletRequest req) {
 		Member dbMember = ss.getMapper(MemberMapper.class).getMemberByID(m);
+
 		String inputPw = req.getParameter("dm_pw");
 		String actualPw = Sha256.encodeSha256(inputPw);
 
@@ -43,6 +44,7 @@ public class MemberDAO {
 
 	//회원가입
 	public void register(Member m, HttpServletRequest req) {
+
 		
 		try {
 			String reg_id = req.getParameter("dm_id");
@@ -94,9 +96,6 @@ public class MemberDAO {
 		}
 	}
 
-	
-	
-	
-	
+
 	
 }

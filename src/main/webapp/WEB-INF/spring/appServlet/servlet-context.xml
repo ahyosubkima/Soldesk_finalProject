@@ -31,8 +31,11 @@
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
 
 
-		<beans:property name="username" value="bg" />
-		<beans:property name="password" value="bg" />
+
+
+		<beans:property name="username" value="c##jy" />
+		<beans:property name="password" value="jy" />
+
 
 	</beans:bean>
 
@@ -50,6 +53,7 @@
 				<beans:value>classpath:memberMapper.xml</beans:value>
 				<beans:value>classpath:commMapper.xml</beans:value>
 				<beans:value>classpath:reviewMapper.xml</beans:value>
+				<beans:value>classpath:planMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -58,5 +62,7 @@
 		<beans:constructor-arg name="sqlSessionFactory"
 			ref="sqlSessionFactory" />
 	</beans:bean>
-
+	
+	<beans:bean id="cri" class="com.team2.danim.Criteria">
+	</beans:bean>
 </beans:beans>

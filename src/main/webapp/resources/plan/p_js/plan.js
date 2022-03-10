@@ -41,6 +41,21 @@ function dayWrite() {
 	}
 
 
+function dayImportant(){
+	$(document).on("click", "#i_am_test", function() {
+		
+		//확인용
+		alert($(this).text());
+		
+		let placeName = $(this).text();
+		
+		$("#p_dayWriteDiv").before('<table border="1" id="sese">'+
+				'<tr><td colspan="2">' + placeName + '</td></tr>'+
+				'<tr><td>상품명:</td><td><input></td></tr>'+
+				'<tr><td>금액:</td><td><input id="qqe"></td></tr></table>');
+		
+	});
+}
 
 	
 
@@ -181,12 +196,13 @@ function qqq() {
 	$(document).ready(function () {
 		  $(document).on("click", "#p_markerInfo", function () {
 			  let MapText = document.getElementById('p_markerInfo').innerText;
+			  let MapAddress = $("#infoo").val();
 			  
-			  alert('확인용');
+			  alert(MapAddress)
 			  alert(MapText);
 			  
 			  $("#p_route").append('<div id="i_am_test_all"><div id="i_am_test">' + MapText
-					  			+ '</div><img src="resources/plan/p_img/arrow_r.png" style="width: 50px; height: auto;"></div>');
+					  			+ '</div>' + MapAddress + '</div>');
 		  });
 		});
 }
@@ -213,6 +229,7 @@ $(function() {
 	dayWrite();
 	ddd();
 	qqq();
+	dayImportant()
  
 });
 

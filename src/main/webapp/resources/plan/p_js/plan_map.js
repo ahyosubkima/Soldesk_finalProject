@@ -61,6 +61,8 @@ $(function() {
 					
 					/*마커 생성하기*/
 					let restaurantName = "";
+					let routeClick = "";
+					
 					$.each(r.documents, function(i, l) {
 						console.log(l.place_name);
 						// 마커를 생성합니다
@@ -74,10 +76,7 @@ $(function() {
 					    // 마커 위에 인포윈도우를 표시합니다
 					    infowindow.open(map, marker);  
 					    $("#p_markerInfo").text(l.place_name);
-					    
-					    routeClick = $("#p_markerInfo").text();
-					  
-					    
+					    $("#infoo").val(l.address_name);
 					});
 					});
 					

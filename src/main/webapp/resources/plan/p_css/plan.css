@@ -131,8 +131,10 @@
 }
 
 #p_openDayWrite{
+	width: 800px;
 	margin: auto;
 	margin-top: 50px;
+	
 	
 }
 
@@ -153,13 +155,19 @@
 
 
 #p_dayWriteDiv{
+	width: 800px;
 	display:inline-block;
 	zoom:1;
 }
 
 
 #sese {
-	text-align: center; float: left;
+	text-align: center; 
+	float: left;
+	width: 200px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	word-break: keep-all;
 }
 
 #p_dayWrite{
@@ -176,19 +184,25 @@
 
 
 #i_am_test{
-	width: 100px;
-	height: 100px;
-	border-radius: 30px;
-	word-break:break-all;
-	padding-top: 20px;
+	width: 150px;
+	height: 70px;
+	word-break: keep-all;
+	font-size: 13pt;
 	text-align: center;
-	background-color: #6D1E91;
-	float: left;
-	color: #38CEB5;
+	display: table-cell;
+    vertical-align: middle;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    color: #404040;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 #i_am_test_all{
 	float: left;
+	font-size: 9pt;
+	text-align: center;
 }
 
 

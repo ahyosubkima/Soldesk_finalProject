@@ -5,40 +5,118 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="resources/review/js/jquery.js"></script>
-<script type="text/javascript" src="resources/review/js/review.js"></script>
+<style>
+div{
+
+border: 1px solid red;
+}
+
+.flex-container{
+display: flex;
+justify-content: center;
+
+
+}
+
+
+#
+</style>
+<script type="text/javascript" src="resources/review/js/reviewWrite.js"></script>
 </head>
+
 <body>
 
-<div>후기 쓰기 페이지</div>
+<div class="content_wrapper">
+<div> 후기쓰기 페이지</div>
+
+<div class="flex-container">
+
+<div> 
+<select id="selectBox">
+<option selected="selected" disabled="disabled">인원</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option value="direct">직접입력</option>
+
+</select> 
+<span id="inputContainer" style="display: none;">
+<input id="selectBoxDirect" name="selectBoxDirect" > 명
+</span>
+</div>
 
 <div>
-<div>
-인원수
-<input type="range" id="headcount" min="1" max="10" step="1" oninput="rangeout.value=this.value" >
+<select id="selectBox2">
+<option selected="selected" disabled="disabled">비용</option>
+<option>~ 100,000</option>
+<option>~ 300,000</option>
+<option>~ 500,000</option>
+<option>~ 700,000</option>
+<option>~ 1,000,000</option>
+
+</select> 
 
 </div>
 
- <input type='button'
-         value='createDiv'
-         onclick='createDiv()'/>
-         
-         <div id="dailyDummy" style="border: 1px solid;">
-         aa
-         </div>
-         
-         <div id="dailyDetail"></div>
+<div>
+<select id="selectBox3">
+<option selected="selected" disabled="disabled">테마</option>
+<option>커플여행</option>
+<option>럭셔리여행</option>
+<option>감성카페찾기</option>
+<option>맛집투어</option>
+<option>비즈니스여행</option>
 
-<div style="margin-top:40px; margin-left:40px;" class="content">
-        <div style="display: flex;">
-            <h1 style="width: 150px; margin-right:30px;">태그 입력</h1>
-            <input type="text" id="tag" size="20" placeholder="태그입력" />
-        </div>
+</select> 
 
-        <ul id="tag-list">
-        </ul>
+</div>
 
-    </div>
+<div>
+<select id="selectBox4">
+<option selected="selected" disabled="disabled">지역</option>
+<option>서울</option>
+<option>대전</option>
+<option>대구</option>
+<option>부산</option>
+<option>인천</option>
+
+</select> 
+
+</div>
+
+ </div>
+
+<div class="flex-container">
+<div>화살표&lt;</div>
+<div id="dailyContainer" style="display: flex;">
+<div id="dailyContent">
+데이(변수) <span id="dailyAddBtn"> <img alt="" src="resources/review/img/plus-circle.svg"></span>
+<div>
+일정표시
+</div>
+
+</div>
+</div>
+<div>화살표&gt;</div>
+</div>
+
+<div> 경로표시 지도</div>
+<div>
+ 요약페이지
+<div>경로</div>
+<div>비용</div>
+<div>후기</div>
+
+</div>
+<div>댓글</div>
+
 </div>
 
 

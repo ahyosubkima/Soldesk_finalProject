@@ -244,6 +244,7 @@ function tabHandler(item) {
 }
 
   })
+  //js준비 끝
   
 
 // jstl 초기 불러온값 삭제
@@ -262,8 +263,10 @@ document.getElementById('choosedVal').innerHTML = "" ;
   rb_location = "";
   rb_headNum = "";
 
+  eraseJSTL();
+    callAjax();
   document.querySelectorAll('.itsActive').forEach(function(deactive){
-
+    console.log(document.querySelectorAll('.itsActive'));
     deactive.classList.remove('itsActive');
 
     eraseJSTL();
@@ -278,16 +281,11 @@ function callAjax(){
   httpRequest = new XMLHttpRequest();
   /* httpRequest의 readyState가 변화했을때 함수 실행 */
     httpRequest.onreadystatechange = function() {
-      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 name과 age를 그려줌 */
+      /* readyState가 Done이고 응답 값이 200일 때, 받아온 response로 그려줌 */
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
           let result = httpRequest.response;
           console.log(result);
-         // console.log(result.reviewTitles[0].rb_title);
-          //let df = JSON.parse(result).rb_title
-           // console.log(df);
-
-              //console.log(result.reviews);
 
               console.log('찌역 : '+rb_location)
               console.log('뗴마 : '+rb_theme)
@@ -301,7 +299,7 @@ function callAjax(){
           }
       }
     };
-    /* Get 방식으로 name 파라미터와 함께 요청 */
+    /* Get 방식으로  요청 */
     httpRequest.open('GET', 'http://localhost/danim/getfilterdByJSON?rb_location='+rb_location+'&rb_budget='+rb_budget+'&rb_theme='+rb_theme+'&rb_headNum='+rb_headNum);
 
     /* Response Type을 Json으로 사전 정의 */

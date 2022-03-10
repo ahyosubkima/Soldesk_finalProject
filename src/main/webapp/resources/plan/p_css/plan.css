@@ -36,6 +36,7 @@
 #p_mainDetail{
 	margin: auto;
 	margin-bottom: 20px;
+	overflow: inherit;
 }
 
 #p_writeDetail{
@@ -130,8 +131,10 @@
 }
 
 #p_openDayWrite{
+	width: 800px;
 	margin: auto;
 	margin-top: 50px;
+	
 	
 }
 
@@ -152,23 +155,55 @@
 
 
 #p_dayWriteDiv{
-	display:inline-block;zoom:1;.display:inline;
+	width: 800px;
+	display:inline-block;
+	zoom:1;
 }
 
 
 #sese {
-	text-align: center; float: left;
+	text-align: center; 
+	float: left;
+	width: 200px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	word-break: keep-all;
 }
 
 #p_dayWrite{
-	width: 100px;
+	width: 30px;
 	height: 30px;
 	clear: both;
 	text-align: center;
+	background-color: transparent;
+	border: none;
+	font-size: 25pt;
 	margin: auto;
 	display: block;
 }
 
+
+#i_am_test{
+	width: 150px;
+	height: 70px;
+	word-break: keep-all;
+	font-size: 13pt;
+	text-align: center;
+	display: table-cell;
+    vertical-align: middle;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    color: #404040;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#i_am_test_all{
+	float: left;
+	font-size: 9pt;
+	text-align: center;
+}
 
 
 

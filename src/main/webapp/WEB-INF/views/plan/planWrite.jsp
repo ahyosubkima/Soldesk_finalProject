@@ -9,11 +9,13 @@
 <title>Insert title here</title>
 
 
-<script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
+
+<script type="text/javascript" src="resources/plan/p_js/jquery.js" ></script>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10c7423289ef4af1c8687b735db21075&libraries=services"></script>
 
-<script type="text/javascript" src="resources/plan/p_js/plan_map.js"></script>
-<script type="text/javascript" src="resources/plan/p_js/plan.js"></script>
+<script type="text/javascript" src="resources/plan/p_js/plan_map.js" ></script>
+<script type="text/javascript" src="resources/plan/p_js/plan.js" ></script>
 
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
 </head>
@@ -42,46 +44,100 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로:<div id="p_route">경로보여주는 곳</div> </td>
-		</tr>
-
-		<tr>
 			<td colspan="3">
 				<input placeholder="입력해주세요" id="p_search"><input type="button" id="p_searchBtn" value="검색">
-			<div id="map" style="width:800px;height:400px;"></div>
+			<div id="map" style="width:800px;height:300px;"></div>
+			<div style="font-size: 20pt; text-align: center; margin-top: 50px;">📅 여행 일정</div>
+			</td>
 			
-			
-			
+		</tr>
+		
+		<tr>
+			<td colspan="3"><div id="p_route"></div>
+			 <div id="i_am_test">그랜드 하얏트 리젠시 나하 오키나와 주차장 별관 </div>
 			</td>
 		</tr>
+		
 	</table>
-
-
-
  
 	
 <!-- 일정 상세등록 -->
-	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
+	<div id="p_DayWriteTitle"><span>💲여행 예산</span><button id="dBtn" type="button">일정 저장</button></div>
 	<div id="p_openDayWrite">
-	
-	<c:forEach var="p" begin="1" end="${param.p_days}">
-		<div id="p_DayWriteAll">
-		<div>${p }일차</div>
+			<div id="confirmContent">
+		<div id="p_DayWriteAll" >
 		<div id="p_dayWriteDiv">
-		<input id="p_dayWrite"  type="button" value="일정추가">
-		<input id="p_dayHidden" class="egeg" type="hidden" value="${p }">
-		</div>
-		</div>
-	</c:forEach>
+		
+		
+		<table border="1" id="sese">
+		<tr>
+		<td colspan="2">하얏트 리젠시 나하 오키나와 리젠시 클럽 라운지</td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; font-size: 12pt;">상품명</td>
+		<td><input style="width: 80px;"></td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; font-size: 12pt;">금액</td>
+		<td><input type="number" style="width: 80px;" id="qqe"></td>
+		</tr>
+		</table>
+		
+		<table border="1" id="sese">
+		<tr>
+		<td colspan="2">아쿠아 리조트 클럽 사이판</td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; font-size: 12pt;">상품명</td>
+		<td><input style="width: 80px;"></td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; font-size: 12pt;">금액</td>
+		<td><input type="number" style="width: 80px;" id="qqe"></td>
+		</tr>
+		</table>
+		
+		<table>
+		<tr>
+		<td id="showw">총금액</td>
+		</tr>
 
+		
+		</table>
+<script type="text/javascript">
+
+	$(document).on("click", "#qqe", function () {
+		
+		
+		
+		$(this).keyup(function () {
+			
+			let num = $(this).val();
+			alert(num)
+			
+		})
+		
+		
+		
+		
+	})
+
+		
+		
+</script>
+		
+		</div>
+		</div>
+
+			</div>
 
 	</div>
-	
-	
-	
-	
-	
-	
+
+
 <!-- 예산결과 보여주는 곳 -->
 	<div id="p_BudgetAll">
 	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
@@ -110,6 +166,12 @@
 	
 </form> 
 
+<input id="aaa" value="ddd" type="button">
+
+<div id="ccity">
+ㅈㅈ
+
+</div>
 
 
 

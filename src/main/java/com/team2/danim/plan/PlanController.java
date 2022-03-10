@@ -45,6 +45,30 @@ public class PlanController {
 
 	}
 	
+
+	@RequestMapping(value = "/domestic.getjson", method = RequestMethod.GET,
+			produces = "application/json; charset=utf-8")
+	public String planJson(HttpServletRequest req) {
+		
+		
+		req.setAttribute("contentPage", "plan/planWrite.jsp.jsp");
+		
+		return "home";
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

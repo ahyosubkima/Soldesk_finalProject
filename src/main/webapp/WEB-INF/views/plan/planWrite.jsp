@@ -37,7 +37,7 @@
 		
 		<tr>
 			<td>출발: <input type="date" name="p_startDate"></td>
-			<td>인원: <input type="number" name="p_person"></td>
+			<td>인원: <input type="number" name="p_person" id="p_person"></td>
 		</tr>
 
 		<tr>
@@ -82,7 +82,7 @@
 		
 		<tr>
 		<td style="width: 50px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="qqe"></td>
+		<td><input type="number" style="width: 80px;" id="qqe" class="qqe"></td>
 		</tr>
 		</table>
 		
@@ -98,7 +98,7 @@
 		
 		<tr>
 		<td style="width: 50px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="qqe"></td>
+		<td><input type="number" style="width: 80px;" id="qqe" class="qqe"></td>
 		</tr>
 		</table>
 		
@@ -118,7 +118,7 @@
 		$(this).keyup(function () {
 			
 			let num = $(this).val();
-			alert(num)
+			//alert(num)
 			
 		})
 		
@@ -145,7 +145,7 @@
 	<table border="1" id="p_writeBudget">
 			
 		<tr>
-			<td id="p_writeBudgetWrite">OO님,<p>여행에 필요한 최소 비용은 00,000원으로 0명이 여행할 경우 1인당 0,000원입니다.</td>
+			<td id="p_writeBudgetWrite"></td>
 		</tr>
 	</table>
 	</div>

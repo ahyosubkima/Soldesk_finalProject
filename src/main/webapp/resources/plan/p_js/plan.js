@@ -45,17 +45,48 @@ function dayImportant(){
 	$(document).on("click", "#i_am_test", function() {
 		
 		//확인용
-		alert($(this).text());
+		//alert($(this).text());
 		
 		let placeName = $(this).text();
 		
 		$("#p_dayWriteDiv").before('<table border="1" id="sese">'+
 				'<tr><td colspan="2">' + placeName + '</td></tr>'+
 				'<tr><td>상품명:</td><td><input></td></tr>'+
-				'<tr><td>금액:</td><td><input id="qqe"></td></tr></table>');
+				'<tr><td>금액:</td><td><input id="qqe" class="qqe"></td></tr></table>');
 		
 	});
 }
+
+
+function eses(){
+	
+	$(document).on("click", "#showw", function() {
+	
+		const allPrice = document.querySelectorAll(".qqe");
+		const person =  document.getElementById('p_person').value;
+		let price = 0;
+		let sum = 0;
+		let onePersonPrice = 0;
+		
+		for (var i = 0; i < allPrice.length; i++) {
+			
+			price = parseInt(allPrice[i].value);
+			
+			sum += price;
+			onePersonPrice = sum / person;
+			
+			
+		}
+		//확인용
+		console.log(sum)
+		console.log(onePersonPrice)
+		
+		$("#p_writeBudgetWrite").append("OO님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.")
+
+	});
+	
+}
+
 
 	
 
@@ -104,6 +135,9 @@ function pptest(){
         );
 }
 */
+
+
+
 
 function p_openBudget(){
 	
@@ -185,12 +219,6 @@ function ddd() {
 
 
 
-
-
-
-
-
-
 function qqq() {
 	
 	$(document).ready(function () {
@@ -230,6 +258,7 @@ $(function() {
 	ddd();
 	qqq();
 	dayImportant()
+	eses()
  
 });
 

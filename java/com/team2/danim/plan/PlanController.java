@@ -41,6 +41,7 @@ public class PlanController {
 		pDAO.upload(req);
 		
 		req.setAttribute("contentPage", "plan/planDetail.jsp");
+		
 		return "home";
 
 	}
@@ -50,7 +51,7 @@ public class PlanController {
 			produces = "application/json; charset=utf-8")
 	public String planJson(HttpServletRequest req) {
 		
-		
+		TokenMaker.make(req);
 		req.setAttribute("contentPage", "plan/planWrite.jsp.jsp");
 		
 		return "home";

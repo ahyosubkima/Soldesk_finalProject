@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.team2.danim.Criteria;
+import com.team2.danim.Criteria2;
 
 public interface CommMapper {
 	public List<Comm_picture> getCommPicture();
@@ -100,5 +101,15 @@ public interface CommMapper {
 	public int goodVideoPlus(Comm_video cv);
 
 	public Comm_Video_good goodVideoCheck(Comm_Video_good cvg);
+
+	public int goodVideoMinuById(Comm_Video_good cvg);
+
+	public int goodVideoMinus(Comm_video cv);
+
+	public int viewVideoPlus(Comm_video cv);
+
+	public int getFreeTotal();
+
+	public List<Comm_free> getCommFreePaging(Criteria2 cri2);
 
 }

@@ -14,7 +14,6 @@ dm_photo varchar2(40 char),
 dm_isAdmin varchar2(2 char) not null 
 );
 
-
 insert into danim_member values ('admin2', '1004', '곰', 'abc@abc.abc', '서울', 'dog4.jpg', 'Y');
 insert into danim_member
 		values (#{dm_id}, #{dm_pw},

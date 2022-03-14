@@ -18,6 +18,15 @@ border: 1px solid black;
 font-weight: bold;
 font-size: 17pt;
 }
+#comm_free_tbl{
+	width: 1300px;
+	border: 1px solid black;
+	
+}
+#comm_free_tbl td{
+	border: 1px solid black;
+}
+
 #comm_picture_tbl a{
 text-decoration: none;
 	
@@ -98,6 +107,13 @@ border : 1px solid black;
 margin-top : 30px;
 width: 1600px;
 left: 280px;
+position:absolute;
+}
+#comm_picture_content1122{
+border : 1px solid black;
+margin-top : 30px;
+width: 1300px;
+left: 350px;
 position:absolute;
 }
 #comm_picture_area{

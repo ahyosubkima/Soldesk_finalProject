@@ -2,14 +2,13 @@ package com.team2.danim.comm;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team2.danim.Criteria;
-import com.team2.danim.PageMakerDTO;
+import com.team2.danim.Criteria2;
 import com.team2.danim.TokenMaker;
 
 
@@ -21,17 +20,6 @@ public class CommController {
 	private CommDAO cDAO;
 	
 	
-	/*@RequestMapping(value = "/comm_picture", method = RequestMethod.GET)
-	public String comm_picture(HttpServletRequest req) {
-		TokenMaker.make(req);
-		cDAO.getCommPicture(req);
-		cDAO.getPicture(req);
-		
-		req.setAttribute("contentPage", "comm/comm_picture.jsp");
-		return "home";
-
-	}*/
-
 
 	@RequestMapping(value = "/comm_picture_page", method = RequestMethod.GET)
 	public String comm_picture_page(HttpServletRequest req,Criteria cri) {
@@ -354,12 +342,11 @@ public class CommController {
 		return "home";
 		
 	}
-	@RequestMapping(value = "/comm_free", method = RequestMethod.GET)
-	
-	public String comm_free(HttpServletRequest req) {
-		TokenMaker.make(req);
+	@RequestMapping(value = "/comm_free_page", method = RequestMethod.GET)
+	public String comm_free(HttpServletRequest req,Criteria2 cri2) {
 		
-		
+		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getCommFreePaging(req, cri2);
 		req.setAttribute("contentPage", "comm/comm_free.jsp");
 		
 		return "home";

@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.team2.danim.Criteria;
+import com.team2.danim.Criteria2;
 import com.team2.danim.PageMakerDTO;
+import com.team2.danim.PageMakerDTO2;
 
 
 @Service
@@ -571,7 +573,31 @@ public void videoUpload(HttpServletRequest req) {
 }
 
 public void viewVideoPlus(Comm_video cv, HttpServletRequest req) {
-	// TODO Auto-generated method stub
+	
+	try {
+		String token = (String)req.getSession().getAttribute("token"); // 디테일 진입시 생성된 토큰 값
+		
+		System.out.println(token);
+		
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		System.out.println(successToken + "?????????????");
+		
+		if(successToken == token) {
+			return;
+		}
+
+		
+			System.out.println(req.getParameter("no"));
+			cv.setCv_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).viewVideoPlus(cv)==1) {
+				req.getSession().setAttribute("successToken", token);
+				System.out.println("조회수증가 성공");
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
 }
 
@@ -868,6 +894,65 @@ try {
 		e.printStackTrace();
 	}
 }
+
+public void goodVideoMinus(Comm_Video_good cvg, HttpServletRequest req, Comm_video cv) {
+	
+	try {
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		
+
+		if (token2.equals(successToken)) {
+			return;
+		}
+		
+		System.out.println(req.getParameter("no"));
+		cvg.setCvg_no(Integer.parseInt(req.getParameter("no")));
+		cvg.setCvg_id(req.getParameter("id"));
+	
+		
+		if (ss.getMapper(CommMapper.class).goodVideoMinuById(cvg)==1) {
+			cv.setCv_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).goodVideoMinus(cv)==1) {
+				System.out.println("추천수 감소");
+				req.getSession().setAttribute("successToken", token2);
+			}
+			
+		}
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
+public void getFreePageMaker(HttpServletRequest req, Criteria2 cri2) {
+int total = ss.getMapper(CommMapper.class).getFreeTotal();
+	
+	PageMakerDTO2 pageMake = new PageMakerDTO2(cri2, total);
+	req.setAttribute("pageMaker", pageMake);
+	
+	
+}
+
+public void getCommFreePaging(HttpServletRequest req, Criteria2 cri2) {
+
+	try {
+			
+		if(req.getParameter("pageNum") != null)
+		{
+				cri.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
+			}
+			req.setAttribute("frees", ss.getMapper(CommMapper.class).getCommFreePaging(cri2));
+			System.out.println("불러온후");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+}
+
+
 }
 
 

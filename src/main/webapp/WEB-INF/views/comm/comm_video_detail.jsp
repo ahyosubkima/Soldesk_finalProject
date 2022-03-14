@@ -25,7 +25,7 @@
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -62,7 +62,7 @@
 						<td>${v.cv_writer }</td>
 					</tr>
 					<c:if
-						test="${sessionScope.loginMember.dm_name eq v.cv_writer}">
+						test="${sessionScope.loginMember.dm_id eq v.cv_writer}">
 						<tr>
 							<td colspan="4" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
@@ -72,7 +72,7 @@
 						</tr>
 					</c:if>
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good eq null or checked.cvg_good == 0 }">
+						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good eq null or checked.cvg_good == 0 }">
 						<form action="comm_video_good">
 							<table style="padding-left: 75%;">
 								<tr>
@@ -88,7 +88,7 @@
 
 					</c:if>
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good == 1 }">
+						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good == 1 }">
 						<form action="comm_video_Nogood">
 							<table style="padding-left: 77%; padding-top: 10px;">
 								<tr>

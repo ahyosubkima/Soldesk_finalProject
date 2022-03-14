@@ -25,7 +25,7 @@
 
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>

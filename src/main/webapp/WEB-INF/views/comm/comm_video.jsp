@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
 <script type="text/javascript">
 	$(function() {
 		window.onpageshow = function(event) {
@@ -39,7 +40,7 @@
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -57,6 +58,8 @@
 								<option value="txt">내용</option>
 						</select> <input name="search_input">
 						<input type="hidden" value="1" name="pageNum">
+						<input type="hidden"
+					name="pageNum" value="${param.pageNum }" id="pgn">
 							<button id="comm_picture_searchBtn">검색</button></td>
 					</tr>
 				</table>

@@ -6,16 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-</style>
-<script type="text/javascript">
-window.onpageshow = function(event) {
-	if (event.persisted
-			|| (window.performance && window.performance.navigation.type == 2)) {
-					location.href='/danim/comm_picture_page'
-	}
-}  
-</script>
+
 </head>
 <body>
 	<div id="comm_picture_area">
@@ -34,7 +25,7 @@ window.onpageshow = function(event) {
 
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -70,7 +61,7 @@ window.onpageshow = function(event) {
 						<td>${picture.comm_picture_writer }</td>
 					</tr>
 					<c:if
-						test="${sessionScope.loginMember.dm_name eq picture.comm_picture_writer}">
+						test="${sessionScope.loginMember.dm_id eq picture.comm_picture_writer}">
 						<tr>
 							<td colspan="4" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
@@ -81,7 +72,7 @@ window.onpageshow = function(event) {
 					</c:if>
 
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
+						test="${sessionScope.loginMember.dm_id ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">
 							<table style="padding-left: 75%;">
 								<tr>
@@ -97,7 +88,7 @@ window.onpageshow = function(event) {
 
 					</c:if>
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
+						test="${sessionScope.loginMember.dm_id ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
 						<form action="comm_picture_Nogood">
 							<table style="padding-left: 77%; padding-top: 10px;">
 								<tr>

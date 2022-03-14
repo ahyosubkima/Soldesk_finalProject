@@ -134,6 +134,10 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	update comm_picture set comm_picture_view = comm_picture_view + 1 where comm_picture_no = #{comm_picture_no}
 	</update>
 
+	<update id="viewVideoPlus" parameterType="com.team2.danim.comm.Comm_video">
+	update comm_video set cv_view = cv_view + 1 where cv_no = #{cv_no}
+	</update>
+
 	<update id="goodPlus" parameterType="com.team2.danim.comm.Comm_picture">
 	update comm_picture set comm_picture_good = comm_picture_good + 1 where comm_picture_no = #{comm_picture_no}
 	</update>
@@ -197,9 +201,17 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	delete from comm_picture_good where cpg_id = #{cpg_id} and cpg_no= #{cpg_no}
 	</delete>
 
+	<delete id="goodVideoMinuById">
+	delete from comm_video_good where cvg_id = #{cvg_id} and cvg_no= #{cvg_no}
+	</delete>
+
 	
 	<update id="goodMinus">
 	update comm_picture set comm_picture_good = comm_picture_good - 1 where comm_picture_no = #{comm_picture_no}
+	</update>
+
+	<update id="goodVideoMinus" parameterType="com.team2.danim.comm.Comm_video">
+	update comm_video set cv_good = cv_good - 1 where cv_no = #{cv_no}
 	</update>
 	
 	 <select id="getCommPicturePaging" parameterType="com.team2.danim.Criteria" resultType="com.team2.danim.comm.Comm_picture">
@@ -229,6 +241,20 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
        
     
     </select>
+
+	 <select id="getCommFreePaging" parameterType="com.team2.danim.Criteria2" resultType="com.team2.danim.comm.Comm_free">
+    	select * 
+from (	
+select rownum as rn, cf_no, cf_file_name, cf_write_name,cf_writer, 
+				cf_txt, cf_good,cf_view,cf_date
+				from (
+					select * from comm_free order by cf_date desc
+				)
+			)
+			where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) * #{amount}
+       
+    
+    </select>
 	
 	<select id="getTotal" resultType="java.lang.Integer">
     
@@ -238,6 +264,12 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 	<select id="getTotalVideo" resultType="java.lang.Integer">
     
         select count(*) from comm_video
+    
+    </select>
+	
+	<select id="getFreeTotal" resultType="java.lang.Integer">
+    
+        select count(*) from comm_free
     
     </select>
 	

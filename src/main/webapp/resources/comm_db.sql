@@ -1,4 +1,17 @@
+create table comm_picture(
+comm_picture_no number(3) primary key,
+comm_picture_name varchar2(20 char) not null,
+comm_picture_write_name varchar2(20 char) not null,
+comm_picture_writer varchar2(30 char) not null,
+comm_picture_txt varchar2(30 char) not null,
+comm_picture_good number(3) not null,
+comm_picture_view number(3) not null,
+comm_picture_date date not null
+);
 
+create sequence comm_picture_seq;
+
+/*사진댓글*/
 create table comm_picture_reply(
 cpr_no number(3) primary key,
 cpr_cp_no number(3) not null,
@@ -13,7 +26,7 @@ foreign key(cpr_cp_no)
 		on delete cascade
 );
 
-
+/*영상댓글*/
 create table comm_video_reply(
 cvr_no number(3) primary key,
 cvr_cv_no number(3) not null,
@@ -40,6 +53,7 @@ SELECT * FROM comm_picture WHERE ROWNUM < 6 order by comm_picture_good
 
 drop table comm_picture_reply
 
+/*좋아요 관리테이블*/
 create table comm_picture_good(
 cpg_id varchar2(30 char) not null,
 cpg_good number(3) not null,
@@ -52,7 +66,7 @@ foreign key(cpg_no)
 		on delete cascade
 )
 
-
+/*영상 추천 관리테이블*/
 create table comm_video_good(
 cvg_id varchar2(30 char) not null,
 cvg_good number(3) not null,
@@ -68,7 +82,7 @@ foreign key(cvg_no)
 select count(*) from comm_picture
 
 select * from comm_picture_good where cpg_id = 'jh' and cpg_no= 57
-
+/*영상게시판*/
 create table comm_video(
 cv_no number(3) primary key,
 cv_name varchar2(20 char) not null,
@@ -110,6 +124,21 @@ select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name
 			)
 			where rn <= 6 and rn >= 1
 
-
+/*자유게시판*/
 			
-	
+create table comm_free(
+cf_no number(3) primary key,
+cf_file_name varchar2(20 char),
+cf_write_name varchar2(20 char) not null,
+cf_writer varchar2(30 char) not null,
+cf_txt varchar2(300 char) not null,
+cf_good number(3) not null,
+cf_view number(3) not null,
+cf_date date not null
+)	
+
+drop table comm_free
+
+create sequence cf_seq
+
+insert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)

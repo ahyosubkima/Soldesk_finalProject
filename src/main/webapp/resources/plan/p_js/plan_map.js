@@ -76,7 +76,6 @@ $(function() {
 					    // 마커 위에 인포윈도우를 표시합니다
 					    infowindow.open(map, marker);  
 					    $("#p_markerInfo").text(l.place_name);
-					    $("#infoo").val(l.address_name);
 					});
 					});
 					

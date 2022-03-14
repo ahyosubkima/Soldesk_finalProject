@@ -14,6 +14,7 @@ function connectAddrSearchEvent() {
 
 
 
+
 /*function dayWrite() {
 	
 $(document).on("click","#p_dayWrite", function() {
@@ -60,13 +61,16 @@ function dayImportant(){
 
 function eses(){
 	
-	$(document).on("click", "#showw", function() {
+	$(document).on("click", "#p_openBudget", function() {
 	
 		const allPrice = document.querySelectorAll(".qqe");
 		const person =  document.getElementById('p_person').value;
 		let price = 0;
 		let sum = 0;
 		let onePersonPrice = 0;
+		
+		let nickname = document.getElementById('p_nickname').value;
+		
 		
 		for (var i = 0; i < allPrice.length; i++) {
 			
@@ -78,16 +82,43 @@ function eses(){
 			
 		}
 		//확인용
+		console.log(p_nickname)
 		console.log(sum)
 		console.log(onePersonPrice)
 		
-		$("#p_writeBudgetWrite").append("OO님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.")
+		
+		$("#p_writeBudgetWrite").html("<div id='p_budget'>" + nickname + "님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</div>")
+		
 
 	});
 	
 }
 
 
+/* 실시간 글자수세기, 엔터 3줄 제한 */
+function countTxt() {
+	//글자수세기
+	$("#p_freeWrite").keyup(function(e) {
+	    console.log("키업!");
+		var content = $(this).val();
+		$("#textLengthCheck").val("(" + content.length + "/ 100)"); //실시간 글자수 카운팅
+		if (content.length > 100) {
+			alert("최대 100자까지만 입력 가능합니다.");
+			$(this).val(content.substring(0, 100));
+			$('#textLengthCheck').html("(100 / 최대 100자)");
+		}
+	//엔터 3줄 제한
+		$('#p_freeWrite').keydown(function(){
+            var rows = $('#p_freeWrite').val().split('\n').length;
+            var maxRows = 3;
+            if( rows > maxRows){
+                alert('3줄 까지만 작성 가능합니다');
+                modifiedText = $('#p_freeWrite').val().split("\n").slice(0, maxRows);
+                $('#p_freeWrite').val(modifiedText.join("\n"));
+            }
+        });
+	});
+}
 	
 
 /*
@@ -138,18 +169,18 @@ function pptest(){
 
 
 
-
+/*
 function p_openBudget(){
 	
 	if(document.getElementById('p_writeBudget').style.display === 'block') {
 	      document.getElementById('p_writeBudget').style.display = 'none';
-	      document.getElementById('p_openBudget').textContent = '💲예산결과 ▼';
+	      document.getElementById('p_openBudget').textContent = '💲계산결과 확인';
 	    } else {
 	      document.getElementById('p_writeBudget').style.display = 'block';
-	      document.getElementById('p_openBudget').textContent = '💲예산결과 ▲';
+	      document.getElementById('p_openBudget').textContent = '💲계산결과 확인';
 	    }
 }
-
+*/
 
 function p_openFreeWord(){
 	
@@ -257,8 +288,9 @@ $(function() {
 	dayWrite();
 	ddd();
 	qqq();
-	dayImportant()
-	eses()
+	dayImportant();
+	eses();
+	countTxt();
  
 });
 

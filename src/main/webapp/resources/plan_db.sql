@@ -6,6 +6,7 @@ p_TitleFile varchar2(20 char) not null,
 p_startDate date not null,
 p_person number(3) not null,
 p_place varchar2(20 char) not null,
+p_budget varchar2(100 char) not null,
 p_freeWrite varchar2(110 char) not null,
 p_Writedate date not null
 );

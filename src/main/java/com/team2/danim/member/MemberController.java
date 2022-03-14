@@ -44,7 +44,7 @@ public class MemberController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "member.myPage")
+	@RequestMapping(value = "member.myPage", method = RequestMethod.GET)
 	public String toMyPage(Member m, HttpServletRequest req) {
 		
 		

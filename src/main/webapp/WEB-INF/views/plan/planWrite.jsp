@@ -21,7 +21,7 @@
 <div id="p_writeTitle"><h1>여행 플래너 제작하기</h1></div>
 
 <!-- 일정 기본정보 등록 -->
-<form action="plan.detailPlanner" name="planWrite" method="post" enctype="multipart/form-data" onsubmit="return false">
+<form action="plan.detailPlanner" name="planWrite" method="post" enctype="multipart/form-data" >
 	<table border="1" id="p_write">
 	            <!-- 아이디정보 -->
 		<tr><td><input type="hidden" name="p_writer" value="${param.p_writer }">
@@ -63,41 +63,42 @@
 <!-- 일정 상세등록 -->
 	<div id="p_DayWriteTitle"><span>💰여행 예산</span><button id="dBtn" type="button">일정 저장</button></div>
 	<div style="margin: auto;text-align: center;"> ❗ 여행 전체일정에서 비용이 필요한 일정을 선택 후 작성해주세요<p>(일정을 클릭시 자동으로 작성란이 생성됩니다.)</div>
+	<div style="margin: auto;text-align: center;"><button id="p_addTransportation" type="button">🚗교통비 추가</button></div>
 	<div id="p_openDayWrite">
 			<div id="confirmContent">
 		<div id="p_DayWriteAll" >
 		<div id="p_dayWriteDiv">
 		
 		
-		<table border="1" id="sese">
+		<table border="1" id="setBudgetTb">
 		<tr>
-		<td colspan="2">하얏트 리젠시 나하 오키나와 리젠시 클럽 라운지</td>
+		<td colspan="2" style="height: 70px;"><div id="p_setTitle" class="p_setTitle">하얏트 리젠시 나하 오키나와 리젠시 클럽 라운지</div></td>
 		</tr>
 		
 		<tr>
-		<td style="width: 50px; font-size: 12pt;">상품명</td>
-		<td><input style="width: 80px;"></td>
+		<td style="width: 50px; height:35px; font-size: 12pt;">상품명</td>
+		<td><input class="p_setItemName" name="p_setItemName" style="width: 130px;"></td>
 		</tr>
 		
 		<tr>
-		<td style="width: 50px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="qqe" class="qqe"></td>
+		<td style="width: 50px; height:35px; font-size: 12pt;">금액</td>
+		<td><input type="number" style="width: 130px;" id="p_setPrice" class="p_setPrice"></td>
 		</tr>
 		</table>
 		
-		<table border="1" id="sese">
+		<table border="1" id="setBudgetTb">
 		<tr>
-		<td colspan="2">아쿠아 리조트 클럽 사이판</td>
+		<td colspan="2" style="width:50px "><div id="p_setTitle" class="p_setTitle">아쿠아 리조트 클럽 사이판</div></td>
 		</tr>
 		
 		<tr>
-		<td style="width: 50px; font-size: 12pt;">상품명</td>
-		<td><input style="width: 80px;"></td>
+		<td style="width: 40px; height:35px; font-size: 12pt;">상품명</td>
+		<td><input class="p_setItemName" name="p_setItemName" style="width: 80px;"></td>
 		</tr>
 		
 		<tr>
-		<td style="width: 50px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="qqe" class="qqe"></td>
+		<td style="width: 40px; height:35px; font-size: 12pt;">금액</td>
+		<td><input type="number" style="width: 80px;" id="p_setPrice" class="p_setPrice"></td>
 		</tr>
 		</table>
 		
@@ -135,7 +136,10 @@
 	</table>
 	</div>
 	
-	<div id="p_regOk"><input type="submit" value="플래너 등록"></div> 
+	<div id="p_regOk">
+	
+	<input type="submit" value="플래너 등록">
+	</div> 
 	
 </form> 
 

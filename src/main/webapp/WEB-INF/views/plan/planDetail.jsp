@@ -17,7 +17,6 @@
 <body>
 
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
-
 <!-- 일정 기본정보 등록 -->
 	<table border="1" id="p_write">
 
@@ -72,7 +71,7 @@
 	<table border="1" id="p_writeBudget">
 			
 		<tr>
-			<td id="p_writeBudgetWrite">OO님,<p>여행에 필요한 최소 비용은 00,000원으로 0명이 여행할 경우 1인당 0,000원입니다.</td>
+			<td id="p_writeBudgetWrite"></td>
 		</tr>
 	</table>
 	</div>

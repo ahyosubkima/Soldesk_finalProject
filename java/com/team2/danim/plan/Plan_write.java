@@ -11,6 +11,7 @@ public class Plan_write {
 			private Date p_startDate;
 			private int p_person;
 			private String p_place;
+			private String p_budget;
 			private String p_freeWrite;
 			private Date p_Writedate;
 			
@@ -19,7 +20,7 @@ public class Plan_write {
 			}
 
 			public Plan_write(int p_no, String p_writer, String p_title, String p_TitleFile, Date p_startDate,
-					int p_person, String p_place, String p_freeWrite, Date p_Writedate) {
+					int p_person, String p_place, String p_budget, String p_freeWrite, Date p_Writedate) {
 				super();
 				this.p_no = p_no;
 				this.p_writer = p_writer;
@@ -28,6 +29,7 @@ public class Plan_write {
 				this.p_startDate = p_startDate;
 				this.p_person = p_person;
 				this.p_place = p_place;
+				this.p_budget = p_budget;
 				this.p_freeWrite = p_freeWrite;
 				this.p_Writedate = p_Writedate;
 			}
@@ -88,6 +90,14 @@ public class Plan_write {
 				this.p_place = p_place;
 			}
 
+			public String getP_budget() {
+				return p_budget;
+			}
+
+			public void setP_budget(String p_budget) {
+				this.p_budget = p_budget;
+			}
+
 			public String getP_freeWrite() {
 				return p_freeWrite;
 			}
@@ -105,5 +115,7 @@ public class Plan_write {
 			}
 			
 			
+
+
 
 }

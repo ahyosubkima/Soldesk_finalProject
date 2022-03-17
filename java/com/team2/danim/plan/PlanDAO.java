@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team2.danim.comm.CommMapper;
 
 @Service
 public class PlanDAO {
@@ -49,15 +50,17 @@ public class PlanDAO {
 		try {
 			String fName = mr.getFilesystemName("p_TitleFile");
 			
-			System.out.println(mr.getParameter("p_title"));
-			System.out.println(fName);
-			System.out.println(mr.getParameter("p_person"));
+			System.out.println("제목:" + mr.getParameter("p_title"));
+			System.out.println("파일이름: " + fName);
+			System.out.println("사람수: " + mr.getParameter("p_person"));
 			
 			Plan_write pw = new Plan_write();
-
 			
 			pw.setP_writer(mr.getParameter("p_writer"));
 			pw.setP_title(mr.getParameter("p_title"));
+			
+			pw.setP_budget(mr.getParameter("p_budget"));
+			System.out.println("예산:" + mr.getParameter("p_budget"));
 			
 			String p_TitleFile = mr.getFilesystemName("p_TitleFile");
 			p_TitleFile = URLEncoder.encode(p_TitleFile, "utf-8");
@@ -82,6 +85,16 @@ public class PlanDAO {
 			System.out.println("작성 실패");
 		}
 
+	}
+
+	public void getAllPlan(HttpServletRequest req) {
+		
+		try {
+			req.setAttribute("plans", ss.getMapper(PlanMapper.class).getAllPlan());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 		
 		

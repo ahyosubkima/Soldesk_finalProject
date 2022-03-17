@@ -39,12 +39,16 @@
 	overflow: inherit;
 }
 
+#p_mainDetailDiv{
+	width: 900px;
+}
+
 #p_writeDetail{
 	margin: auto;
 }
 
 #p_writeBudget{
-	display: none;
+	/* display: none; */
 	margin: auto;
 	margin-top: 30px;
 	width: 800px;
@@ -80,6 +84,33 @@
 	font-size: 15pt;
 }
 
+#p_freeWrite{
+	width: 750px;
+	height: 120px;
+	font-size: 13pt;
+	margin: auto;
+	margin-left: 15px;
+	text-align: center;
+	padding-top: 35px;
+	border: none;
+    resize: none;
+}
+
+#p_freeWrite::placeholder{
+	margin: auto;
+	text-align: center;
+	font-size: 13pt;
+}
+
+#textLengthCheck{
+	font-size: 10pt;
+    width: 100px;
+    height: 30px;
+    margin-left: 85%;
+    text-align: right;
+    border: none;
+}
+
 #p_writeBudgetWrite{
 	height: 150px;
 	font-size: 15pt;
@@ -102,6 +133,10 @@
 #p_BudgetAll{
 	text-align: center;
 	margin-top: 50px;
+}
+
+#p_budget{
+	text-align: center;
 }
 
 #p_FreeWordAll{
@@ -133,7 +168,7 @@
 #p_openDayWrite{
 	width: 800px;
 	margin: auto;
-	margin-top: 50px;
+	margin-top: 20px;
 	
 	
 }
@@ -150,6 +185,14 @@
 	border: 2px solid black;
 	margin-bottom: 30px;
 	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	width: 800px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 	
 }
 
@@ -158,16 +201,32 @@
 	width: 800px;
 	display:inline-block;
 	zoom:1;
+	
 }
 
 
-#sese {
+#setBudgetTb {
 	text-align: center; 
 	float: left;
-	width: 200px;
+	width: 230px;
+	height: 150px;
+	margin-top: 20px;
 	margin-left: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	word-break: keep-all;
+	font-size: 12pt;
+}
+
+#setBudgetTb textarea{
+	border: none;
+    resize: none;
+    font-size: 12pt;
+}
+
+#setBudgetTb textarea::placeholder{
+	margin: auto;
+	text-align: center;
+	font-size: 12pt;
 }
 
 #p_dayWrite{
@@ -203,6 +262,21 @@
 	float: left;
 	font-size: 9pt;
 	text-align: center;
+}
+
+#p_addTransportation{
+	width: 100px;
+	height: 35px;
+	margin-top: 10px;
+	vertical-align: middle;
+	border: 3px solid transparent;
+	border-radius: 5px;
+	font-size: 11pt;
+	font-weight: bolder;
+    color: #404040;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #6D1E91, #38CEB5);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 

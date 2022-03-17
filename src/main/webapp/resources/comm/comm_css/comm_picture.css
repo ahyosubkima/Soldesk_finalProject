@@ -2,10 +2,31 @@
 #paging_div{
 	text-align: center;
 }
-
+#cf_txt{
+	
+	height: 400px;
+}
+#crown_img{
+	width: 30px;
+	height: 15px;
+}
+#reply_writer{
+	
+}
 #paging_Tbl{
 	border: 1px solid black;
 	display: inline-block;
+	margin-top: 30px;
+}
+
+#paging_Tbl a:link{
+	color: black;
+	text-decoration: none;
+
+}
+#paging_Tbl a:visited{
+	color: black;
+	text-decoration: none;
 }
 #paging_Tbl_td{
 	margin-right: 10px;
@@ -51,6 +72,10 @@ border: solid 1px black;
 
 #comm_picture_searchTbl{
 margin-left: 80%;
+}
+
+#comm_picture_searchTbl2{
+margin-left: 70%;
 }
 
 #comm_picture_searchBtn{

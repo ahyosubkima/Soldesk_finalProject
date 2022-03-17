@@ -59,9 +59,17 @@ public class CommController {
 	@RequestMapping(value = "/comm_video_write", method = RequestMethod.GET)
 	public String comm_video_write(HttpServletRequest req) {
 		
-		cDAO.getCommPicture(req);
 		
 		req.setAttribute("contentPage", "comm/comm_video_write.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_write", method = RequestMethod.GET)
+	public String comm_free_write(HttpServletRequest req) {
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free_write.jsp");
 		return "home";
 		
 	}
@@ -82,15 +90,30 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_video_upload", method = RequestMethod.POST)
-	public String comm_video_upload(HttpServletRequest req) {
+	public String comm_video_upload(HttpServletRequest req,Criteria cri) {
 		
 		
 		TokenMaker.make(req);
 		cDAO.videoUpload(req);
-		cDAO.getCommVideo(req);
+		cDAO.getPageMakerVideo(req, cri);
+		cDAO.getCommVideoPaging(req, cri);
 		cDAO.getGoodVideo(req);
 		
 		req.setAttribute("contentPage", "comm/comm_video.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_upload", method = RequestMethod.POST)
+	public String comm_free_upload(HttpServletRequest req,Criteria2 cri2) {
+		
+		
+		TokenMaker.make(req);
+		cDAO.freeUpload(req);
+		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getCommFreePaging(req, cri2);
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
 		return "home";
 		
 	}
@@ -108,6 +131,32 @@ public class CommController {
 		
 	}
 
+	@RequestMapping(value = "/comm_picture_reply_update", method = RequestMethod.GET)
+	public String comm_picture_reply_update(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
+		
+		cDAO.goodCheck(cpg, req, cp);
+		cDAO.pictureReplyUpdate(cpr,req);
+		cDAO.getReply(cpr,req);
+		cDAO.getCommPicture2(cp,req);
+		
+		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_video_reply_update", method = RequestMethod.GET)
+	public String comm_video_reply_update(HttpServletRequest req,Comm_video cv,Comm_Video_reply cvr,Comm_Video_good cvg) {
+		
+		cDAO.goodVideoCheck(cvg, req, cv);
+		cDAO.videoReplyUpdate(cvr,req);
+		cDAO.getVideoReply(cvr,req);
+		cDAO.getCommVideo2(cv,req);
+		
+		req.setAttribute("contentPage", "comm/comm_video_detail.jsp");
+		return "home";
+		
+	}
+
 	@RequestMapping(value = "/comm_video_detail", method = RequestMethod.GET)
 	public String comm_video_detail(HttpServletRequest req,Comm_video cv,Comm_Video_reply cvr,Comm_Video_good cvg) {
 		
@@ -117,6 +166,19 @@ public class CommController {
 		cDAO.getCommVideo2(cv,req);
 		
 		req.setAttribute("contentPage", "comm/comm_video_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_detail", method = RequestMethod.GET)
+	public String comm_free_detail(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr,Comm_free_good cfg) {
+		
+		cDAO.viewFreePlus(cf,req);
+		cDAO.goodFreeCheck(cfg, req, cf);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
 		return "home";
 		
 	}
@@ -143,6 +205,19 @@ public class CommController {
 		cDAO.getCommVideo2(cv,req);
 		
 		req.setAttribute("contentPage", "comm/comm_video_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_reply", method = RequestMethod.GET)
+	public String comm_free_reply(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr) {
+		
+		TokenMaker.make2(req);
+		cDAO.freeReplyUpload(cfr,req);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
 		return "home";
 		
 	}
@@ -189,6 +264,34 @@ public class CommController {
 		return "home";
 		
 	}
+
+	@RequestMapping(value = "/comm_free_Nogood", method = RequestMethod.GET)
+	public String comm_free_Nogood(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr,Comm_free_good cfg) {
+		
+		TokenMaker.make2(req);
+		cDAO.goodFreeMinus(cfg,req,cf);
+		cDAO.goodFreeCheck(cfg, req, cf);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
+		return "home";
+		
+	}
+	
+	@RequestMapping(value = "/comm_free_good", method = RequestMethod.GET)
+	public String comm_free_good(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr,Comm_free_good cfg) {
+		
+		TokenMaker.make2(req);
+		cDAO.goodFreePlus(cfg,req,cf);
+		cDAO.goodFreeCheck(cfg, req, cf);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
+		return "home";
+		
+	}
 	
 	@RequestMapping(value = "/comm_picture_Nogood", method = RequestMethod.GET)
 	public String comm_picture_Nogood(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
@@ -229,6 +332,20 @@ public class CommController {
 		cDAO.getGoodVideo(req);
 		
 		req.setAttribute("contentPage", "comm/comm_video.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_delete", method = RequestMethod.GET)
+	public String comm_free_delete(HttpServletRequest req,Comm_free cf,Criteria2 cri2) {
+		
+		
+		cDAO.delFree(cf,req);
+		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getCommFreePaging(req, cri2);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
 		return "home";
 		
 	}
@@ -282,6 +399,18 @@ public class CommController {
 		return "home";
 		
 	}
+
+	@RequestMapping(value = "/comm_free_update", method = RequestMethod.GET)
+	public String comm_video_update(HttpServletRequest req,Comm_free cf) {
+		
+		
+		cDAO.getCommFree2(cf,req);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free_update.jsp");
+		return "home";
+		
+	}
 	
 	@RequestMapping(value = "/comm_picture_update_do", method = RequestMethod.POST)
 	public String comm_picture_update_do(HttpServletRequest req,Comm_picture cp) {
@@ -307,6 +436,18 @@ public class CommController {
 		
 	}
 
+	@RequestMapping(value = "/comm_free_update_do", method = RequestMethod.POST)
+	public String comm_free_update_do(HttpServletRequest req,Comm_free cf) {
+		
+		
+		cDAO.updateFree(cf,req);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
+		return "home";
+		
+	}
+
 	@RequestMapping(value = "/comm_picture_search", method = RequestMethod.GET)
 	public String comm_picture_search(HttpServletRequest req,Comm_picture cp,Criteria cri) {
 		
@@ -322,11 +463,23 @@ public class CommController {
 	@RequestMapping(value = "/comm_video_search", method = RequestMethod.GET)
 	public String comm_video_search(HttpServletRequest req,Comm_video cv,Criteria cri) {
 		
-		cDAO.serachVideo(cv,req,cri);
+		cDAO.searchVideo(cv,req,cri);
 		
 		
 		
 		req.setAttribute("contentPage", "comm/comm_video.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_search", method = RequestMethod.GET)
+	public String comm_free_search(HttpServletRequest req,Comm_free cf,Criteria2 cri2) {
+		
+		cDAO.searchFree(cf,req,cri2);
+		
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
 		return "home";
 		
 	}
@@ -345,6 +498,7 @@ public class CommController {
 	@RequestMapping(value = "/comm_free_page", method = RequestMethod.GET)
 	public String comm_free(HttpServletRequest req,Criteria2 cri2) {
 		
+		TokenMaker.make(req);
 		cDAO.getFreePageMaker(req, cri2);
 		cDAO.getCommFreePaging(req, cri2);
 		req.setAttribute("contentPage", "comm/comm_free.jsp");

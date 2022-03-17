@@ -141,4 +141,38 @@ drop table comm_free
 
 create sequence cf_seq
 
+select * from comm_free
+
 insert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)
+insert into comm_free values(cf_seq.nextval,#{cf_file_name},#{cf_write_name},#{cf_writer},#{cf_txt},0,0,sysdate)
+
+/*자유게시판 리플*/
+create table comm_free_reply(
+cfr_no number(3) primary key,
+cfr_cf_no number(3) not null,
+cfr_owner varchar(30 char) not null,
+cfr_owner_id varchar(30 char) not null,
+cfr_txt varchar(300 char) not null,
+cfr_when date not null,
+
+constraint cfpr_no 
+foreign key(cfr_cf_no)
+		references comm_free(cf_no)
+		on delete cascade
+);
+
+create sequence comm_free_reply_seq
+
+select * from COMM_FREE_REPLY
+/*자유게시판 추천 확인테이블*/
+create table comm_free_good(
+cfg_id varchar2(30 char) not null,
+cfg_good number(3) not null,
+cfg_no number(3) not null,
+
+
+constraint cfg_cf_no 
+foreign key(cfg_no)
+		references comm_free(cf_no)
+		on delete cascade
+)

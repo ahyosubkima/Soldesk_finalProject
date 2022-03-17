@@ -45,7 +45,7 @@
 						<td>내용</td>
 						<td><textarea id="txt" class="comm_picture_write_txt" name="cv_txt"></textarea> 
 							<input name="token"	type="hidden" value="${token }">
-							<input type="hidden" name="cv_writer" value="${sessionScope.loginMember.dm_name }">
+							<input type="hidden" name="cv_writer" value="${sessionScope.loginMember.dm_id }">
 						</td>
 					</tr>
 					<tr>

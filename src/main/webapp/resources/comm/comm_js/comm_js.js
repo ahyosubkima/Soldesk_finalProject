@@ -30,6 +30,23 @@ function comm_VideoupdateOK(no) {
 		location.href='comm_video_update?no='+no;
 	}
 }
+function comm_FreedelOK(no) {
+	var ok = confirm('정말 삭제하시겠습니까?')
+	
+	if (ok) {
+		location.href='comm_free_delete?pageNum=1&no='+no;
+	}
+	
+}
+
+
+function comm_updateFreeOK(no) {
+	var ok = confirm('정말 수정하시겠습니까?')
+	
+	if (ok) {
+		location.href='comm_free_update?no='+no;
+	}
+}
 
 function comm_goodOK(no,id) {
 	var ok = confirm('추천하시겠습니까?')
@@ -44,13 +61,39 @@ function comm_goodOK(no,id) {
 
 function pictureReplyDel(no) {
 	
-var ok = confirm('정말 삭제하시겠습니까?')
+var ok = confirm('정말 삭제하시겠습니까?!!')
 	
 	if (ok) {
 		location.href='comm_picture_reply_delete?no='+no;
 	}
 	
 	
+}
+
+function pictureReplyUpdate(r_no,no)
+{
+	var ok = confirm('수정 하시겠습니까?!?!?!?!!')
+	
+	if (ok) {
+		
+		var txt = prompt("수정할 내용 입력");
+
+	}
+	
+	location.href='comm_picture_reply_update?no='+no+"&newReply="+txt+"&cpr_no="+r_no;
+}
+
+function videoReplyUpdate(r_no,no)
+{
+	var ok = confirm('수정 하시겠습니까?!?!?!?!!')
+	
+	if (ok) {
+		
+		var txt = prompt("수정할 내용 입력");
+		
+	}
+	
+	location.href='comm_video_reply_update?no='+no+"&newReply="+txt+"&cvr_no="+r_no;
 }
 
 function videoReplyDel(no) {
@@ -64,18 +107,6 @@ function videoReplyDel(no) {
 	
 }
 
-function pictureReplyUpdate(no){
-	
-	var ok = confirm('수정 하시겠습니까?')
-	
-	if (ok) {
-		
-		location.href='comm_picture_reply_update?no='+no;
-	}
-	
-	
-	
-}
 
 function pictureUpload() {
 	/*	var title = document.getElementById('title').value;
@@ -205,5 +236,43 @@ function reallyNoGood() {
 	else {
 		return false;
 	}
+}
+
+function replyOK(){
+	
+	
+	var txt = document.getElementsByClassName('cpr_txt')[0].value;
+	
+	if (txt == "") {
+		alert('댓글을 입력해주세요');
+		return false;
+	}
+	else{
+		return true;
+		
+	}
+	}
+function replyNoOK(){
+	alert('로그인 후 이용해주세요')
+	return false;
+}
+
+function videoreplyOK(){
+	
+	
+	var txt = document.getElementsByClassName('cvr_txt')[0].value;
+	
+	if (txt == "") {
+		alert('댓글을 입력해주세요');
+		return false;
+	}
+	else{
+		return true;
+		
+	}
+}
+function replyNoOK(){
+	alert('로그인 후 이용해주세요')
+	return false;
 }
 	

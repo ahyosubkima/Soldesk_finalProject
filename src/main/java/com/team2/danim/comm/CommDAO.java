@@ -440,7 +440,6 @@ public void pictureReplyUpload(Comm_picture_reply cpr, HttpServletRequest req) {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	System.out.println(req.getParameter("cpr_txt"));
 
 	
 }
@@ -670,7 +669,7 @@ public void getCommVideoPaging(HttpServletRequest req, Criteria cri2) {
 	
 }
 
-public void serachVideo(Comm_video cv, HttpServletRequest req, Criteria cri2) {
+public void searchVideo(Comm_video cv, HttpServletRequest req, Criteria cri) {
 	String search_option = req.getParameter("search_option");
 	req.getSession().setAttribute("search_option", search_option);
 	
@@ -949,6 +948,416 @@ public void getCommFreePaging(HttpServletRequest req, Criteria2 cri2) {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	
+}
+
+public void freeUpload(HttpServletRequest req) {
+	
+	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
+	System.out.println(path);
+	MultipartRequest mr = null;
+	String token = null;
+	try {
+		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		token = mr.getParameter("token");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		if (successToken != null && token.equals(successToken)) {
+			String fileName = mr.getFilesystemName("cf_file_name");
+			new File(path + "/" + fileName).delete();
+			return;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+	
+	
+	try {
+		String fName = "";
+		
+		if (mr.getFilesystemName("cf_file_name") == null) {
+			fName = "basic.jpg";
+		}
+		else { 
+			fName = mr.getFilesystemName("cf_file_name");
+		}
+		System.out.println(fName);
+		Comm_free cf = new Comm_free();
+		cf.setCf_file_name(fName);
+		cf.setCf_txt(mr.getParameter("cf_txt"));
+		cf.setCf_write_name(mr.getParameter("cf_write_name"));
+		cf.setCf_writer(mr.getParameter("cf_writer"));
+		if (ss.getMapper(CommMapper.class).freeUpload(cf) == 1) {
+			req.getSession().setAttribute("successToken", token);
+			req.setAttribute("result", "업로드성공");
+		}
+		
+		
+		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+	} catch (Exception e) {
+		e.printStackTrace();
+	/*	String fileName = mr.getFilesystemName("g_file");
+		new File(path + "/" + fileName).delete();*/
+		req.setAttribute("result", "업로드실패");
+	}
+	
+	
+}
+
+public void viewFreePlus(Comm_free cf, HttpServletRequest req) {
+	
+	try {
+		String token = (String)req.getSession().getAttribute("token"); // 디테일 진입시 생성된 토큰 값
+		
+		System.out.println(token);
+		
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		System.out.println(successToken + "?????????????");
+		
+		if(successToken == token) {
+			return;
+		}
+
+			System.out.println("!!!");
+			System.out.println(req.getParameter("no"));
+			cf.setCf_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).viewFreePlus(cf)==1) {
+				req.getSession().setAttribute("successToken", token);
+				System.out.println("조회수증가 성공");
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+}
+
+public void goodFreeCheck(Comm_free_good cfg, HttpServletRequest req, Comm_free cf) {
+	try {
+		
+		
+		System.out.println(req.getParameter("no"));
+		System.out.println(req.getParameter("id"));
+		cfg.setCfg_no(Integer.parseInt(req.getParameter("no")));
+		cfg.setCfg_id(req.getParameter("id"));
+		Comm_free_good cg = ss.getMapper(CommMapper.class).goodFreeCheck(cfg);
+		
+		req.setAttribute("checked",cg); 
+			System.out.println("------");
+			System.out.println(cg);
+			System.out.println(cg.getCfg_good());
+			
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void getFreeReply(Comm_free_reply cfr, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		cfr.setCfr_cf_no(Integer.parseInt(req.getParameter("no")));
+		req.setAttribute("reply", ss.getMapper(CommMapper.class).getFreeReply(cfr));
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void getCommFree2(Comm_free cf, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		cf.setCf_no(Integer.parseInt(req.getParameter("no")));
+		req.setAttribute("free", ss.getMapper(CommMapper.class).getCommFree2(cf));
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void delFree(Comm_free cf, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		cf.setCf_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).delFree(cf)==1) {
+			System.out.println("삭제성공");
+		}
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void updateFree(Comm_free cf, HttpServletRequest req) {
+	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
+	MultipartRequest mr = null;
+	System.out.println(path);
+	try {
+		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		
+		
+		
+		
+		System.out.println(mr.getParameter("cf_write_name"));
+		System.out.println(mr.getParameter("cf_txt"));
+		System.out.println(mr.getParameter("cf_no"));
+		
+		String newFile = mr.getFilesystemName("newFile");
+		String oldFile = mr.getParameter("oldFile");
+		
+		if (newFile != null) {
+			
+			cf.setCf_file_name(newFile);
+			
+			
+		}
+		else {
+			cf.setCf_file_name(oldFile);
+		}
+		
+		cf.setCf_write_name(mr.getParameter("cf_write_name"));
+		cf.setCf_txt(mr.getParameter("cf_txt"));
+		cf.setCf_no(Integer.parseInt(mr.getParameter("cf_no")));
+		if (ss.getMapper(CommMapper.class).updateFree(cf) == 1) {
+			System.out.println("수정성공");
+			req.setAttribute("free", ss.getMapper(CommMapper.class).getCommFree2(cf));
+		}
+		
+		
+		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+	} catch (Exception e) {
+		e.printStackTrace();
+	/*	String fileName = mr.getFilesystemName("g_file");
+		new File(path + "/" + fileName).delete();*/
+		req.setAttribute("result", "업로드실패");
+	}
+		
+	
+}
+
+public void searchFree(Comm_free cf, HttpServletRequest req, Criteria2 cri2) {
+	String search_option = req.getParameter("search_option");
+	req.getSession().setAttribute("search_option", search_option);
+	
+	System.out.println(req.getSession().getAttribute("search_option"));
+	
+	if(req.getParameter("pageNum") != null)
+	{
+			cri2.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
+		}
+	
+	if (req.getSession().getAttribute("search_option").equals("title")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cf.setCf_write_name(req.getParameter("search_input"));
+			
+			int total = ss.getMapper(CommMapper.class).getSearchTotalFree(cf);
+			
+			PageMakerDTO2 pageMake = new PageMakerDTO2(cri2, total);
+			req.setAttribute("pageMakerTitle", pageMake);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("search_input", req.getParameter("search_input"));
+			map.put("amount",cri2.getAmount()+"");
+			map.put("pageNum",cri2.getPageNum()+"");
+			
+			
+			req.setAttribute("frees", ss.getMapper(CommMapper.class).searchTitleFree(map));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	else if (req.getSession().getAttribute("search_option").equals("writer")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cf.setCf_writer(req.getParameter("search_input"));
+			int total = ss.getMapper(CommMapper.class).getSearchWriterTotalFree(cf);
+			
+			PageMakerDTO2 pageMake = new PageMakerDTO2(cri2, total);
+			req.setAttribute("pageMakerTitle", pageMake);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("search_input", req.getParameter("search_input"));
+			map.put("amount",cri2.getAmount()+"");
+			map.put("pageNum",cri2.getPageNum()+"");
+			req.setAttribute("frees", ss.getMapper(CommMapper.class).searchWriterFree(map));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	}
+
+	else if (req.getSession().getAttribute("search_option").equals("txt")) {
+		try {
+			System.out.println(req.getParameter("search_input"));
+			
+			cf.setCf_txt(req.getParameter("search_input"));
+			int total = ss.getMapper(CommMapper.class).getSearchTxtTotalFree(cf);
+			
+			PageMakerDTO2 pageMake = new PageMakerDTO2(cri2, total);
+			req.setAttribute("pageMakerTitle", pageMake);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("search_input", req.getParameter("search_input"));
+			map.put("amount",cri2.getAmount()+"");
+			map.put("pageNum",cri2.getPageNum()+"");
+			req.setAttribute("frees", ss.getMapper(CommMapper.class).searchTxtFree(map));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+	
+		}	
+	
+}
+
+public void pictureReplyUpdate(Comm_picture_reply cpr, HttpServletRequest req) {
+	
+	try {
+			System.out.println(req.getParameter("cpr_no"));
+			System.out.println(req.getParameter("newReply"));
+			cpr.setCpr_no(Integer.parseInt(req.getParameter("cpr_no")));
+			cpr.setCpr_txt(req.getParameter("newReply"));
+			
+			if (ss.getMapper(CommMapper.class).pictureReplyUpdate(cpr)==1) {
+				System.out.println("댓글수정성공");
+			}
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}	
+	
+}
+
+public void videoReplyUpdate(Comm_Video_reply cvr, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("cvr_no"));
+		System.out.println(req.getParameter("newReply"));
+		cvr.setCvr_no(Integer.parseInt(req.getParameter("cvr_no")));
+		cvr.setCvr_txt(req.getParameter("newReply"));
+		
+		if (ss.getMapper(CommMapper.class).videoReplyUpdate(cvr)==1) {
+			System.out.println("댓글수정성공");
+		}
+	
+} catch (Exception e) {
+	e.printStackTrace();
+}	
+	
+}
+
+public void freeReplyUpload(Comm_free_reply cfr, HttpServletRequest req) {
+	try {
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		
+
+		if (token2.equals(successToken)) {
+			return;
+		}
+		
+		
+		
+		System.out.println(req.getParameter("no"));
+		System.out.println(req.getParameter("cfr_txt"));
+		
+		cfr.setCfr_owner(req.getParameter("cfr_owner"));
+		cfr.setCfr_owner_id(req.getParameter("cfr_owner_id"));
+		cfr.setCfr_txt(req.getParameter("cfr_txt"));
+		cfr.setCfr_cf_no(Integer.parseInt(req.getParameter("no")));
+		
+		if (ss.getMapper(CommMapper.class).freeReplyUpload(cfr) == 1) {
+			System.out.println("댓글등록 성공");
+			req.getSession().setAttribute("successToken", token2);
+		}
+	
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void goodFreeMinus(Comm_free_good cfg, HttpServletRequest req, Comm_free cf) {
+	try {
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		
+
+		if (token2.equals(successToken)) {
+			return;
+		}
+		
+		System.out.println(req.getParameter("no"));
+		cfg.setCfg_no(Integer.parseInt(req.getParameter("no")));
+		cfg.setCfg_id(req.getParameter("id"));
+		
+		
+		if (ss.getMapper(CommMapper.class).goodFreeMinuById(cfg)==1) {
+			cf.setCf_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).goodFreeMinus(cf)==1) {
+				System.out.println("추천수 감소");
+				req.getSession().setAttribute("successToken", token2);
+			}
+			
+		}
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void goodFreePlus(Comm_free_good cfg, HttpServletRequest req, Comm_free cf) {
+try {
+		
+		String token2 = req.getParameter("token2");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		
+
+		if (token2.equals(successToken)) {
+			return;
+		}
+				
+		System.out.println(req.getParameter("no"));
+		cfg.setCfg_no(Integer.parseInt(req.getParameter("no")));
+		cfg.setCfg_id(req.getParameter("id"));
+		
+		
+		if (ss.getMapper(CommMapper.class).goodFreePlusById(cfg)==1) {
+			cf.setCf_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).goodFreePlus(cf)==1) {
+
+				System.out.println("추천수증가");
+				req.getSession().setAttribute("successToken", token2);
+
+			}
+			
+		}
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 	
 }
 

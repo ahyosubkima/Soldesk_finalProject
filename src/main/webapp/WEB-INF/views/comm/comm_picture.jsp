@@ -13,10 +13,18 @@
 			if (event.persisted
 					|| (window.performance && window.performance.navigation.type == 2)) {
 				let pgn = $("#pgn").val();
+				let so = $("#so").val(); 
+				let si = $("#si").val(); 
+				if(so != ""){
+					location.href="/danim/comm_picture_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+				}
+				else{
 				if (pgn != "") {
 					location.href = "/danim/comm_picture_page?pageNum=" + pgn;
 				} else {
 					location.href = "/danim/comm_picture_page";
+				}
+					
 				}
 			}
 		}
@@ -65,8 +73,11 @@
 			<!--현재페이지돌아오게하는거  -->
 			<form>
 				<input type="hidden" name="pageNum"
-					value="${pageMaker.cri.pageNum }"> <input type="hidden"
-					name="pageNum" value="${param.pageNum }" id="pgn"> <input
+					value="${pageMaker.cri.pageNum }"> 
+					<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+					<input type="hidden" name="search_option" value="${param.search_option }" id="so">
+					<input type="hidden" name="search_input" value="${param.search_input }" id="si">
+					<input
 					type="hidden" name="amount" value="${pageMaker.cri.amount }">
 			</form>
 

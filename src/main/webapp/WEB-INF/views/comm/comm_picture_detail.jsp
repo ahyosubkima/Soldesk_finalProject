@@ -118,27 +118,48 @@
 							<tr>
 								<td style="text-align: center;">${r.cpr_when }</td>
 								<td style="text-align: center;">${r.cpr_txt }</td>
-								<td style="text-align: center;">${r.cpr_owner }</td>
+								<td style="text-align: center;">${r.cpr_owner }
+								<c:if test="${picture.comm_picture_writer eq r.cpr_owner_id }">
+								&nbsp;&nbsp;<span id="reply_writer"><img id="crown_img" src="resources/comm/comm_img/crown.png">작성자</span>
+								</c:if>
+								</td>	
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id }">
-									<td style="text-align: center;"><button>수정</button>
+									<td style="text-align: center;">
+										<button onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">수정</button>
 										<button onclick="pictureReplyDel(${r.cpr_no})">삭제</button></td>
 								</c:if>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td style="text-align: center;">${sessionScope.loginMember.dm_nickname }
+							<td style="text-align: center;">
+							<c:if test="${sessionScope.loginMember != null }">
+							${sessionScope.loginMember.dm_nickname }
+							</c:if>
+							<c:if test="${sessionScope.loginMember == null }">
+							로그인이 필요합니다.
+							</c:if>
 								<input name="cpr_owner" type="hidden"
 								value="${sessionScope.loginMember.dm_nickname }"> <input
 								name="cpr_owner_id" type="hidden"
 								value="${sessionScope.loginMember.dm_id }">
 							</td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cpr_txt"> <input
+								id="comm_picture_detail_replyInput" name="cpr_txt"
+								class="cpr_txt"> 
+								<input
 								type="hidden" name="no" value="${picture.comm_picture_no }">
 								<input type="hidden" name="token2" value="${token2}"></td>
-							<td colspan="2" style="text-align: center;"><button
-									style="width: 70px; font-size: 15pt;">작성</button></td>
+							<td colspan="2" style="text-align: center;">
+							<c:if test="${sessionScope.loginMember != null }">
+							<button
+									style="width: 70px; font-size: 15pt;" onclick="return replyOK()">작성</button>
+									</c:if>
+							<c:if test="${sessionScope.loginMember == null }">
+							<button
+									style="width: 70px; font-size: 15pt;" onclick="return replyNoOK()">작성</button>
+									</c:if>
+									</td>
 						</tr>
 					</table>
 				</form>

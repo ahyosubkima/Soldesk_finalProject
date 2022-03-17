@@ -522,11 +522,11 @@
 		'%'||#{cf_txt}||'%'
 	</select>
 	
-	<update id="pictureReplyUpdate" parameterType="Comm_picture_reply">
+	<update id="pictureReplyUpdate" parameterType="com.team2.danim.comm.Comm_picture_reply">
 		update comm_picture_reply set cpr_txt = #{cpr_txt} where cpr_no = #{cpr_no} 
 	</update>
 
-	<update id="videoReplyUpdate" parameterType="Comm_Video_reply">
+	<update id="videoReplyUpdate" parameterType="com.team2.danim.comm.Comm_Video_reply">
 		update comm_video_reply set cvr_txt = #{cvr_txt} where cvr_no = #{cvr_no} 
 	</update>
 </mapper>

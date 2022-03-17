@@ -227,6 +227,7 @@ header {
 	overflow: hidden;
 }
 
+
 .formBx.active {
 	left: 50%;
 	border-radius: 0 20px 20px 0;
@@ -242,6 +243,15 @@ header {
 
 .formBx .loginForm {
 	transition-delay: 0.25s;
+}
+
+.loginForm a {
+	font-size: 14px;
+}
+
+.loginForm a:hover {
+	color: #38ceb5;
+	transition: 0.3s;
 }
 
 .formBx.active .loginForm {
@@ -275,7 +285,7 @@ header {
 
 .formBx .form form input {
 	width: 100%;
-	margin-bottom: 20px;
+	margin-bottom: 20px; 
 	padding: 10px;
 	outline: none;
 	font-size: 16px;
@@ -292,6 +302,14 @@ header {
 	border: none;
 	border-radius: 10px;
 	align-self: center;
+}
+
+hr {
+	margin: 20px 0 10px 0;
+}
+
+.check_fnt {
+	font-size: 12px;
 }
 
 

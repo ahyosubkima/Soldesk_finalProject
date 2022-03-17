@@ -19,5 +19,15 @@
 		delete from danim_member
 		where dm_id = #{dm_id}	
 	</delete>
+	
+	<update id="updateMember" parameterType="com.team2.danim.member.Member">
+	update danim_member
+	set dm_pw=#{dm_pw}, dm_nickname=#{dm_nickname}
+	where dm_id = #{dm_id}
+	</update>
+	
+	<select id="checkOverId" parameterType="String" resultType="int">
+	select count(*) from danim_member where dm_id=#{dm_id}
+	</select>
 
 </mapper>

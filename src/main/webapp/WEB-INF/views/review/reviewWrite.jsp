@@ -6,6 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+
+.daily_schedule.active{
+
+	background-color: red;
+}
+
 #daily_schedule_con{
 width: 25%;
 }
@@ -252,46 +258,21 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<div id="schedule">
 		<div id="schedule_inner_nav" style="display: flex;" >
 			<div style="width: 15%;  ">
-				<a>모든경로보기</a> <a>prev</a>
+				<a>모든경로보기</a> <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
 			</div>
-			<div id="daily_schedule_con" >
-				<div class="dropdown">
+			<div style="width: 10%; position: absolute; right: 0; ">
+			<a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> next</a>
+			</div>
+			<div id="daily_schedule_con" class="daily_schedule active" data-day="1"><div class="dropdown">
 					<button onclick="" class="dropbtn">
 						<img alt="" src="resources/review/img/plus-circle.svg">
 					</button>
 					<div id="myDropdown" class="dropdown-content">
-						<a href="javascript:void(0);" onclick="createSchedule(this)">앞에 일정추가</a> <a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> <a href="#">일정
+						<a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> <a href="javascript:void(0);" onclick="deleteDay(this)">일정
 							삭제</a>
 					</div>
 				</div>
-				<a href="#"><span>day 1</span></a>
-			</div>
-			<!-- <div id="daily_schedule_con"  >
-				<div class="dropdown">
-					<button onclick="doDropdown()" class="dropbtn">
-						<img alt="" src="resources/review/img/plus-circle.svg">
-					</button>
-					<div id="myDropdown" class="dropdown-content">
-						<a href="#">앞에 일정추가</a> <a href="#">앞에 일정추가</a> <a href="#">일정
-							삭제</a>
-					</div>
-				</div>
-				<a href="#"><span>day 1</span></a>
-			</div>
-			<div id="daily_schedule_con" >
-				<div class="dropdown">
-					<button onclick="doDropdown()" class="dropbtn">
-						<img alt="" src="resources/review/img/plus-circle.svg">
-					</button>
-					<div id="myDropdown" class="dropdown-content">
-						<a href="#">앞에 일정추가</a> <a href="#">앞에 일정추가</a> <a href="#">일정
-							삭제</a>
-					</div>
-				</div>
-				<a href="#"><span>day 1</span></a>
-			</div> -->
-			<div style="width: 10%; position: absolute; right: 0; ">
-			<a> next</a>
+				<a href="javascript:void(0);" onclick="activateDay(this)"><span>day 1</span></a>
 			</div>
 		</div>
 	</div>

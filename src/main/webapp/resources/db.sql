@@ -2,7 +2,7 @@
 3월 7일_ 서병관
 1) dm_name, dm_photo not null 삭제
 2) dm_email, dm_isAdmin 추가 
- * */
+*/
 
 create table danim_member(
 dm_id varchar2(10 char) primary key,

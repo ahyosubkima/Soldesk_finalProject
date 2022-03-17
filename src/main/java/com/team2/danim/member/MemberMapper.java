@@ -8,4 +8,8 @@ public interface MemberMapper {
 
 	int deleteMember(Member m);
 
+	public int updateMember(Member m);
+
+	int checkOverId(String dm_id);
+
 }

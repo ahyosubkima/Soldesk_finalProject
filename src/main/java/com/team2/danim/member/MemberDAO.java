@@ -14,6 +14,7 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSession ss;
+	private MemberMapper memberMapper;
 	
 	//로그인
 	public void login(Member m, HttpServletRequest req) {
@@ -76,7 +77,7 @@ public class MemberDAO {
 	//회원 탈퇴
 	public void deleteMember(HttpServletRequest req) {
 		try {
-			Member m = (Member) req.getSession().getAttribute("loginAccount");
+			Member m = (Member) req.getSession().getAttribute("loginMember");
 			String join_photo = m.getDm_photo();
 			
 			if (ss.getMapper(MemberMapper.class).deleteMember(m) == 1) {
@@ -95,6 +96,39 @@ public class MemberDAO {
 			// TODO: handle exception
 		}
 	}
+
+	public void updateMember(Member m, HttpServletRequest req) {
+		try {
+			String reg_id = req.getParameter("dm_id");
+			String reg_rawPw = req.getParameter("dm_pw");
+			String reg_dbPw = Sha256.encodeSha256(reg_rawPw);
+			String reg_nick = req.getParameter("dm_nickname");
+			String reg_email = req.getParameter("dm_email");
+			String reg_isAdmin = req.getParameter("dm_isAdmin");
+			
+			m.setDm_id(reg_id);
+			m.setDm_pw(reg_dbPw);
+			m.setDm_nickname(reg_nick);
+			m.setDm_email(reg_email);
+			m.setDm_isAdmin(reg_isAdmin);
+			
+			if(ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
+				System.out.println("수정 성공");
+				req.getSession().setAttribute("loginMember", m);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("수정 실패");
+		}
+	}
+
+	public int userIdCheck(String dm_id) {
+		
+		memberMapper = ss.getMapper(MemberMapper.class);
+		
+		return memberMapper.checkOverId(dm_id);
+	}
+	
 
 
 	

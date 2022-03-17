@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
 
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
+<script type="text/javascript" src="resources/asset/index/js/jquery.js"></script>
+
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
 <script>
 function modalOpen() {
@@ -18,7 +20,6 @@ function modalOpen() {
 	body.style.overflow = 'hidden'
 	document.querySelector('.modal_wrap').style.display = 'flex';
 	document.querySelector('.modal_background').style.display = 'block';
-
 }
 
 function modalClose() {
@@ -91,22 +92,29 @@ function modalClose() {
 				<div class="form loginForm">
 					<form action="member.login" method="post" name="loginForm">
 						<h3>로그인</h3>
-						<input type="text" placeholder="아이디" name="dm_id"> <input
-							type="text" placeholder="비밀번호" name="dm_pw">
+						<input type="text" placeholder="아이디" name="dm_id"> 
+						<input type="password" placeholder="비밀번호" name="dm_pw">
 						<button>로그인</button>
 					</form>
+					<hr>
+					<a>아이디/비밀번호를 잊어버리셨나요?</a>
 				</div>
 
 				<div class="form registerForm">
 					<form action="member.register" method="post" name="registerForm">
 						<h3>회원가입</h3>
-						<input type="text" placeholder="아이디" name="dm_id" class="reg_id"> 
-						<input type="text" placeholder="비밀번호" name="dm_pw" class="reg_pw">
-						<!-- <input type="password" placeholder="비밀번호 확인"  class="reg_pwCheck"> -->
-						<input type="text" placeholder="닉네임" name="dm_nickname" class="reg_nick"> 
-						<input type="text" placeholder="이메일" name="dm_email" class="reg_mail">
-						<input type="hidden" name="dm_isAdmin" value="N">
-						<button>회원가입</button>
+						<input type="text" placeholder="아이디" name="dm_id" id="dm_id" class="reg_id" required>
+						<div class="check_fnt" id="id_check"></div> 
+						<input type="password" placeholder="비밀번호" name="dm_pw" id="dm_pw" class="reg_pw" required>
+						<div class="check_fnt" id="pw_check1"></div>
+						<input type="password" placeholder="비밀번호 확인"  id="dm_pwCheck" class="reg_pwCheck">
+						<div class="check_fnt" id="pw_check2"></div>
+						<input type="text" placeholder="닉네임" name="dm_nickname" id = "dm_nickname" class="reg_nick" required> 
+						<div class="check_fnt" id="nick_check"></div> 
+						<input type="text" placeholder="이메일" name="dm_email" id = "dm_email" class="reg_mail" required>
+						<div class="check_fnt" id="mail_check"></div>
+						<input type="text" name="dm_isAdmin" value="N">
+						<button id="reg_submit">회원가입</button>
 					</form>
 				</div>
 
@@ -175,6 +183,136 @@ function modalClose() {
 	modal_loginBtn.onclick = function() {
 		formBx.classList.remove('active');
 	} 
+	</script>
+	<script>
+	
+	const idJ = /^[a-z0-9]{4,12}$/;
+	
+	
+	$("#dm_id").blur(function() {
+		// id = "id_reg" / name = "userId"
+		let dm_id = $('#dm_id').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/member.idCheck?dm_id='+ dm_id,
+			type : 'get',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : "+ data);							
+				
+				if (data == 1) {
+						// 1 : 아이디가 중복되는 문구
+						$("#id_check").text("사용중인 아이디입니다");
+						$("#id_check").css("color", "red");
+						$("#id_check").css("margin-top", "-18px");
+						$("#reg_submit").attr("disabled", true);
+					} else {
+						
+						if(idJ.test(dm_id)){
+							// 0 : 아이디 길이 / 문자열 검사
+							$("#id_check").text("");
+							$("#id_check").css('margin-top', '0px');
+							$("#reg_submit").attr("disabled", false);
+				
+						} else if(dm_id == ""){
+							$('#id_check').text('아이디를 입력해주세요 :)');
+							$("#id_check").css("margin-top", "-18px");
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);				
+							
+						} else {
+							$('#id_check').text("아이디는 영어 소문자와 숫자 4~12자리만 가능합니다");
+							$("#id_check").css("margin-top", "-18px");
+							$('#id_check').css('color', 'red');
+							$("#reg_submit").attr("disabled", true);
+						}
+						
+					}
+				}, error : function() {
+						console.log("실패");
+				}
+			});
+		});
+		
+		const pwJ = /^[A-Za-z0-9]{4,12}$/;
+		const pw1 = $('#dm_pw').val();
+		const pw2 = $('#dm_pwCheck').val();
+		
+		 /* $('#dm_pw').blur(function pwCheck() {
+			if(pwJ.test(pw1)) {
+				$("#pw_check1").text("");
+				$("#pw_check1").css('margin-top', '0px');
+				$("#reg_submit").attr("disabled", false);
+				
+			} else if(pw1 == ""){
+				$('#pw_check1').text('비밀번호를 입력해주세요');
+				$("#pw_check1").css("margin-top", "-18px");
+				$('#pw_check1').css('color', 'red');
+				$("#reg_submit").attr("disabled", true);				
+				
+			} else {
+				$('#pw_check1').text("영어 대소문자와 숫자로 4~12자리 비밀번호를 입력해주세요");
+				$("#pw_check1").css("margin-top", "-18px");
+				$('#pw_check1').css('color', 'red');
+				$("#reg_submit").attr("disabled", true);
+			}
+		}) */
+		
+		/* $('#dm_pwCheck').blur(function isPwSame() {
+			if(pw1 == pw2) {
+				$("#pw_check2").text("");
+				$("#pw_check2").css('margin-top', '0px');
+				$("#reg_submit").attr("disabled", false);
+			} else {
+				$('#pw_check2').text('비밀번호가 일치하지 않습니다');
+				$("#pw_check2").css("margin-top", "-18px");
+				$('#pw_check2').css('color', 'red');
+				$("#reg_submit").attr("disabled", true);
+			}
+		}) */
+		
+		/* $("#dm_nickname").blur(function() {
+			// id = "id_reg" / name = "userId"
+			let dm_nickname = $('#dm_nickname').val();
+			$.ajax({
+				url : '${pageContext.request.contextPath}/member.nickCheck?dm_nickname='+ dm_nickname,
+				type : 'get',
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : "+ data);							
+					
+					if (data == 1) {
+							// 1 : 아이디가 중복되는 문구
+							$("#nick_check").text("사용중인 아이디입니다");
+							$("#nick_check").css("color", "red");
+							$("#nick_check").css("margin-top", "-18px");
+							$("#reg_submit").attr("disabled", true);
+						} else {
+							
+							if(nickJ.test(dm_nickname)){
+								// 0 : 아이디 길이 / 문자열 검사
+								$("#nick_check").text("");
+								$("#nick_check").css('margin-top', '0px');
+								$("#reg_submit").attr("disabled", false);
+					
+							} else if(dm_nickname == ""){
+								$('#nick_check').text('아이디를 입력해주세요 :)');
+								$("#nick_check").css("margin-top", "-18px");
+								$('#nick_check').css('color', 'red');
+								$("#reg_submit").attr("disabled", true);				
+								
+							} else {
+								$('#nick_check').text("아이디는 영어 소문자와 숫자 4~12자리만 가능합니다");
+								$("#nick_check").css("margin-top", "-18px");
+								$('#nick_check').css('color', 'red');
+								$("#reg_submit").attr("disabled", true);
+							}
+							
+						}
+					}, error : function() {
+							console.log("실패");
+					}
+				});
+			}); */
+		
+		
 	</script>
 </body>
 </html>

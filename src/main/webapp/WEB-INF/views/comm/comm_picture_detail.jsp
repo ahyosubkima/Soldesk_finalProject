@@ -6,16 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-</style>
-<script type="text/javascript">
-window.onpageshow = function(event) {
-	if (event.persisted
-			|| (window.performance && window.performance.navigation.type == 2)) {
-					location.href='/danim/comm_picture_page'
-	}
-}  
-</script>
+
 </head>
 <body>
 	<div id="comm_picture_area">
@@ -34,7 +25,7 @@ window.onpageshow = function(event) {
 
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -70,7 +61,7 @@ window.onpageshow = function(event) {
 						<td>${picture.comm_picture_writer }</td>
 					</tr>
 					<c:if
-						test="${sessionScope.loginMember.dm_name eq picture.comm_picture_writer}">
+						test="${sessionScope.loginMember.dm_id eq picture.comm_picture_writer}">
 						<tr>
 							<td colspan="4" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
@@ -81,7 +72,7 @@ window.onpageshow = function(event) {
 					</c:if>
 
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
+						test="${sessionScope.loginMember.dm_id ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">
 							<table style="padding-left: 75%;">
 								<tr>
@@ -97,7 +88,7 @@ window.onpageshow = function(event) {
 
 					</c:if>
 					<c:if
-						test="${sessionScope.loginMember.dm_name ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
+						test="${sessionScope.loginMember.dm_id ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
 						<form action="comm_picture_Nogood">
 							<table style="padding-left: 77%; padding-top: 10px;">
 								<tr>
@@ -127,27 +118,48 @@ window.onpageshow = function(event) {
 							<tr>
 								<td style="text-align: center;">${r.cpr_when }</td>
 								<td style="text-align: center;">${r.cpr_txt }</td>
-								<td style="text-align: center;">${r.cpr_owner }</td>
+								<td style="text-align: center;">${r.cpr_owner }
+								<c:if test="${picture.comm_picture_writer eq r.cpr_owner_id }">
+								&nbsp;&nbsp;<span id="reply_writer"><img id="crown_img" src="resources/comm/comm_img/crown.png">작성자</span>
+								</c:if>
+								</td>	
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id }">
-									<td style="text-align: center;"><button>수정</button>
+									<td style="text-align: center;">
+										<button onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">수정</button>
 										<button onclick="pictureReplyDel(${r.cpr_no})">삭제</button></td>
 								</c:if>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td style="text-align: center;">${sessionScope.loginMember.dm_nickname }
+							<td style="text-align: center;">
+							<c:if test="${sessionScope.loginMember != null }">
+							${sessionScope.loginMember.dm_nickname }
+							</c:if>
+							<c:if test="${sessionScope.loginMember == null }">
+							로그인이 필요합니다.
+							</c:if>
 								<input name="cpr_owner" type="hidden"
 								value="${sessionScope.loginMember.dm_nickname }"> <input
 								name="cpr_owner_id" type="hidden"
 								value="${sessionScope.loginMember.dm_id }">
 							</td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cpr_txt"> <input
+								id="comm_picture_detail_replyInput" name="cpr_txt"
+								class="cpr_txt"> 
+								<input
 								type="hidden" name="no" value="${picture.comm_picture_no }">
 								<input type="hidden" name="token2" value="${token2}"></td>
-							<td colspan="2" style="text-align: center;"><button
-									style="width: 70px; font-size: 15pt;">작성</button></td>
+							<td colspan="2" style="text-align: center;">
+							<c:if test="${sessionScope.loginMember != null }">
+							<button
+									style="width: 70px; font-size: 15pt;" onclick="return replyOK()">작성</button>
+									</c:if>
+							<c:if test="${sessionScope.loginMember == null }">
+							<button
+									style="width: 70px; font-size: 15pt;" onclick="return replyNoOK()">작성</button>
+									</c:if>
+									</td>
 						</tr>
 					</table>
 				</form>

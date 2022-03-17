@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.team2.danim.Criteria;
+import com.team2.danim.Criteria2;
 
 public interface CommMapper {
 	public List<Comm_picture> getCommPicture();
@@ -100,5 +101,55 @@ public interface CommMapper {
 	public int goodVideoPlus(Comm_video cv);
 
 	public Comm_Video_good goodVideoCheck(Comm_Video_good cvg);
+
+	public int goodVideoMinuById(Comm_Video_good cvg);
+
+	public int goodVideoMinus(Comm_video cv);
+
+	public int viewVideoPlus(Comm_video cv);
+
+	public int getFreeTotal();
+
+	public List<Comm_free> getCommFreePaging(Criteria2 cri2);
+
+	public int freeUpload(Comm_free cf);
+
+	public int viewFreePlus(Comm_free cf);
+
+	public Comm_free_good goodFreeCheck(Comm_free_good cfg);
+
+	public List<Comm_free_reply> getFreeReply(Comm_free_reply cfr);
+
+	public List<Comm_free> getCommFree2(Comm_free cf);
+
+	public int delFree(Comm_free cf);
+
+	public int updateFree(Comm_free cf);
+
+	public int getSearchTotalFree(Comm_free cf);
+
+	public List<Comm_free> searchTitleFree(Map<String, String> map);
+
+	public int getSearchWriterTotalFree(Comm_free cf);
+
+	public List<Comm_free> searchWriterFree(Map<String, String> map);
+
+	public int getSearchTxtTotalFree(Comm_free cf);
+
+	public List<Comm_free> searchTxtFree(Map<String, String> map);
+
+	public int pictureReplyUpdate(Comm_picture_reply cpr);
+
+	public int videoReplyUpdate(Comm_Video_reply cvr);
+
+	public int freeReplyUpload(Comm_free_reply cfr);
+
+	public int goodFreeMinuById(Comm_free_good cfg);
+
+	public int goodFreeMinus(Comm_free cf);
+
+	public int goodFreePlusById(Comm_free_good cfg);
+
+	public int goodFreePlus(Comm_free cf);
 
 }

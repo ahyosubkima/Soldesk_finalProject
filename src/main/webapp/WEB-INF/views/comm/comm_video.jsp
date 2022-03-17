@@ -6,20 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
 <script type="text/javascript">
-	$(function() {
-		window.onpageshow = function(event) {
-			if (event.persisted
-					|| (window.performance && window.performance.navigation.type == 2)) {
-				let pgn = $("#pgn").val();
-				if (pgn != "") {
-					location.href = "/danim/comm_video_page?pageNum=" + pgn;
-				} else {
-					location.href = "/danim/comm_video_page";
-				}
+$(function() {
+	window.onpageshow = function(event) {
+		if (event.persisted
+				|| (window.performance && window.performance.navigation.type == 2)) {
+			let pgn = $("#pgn").val();
+			let so = $("#so").val(); 
+			let si = $("#si").val(); 
+			if(so != ""){
+				location.href="/danim/comm_video_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+			}
+			else{
+			if (pgn != "") {
+				location.href = "/danim/comm_video_page?pageNum=" + pgn;
+			} else {
+				location.href = "/danim/comm_video_page";
+			}
+				
 			}
 		}
-	});
+	}
+});
 </script>
 </head>
 <body>
@@ -39,7 +48,7 @@
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -57,6 +66,9 @@
 								<option value="txt">내용</option>
 						</select> <input name="search_input">
 						<input type="hidden" value="1" name="pageNum">
+						 <input type="hidden"		name="pageNum" value="${param.pageNum }" id="pgn">
+						 <input type="hidden" name="search_option" value="${param.search_option }" id="so">
+					<input type="hidden" name="search_input" value="${param.search_input }" id="si">
 							<button id="comm_picture_searchBtn">검색</button></td>
 					</tr>
 				</table>
@@ -147,7 +159,7 @@
                 </c:if></td>
 				   <!-- 각 번호 페이지 버튼 -->
                 <c:forEach var="num" begin="${pageMakerTitle.startPage}" end="${pageMakerTitle.endPage}">
-                    <td class="paging_Tbl_td"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${num }&search_option=${sessionScope.search_option}">[${num}]</a></td>
+                    <td ><a class="active" href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${num }&search_option=${sessionScope.search_option}">[${num}]</a></td>
                 </c:forEach>
                 <td> <c:if test="${pageMakerTitle.next}">
                     <li class="pageInfo_btn next"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.endPage + 1 }&search_option=${sessionScope.search_option}">Next</a></li>

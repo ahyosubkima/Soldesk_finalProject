@@ -1,18 +1,5 @@
 
 
-function connectAddrSearchEvent() {
-	$("#writePlan").click(function() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				$("#jm_addr3Input").val(data.zonecode);
-				$("#jm_addr1Input").val(data.roadAddress);
-			}
-		}).open();
-	});
-}
-
-
-
 function dayImportant(){
 	$(document).on("click", "#i_am_test", function() {
 		
@@ -26,7 +13,7 @@ function dayImportant(){
 				'<tr><td style="width: 50px; height:35px;">상품명:</td>'+
 				'<td><input style="width: 130px;"></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" class="p_setPrice"></td></tr></table>');
+				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
 	});
 }
 
@@ -41,7 +28,7 @@ function addTrans(){
 				'<tr><td style="width: 50px; height:35px;">내용명:</td>'+
 				'<td><input style="width: 130px;"></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" class="p_setPrice"></td></tr></table>');
+				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
 	});
 	//세줄 이상 금지
 	$(document).on("keydown", "#setBudgetTxtarea", function() {
@@ -83,7 +70,7 @@ function budgetCalc(){
 		console.log(sum)
 		console.log(onePersonPrice)
 		
-		$("#p_writeBudgetWrite").html("<div id='p_budget'>" + nickname + "님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</div>")
+		$("#p_writeBudgetWrite").html("<textarea name='p_budget'>" + nickname + "님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
 		
 	});
 }
@@ -196,15 +183,17 @@ function p_openFreeWord(){
 function qqq() {
 	
 	$(document).ready(function () {
-		  $(document).on("click", "#p_markerInfo", function () {
-			  let MapText = document.getElementById('p_markerInfo').innerText;
-			  let MapAddress = $("#infoo").val();
+		  $(document).on("click", ".p_markerInfo", function () {
+			  let MapText = this.innerText;
+			  let MapAddress = $(".p_markerInfo").val();
+			  //let MapAddress = $("#infoo").val();
 			  
-			  alert(MapAddress)
-			  alert(MapText);
+			  alert("주소:" + MapAddress);
+			  alert("JS에서 이름:" + MapText);
 			  
 			  $("#p_route").append('<div id="i_am_test_all"><div id="i_am_test">' + MapText
 					  			+ '</div>' + MapAddress + '</div>');
+			  
 		  });
 		});
 }

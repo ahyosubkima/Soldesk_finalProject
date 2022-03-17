@@ -17,7 +17,6 @@
 <body>
 
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
-
 <!-- 일정 기본정보 등록 -->
 	<table border="1" id="p_write">
 

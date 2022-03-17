@@ -11,9 +11,15 @@
 	#{p_startDate},
 	#{p_person},
 	#{p_place},
+	#{p_budget},
 	#{p_freeWrite},
 	sysdate)
-	</insert>
+</insert>
+
+
+<select id="getAllPlan" resultType="com.team2.danim.plan.Plan_write">
+	select * from plan_write
+</select>
 
 
 </mapper>

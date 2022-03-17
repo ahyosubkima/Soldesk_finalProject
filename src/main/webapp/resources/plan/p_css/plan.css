@@ -39,6 +39,10 @@
 	overflow: inherit;
 }
 
+#p_mainDetailDiv{
+	width: 900px;
+}
+
 #p_writeDetail{
 	margin: auto;
 }

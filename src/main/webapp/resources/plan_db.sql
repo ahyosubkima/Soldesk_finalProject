@@ -14,10 +14,12 @@ p_Writedate date not null
 
 create sequence plan_write_seq;
 
-insert into plan_write values(plan_write_seq.nextval, '작성자', '제목', '사진', '2022-03-02', '2', '장소', '한마디', sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목', '사진', '2022-03-02', '2', '장소', '예산', '한마디', sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목', '사진', '2022-03-02', '2', '장소', '예산', '한마디', sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목', '사진', '2022-03-02', '2', '장소', '예산', '한마디', sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목', '사진', '2022-03-02', '2', '장소', '예산', '한마디', sysdate);
 
 drop table plan_write;
-
 
 select * from plan_write;
 

@@ -41,22 +41,20 @@
 </c:choose>
 
 <!-- 등록된 플래너 전체 조회-->
+<div id="p_mainDetailDiv">
 	<table id="p_mainDetail">
+
+<c:forEach var="p" items="${plans }" varStatus="status">
 		<tr>
-			<td><a><img id="p_mainPic" src="resources/plan/p_img/test.PNG"></a></td>
-			<td><img id="p_mainPic" src="resources/plan/p_img/test.PNG"></td>
-			<td><img id="p_mainPic" src="resources/plan/p_img/test.PNG"></td>
-			<td><img id="p_mainPic" src="resources/plan/p_img/test.PNG"></td>
+		
+			<td><img id="p_mainPic" src="resources/plan/p_file/${p.p_TitleFile }"></td>
 		</tr>
 
 		<tr>
-			<td align="center">플래너 타이틀1</td>
-			<td align="center">플래너 타이틀2</td>
-			<td align="center">플래너 타이틀3</td>
-			<td align="center">플래너 타이틀4</td>
+			<td align="center">${p. p_title}</td>
 		</tr>
+</c:forEach>
 	</table>
-
-
+</div>
 </body>
 </html>

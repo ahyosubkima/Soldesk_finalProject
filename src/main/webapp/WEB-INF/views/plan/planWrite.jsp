@@ -82,7 +82,7 @@
 		
 		<tr>
 		<td style="width: 50px; height:35px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 130px;" id="p_setPrice" class="p_setPrice"></td>
+		<td><input type="number" style="width: 130px;" name="p_setPrice" id="p_setPrice"></td>
 		</tr>
 		</table>
 		
@@ -98,7 +98,7 @@
 		
 		<tr>
 		<td style="width: 40px; height:35px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="p_setPrice" class="p_setPrice"></td>
+		<td><input type="number" style="width: 80px;" id="p_setPrice" name="p_setPrice"></td>
 		</tr>
 		</table>
 		

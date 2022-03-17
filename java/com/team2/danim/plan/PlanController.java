@@ -1,15 +1,12 @@
 package com.team2.danim.plan;
 
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team2.danim.TokenMaker;
 
@@ -22,6 +19,8 @@ public class PlanController {
 	@RequestMapping(value = "/planMain", method = RequestMethod.GET)
 
 	public String planMain(HttpServletRequest req) {
+		TokenMaker.make(req);
+		pDAO.getAllPlan(req);
 		
 		req.setAttribute("contentPage", "plan/planMain.jsp");
 		return "home";
@@ -42,14 +41,14 @@ public class PlanController {
 		
 		TokenMaker.make(req);
 		pDAO.upload(req);
+		pDAO.getAllPlan(req);
 		
-		req.setAttribute("contentPage", "plan/planDetail.jsp");
+		req.setAttribute("contentPage", "plan/planMain.jsp");
 		
 		return "home";
-
 	}
 	
-
+	
 	
 	
 	

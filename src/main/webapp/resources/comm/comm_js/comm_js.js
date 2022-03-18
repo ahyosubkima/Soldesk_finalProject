@@ -95,6 +95,18 @@ function videoReplyUpdate(r_no,no)
 	
 	location.href='comm_video_reply_update?no='+no+"&newReply="+txt+"&cvr_no="+r_no;
 }
+function freeReplyUpdate(r_no,no)
+{
+	var ok = confirm('수정 하시겠습니까?!?!?!?!!')
+	
+	if (ok) {
+		
+		var txt = prompt("수정할 내용 입력");
+		
+	}
+	
+	location.href='comm_free_reply_update?no='+no+"&newReply="+txt+"&cfr_no="+r_no;
+}
 
 function videoReplyDel(no) {
 	
@@ -271,6 +283,8 @@ function videoreplyOK(){
 		
 	}
 }
+
+
 function replyNoOK(){
 	alert('로그인 후 이용해주세요')
 	return false;

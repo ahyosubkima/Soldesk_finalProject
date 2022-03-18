@@ -137,7 +137,8 @@
 								</td>
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cfr_owner_id }">
-									<td style="text-align: center;"><button>수정</button>
+									<td style="text-align: center;">
+										<button  onclick="freeReplyUpdate(${r.cfr_no},${param.no}">수정</button>
 										<button onclick="pictureReplyDel(${r.cfr_no})">삭제</button></td>
 								</c:if>
 							</tr>

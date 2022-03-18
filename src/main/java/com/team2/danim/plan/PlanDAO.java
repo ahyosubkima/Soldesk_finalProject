@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +26,7 @@ public class PlanDAO {
 	@Autowired
 	private SqlSession ss;
 
-	public void upload(HttpServletRequest req) {
+	public void uploadPlan(HttpServletRequest req) {
 
 		String path = req.getSession().getServletContext().getRealPath("resources/plan/p_file");
 		System.out.println(path);
@@ -38,7 +39,7 @@ public class PlanDAO {
 			String successToken = (String) req.getSession().getAttribute("successToken");
 			
 			if (successToken != null && token.equals(successToken)) {
-				String fileName = mr.getFilesystemName("p_TitleFile");
+				String fileName = mr.getFilesystemName("p_titleFile");
 				new File(path + "/" + fileName).delete();
 				return;
 			}
@@ -48,32 +49,50 @@ public class PlanDAO {
 		}
 
 		try {
-			String fName = mr.getFilesystemName("p_TitleFile");
 			
-			System.out.println("제목:" + mr.getParameter("p_title"));
-			System.out.println("파일이름: " + fName);
-			System.out.println("사람수: " + mr.getParameter("p_person"));
+			String p_writer = mr.getParameter("p_writer");
+			String p_title = mr.getParameter("p_title");
+			String p_titleFile = mr.getFilesystemName("p_titleFile");
+			p_titleFile = URLEncoder.encode(p_titleFile, "utf-8");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+			String p_startDate = mr.getParameter("p_startDate");
+			int p_person = Integer.parseInt(mr.getParameter("p_person"));
+			String p_place = mr.getParameter("p_place");
+			String p_budget = mr.getParameter("p_budget");
+			String p_freeWrite = mr.getParameter("p_freeWrite");
+			
+			String[] p_setItems = mr.getParameterValues("p_setItem");
+			String p_setItem = new String();
+			for (int i = 0; i < p_setItems.length; i++) {
+				p_setItem += p_setItems[i] + ",";
+			}
+			
+			int p_setPrice = Integer.parseInt(mr.getParameter("p_setPrice"));
 			
 			Plan_write pw = new Plan_write();
+			pw.setP_writer(p_writer);
+			pw.setP_title(p_title);
+			pw.setP_titleFile(p_titleFile.replace("+", " "));
+			pw.setP_startDate(sdf.parse(p_startDate));
+			pw.setP_person(p_person);
+			pw.setP_place(p_place);
+			pw.setP_budget(p_budget);
+			pw.setP_freeWrite(p_freeWrite);
+			pw.setP_setItem(p_setItem);
+			pw.setP_setPrice(p_setPrice);
 			
-			pw.setP_writer(mr.getParameter("p_writer"));
-			pw.setP_title(mr.getParameter("p_title"));
+			System.out.println("작성자p_writer::   " + p_writer);
+			System.out.println("제목p_title::   " + p_title);
+			System.out.println("사진p_titleFile::   " + p_titleFile);
+			System.out.println("출발일p_startDate::   " + p_startDate);
+			System.out.println("사람수p_person::   " + p_person);
+			System.out.println("장소p_place::   " + p_place);
+			System.out.println("총예산p_budget::   " + p_budget);
+			System.out.println("한마디p_freeWrite::   " + p_freeWrite);
+			System.out.println("예산 상품명들p_setItem::    " + p_setItem);
+			System.out.println("상품명당 금액들p_setPrice::    " + p_setPrice);
 			
-			pw.setP_budget(mr.getParameter("p_budget"));
-			System.out.println("예산:" + mr.getParameter("p_budget"));
-			
-			String p_TitleFile = mr.getFilesystemName("p_TitleFile");
-			p_TitleFile = URLEncoder.encode(p_TitleFile, "utf-8");
-			pw.setP_TitleFile(p_TitleFile.replace("+", " "));
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			pw.setP_startDate(sdf.parse(mr.getParameter("p_startDate")));
-			
-			pw.setP_person(Integer.parseInt(mr.getParameter("p_person")));
-			pw.setP_place(mr.getParameter("p_place"));
-			pw.setP_freeWrite(mr.getParameter("p_freeWrite"));
-			
-			if (ss.getMapper(PlanMapper.class).upload(pw) == 1) {
+			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
 				req.getSession().setAttribute("successToken", token);
 				req.setAttribute("result", "작성 성공");
 				System.out.println("작성 성공");
@@ -95,6 +114,22 @@ public class PlanDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void getPlan(HttpServletRequest req) {
+		
+		try {
+			
+			int p_no = Integer.parseInt(req.getParameter("p_no"));
+			req.setAttribute("plan", ss.getMapper(PlanMapper.class).getPlan(p_no));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 	}
 		
 		

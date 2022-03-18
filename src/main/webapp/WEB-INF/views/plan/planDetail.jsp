@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 
 		<tr>
 			<td rowspan="3">플래너 표지 사진 업로드 <p> </td>
-			<td colspan="2">제목:  </td>
+			<td colspan="2">제목:여기 ${plan.p_title } </td>
 		</tr>
 		
 		<tr>
@@ -35,12 +36,12 @@
 		</tr>
 
 		<tr>
-			<td colspan="3">간단 경로:<div id="">경로보여주는 곳</div> </td>
+			<td colspan="3">간단 경로:<div id="">경로보여주는 곳${plan.p_setItem }</div> </td>
 		</tr>
 
 		<tr>
 			<td colspan="3">
-					상세보여주기			
+					상세: 
 			</td>
 		</tr>
 	</table>
@@ -50,12 +51,30 @@
  
 	
 <!-- 일정 상세등록 -->
-	<div id="p_DayWriteTitle"><span>📅일정 작성</span></div>
-	<div id="p_openDayWrite">
+	<div id="p_DayWriteTitle"><span>💰 필요 예산</span></div>
 	
-
-
-
+		<div id="#p_detailBudgetAll">
+	<div id="p_detailBudgetDiv">
+	<c:set var="ss" value="${fn:split(plan.p_setItem,',') }"></c:set>
+	<c:forEach var="p" items="${ss }">
+	<table border="1" id="setBudgetTb">
+		<tr>
+		<td colspan="2" style="height: 70px;"><div id="p_setTitle">이름</div></td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; height:35px; font-size: 12pt;">상품명</td>
+		<td>${p }</td>
+		</tr>
+		
+		<tr>
+		<td style="width: 50px; height:35px; font-size: 12pt;">금액</td>
+		<td>금액보여주는 곳</td>
+		</tr>
+	</table>
+	</c:forEach>	
+	
+	</div>
 	</div>
 	
 	
@@ -66,14 +85,17 @@
 	
 	
 <!-- 예산결과 보여주는 곳 -->
-	<div id="p_BudgetAll">
 	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
-	<table border="1" id="p_writeBudget">
+	<div id="#p_detailBudgetAll">
+	<div id="p_detailBudgetDiv">
+	
+	<table border="1" id="p_detailBudget">
 			
 		<tr>
 			<td id="p_writeBudgetWrite"></td>
 		</tr>
 	</table>
+	</div>
 	</div>
 
 
@@ -84,7 +106,7 @@
 	<table border="1" id="p_writeFree">
 		
 		<tr>
-			<td id="p_writeFreeWrite">작성하는 곳 input or textarea (100글자 제한두기)</td>
+			<td id="p_writeFreeWrite">${plan.p_freeWrite }</td>
 		</tr>
 	</table>
 	</div>

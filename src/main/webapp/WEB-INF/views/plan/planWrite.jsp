@@ -21,7 +21,7 @@
 <div id="p_writeTitle"><h1>여행 플래너 제작하기</h1></div>
 
 <!-- 일정 기본정보 등록 -->
-<form action="plan.detailPlanner" name="planWrite" method="post" enctype="multipart/form-data" >
+<form action="plan.writeReg" name="planWrite" method="post" enctype="multipart/form-data" >
 	<table border="1" id="p_write">
 	            <!-- 아이디정보 -->
 		<tr><td><input type="hidden" name="p_writer" value="${param.p_writer }">
@@ -29,7 +29,7 @@
 				<input type="hidden" name="token" value="${token }"></td></tr>
 
 		<tr>
-			<td rowspan="3">플래너 표지 사진 업로드 <p><input type="file" name="p_TitleFile"></td>
+			<td rowspan="3">플래너 표지 사진 업로드 <p><input type="file" name="p_titleFile"></td>
 			<td colspan="2">제목: <input name="p_title"></td>
 		</tr>
 		
@@ -77,12 +77,12 @@
 		
 		<tr>
 		<td style="width: 50px; height:35px; font-size: 12pt;">상품명</td>
-		<td><input class="p_setItemName" name="p_setItemName" style="width: 130px;"></td>
+		<td><input class="p_setItem" name="p_setItem" style="width: 130px;"></td>
 		</tr>
 		
 		<tr>
 		<td style="width: 50px; height:35px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 130px;" name="p_setPrice" id="p_setPrice"></td>
+		<td><input type="number" style="width: 130px;" name="p_setPrice" id="p_setPrice" class="p_setPrice"></td>
 		</tr>
 		</table>
 		
@@ -93,12 +93,12 @@
 		
 		<tr>
 		<td style="width: 40px; height:35px; font-size: 12pt;">상품명</td>
-		<td><input class="p_setItemName" name="p_setItemName" style="width: 80px;"></td>
+		<td><input class="p_setItem" name="p_setItem" style="width: 80px;"></td>
 		</tr>
 		
 		<tr>
 		<td style="width: 40px; height:35px; font-size: 12pt;">금액</td>
-		<td><input type="number" style="width: 80px;" id="p_setPrice" name="p_setPrice"></td>
+		<td><input type="number" style="width: 80px;" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td>
 		</tr>
 		</table>
 		
@@ -113,7 +113,7 @@
 
 <!-- 예산결과 보여주는 곳 -->
 	<div id="p_BudgetAll">
-	<span id="p_openBudget" onclick="p_openBudget()">💲계산하기</span>
+	<span id="p_openBudget" onclick="budgetCalc()">💲계산하기</span>
 	<table border="1" id="p_writeBudget">
 			
 		<tr>

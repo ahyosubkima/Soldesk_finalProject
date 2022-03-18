@@ -33,14 +33,32 @@
 	margin-bottom: 50px;
 }
 
+
 #p_mainDetail{
-	margin: auto;
-	margin-bottom: 20px;
+	width: 230px;
+	margin-left: 100px;
+    margin-bottom: 50px;
 	overflow: inherit;
+	float: left;
 }
 
+
 #p_mainDetailDiv{
-	width: 900px;
+	width: 100%;
+	display:inline-block;
+	text-align: center;
+}
+
+#ttest{
+	border: 3px solid blue;
+	width: 250px;
+	float: left;
+	text-align: center;
+}
+
+ul li{
+	list-style-type: none;
+	float: left;
 }
 
 #p_writeDetail{
@@ -118,6 +136,41 @@
 }
 
 
+#p_detailBudget{
+	display: none;
+	margin: auto;
+	margin-top: 30px;
+	width: 800px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#p_detailBudgetAll{
+	border: 2px solid black;
+	margin-bottom: 30px;
+	text-align: center;
+	margin: auto;
+	margin-top: 20px;
+	width: 800px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+	
+}
+
+#p_detailBudgetDiv{
+	width: 800px;
+	display:inline-block;
+	zoom:1;
+	
+}
+
+
 #p_regOk{
 	margin: auto;
 	margin-top: 50px;
@@ -130,13 +183,18 @@
 	font-size: 13pt;
 }
 
-#p_BudgetAll{
-	text-align: center;
-	margin-top: 50px;
-}
 
 #p_budget{
 	text-align: center;
+	height: 50px;
+	width: 90%;
+	font-size: 13pt;
+	border: none;
+	resize: none;
+}
+
+#p_budget:focus{
+	outline: none;
 }
 
 #p_FreeWordAll{

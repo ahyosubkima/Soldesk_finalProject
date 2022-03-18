@@ -51,6 +51,7 @@ function budgetCalc(){
 	
 		const allPrice = document.querySelectorAll(".p_setPrice");
 		const person =  document.getElementById('p_person').value;
+		
 		let price = 0;
 		let sum = 0;
 		let onePersonPrice = 0;
@@ -70,7 +71,7 @@ function budgetCalc(){
 		console.log(sum)
 		console.log(onePersonPrice)
 		
-		$("#p_writeBudgetWrite").html("<textarea name='p_budget'>" + nickname + "님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
+		$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
 		
 	});
 }

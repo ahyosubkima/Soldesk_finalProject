@@ -15,6 +15,7 @@
 <c:when test="${sessionScope.loginMember != null}">
 	<form action="plan.writePlanner">
 		<table border="1" id="p_mainWrite">
+		
 			<tr>
 				<td>여행일정<input type="number" name="p_days"> 일 </td>
 			</tr>
@@ -40,21 +41,26 @@
 </c:when>
 </c:choose>
 
-<!-- 등록된 플래너 전체 조회-->
-<div id="p_mainDetailDiv">
-	<table id="p_mainDetail">
+	<!-- 등록된 플래너 전체 조회-->
+	<div id="p_mainDetailDiv">
+			<c:forEach var="p" items="${plans }" varStatus="status">
+		 <table id="p_mainDetail"> 
+			 <tr>
+					<td><div style="text-align: center;"><a href="plan.detailPlanner?p_no=${p.p_no }">
+						<img id="p_mainPic"src="resources/plan/p_file/${p.p_titleFile }"></a></div></td>
+				</tr>
+				<tr>
+					<td align="center">${p. p_title}</td>
+				</tr>  
+		 </table> 
+			</c:forEach>
+	</div>
 
-<c:forEach var="p" items="${plans }" varStatus="status">
-		<tr>
-		
-			<td><img id="p_mainPic" src="resources/plan/p_file/${p.p_TitleFile }"></td>
-		</tr>
 
-		<tr>
-			<td align="center">${p. p_title}</td>
-		</tr>
-</c:forEach>
-	</table>
-</div>
+
+
+
+
+
 </body>
 </html>

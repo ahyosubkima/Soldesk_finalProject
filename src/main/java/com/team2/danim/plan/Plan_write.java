@@ -1,37 +1,43 @@
 package com.team2.danim.plan;
 
 import java.util.Date;
+import java.util.List;
 
 public class Plan_write {
 	
 			private int p_no;
 			private String p_writer;
 			private String p_title;
-			private String p_TitleFile;
+			private String p_titleFile;
 			private Date p_startDate;
 			private int p_person;
 			private String p_place;
 			private String p_budget;
 			private String p_freeWrite;
-			private Date p_Writedate;
+			private String p_setItem;
+			private int p_setPrice;
+			private Date p_writedate;
 			
 			public Plan_write() {
 				// TODO Auto-generated constructor stub
 			}
 
-			public Plan_write(int p_no, String p_writer, String p_title, String p_TitleFile, Date p_startDate,
-					int p_person, String p_place, String p_budget, String p_freeWrite, Date p_Writedate) {
+			public Plan_write(int p_no, String p_writer, String p_title, String p_titleFile, Date p_startDate,
+					int p_person, String p_place, String p_budget, String p_freeWrite, String p_setItem, int p_setPrice,
+					Date p_writedate) {
 				super();
 				this.p_no = p_no;
 				this.p_writer = p_writer;
 				this.p_title = p_title;
-				this.p_TitleFile = p_TitleFile;
+				this.p_titleFile = p_titleFile;
 				this.p_startDate = p_startDate;
 				this.p_person = p_person;
 				this.p_place = p_place;
 				this.p_budget = p_budget;
 				this.p_freeWrite = p_freeWrite;
-				this.p_Writedate = p_Writedate;
+				this.p_setItem = p_setItem;
+				this.p_setPrice = p_setPrice;
+				this.p_writedate = p_writedate;
 			}
 
 			public int getP_no() {
@@ -58,12 +64,12 @@ public class Plan_write {
 				this.p_title = p_title;
 			}
 
-			public String getP_TitleFile() {
-				return p_TitleFile;
+			public String getP_titleFile() {
+				return p_titleFile;
 			}
 
-			public void setP_TitleFile(String p_TitleFile) {
-				this.p_TitleFile = p_TitleFile;
+			public void setP_titleFile(String p_titleFile) {
+				this.p_titleFile = p_titleFile;
 			}
 
 			public Date getP_startDate() {
@@ -106,16 +112,36 @@ public class Plan_write {
 				this.p_freeWrite = p_freeWrite;
 			}
 
-			public Date getP_Writedate() {
-				return p_Writedate;
+			public String getP_setItem() {
+				return p_setItem;
 			}
 
-			public void setP_Writedate(Date p_Writedate) {
-				this.p_Writedate = p_Writedate;
+			public void setP_setItem(String p_setItem) {
+				this.p_setItem = p_setItem;
+			}
+
+			public int getP_setPrice() {
+				return p_setPrice;
+			}
+
+			public void setP_setPrice(int p_setPrice) {
+				this.p_setPrice = p_setPrice;
+			}
+
+			public Date getP_writedate() {
+				return p_writedate;
+			}
+
+			public void setP_writedate(Date p_writedate) {
+				this.p_writedate = p_writedate;
 			}
 			
 			
 
+			
+			
+			
+			
 
 
 }

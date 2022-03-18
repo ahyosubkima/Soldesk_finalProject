@@ -35,12 +35,11 @@ public class PlanController {
 
 	}
 	
-	
-	@RequestMapping(value = "/plan.detailPlanner", method = RequestMethod.POST)
-	public String planDetail(HttpServletRequest req) {
+	@RequestMapping(value = "/plan.writeReg", method = RequestMethod.POST)
+	public String planWriteOK(HttpServletRequest req) {
 		
 		TokenMaker.make(req);
-		pDAO.upload(req);
+		pDAO.uploadPlan(req);
 		pDAO.getAllPlan(req);
 		
 		req.setAttribute("contentPage", "plan/planMain.jsp");
@@ -49,26 +48,19 @@ public class PlanController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	@RequestMapping(value = "/domestic.getjson", method = RequestMethod.GET,
-			produces = "application/json; charset=utf-8")
-	public String planJson(HttpServletRequest req) {
+	@RequestMapping(value = "/plan.detailPlanner", method = RequestMethod.GET)
+	public String planDetail(HttpServletRequest req) {
 		
 		TokenMaker.make(req);
-		req.setAttribute("contentPage", "plan/planWrite.jsp.jsp");
+		pDAO.getPlan(req);
+		
+		req.setAttribute("contentPage", "plan/planDetail.jsp");
 		
 		return "home";
-
 	}
+	
+	
+	
 	
 	
 	

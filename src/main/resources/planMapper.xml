@@ -2,23 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team2.danim.plan.PlanMapper">
 
-
-<insert id="upload" parameterType="com.team2.danim.plan.Plan_write">
+<!-- 게시물 등록 -->
+<insert id="uploadPlan" parameterType="com.team2.danim.plan.Plan_write">
 	insert into plan_write values(plan_write_seq.nextval,
 	#{p_writer},
 	#{p_title},
-	#{p_TitleFile},
+	#{p_titleFile},
 	#{p_startDate},
 	#{p_person},
 	#{p_place},
 	#{p_budget},
 	#{p_freeWrite},
+	#{p_setItem},
+	#{p_setPrice},
 	sysdate)
 </insert>
 
-
+<!-- 게시물 전체 조회 -->
 <select id="getAllPlan" resultType="com.team2.danim.plan.Plan_write">
-	select * from plan_write
+	select * from plan_write order by p_writedate desc
+</select>
+
+<!-- 게시물 한개 조회 -->
+<select id="getPlan" resultType="com.team2.danim.plan.Plan_write">
+	select * from plan_write where p_no = #{p_no}
 </select>
 
 

@@ -157,6 +157,19 @@ public class CommController {
 		
 	}
 
+	@RequestMapping(value = "/comm_free_reply_update", method = RequestMethod.GET)
+	public String comm_free_reply_update(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr,Comm_free_good cfg) {
+		
+		cDAO.goodFreeCheck(cfg, req, cf);
+		cDAO.freeReplyUpdate(cfr,req);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
+		return "home";
+		
+	}
+
 	@RequestMapping(value = "/comm_video_detail", method = RequestMethod.GET)
 	public String comm_video_detail(HttpServletRequest req,Comm_video cv,Comm_Video_reply cvr,Comm_Video_good cvg) {
 		

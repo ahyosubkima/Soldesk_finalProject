@@ -152,4 +152,6 @@ public interface CommMapper {
 
 	public int goodFreePlus(Comm_free cf);
 
+	public int freeReplyUpdate(Comm_free_reply cfr);
+
 }

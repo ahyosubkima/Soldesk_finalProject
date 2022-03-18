@@ -1361,6 +1361,23 @@ try {
 	
 }
 
+public void freeReplyUpdate(Comm_free_reply cfr, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("cfr_no"));
+		System.out.println(req.getParameter("newReply"));
+		cfr.setCfr_no(Integer.parseInt(req.getParameter("cfr_no")));
+		cfr.setCfr_txt(req.getParameter("newReply"));
+		
+		if (ss.getMapper(CommMapper.class).freeReplyUpdate(cfr)==1) {
+			System.out.println("댓글수정성공");
+		}
+	
+} catch (Exception e) {
+	e.printStackTrace();
+}	
+	
+}
+
 
 }
 

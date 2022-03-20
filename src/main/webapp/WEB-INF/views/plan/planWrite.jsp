@@ -69,7 +69,7 @@
 		<div id="p_DayWriteAll" >
 		<div id="p_dayWriteDiv">
 		
-		
+		<!-- 
 		<table border="1" id="setBudgetTb">
 		<tr>
 		<td colspan="2" style="height: 70px;"><div id="p_setTitle" class="p_setTitle">하얏트 리젠시 나하 오키나와 리젠시 클럽 라운지</div></td>
@@ -100,7 +100,7 @@
 		<td style="width: 40px; height:35px; font-size: 12pt;">금액</td>
 		<td><input type="number" style="width: 80px;" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td>
 		</tr>
-		</table>
+		</table> -->
 		
 		
 		</div>

@@ -13,6 +13,7 @@
 	#{p_place},
 	#{p_budget},
 	#{p_freeWrite},
+	#{p_setTitle},
 	#{p_setItem},
 	#{p_setPrice},
 	sysdate)

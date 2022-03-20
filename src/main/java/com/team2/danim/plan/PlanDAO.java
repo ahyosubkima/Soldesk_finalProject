@@ -67,7 +67,17 @@ public class PlanDAO {
 				p_setItem += p_setItems[i] + ",";
 			}
 			
-			int p_setPrice = Integer.parseInt(mr.getParameter("p_setPrice"));
+			String[] p_setTitles = mr.getParameterValues("p_setTitle");	
+			String p_setTitle = new String();
+			for (int i = 0; i < p_setTitles.length; i++) {
+				p_setTitle += p_setTitles[i] + ",";
+			}
+			
+			String[] p_setPrices = mr.getParameterValues("p_setPrice");
+			String p_setPrice = new String();
+			for (int i = 0; i < p_setPrices.length; i++) {
+				p_setPrice += p_setPrices[i]+",";
+			}
 			
 			Plan_write pw = new Plan_write();
 			pw.setP_writer(p_writer);
@@ -78,8 +88,10 @@ public class PlanDAO {
 			pw.setP_place(p_place);
 			pw.setP_budget(p_budget);
 			pw.setP_freeWrite(p_freeWrite);
+			pw.setP_setTitle(p_setTitle);
 			pw.setP_setItem(p_setItem);
 			pw.setP_setPrice(p_setPrice);
+			
 			
 			System.out.println("작성자p_writer::   " + p_writer);
 			System.out.println("제목p_title::   " + p_title);
@@ -89,6 +101,7 @@ public class PlanDAO {
 			System.out.println("장소p_place::   " + p_place);
 			System.out.println("총예산p_budget::   " + p_budget);
 			System.out.println("한마디p_freeWrite::   " + p_freeWrite);
+			System.out.println("예산 상품제목p_setTitle::    " + p_setTitle);
 			System.out.println("예산 상품명들p_setItem::    " + p_setItem);
 			System.out.println("상품명당 금액들p_setPrice::    " + p_setPrice);
 			

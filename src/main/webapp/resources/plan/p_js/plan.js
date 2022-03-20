@@ -9,11 +9,11 @@ function dayImportant(){
 		let placeName = $(this).text();
 		
 		$("#p_dayWriteDiv").before('<table border="1" id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;">' + placeName + '</td></tr>'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea name="p_setTitle">' + placeName + '</textarea></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">상품명:</td>'+
-				'<td><input style="width: 130px;"></td></tr>'+
+				'<td><input style="width: 130px;" name="p_setItem"></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
+				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr></table>');
 	});
 }
 
@@ -24,11 +24,11 @@ function addTrans(){
 	$(document).on("click", "#p_addTransportation", function() {
 		
 		$("#p_dayWriteDiv").before('<table border="1" id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" style="width: 180px; height: 60px;" placeholder="교통편을 적어주세요"></textarea></td></tr>'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="교통편을 적어주세요"></textarea></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">내용명:</td>'+
-				'<td><input style="width: 130px;"></td></tr>'+
+				'<td><input style="width: 130px;" name="p_setItem"></td></tr>'+
 				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
+				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr></table>');
 	});
 	//세줄 이상 금지
 	$(document).on("keydown", "#setBudgetTxtarea", function() {

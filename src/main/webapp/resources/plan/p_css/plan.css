@@ -193,6 +193,10 @@ ul li{
 	resize: none;
 }
 
+#p_BudgetAll{
+	text-align: center;
+}
+
 #p_budget:focus{
 	outline: none;
 }

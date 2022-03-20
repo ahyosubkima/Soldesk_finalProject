@@ -14,17 +14,18 @@ public class Plan_write {
 			private String p_place;
 			private String p_budget;
 			private String p_freeWrite;
+			private String p_setTitle;
 			private String p_setItem;
-			private int p_setPrice;
+			private String p_setPrice;
 			private Date p_writedate;
-			
+
 			public Plan_write() {
 				// TODO Auto-generated constructor stub
 			}
 
 			public Plan_write(int p_no, String p_writer, String p_title, String p_titleFile, Date p_startDate,
-					int p_person, String p_place, String p_budget, String p_freeWrite, String p_setItem, int p_setPrice,
-					Date p_writedate) {
+					int p_person, String p_place, String p_budget, String p_freeWrite, String p_setTitle,
+					String p_setItem, String p_setPrice, Date p_writedate) {
 				super();
 				this.p_no = p_no;
 				this.p_writer = p_writer;
@@ -35,6 +36,7 @@ public class Plan_write {
 				this.p_place = p_place;
 				this.p_budget = p_budget;
 				this.p_freeWrite = p_freeWrite;
+				this.p_setTitle = p_setTitle;
 				this.p_setItem = p_setItem;
 				this.p_setPrice = p_setPrice;
 				this.p_writedate = p_writedate;
@@ -112,6 +114,14 @@ public class Plan_write {
 				this.p_freeWrite = p_freeWrite;
 			}
 
+			public String getP_setTitle() {
+				return p_setTitle;
+			}
+
+			public void setP_setTitle(String p_setTitle) {
+				this.p_setTitle = p_setTitle;
+			}
+
 			public String getP_setItem() {
 				return p_setItem;
 			}
@@ -120,11 +130,11 @@ public class Plan_write {
 				this.p_setItem = p_setItem;
 			}
 
-			public int getP_setPrice() {
+			public String getP_setPrice() {
 				return p_setPrice;
 			}
 
-			public void setP_setPrice(int p_setPrice) {
+			public void setP_setPrice(String p_setPrice) {
 				this.p_setPrice = p_setPrice;
 			}
 
@@ -137,7 +147,6 @@ public class Plan_write {
 			}
 			
 			
-
 			
 			
 			

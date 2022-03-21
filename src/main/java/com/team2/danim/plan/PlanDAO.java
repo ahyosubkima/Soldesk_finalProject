@@ -1,14 +1,8 @@
 package com.team2.danim.plan;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.team2.danim.comm.CommMapper;
 
 @Service
 public class PlanDAO {
@@ -49,15 +42,23 @@ public class PlanDAO {
 		}
 
 		try {
-			
+			//값가져오기
 			String p_writer = mr.getParameter("p_writer");
 			String p_title = mr.getParameter("p_title");
 			String p_titleFile = mr.getFilesystemName("p_titleFile");
 			p_titleFile = URLEncoder.encode(p_titleFile, "utf-8");
+			int p_days = Integer.parseInt(mr.getParameter("p_days"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			String p_startDate = mr.getParameter("p_startDate");
 			int p_person = Integer.parseInt(mr.getParameter("p_person"));
 			String p_place = mr.getParameter("p_place");
+			
+			String[] p_plans = mr.getParameterValues("p_plan");
+			String p_plan = new String();
+			for (int i = 0; i < p_plans.length; i++) {
+				p_plan += p_plans[i] + ",";
+			}
+			
 			String p_budget = mr.getParameter("p_budget");
 			String p_freeWrite = mr.getParameter("p_freeWrite");
 			
@@ -79,41 +80,44 @@ public class PlanDAO {
 				p_setPrice += p_setPrices[i]+",";
 			}
 			
+			//빈에 담기
 			Plan_write pw = new Plan_write();
 			pw.setP_writer(p_writer);
 			pw.setP_title(p_title);
 			pw.setP_titleFile(p_titleFile.replace("+", " "));
+			pw.setP_days(p_days);
 			pw.setP_startDate(sdf.parse(p_startDate));
 			pw.setP_person(p_person);
 			pw.setP_place(p_place);
+			pw.setP_plan(p_plan);
 			pw.setP_budget(p_budget);
 			pw.setP_freeWrite(p_freeWrite);
 			pw.setP_setTitle(p_setTitle);
 			pw.setP_setItem(p_setItem);
 			pw.setP_setPrice(p_setPrice);
 			
-			
-			System.out.println("작성자p_writer::   " + p_writer);
-			System.out.println("제목p_title::   " + p_title);
-			System.out.println("사진p_titleFile::   " + p_titleFile);
-			System.out.println("출발일p_startDate::   " + p_startDate);
-			System.out.println("사람수p_person::   " + p_person);
-			System.out.println("장소p_place::   " + p_place);
-			System.out.println("총예산p_budget::   " + p_budget);
-			System.out.println("한마디p_freeWrite::   " + p_freeWrite);
-			System.out.println("예산 상품제목p_setTitle::    " + p_setTitle);
-			System.out.println("예산 상품명들p_setItem::    " + p_setItem);
-			System.out.println("상품명당 금액들p_setPrice::    " + p_setPrice);
+			//확인용
+			System.out.println("작성자(p_writer)::   " + p_writer);
+			System.out.println("제목(p_title)::   " + p_title);
+			System.out.println("사진(p_titleFile)::   " + p_titleFile);
+			System.out.println("박수(p_days)::   " + p_days);
+			System.out.println("출발일(p_startDate)::   " + p_startDate);
+			System.out.println("사람수(p_person)::   " + p_person);
+			System.out.println("장소(p_place)::   " + p_place);
+			System.out.println("일정(p_plan)::   " + p_plan);
+			System.out.println("총예산(p_budget)::   " + p_budget);
+			System.out.println("한마디(p_freeWrite)::   " + p_freeWrite);
+			System.out.println("예산 상품제목(p_setTitle)::    " + p_setTitle);
+			System.out.println("예산 상품명들(p_setItem)::    " + p_setItem);
+			System.out.println("상품명당 금액들(p_setPrice)::    " + p_setPrice);
 			
 			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
 				req.getSession().setAttribute("successToken", token);
-				req.setAttribute("result", "작성 성공");
 				System.out.println("작성 성공");
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			req.setAttribute("result", "작성 실패");
 			System.out.println("작성 실패");
 		}
 

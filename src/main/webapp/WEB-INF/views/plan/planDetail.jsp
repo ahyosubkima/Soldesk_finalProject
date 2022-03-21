@@ -16,47 +16,56 @@
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
 </head>
 <body>
-<h1>${result}</h1>
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
-<!-- 일정 기본정보 등록 -->
-	<table border="1" id="p_write">
 
+<!-- 일전 기본정보 -->
+<table id="p_write">
 		<tr>
-			<td rowspan="3">플래너 표지 사진 업로드 <p> </td>
-			<td colspan="2">제목:여기 ${plan.p_title } </td>
+			<td rowspan="3" style="width: 300px; text-align: center;">
+				<img src="resources/plan/p_file/${plan.p_titleFile }" id="p_detailFile">
+			</td>
+			<td colspan="2"><h3>플래너 제목</h3><div style="margin-top: 10px;">${plan.p_title }</div></td>
 		</tr>
 		
 		<tr>
-			<td>출발:  </td>
-			<td>인원:  </td>
-		</tr>
-
-		<tr>
-			<td>장소:  </td>
-		</tr>
-
-		<tr>
-			<td colspan="3">간단 경로:<div id="">경로보여주는 곳${result}</div> </td>
-		</tr>
-
-		<tr>
-			<td colspan="3">
-					상세: 
+			<td style="width: 250px;"><h3>출발 날짜</h3>
+				<div style="margin-top: 10px;">
+				<fmt:formatDate value="${plan.p_startDate }" pattern="yyyy년 MM월 dd일"/>
+					&nbsp;&nbsp;${plan.p_days }박${plan.p_days+1}일
+				</div>     
 			</td>
+			<td><h3>여행 인원</h3><div style="margin-top: 10px;">${plan.p_person }&nbsp;명</div> </td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><h3>여행 장소</h3><div style="margin-top: 10px;">${plan.p_place }</div></td>
+		</tr>
+</table>
+
+
+
+<!-- 여행 전체일정 -->
+<div style="margin: auto; width: 800px; text-align: center; font-size: 20pt; margin-top: 60px;">📅 여행 전체일정</div>
+<div style="margin: auto; width: 800px; margin-top: 20px;">
+	<table>
+		<tr>
+			<c:set var="plan" value="${fn:split(plan.p_plan,',') }"></c:set>
+			<c:forEach var="plan" items="${plan }">
+			<td colspan="2">
+			<div id="mapName">${plan }</div>
+			</td>
+			</c:forEach>
 		</tr>
 	</table>
-
-
+</div>
 
 
 	
-<!-- 일정 상세등록 -->
-	<div id="p_DayWriteTitle"><span>💰 필요 예산</span></div>
-	
-		<div id="#p_detailBudgetAll">
+<!-- 필요 예산 상세 -->
+<div id="p_DayWriteTitle"><span>💰 여행 예산</span></div>
+	<div id="#p_detailBudgetAll">
 	<div id="p_detailBudgetDiv">
 
-	
 	<c:set var="title" value="${fn:split(plan.p_setTitle,',') }"></c:set>
 	<c:set var="item" value="${fn:split(plan.p_setItem,',') }"></c:set>
 	<c:set var="price" value="${fn:split(plan.p_setPrice,',') }"></c:set>
@@ -81,40 +90,32 @@
 	</c:forEach>
 		</tr>
 	</table>
-	
-	</div>
-	</div>
-	
-	
-	
-	
-	
-	
+</div>
+</div>
+
+
+
+
+
 	
 	
-<!-- 예산결과 보여주는 곳 -->
-	<span id="p_openBudget" onclick="p_openBudget()">💲예산결과 ▼</span>
-	<div id="#p_detailBudgetAll">
-	<div id="p_detailBudgetDiv">
-	
-	<table border="1" id="p_detailBudget">
-			
+<!-- 예산 결과 보여주는 곳 -->
+	<div id="p_DayWriteTitle">💲예산 결과</div>
+	<table border="1" id="p_detailBudgetDetail">
 		<tr>
-			<td id="p_writeBudgetWrite"></td>
+			<td id="p_writeBudgetWrite"><textarea id="p_budget">${plan.p_budget }</textarea></td>
 		</tr>
 	</table>
-	</div>
-	</div>
 
 
 	
 <!-- 자유 한마디 -->
 	<div id="p_FreeWordAll">
 	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
-	<table border="1" id="p_writeFree">
+	<table border="1" id="p_writeFreeDetail">
 		
 		<tr>
-			<td id="p_writeFreeWrite">${plan.p_freeWrite }</td>
+			<td id="p_writeFreeWriteDetail">${plan.p_freeWrite }</td>
 		</tr>
 	</table>
 	</div>

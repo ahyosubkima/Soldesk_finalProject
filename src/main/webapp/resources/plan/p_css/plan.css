@@ -65,6 +65,45 @@ ul li{
 	margin: auto;
 }
 
+#map{
+	width: 800px;
+	height: 300px;
+	border: 2px solid gray;
+}
+
+#p_search{
+	width: 200px;
+	height: 30px;
+	border: none;
+	border-bottom: 1px solid #404040;
+	text-align: center;
+}
+
+#p_search:focus{
+	outline: none;
+}
+
+#p_search::placeholder{
+	text-align: center;
+}
+
+#p_searchBtn{
+	width: 40px;
+	height: 25px;
+	margin-top: 5px;
+	border:none;
+	background-color: transparent;
+	font-size: 10pt;
+}
+
+
+#p_mapSearchDiv{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
 #p_writeBudget{
 	/* display: none; */
 	margin: auto;
@@ -77,7 +116,28 @@ ul li{
     background-clip: content-box, border-box;
 }
 
+#p_preview{
+	width: 200px;
+	height: 250px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
 #p_writeFree{
+	margin: auto;
+	margin-top: 30px;
+	width: 800px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#p_writeFreeDetail{
 	display: none;
 	margin: auto;
 	margin-top: 30px;
@@ -97,7 +157,7 @@ ul li{
 }
 
 
-#p_writeFreeWrite{
+#p_writeFreeWriteDetail{
 	height: 150px;
 	font-size: 15pt;
 }
@@ -120,6 +180,10 @@ ul li{
 	font-size: 13pt;
 }
 
+#p_freeWrite:focus{
+	outline: none;
+}
+
 #textLengthCheck{
 	font-size: 10pt;
     width: 100px;
@@ -132,12 +196,23 @@ ul li{
 #p_writeBudgetWrite{
 	height: 150px;
 	font-size: 15pt;
-	text-align: left;
+	text-align: center;
 }
 
 
 #p_detailBudget{
 	display: none;
+	margin: auto;
+	margin-top: 30px;
+	width: 800px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#p_detailBudgetDetail{
 	margin: auto;
 	margin-top: 30px;
 	width: 800px;
@@ -195,6 +270,7 @@ ul li{
 
 #p_BudgetAll{
 	text-align: center;
+	margin-top: 30px;
 }
 
 #p_budget:focus{
@@ -216,6 +292,7 @@ ul li{
 	font-size: 20pt;
 	cursor: pointer;
 }
+
 
 
 /* 테스트 */
@@ -277,18 +354,44 @@ ul li{
 	margin-bottom: 15px;
 	word-break: keep-all;
 	font-size: 12pt;
+	border: 1px solid #404040;
+	border-radius: 5px;
 }
 
 #setBudgetTb textarea{
 	border: none;
     resize: none;
     font-size: 12pt;
+    text-align: center; 
+    padding-top: 15px;
 }
 
 #setBudgetTb textarea::placeholder{
 	margin: auto;
 	text-align: center;
 	font-size: 12pt;
+}
+
+#setBudgetTb textarea:focus{
+	outline: none;
+}
+
+#setBudgetTb input:focus{
+	outline: none;
+}
+
+#p_setPrice{
+	width: 130px;
+	border: none;
+	border-bottom: 1px solid #404040;
+	text-align: left;
+}
+
+#p_setItem{
+	width: 130px;
+	border: none;
+	border-bottom: 1px solid #404040;
+	text-align: left;
 }
 
 #p_dayWrite{
@@ -303,12 +406,74 @@ ul li{
 	display: block;
 }
 
+#p_titleFile{
+	text-align: center;
+	padding-left: 60px;
+}
 
-#i_am_test{
+#p_title{
+	height: 30px;
+	width: 150px;
+	border: none;
+	border-bottom: 2px solid #404040;
+	color: #404040;
+	padding-top: 15px;
+	color: #404040;
+	font-size: 12pt;
+}
+
+#p_title:focus{
+	outline: none;
+}
+
+#p_startDate{
+	height: 30px;
+	width: 150px;
+	border: none;
+	border-bottom: 2px solid #404040;
+	color: #404040;
+	padding-top: 15px;
+	font-size: 12pt;
+}
+
+#p_startDate:focus{
+	outline: none;
+}
+
+#p_person{
+	height: 30px;
+	width: 50px;
+	border: none;
+	border-bottom: 2px solid #404040;
+	color: #404040;
+	padding-top: 15px;
+	font-size: 12pt;
+	text-align: right;
+}
+
+#p_person:focus{
+	outline: none;
+}
+
+#p_place{
+	height: 30px;
+	width: 150px;
+	border: none;
+	border-bottom: 2px solid #404040;
+	color: #404040;
+	padding-top: 15px;
+	font-size: 12pt;
+}
+
+#p_place:focus{
+	outline: none;
+}
+
+
+#mapName{
 	width: 150px;
 	height: 70px;
 	word-break: keep-all;
-	font-size: 13pt;
 	text-align: center;
 	display: table-cell;
     vertical-align: middle;
@@ -320,10 +485,31 @@ ul li{
     background-clip: content-box, border-box;
 }
 
-#i_am_test_all{
+#mapNameAll{
 	float: left;
 	font-size: 9pt;
 	text-align: center;
+	margin-left: 30px;
+	margin-top: 20px;
+	width: 150px;
+	height: 100px;
+	word-break: keep-all;
+}
+
+#p_plan{
+	overflow: hidden;
+	font-size: 11pt;
+	padding-top: 10px;
+	width: 150px;
+	height: 50px;
+	resize: none;
+	text-align: center;
+	border-radius: 20px;
+	border: none;
+}
+
+#p_plan:focus{
+	outline: none;
 }
 
 #p_addTransportation{
@@ -342,12 +528,17 @@ ul li{
 }
 
 
-
-/* #p_openDayWrite::after {
-    content:"";
-    display:block;
-    clear:both;
+#p_detailFile{
+	width: 180px;
+	height: 250px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#444444, #444444), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    margin: 5px;
 }
-  */
+
+
 
 

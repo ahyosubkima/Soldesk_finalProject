@@ -96,7 +96,8 @@ public class MemberDAO {
 			// TODO: handle exception
 		}
 	}
-
+	
+	//정보 수정
 	public void updateMember(Member m, HttpServletRequest req) {
 		try {
 			String reg_id = req.getParameter("dm_id");
@@ -121,13 +122,64 @@ public class MemberDAO {
 			System.out.println("수정 실패");
 		}
 	}
-
+	
 	public int userIdCheck(String dm_id) {
 		
 		memberMapper = ss.getMapper(MemberMapper.class);
 		
 		return memberMapper.checkOverId(dm_id);
 	}
+
+	public int userNickCheck(String dm_nickname) {
+
+		memberMapper = ss.getMapper(MemberMapper.class);
+		
+		return memberMapper.checkOverNick(dm_nickname);
+	}
+
+	public int userMailCheck(String dm_email) {
+		
+		memberMapper  = ss.getMapper(MemberMapper.class);
+				
+		return memberMapper.checkOverMail(dm_email);
+	}
+
+	public int userIdExist(String dm_id) {
+		
+		memberMapper = ss.getMapper(MemberMapper.class);
+		Member m = memberMapper.checkExistId(dm_id);
+		
+		if (m != null) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	public int userPwExist(String dm_id, String actual_pw) {
+		
+		Member m = memberMapper.checkExistId(dm_id);
+		String dm_pw = Sha256.encodeSha256(actual_pw);
+		
+		if (m != null) {
+			if (m.getDm_pw().equals(dm_pw)) {
+				return 1;
+			} else {
+				return 0;
+			}
+			
+		} return 0;
+		
+	}
+
+	public String findId(String dm_email) {
+		
+		memberMapper = ss.getMapper(MemberMapper.class);
+		
+		return memberMapper.findId(dm_email);
+	}
+	
+	
 	
 
 

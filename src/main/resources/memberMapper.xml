@@ -11,7 +11,7 @@
 		parameterType="com.team2.danim.member.Member">
 		insert into danim_member
 		values (#{dm_id}, #{dm_pw},
-		#{dm_nickname}, #{dm_email}, #{dm_addr, jdbcType=VARCHAR}, #{dm_photo, jdbcType=VARCHAR}, #{dm_isAdmin})
+		#{dm_nickname}, #{dm_email}, #{dm_addr, jdbcType=VARCHAR}, #{dm_photo, jdbcType=VARCHAR}, #{dm_isAdmin, jdbcType=VARCHAR})
 	</insert>
 	
 	<delete id="deleteMember"
@@ -29,5 +29,20 @@
 	<select id="checkOverId" parameterType="String" resultType="int">
 	select count(*) from danim_member where dm_id=#{dm_id}
 	</select>
-
+	
+	<select id="checkOverNick" parameterType="String" resultType="int">
+	select count(*) from danim_member where dm_nickname=#{dm_nickname}
+	</select>
+	
+	<select id="checkOverMail" parameterType="String" resultType="int">
+	select count(*) from danim_member where dm_email=#{dm_email}
+	</select>
+	
+	<select id="checkExistId" parameterType="String" resultType="com.team2.danim.member.Member">
+	select * from danim_member where dm_id=#{dm_id}
+	</select>
+	
+	<select id="findId" parameterType="String" resultType="String">
+	select dm_id from danim_member where dm_email=#{dm_email}
+	</select>
 </mapper>

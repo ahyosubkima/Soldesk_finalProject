@@ -36,9 +36,10 @@ pd_p_no number(3) not null
 
 -------------------------------------------------------
 create table plan_budget(
-p_setTitle 
-p_setItemName
-p_setPrice
+pb_no
+pb_setTitle 
+pb_setItemName
+pb_setPrice
 );
 
 

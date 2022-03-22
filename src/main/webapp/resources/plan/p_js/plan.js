@@ -159,8 +159,8 @@ function qqq() {
 	
 /* 여행플래너 제작 표지이미지 미리보기 */	
 function previewImg(){
-
-	document.getElementById("p_titleFile").onchange = function () {
+	$(document).ready(function () {
+	document.getElementById("p_titleFiles").onchange = function () {
 	    var reader = new FileReader();
 
 	    reader.onload = function (e) {
@@ -169,6 +169,7 @@ function previewImg(){
 
 	    reader.readAsDataURL(this.files[0]);
 	};
+	});
 }
 
 
@@ -206,21 +207,63 @@ function deletePlanBudget() {
 
 
 
+/* 작성페이지 null검사 */
 function p_submit() {
 	$(document).ready(function () {
 	$(document).on("click", ".p_submit", function () {
 		
 	if ($("#p_title").val() == "") {
-		alert('플래너 제목을 적어주세요!')
+		alert('플래너 제목을 작성해주세요!')
 		return false;
 	}else if ($("#p_startDate").val() == "") {
 		alert('출발날짜를 선택해주세요!')
 		return false;
-	}
+	}else if ($("#p_person").val() == "") {
+		alert('여행인원을 작성해주세요!')
+		return false;
+	}else if ($("#p_place").val() == "") {
+		alert('여행장소를 작성해주세요!')
+		return false;
+	}else if ($("#p_titleFiles").val() == "") {
+		alert('플래너 사진을 업로드해주세요!')
+		return false;
+	}else if ($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
+		alert('여행 예산을 하나이상 작성해주세요!')
+		return false;
+	} 
+	
+	
 	 });
 	});
 	
 }
+
+/* 메인페이지 작성버튼 null검사 */
+function p_writesubmit() {
+	
+	$(document).ready(function () {
+	$(document).on("click", "#p_writePlannerBtn", function () {
+		
+		if ($("#p_days").val() == "") {
+			alert('여행 일정을 적어주세요')
+			return false;
+		}else {
+			return true;
+		}
+	 });
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -235,6 +278,7 @@ $(function() {
 	lineLimit();
 	deletePlanBudget();
 	p_submit();
+	p_writesubmit();
 });
 
 

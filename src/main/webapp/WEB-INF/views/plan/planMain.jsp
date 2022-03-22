@@ -11,17 +11,16 @@
 </head>
 <body>
 <!-- 플래너 작성 버튼 -->
-<c:choose>
-<c:when test="${sessionScope.loginMember != null}">
 	<form action="plan.writePlanner">
-		<table border="1" id="p_mainWrite">
+		<table id="p_mainWrite">
+		<tr><td><h3>🏃‍♂️플래너 작성🏃‍♀️</h3></td></tr>
 		
 			<tr>
-				<td>여행일정<input type="number" name="p_days"> 일 </td>
+				<td>총 몇일 여행하시나요?&nbsp;&nbsp;<input type="number" name="p_days" id="p_days"> 일 </td>
 			</tr>
 			<tr>
 				<td colspan="2">
-					<button>나만의 플래너 제작</button>
+					<button id="p_writePlannerBtn" class="p_writePlannerBtn">나만의 플래너 제작</button>
 					 <!-- input hidden으로 아이디정보 가져가기 -->
 					 <input type="hidden" name="p_writer" value="${sessionScope.loginMember.dm_id }">
 					 <input type="hidden" name="p_nickname" value="${sessionScope.loginMember.dm_nickname }">
@@ -29,17 +28,24 @@
 			</tr>
 		</table>
 	</form>
-</c:when>
-<c:when test="${sessionScope.loginMember == null}">
-
-	<table>
-		<tr>
-			<td>로그인 먼저 할까요?</td>
-		</tr>
-	</table>
-
-</c:when>
-</c:choose>
+	
+	
+	<div id="">
+			<table id="" >
+				<tr>
+					<td style="height: 25px; background-color: transparent;"></td>
+				</tr>
+				
+				<tr>
+				<td align="center" colspan="3"><select id="">
+							<option value="">전체</option>
+							<option value="">여행제목</option>
+							<option value="">여행장소</option>
+					</select> <input id="">
+						<button onclick="">검색</button></td>
+				</tr>
+			</table>
+		</div>
 
 	<!-- 등록된 플래너 전체 조회-->
 	<div id="p_mainDetailDiv">

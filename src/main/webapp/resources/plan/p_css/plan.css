@@ -26,11 +26,36 @@
 }
 
 #p_mainWrite{
+	text-align:center;
 	width: 500px;
-	height: 200px;
+	height: 150px;
 	margin: auto;
 	margin-top: 50px;
 	margin-bottom: 50px;
+	border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#p_days{
+	width: 60px;
+	border: none;
+	border-bottom: 1px solid #404040;
+	text-align: right;
+	
+}
+
+#p_writePlannerBtn{
+	width: 150px;
+	height: 30px;
+	border: 1px dotted #404040;
+	background-color: transparent;
+}
+
+#p_days:focus{
+	outline: none;
 }
 
 
@@ -340,6 +365,7 @@ ul li{
 	width: 800px;
 	display:inline-block;
 	zoom:1;
+	overflow: scroll;
 	
 }
 
@@ -357,6 +383,34 @@ ul li{
 	border: 1px solid #404040;
 	border-radius: 5px;
 }
+
+#BudgetTbDetail {
+	text-align: center; 
+	width: 500px;
+	height: 150px;
+	margin-top: 20px;
+	margin-left: 20px;
+	margin-bottom: 15px;
+	word-break: keep-all;
+	font-size: 12pt;
+	border: 1px solid #404040;
+	border-radius: 5px;
+}
+
+#BudgetTdDetail_1{
+	width: 250px;
+	height: 70px;
+	border-right: 1px solid #404040;
+	border-bottom: 1px solid #404040;
+}
+
+#BudgetTdDetail_2{
+	width: 250px;
+	height: 70px;
+	border-right: 1px solid #404040;
+}
+
+
 
 #setBudgetTb textarea{
 	border: none;
@@ -406,7 +460,7 @@ ul li{
 	display: block;
 }
 
-#p_titleFile{
+#p_titleFiles{
 	text-align: center;
 	padding-left: 60px;
 }

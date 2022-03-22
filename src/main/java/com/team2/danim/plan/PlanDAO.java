@@ -18,6 +18,7 @@ public class PlanDAO {
 
 	@Autowired
 	private SqlSession ss;
+	
 
 	public void uploadPlan(HttpServletRequest req) {
 
@@ -96,6 +97,13 @@ public class PlanDAO {
 			pw.setP_setItem(p_setItem);
 			pw.setP_setPrice(p_setPrice);
 			
+			//빈2
+			Plan_budget pb = new Plan_budget();
+			pb.setP_setTitle(p_setTitle);
+			pb.setP_setItem(p_setItem);
+			pb.setP_setPrice(p_setPrice);
+			
+			
 			//확인용
 			System.out.println("작성자(p_writer)::   " + p_writer);
 			System.out.println("제목(p_title)::   " + p_title);
@@ -113,6 +121,7 @@ public class PlanDAO {
 			
 			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
 				req.getSession().setAttribute("successToken", token);
+				req.setAttribute("pbs", pb);
 				System.out.println("작성 성공");
 			}
 
@@ -148,10 +157,7 @@ public class PlanDAO {
 		
 		
 	}
-		
-		
-		
-	
+
 	
 	
 	

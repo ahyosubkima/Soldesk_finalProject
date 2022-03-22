@@ -47,15 +47,15 @@
 <!-- 여행 전체일정 -->
 <div style="margin: auto; width: 800px; text-align: center; font-size: 20pt; margin-top: 60px;">📅 여행 전체일정</div>
 <div style="margin: auto; width: 800px; margin-top: 20px;">
-	<table>
-		<tr>
 			<c:set var="plan" value="${fn:split(plan.p_plan,',') }"></c:set>
-			<c:forEach var="plan" items="${plan }">
+	<table style="margin: auto;">
+			<c:forEach var="plan" items="${plan }" varStatus="p">
+		<c:if test="${p.index%4  == 1 }"><tr></c:if>
 			<td colspan="2">
 			<div id="mapName">${plan }</div>
 			</td>
+		<c:if test="${p.index%4  == 0}"></tr></c:if>
 			</c:forEach>
-		</tr>
 	</table>
 </div>
 
@@ -63,37 +63,38 @@
 	
 <!-- 필요 예산 상세 -->
 <div id="p_DayWriteTitle"><span>💰 여행 예산</span></div>
-	<div id="#p_detailBudgetAll">
-	<div id="p_detailBudgetDiv">
 
-	<c:set var="title" value="${fn:split(plan.p_setTitle,',') }"></c:set>
-	<c:set var="item" value="${fn:split(plan.p_setItem,',') }"></c:set>
-	<c:set var="price" value="${fn:split(plan.p_setPrice,',') }"></c:set>
-	<table border="1" id="setBudgetTb">
+
+
+<div id="p_openDayWrite">
+<div id="confirmContent"><div id="p_DayWriteAll"><div id="p_dayWriteDiv">
+
+		<table id="BudgetTbDetail">
 		<tr>
-		<c:forEach var="title" items="${title }">
-		<td colspan="2" style="height: 70px;"><div id="p_setTitle">${title }</div></td>
-	</c:forEach>	
+<c:forEach var="p_setTitle" items="${fn:split(plan.p_setTitle,',') }">
+		<td id="BudgetTdDetail_1">${p_setTitle }</td>
+</c:forEach>
 		</tr>
 		
 		<tr>
-		<c:forEach var="item" items="${item }">
-		<td style="width: 50px; height:35px; font-size: 12pt;">상품명</td>
-		<td>${item }</td>
+<c:forEach var="p_setItem" items="${fn:split(plan.p_setItem,',') }">
+		<td id="BudgetTdDetail_1">${p_setItem }</td>
 </c:forEach>	
 		</tr>
-		
 		<tr>
-		<c:forEach var="price" items="${price }">
-		<td style="width: 50px; height:35px; font-size: 12pt;">금액</td>
-		<td>${price }</td>
-	</c:forEach>
+	<c:forEach var="p_setPrice" items="${fn:split(plan.p_setPrice,',') }">
+		<td id="BudgetTdDetail_2">${p_setPrice }원</td>
+</c:forEach>
 		</tr>
 	</table>
-</div>
-</div>
 
 
+				</div></div></div>
+				
+				
+				
+				
+</div>
 
 
 
@@ -119,6 +120,10 @@
 		</tr>
 	</table>
 	</div>
+	
+	
+	
+	
 	
 
 

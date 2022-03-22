@@ -12,7 +12,6 @@ public interface PlanMapper {
 	
 	//게시물 한개 조회
 	Object getPlan(int p_no);
-	
 
 
 }

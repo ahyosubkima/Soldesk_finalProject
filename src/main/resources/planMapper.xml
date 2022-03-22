@@ -3,7 +3,7 @@
 <mapper namespace="com.team2.danim.plan.PlanMapper">
 
 <!-- 게시물 등록 -->
-<insert id="uploadPlan" parameterType="com.team2.danim.plan.Plan_write">
+<insert id="uploadPlan" parameterType="com.team2.danim.plan.Plan_write" >
 	insert into plan_write values(plan_write_seq.nextval,
 	#{p_writer},
 	#{p_title},

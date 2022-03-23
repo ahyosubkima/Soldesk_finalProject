@@ -28,32 +28,7 @@
 			</tr>
 		</table>
 	</form>
-	
-	
-	<div id="">
-			<table id="" >
-				<tr>
-					<td style="height: 25px; background-color: transparent;"></td>
-				</tr>
-				
-				<tr>
-				<td align="center" colspan="3"><select id="">
-							<option value="">전체</option>
-							<option value="">여행제목</option>
-							<option value="">여행장소</option>
-					</select> <input id="">
-						<button onclick="">검색</button></td>
-				</tr>
-			</table>
-		</div>
 
-
-
-
-<div>
-<input type="hidden" value="1" name="pageNum">
-<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn">
-</div>
 
 <!-- 페이징-->
 <c:if test="${pageMaker != null }">
@@ -80,6 +55,30 @@
 	</table>
 </div>
 </c:if>
+
+
+
+<!-- 검색기능 -->
+<form action="plan.search">
+<div id="" style="text-align: center;">
+			<table id="" style="margin: auto; margin-bottom: 30px;">
+				<tr>
+					<td style="height: 25px; background-color: transparent;"></td>
+				</tr>
+				
+				<tr>
+				<td align="center" colspan="3"><select id="" name="p_searchSelect">
+							<option value="p_searchAll">전체</option>
+							<option value="p_searchTitle">여행제목</option>
+							<option value="p_searchPlace">여행장소</option>
+					</select> <input id="" name="n_searchWrite">
+						<button>검색</button></td>
+				</tr>
+			</table>
+</div>
+</form>
+
+
 
 
 

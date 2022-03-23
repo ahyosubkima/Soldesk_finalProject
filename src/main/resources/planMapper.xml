@@ -56,5 +56,57 @@ select count(*) from plan_write
 </select>
 
 
+<select id="getp_searchTitle" resultType="java.lang.Integer" 
+		parameterType="com.team2.danim.plan.Plan_write">
+		select count(*) from plan_write where p_title LIKE '%'||#{p_title}||'%' 
+</select>
+
+
+<select id="p_searchTitle"
+		resultType="com.team2.danim.plan.Plan_write" parameterType="map">
+		SELECT *
+		from (
+		select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
+		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
+		p_setTitle, p_setItem, p_setPrice, p_writedate
+		from (
+		select * from plan_write where p_title LIKE '%'||#{n_searchWrite}||'%' 
+		order by p_writedate desc
+		)
+		)
+		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		#{amount}
+</select>
+
+
+
+<select id="getPlaceCount"
+		resultType="java.lang.Integer"
+		parameterType="com.team2.danim.plan.Plan_write">
+		select count(*) from plan_write where p_place LIKE
+		'%'||#{p_place}||'%'
+</select>
+
+	<select id="p_searchPlace"
+		resultType="com.team2.danim.plan.Plan_write" parameterType="map">
+		SELECT *
+		from (
+		select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
+		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
+		p_setTitle, p_setItem, p_setPrice, p_writedate
+		from (
+		select * from plan_write where p_place LIKE '%'||#{n_searchWrite}||'%' 
+		order by p_writedate desc
+		)
+		)
+		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		#{amount}
+	</select>	
+
+
+
+
+
+
 
 </mapper>

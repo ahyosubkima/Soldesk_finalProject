@@ -3,6 +3,8 @@ package com.team2.danim.plan;
 import java.io.File;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +14,11 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
+import com.team2.danim.PageMakerDTO2;
 import com.team2.danim.PageMakerDTO3;
+import com.team2.danim.comm.CommMapper;
 
 @Service
 public class PlanDAO {
@@ -188,6 +193,74 @@ public class PlanDAO {
 				e.printStackTrace();
 			}
 		}
+
+	public void searchPlan(Plan_write pw, HttpServletRequest req, Criteria3 cri3) {
+		
+		String p_searchSelect = req.getParameter("p_searchSelect");
+		req.getSession().setAttribute("p_searchSelect", p_searchSelect);
+		
+		System.out.println(req.getSession().getAttribute("p_searchSelect"));
+		
+		if(req.getParameter("pageNum") != null){
+				cri3.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
+			}
+		
+		
+		if (req.getSession().getAttribute("p_searchSelect").equals("p_searchTitle")) {
+			try {
+				String n_searchWrite = req.getParameter("n_searchWrite");
+				System.out.println("검색어:" + n_searchWrite);
+				
+				pw.setP_title(n_searchWrite);
+				
+				int total = ss.getMapper(PlanMapper.class).getp_searchTitle(pw);
+				
+				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
+				req.setAttribute("pageMakerTitle", pageMake);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("n_searchWrite", req.getParameter("n_searchWrite"));
+				map.put("amount",cri3.getAmount()+"");
+				map.put("pageNum",cri3.getPageNum()+"");
+				
+				
+				req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchTitle(map));
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+		}
+		else if (req.getSession().getAttribute("p_searchSelect").equals("p_searchPlace")) {
+			
+			try {
+				System.out.println(req.getParameter("n_searchWrite"));
+				
+				pw.setP_place((req.getParameter("n_searchWrite")));
+				
+				int total = ss.getMapper(PlanMapper.class).getPlaceCount(pw);
+				
+				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
+				req.setAttribute("pageMakerTitle", pageMake);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("n_searchWrite", req.getParameter("n_searchWrite"));
+				map.put("amount",cri3.getAmount()+"");
+				map.put("pageNum",cri3.getPageNum()+"");
+				
+				
+				req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchPlace(map));
+				
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
+			
+		}
+		
+		
+		
+	}
 	
 	
 	

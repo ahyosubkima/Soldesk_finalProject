@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
 import com.team2.danim.TokenMaker;
+import com.team2.danim.comm.Comm_free;
 
 @Controller
 public class PlanController {
@@ -72,6 +74,14 @@ public class PlanController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/plan.search", method = RequestMethod.GET)
+	public String plan_search(HttpServletRequest req,Plan_write pw ,Criteria3 cri3) {
+		
+		pDAO.searchPlan(pw, req, cri3);
+		req.setAttribute("contentPage", "plan/planMain.jsp");
+		
+		return "home";
+	}
 	
 	
 	

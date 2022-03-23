@@ -30,6 +30,8 @@ select * from plan_write;
 
 select * from plan_write where p_no = 103;
 
+
+
 -------------------------------------------------------
 create table plan_dayPlan(
 pd_no number(3) primary key,
@@ -54,4 +56,38 @@ select *
 		)
 		)
 		where rn <= (1 * 6) and rn > (1 -1) * 6
+
+
+select count(*) from plan_write where (p_title LIKE '%'||'장소'||'%' OR p_place LIKE '%'||'장소'||'%')
+select count(*) from plan_write where p_title LIKE '%'||'봄날'||'%' 
+
+select * from plan_write where (p_title LIKE '%'||'장소'||'%' 
+OR p_place LIKE '%'||'장소'||'%')
+order by p_writedate desc
+
+
+
+
+
+SELECT *
+		from (
+		select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
+		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
+		p_setTitle, p_setItem, p_setPrice, p_writedate
+		from (
+		select * from plan_write where (p_title LIKE '%'||#{n_searchWrite}||'%' 
+		OR p_place LIKE '%'||#{n_searchWrite}||'%')
+		order by p_writedate desc
+		)
+		)
+		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		#{amount}
+
+
+select count(*) from plan_write where (p_title LIKE '%'||#{n_searchWrite}||'%' 
+		OR p_place LIKE '%'||#{n_searchWrite}||'%')
+
+
+
+
 

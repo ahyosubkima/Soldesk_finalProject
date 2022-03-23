@@ -20,8 +20,9 @@ p_writedate date not null
 create sequence plan_write_seq;
 
 
-insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목1', '사진', '3' ,'2022-03-02', '2', 
-'장소','플랜' ,'예산','한마디','타이틀1,타이틀2','아이템1,아이템2','1,2',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', '제목2', '사진', '3' ,'2022-03-02', '2', 
+'장소2','플랜' ,'예산','한마디','타이틀1,타이틀2','아이템1,아이템2','1,2',sysdate);
+
 
 
 drop table plan_write;
@@ -61,13 +62,17 @@ select *
 select count(*) from plan_write where (p_title LIKE '%'||'장소'||'%' OR p_place LIKE '%'||'장소'||'%')
 select count(*) from plan_write where p_title LIKE '%'||'봄날'||'%' 
 
-select * from plan_write where (p_title LIKE '%'||'장소'||'%' 
-OR p_place LIKE '%'||'장소'||'%')
+select * from plan_write where (p_title LIKE '%'||'야야'||'%' 
+OR p_place LIKE '%'||'동일'||'%')
 order by p_writedate desc
 
+select * from plan_write where (p_title LIKE '%'||'dd'||'%' 
+		OR p_place LIKE '%'||'dd'||'%')
+		order by p_writedate desc
 
 
-
+select * from plan_write where (p_title || p_place) like '%'||'부천'||'%'
+		order by p_writedate desc
 
 SELECT *
 		from (
@@ -88,6 +93,27 @@ select count(*) from plan_write where (p_title LIKE '%'||#{n_searchWrite}||'%'
 		OR p_place LIKE '%'||#{n_searchWrite}||'%')
 
 
-
+----------------------------------------------------------------------------------
+create table plan_heart (
+heart_id varchar2(10 char) not null
+heart_no number(3) not null,
+heart_like number(3) not null,
+);
+		
+constraint ph_no 
+foreign key(heart_no)
+		references plan_heart(p_no)
+		on delete cascade
+)
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 

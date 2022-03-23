@@ -54,6 +54,28 @@
 	background-color: transparent;
 }
 
+#p_noLogin a{
+	width: 200px;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #38CEB5;
+	color: #ffffff;
+	margin: auto;
+	padding: 5px;
+	font-size: 12pt;
+}
+
+#p_noLogin div{
+	padding-bottom: 10px;
+}
+
+
+#p_searchTbl{
+	margin: auto; 
+	margin-bottom: 30px;
+}
+
+
 #p_days:focus{
 	outline: none;
 }
@@ -72,6 +94,13 @@
 	width: 100%;
 	display:inline-block;
 	text-align: center;
+}
+
+#p_noPlanner{
+	text-align: center;
+	font-size: 20pt;
+	margin-top: 100px;
+	margin-bottom: 100px;
 }
 
 #ttest{
@@ -113,19 +142,41 @@ ul li{
 }
 
 #p_searchBtn{
-	width: 40px;
-	height: 25px;
+	width: 45px;
+	height: 20px;
 	margin-top: 5px;
-	border:none;
+	border: none;
 	background-color: transparent;
 	font-size: 10pt;
 }
 
+#p_searchWrite{
+	width: 150px;
+	height: 20px;
+	border: none;
+	border-bottom: 1px solid #404040;
+	text-align: center;
+}
+
+#p_searchWrite:focus{
+	outline: none;
+}
 
 #p_mapSearchDiv{
 	text-align: center;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+
+#p_searchSelect{
+	width: 80px;
+	height: 20px;
+	text-align: center;
+	border: none;
+}
+
+#p_searchSelect:focus{
+	outline: none;
 }
 
 
@@ -276,6 +327,7 @@ ul li{
 
 #p_pagingTbl{
 	margin: auto;
+	margin-bottom:20px;
 	display: inline-block;
 }
 
@@ -613,4 +665,23 @@ ul li{
 
 
 
+.feeling_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+.button-container {
+  margin-left: 20px;
+}
+.feeling_a {
+  background-color: #fff;
+  border: 2px solid #2199e8;
+  padding: 10px 20px;
+  border-radius: 2px;
+  color: #2199e8;
+} 
 
+.active {
+  background-color: #2199e8;
+  color: #fff;
+}

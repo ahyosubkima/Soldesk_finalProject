@@ -14,6 +14,8 @@
 <script type="text/javascript" src="resources/plan/p_js/plan.js"></script>
 
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
+
+
 </head>
 <body>
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
@@ -121,9 +123,15 @@
 	</table>
 	</div>
 	
+	<!-- 추천 기능 -->
 	
-	
-	
+	<div class="feeling_div">
+			<div class="button-container like-container">
+			    <button class="feeling_a">
+			      <i class="fa fa-heart-o"> Like</i>    
+			    </a>
+			  </div>
+		</div>
 	
 
 

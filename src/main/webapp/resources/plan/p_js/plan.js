@@ -255,6 +255,23 @@ function p_writesubmit() {
 }
 
 
+/* 하트좋아요 기능 */
+
+function plan_like() {
+	
+	
+	$('.like-container > .feeling_a, .dislike-container  > .feeling_a').on('click', function() {
+	    event.preventDefault();
+	    $('.active').removeClass('active');
+	    $(this).addClass('active');
+	});
+	
+}
+
+
+
+
+
 
 
 
@@ -279,6 +296,7 @@ $(function() {
 	deletePlanBudget();
 	p_submit();
 	p_writesubmit();
+	plan_like();
 });
 
 

@@ -208,17 +208,17 @@ public class PlanDAO {
 		
 		if (req.getSession().getAttribute("p_searchSelect").equals("p_searchTitle")) {
 			try {
-				String n_searchWrite = req.getParameter("n_searchWrite");
-				System.out.println("검색어:" + n_searchWrite);
+				String p_searchWrite = req.getParameter("p_searchWrite");
+				System.out.println("검색어:" + p_searchWrite);
 				
-				pw.setP_title(n_searchWrite);
+				pw.setP_title(p_searchWrite);
 				
 				int total = ss.getMapper(PlanMapper.class).getp_searchTitle(pw);
 				
 				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
 				req.setAttribute("pageMakerTitle", pageMake);
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("n_searchWrite", req.getParameter("n_searchWrite"));
+				map.put("p_searchWrite", req.getParameter("p_searchWrite"));
 				map.put("amount",cri3.getAmount()+"");
 				map.put("pageNum",cri3.getPageNum()+"");
 				
@@ -234,33 +234,50 @@ public class PlanDAO {
 		else if (req.getSession().getAttribute("p_searchSelect").equals("p_searchPlace")) {
 			
 			try {
-				System.out.println(req.getParameter("n_searchWrite"));
+				System.out.println(req.getParameter("p_searchWrite"));
 				
-				pw.setP_place((req.getParameter("n_searchWrite")));
+				pw.setP_place((req.getParameter("p_searchWrite")));
 				
 				int total = ss.getMapper(PlanMapper.class).getPlaceCount(pw);
 				
 				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
 				req.setAttribute("pageMakerTitle", pageMake);
 				Map<String, String> map = new HashMap<String, String>();
-				map.put("n_searchWrite", req.getParameter("n_searchWrite"));
+				map.put("p_searchWrite", req.getParameter("p_searchWrite"));
 				map.put("amount",cri3.getAmount()+"");
 				map.put("pageNum",cri3.getPageNum()+"");
 				
 				
 				req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchPlace(map));
 				
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}	
-			
 		}
-		
-		
-		
+		else if (req.getSession().getAttribute("p_searchSelect").equals("p_searchAll")) {
+			
+			System.out.println(req.getParameter("p_searchWrite"));
+			
+			pw.setP_place(req.getParameter("p_searchWrite"));
+			pw.setP_title(req.getParameter("p_searchWrite"));
+			
+			int total = ss.getMapper(PlanMapper.class).getPlaceTitleCount(pw);
+			
+			
+			PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
+			req.setAttribute("pageMakerTitle", pageMake);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("p_searchWrite", req.getParameter("p_searchWrite"));
+			map.put("amount",cri3.getAmount()+"");
+			map.put("pageNum",cri3.getPageNum()+"");
+			
+			req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchAll(map));
+		}
 	}
+	
+
+
+	
 	
 	
 	

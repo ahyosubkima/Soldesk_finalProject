@@ -21,22 +21,16 @@
 	sysdate)
 </insert>
 
-<!-- 게시물 전체 조회 -->
 <select id="getAllPlan" resultType="com.team2.danim.plan.Plan_write">
 	select * from plan_write order by p_writedate desc
 </select>
 
-<!-- 게시물 한개 조회 -->
 <select id="getPlan" resultType="com.team2.danim.plan.Plan_write">
 	select * from plan_write where p_no = #{p_no}
 </select>
 
-
-
 <select id="getTotalPlan" resultType="java.lang.Integer">
-
 select count(*) from plan_write
-
 </select>
 
 <select id="getPlanPaging"
@@ -70,7 +64,7 @@ select count(*) from plan_write
 		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
 		p_setTitle, p_setItem, p_setPrice, p_writedate
 		from (
-		select * from plan_write where p_title LIKE '%'||#{n_searchWrite}||'%' 
+		select * from plan_write where p_title LIKE '%'||#{p_searchWrite}||'%' 
 		order by p_writedate desc
 		)
 		)
@@ -87,7 +81,7 @@ select count(*) from plan_write
 		'%'||#{p_place}||'%'
 </select>
 
-	<select id="p_searchPlace"
+<select id="p_searchPlace"
 		resultType="com.team2.danim.plan.Plan_write" parameterType="map">
 		SELECT *
 		from (
@@ -95,17 +89,36 @@ select count(*) from plan_write
 		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
 		p_setTitle, p_setItem, p_setPrice, p_writedate
 		from (
-		select * from plan_write where p_place LIKE '%'||#{n_searchWrite}||'%' 
+		select * from plan_write where p_place LIKE '%'||#{p_searchWrite}||'%' 
 		order by p_writedate desc
 		)
 		)
 		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
-	</select>	
+</select>	
 
+<select id="getPlaceTitleCount"
+		resultType="java.lang.Integer"
+		parameterType="com.team2.danim.plan.Plan_write">
+		select count(*) from plan_write where 
+		(p_title LIKE '%'||#{p_title}||'%' OR p_place LIKE '%'||#{p_place}||'%')
+</select>
 
-
-
+<select id="p_searchAll"
+		resultType="com.team2.danim.plan.Plan_write" parameterType="map">
+		SELECT *
+		from (
+		select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
+		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
+		p_setTitle, p_setItem, p_setPrice, p_writedate
+		from (
+		select * from plan_write where (p_title || p_place) like '%'||#{p_searchWrite}||'%'
+		order by p_writedate desc
+		)
+		)
+		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		#{amount}
+</select>	
 
 
 

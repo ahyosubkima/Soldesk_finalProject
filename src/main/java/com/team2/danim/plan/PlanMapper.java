@@ -21,15 +21,20 @@ public interface PlanMapper {
 	//페이징
 	public List<Plan_write> getPlanPaging(Criteria3 cri3);
 
-	//검색수
+	//제목 검색수
 	public int getp_searchTitle(Plan_write pw);
-	//검색
+	//제목검색
 	public List<Plan_write> p_searchTitle(Map<String, String> map);
 
 	//장소 검색수
 	public int getPlaceCount(Plan_write pw);
 	//장소검색
 	public List<Plan_write> p_searchPlace(Map<String, String> map);
+
+	//장소, 제목 검색수
+	public int getPlaceTitleCount(Plan_write pw);
+	//장소, 제목 검색
+	public List<Plan_write> p_searchAll(Map<String, String> map);
 	
 
 }

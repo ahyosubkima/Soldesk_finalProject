@@ -48,6 +48,9 @@
 		<tr>
 		<td colspan="3"><input type="file" name="p_titleFile" id="p_titleFiles"/></td>
 		</tr>
+		
+		
+		
 <!-- 지도 여행 일정 등록 -->
 		<tr>
 			<td colspan="3">

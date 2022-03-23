@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
@@ -82,6 +83,9 @@ public class PlanController {
 		
 		return "home";
 	}
+	
+	
+
 	
 	
 	

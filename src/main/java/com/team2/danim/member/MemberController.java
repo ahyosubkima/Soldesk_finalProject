@@ -135,6 +135,5 @@ public class MemberController {
 		return mDAO.findId(dm_email);
 	}
 	
-	public String findPw
 	
 }

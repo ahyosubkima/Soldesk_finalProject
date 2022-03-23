@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.team2.danim.Criteria3;
 import com.team2.danim.TokenMaker;
 
 @Controller
@@ -15,6 +16,7 @@ public class PlanController {
 	
 	@Autowired
 	private PlanDAO pDAO;
+	
 	
 	@RequestMapping(value = "/planMain", method = RequestMethod.GET)
 
@@ -24,6 +26,17 @@ public class PlanController {
 		
 		req.setAttribute("contentPage", "plan/planMain.jsp");
 		return "home";
+	}
+	
+	@RequestMapping(value = "/plan.page", method = RequestMethod.GET)
+	public String PlanPage(HttpServletRequest req,Criteria3 cri3) {
+		TokenMaker.make(req);
+		pDAO.getPageMakerPlan(req, cri3);
+		pDAO.getPlanPaging(req, cri3);
+		
+		req.setAttribute("contentPage", "plan/planMain.jsp");
+		return "home";
+		
 	}
 	
 	
@@ -58,8 +71,6 @@ public class PlanController {
 		
 		return "home";
 	}
-	
-	
 	
 	
 	

@@ -32,4 +32,29 @@
 </select>
 
 
+
+<select id="getTotalPlan" resultType="java.lang.Integer">
+
+select count(*) from plan_write
+
+</select>
+
+<select id="getPlanPaging"
+		parameterType="com.team2.danim.Criteria3"
+		resultType="com.team2.danim.plan.Plan_write">
+		select *
+		from (
+		select rownum as rn, p_no, p_writer,p_title,p_titleFile,p_days,
+		p_startDate,p_person,p_place,p_plan,p_budget,p_freeWrite
+		p_setTitle, p_setItem,p_setPrice,p_writedate
+		from (
+		select * from plan_write order by p_writedate desc
+		)
+		)
+		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		#{amount}
+</select>
+
+
+
 </mapper>

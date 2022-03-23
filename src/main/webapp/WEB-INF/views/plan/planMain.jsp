@@ -47,7 +47,43 @@
 			</table>
 		</div>
 
-	<!-- 등록된 플래너 전체 조회-->
+
+
+
+<div>
+<input type="hidden" value="1" name="pageNum">
+<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn">
+</div>
+
+<!-- 페이징-->
+<c:if test="${pageMaker != null }">
+<div id="p_pagingDiv">
+		<!-- 이전페이지 버튼 -->
+	<table id="p_pagingTbl">
+		<tr>
+			<td><c:if test="${pageMaker.prev}">
+				<li class="pageInfo_btn previous"><a
+					href="/danim/plan.page?pageNum=${pageMaker.startPage-1}"> &lt;이전 </a></li>
+				</c:if></td>
+				
+			<!-- 각 번호 페이지 버튼 -->
+			<c:forEach var="num" begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}">
+				<td><a
+					href="/danim/plan.page?pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a></td>
+			</c:forEach>
+				<td><c:if test="${pageMaker.next}">
+					<li class="pageInfo_btn next"><a
+						href="/danim/plan.page?pageNum=${pageMaker.endPage + 1 }">다음&gt;</a></li>
+					</c:if></td>
+		</tr>
+	</table>
+</div>
+</c:if>
+
+
+
+<!-- 등록된 플래너 전체 조회-->
 	<div id="p_mainDetailDiv">
 			<c:forEach var="p" items="${plans }" varStatus="status">
 		 <table id="p_mainDetail"> 

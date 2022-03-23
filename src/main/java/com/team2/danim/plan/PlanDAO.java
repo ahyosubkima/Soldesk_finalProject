@@ -12,12 +12,15 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.team2.danim.Criteria3;
+import com.team2.danim.PageMakerDTO3;
 
 @Service
 public class PlanDAO {
 
 	@Autowired
 	private SqlSession ss;
+	
 	
 
 	public void uploadPlan(HttpServletRequest req) {
@@ -152,32 +155,43 @@ public class PlanDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void getPageMakerPlan(HttpServletRequest req,Criteria3 cri3) {
 		
+		int total = ss.getMapper(PlanMapper.class).getTotalPlan();
 		
+		PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
+		req.setAttribute("pageMaker", pageMake);
 		
-		
+		System.out.println(pageMake.getEndPage());
+		System.out.println(pageMake.getStartPage());
+		System.out.println(pageMake.getTotal());
+		System.out.println("페이지메이커 실행후");
 	}
 
 	
-	
-	
-	
-	
-	
+	public void getPlanPaging(HttpServletRequest req,Criteria3 cri3) {
 		
-	}
-
+		
+		try {
+				
+			if(req.getParameter("pageNum") != null)
+			{
+				cri3.setPageNum(Integer.parseInt(req.getParameter("pageNum")));
+				}
+				req.setAttribute("plans", ss.getMapper(PlanMapper.class).getPlanPaging(cri3));
+				System.out.println("불러온후");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+}	
 	
 	
 	

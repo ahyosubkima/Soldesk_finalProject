@@ -270,6 +270,25 @@ ul li{
 	
 }
 
+#p_pagingDiv{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#p_pagingTbl{
+	margin: auto;
+	display: inline-block;
+}
+
+#p_pagingTbl a:link{
+	color: #38104b;
+	text-decoration: none;
+
+}
+#p_pagingTbl a:visited{
+	color: #38104b;
+	text-decoration: none;
+}
 
 #p_regOk{
 	margin: auto;

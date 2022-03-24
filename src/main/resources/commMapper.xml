@@ -6,13 +6,16 @@
 		resultType="com.team2.danim.comm.Comm_picture">
 		select * from comm_picture order by comm_picture_date desc
 	</select>
-
+	
+	
 	<select id="getCommVideo"
 		resultType="com.team2.danim.comm.Comm_video">
 		select * from comm_video order by cv_date desc
 	</select>
 
-
+	<select id="getImport" resultType="com.team2.danim.comm.Comm_import">
+	select * from comm_import order by ci_date desc
+	</select>
 	<insert id="upload"
 		parameterType="com.team2.danim.comm.Comm_picture">
 		insert into comm_picture values(comm_picture_seq.nextval,
@@ -22,7 +25,7 @@
 		#{comm_picture_txt},
 		0,
 
-		1,
+		0,
 		sysdate)
 	</insert>
 
@@ -34,7 +37,7 @@
 		#{cv_writer},
 		#{cv_txt},
 		0,
-		1,
+		0,
 		sysdate)
 	</insert>
 
@@ -49,11 +52,28 @@
 		0,
 		sysdate)
 	</insert>
+	<insert id="importUpload"
+		parameterType="com.team2.danim.comm.Comm_import">
+		insert into comm_import values
+		(ci_seq.nextval,
+		#{ci_file_name},
+		#{ci_write_name},
+		#{ci_writer},
+		#{ci_txt},
+		0,
+		sysdate)
+	</insert>
 
 	<select id="getCommPicture2"
 		resultType="com.team2.danim.comm.Comm_picture"
 		parameterType="com.team2.danim.comm.Comm_picture">
 		select * from comm_picture where comm_picture_no = #{comm_picture_no}
+	</select>
+
+	<select id="getCommImport2"
+		resultType="com.team2.danim.comm.Comm_import"
+		parameterType="com.team2.danim.comm.Comm_import">
+		select * from comm_import where ci_no = #{ci_no}
 	</select>
 
 	<select id="getCommVideo2"
@@ -81,6 +101,11 @@
 	<delete id="delFree"
 		parameterType="com.team2.danim.comm.Comm_free">
 		delete from comm_free where cf_no = #{cf_no}
+	</delete>
+
+	<delete id="delImport"
+		parameterType="com.team2.danim.comm.Comm_import">
+		delete from comm_import where ci_no = #{ci_no}
 	</delete>
 
 	<update id="updatePicture"
@@ -248,6 +273,11 @@
 		update comm_picture set comm_picture_view = comm_picture_view + 1 where
 		comm_picture_no = #{comm_picture_no}
 	</update>
+	<update id="viewImportPlus"
+		parameterType="com.team2.danim.comm.Comm_import">
+		update comm_import set ci_view = ci_view + 1 where
+		ci_no = #{ci_no}
+	</update>
 
 	<update id="viewVideoPlus"
 		parameterType="com.team2.danim.comm.Comm_video">
@@ -279,6 +309,12 @@
 		resultType="com.team2.danim.comm.Comm_picture_reply">
 		select * from comm_picture_reply where cpr_cp_no = #{cpr_cp_no} order by
 		cpr_when desc
+	</select>
+	
+	<select id="getImportReply"
+		resultType="com.team2.danim.comm.Comm_import_reply">
+		select * from comm_import_reply where cir_ci_no = #{cir_ci_no} order by
+		cir_when desc
 	</select>
 
 	<select id="getVideoReply"
@@ -322,6 +358,12 @@
 	<delete id="delVideoReply"
 		parameterType="com.team2.danim.comm.Comm_Video_reply">
 		delete from comm_video_reply where cvr_no = #{cvr_no}
+	</delete>
+
+	<delete id="delFreeReply"
+
+		parameterType="com.team2.danim.comm.Comm_free_reply">
+		delete from comm_free_reply where cfr_no = #{cfr_no}
 	</delete>
 
 	<select id="getGoodPicture"

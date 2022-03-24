@@ -143,7 +143,8 @@ create sequence cf_seq
 
 select * from comm_free
 
-insert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)
+sinsert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)
+
 insert into comm_free values(cf_seq.nextval,#{cf_file_name},#{cf_write_name},#{cf_writer},#{cf_txt},0,0,sysdate)
 
 /*자유게시판 리플*/
@@ -176,3 +177,37 @@ foreign key(cfg_no)
 		references comm_free(cf_no)
 		on delete cascade
 )
+
+/*공지글*/
+create table comm_import(
+ci_no number(3) primary key,
+ci_file_name varchar2(20 char),
+ci_write_name varchar2(20 char) not null,
+ci_writer varchar2(30 char) not null,
+ci_txt varchar2(300 char) not null,
+ci_view number(3) not null,
+ci_date date not null
+)	
+
+select * from comm_import
+
+create sequence ci_seq
+
+create table comm_import_reply(
+cir_no number(3) primary key,
+cir_ci_no number(3) not null,
+cir_owner varchar(30 char) not null,
+cir_owner_id varchar(30 char) not null,
+cir_txt varchar(300 char) not null,
+cir_when date not null,
+
+constraint cipr_no 
+foreign key(cir_ci_no)
+		references comm_import(ci_no)
+		on delete cascade
+);
+
+
+create sequence comm_import_reply_seq
+
+select * from comm_import 

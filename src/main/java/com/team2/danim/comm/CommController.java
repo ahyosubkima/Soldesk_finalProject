@@ -73,6 +73,14 @@ public class CommController {
 		return "home";
 		
 	}
+	@RequestMapping(value = "/comm_import_write", method = RequestMethod.GET)
+	public String comm_import_write(HttpServletRequest req) {
+		
+		
+		req.setAttribute("contentPage", "comm/comm_import_write.jsp");
+		return "home";
+		
+	}
 
 	@RequestMapping(value = "/comm_picture_upload", method = RequestMethod.POST)
 	public String comm_picture_upload(HttpServletRequest req,Criteria cri) {
@@ -110,6 +118,22 @@ public class CommController {
 		
 		TokenMaker.make(req);
 		cDAO.freeUpload(req);
+		cDAO.getImport(req);
+		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getCommFreePaging(req, cri2);
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_import_upload", method = RequestMethod.POST)
+	public String comm_import_upload(HttpServletRequest req,Criteria2 cri2) {
+		
+		
+		TokenMaker.make(req);
+		cDAO.importUpload(req);
+		cDAO.getImport(req);
 		cDAO.getFreePageMaker(req, cri2);
 		cDAO.getCommFreePaging(req, cri2);
 		
@@ -192,6 +216,18 @@ public class CommController {
 		cDAO.getCommFree2(cf,req);
 		
 		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_import_detail", method = RequestMethod.GET)
+	public String comm_import_detail(HttpServletRequest req,Comm_import ci,Comm_import_reply cir) {
+		
+		cDAO.viewImportPlus(ci,req);
+		cDAO.getImportReply(cir,req);
+		cDAO.getCommImport2(ci,req);
+		
+		req.setAttribute("contentPage", "comm/comm_import_detail.jsp");
 		return "home";
 		
 	}
@@ -355,6 +391,22 @@ public class CommController {
 		
 		cDAO.delFree(cf,req);
 		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getImport(req);
+		cDAO.getCommFreePaging(req, cri2);
+		
+		
+		req.setAttribute("contentPage", "comm/comm_free.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_import_delete", method = RequestMethod.GET)
+	public String comm_import_delete(HttpServletRequest req,Comm_import ci,Criteria2 cri2) {
+		
+		
+		cDAO.delImport(ci,req);
+		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getImport(req);
 		cDAO.getCommFreePaging(req, cri2);
 		
 		
@@ -385,6 +437,19 @@ public class CommController {
 		cDAO.getCommVideo2(cv,req);
 		
 		req.setAttribute("contentPage", "comm/comm_video_detail.jsp");
+		return "home";
+		
+	}
+
+	@RequestMapping(value = "/comm_free_reply_delete", method = RequestMethod.GET)
+	public String comm_free_reply_delete(HttpServletRequest req,Comm_free cf,Comm_free_reply cfr) {
+		
+		
+		cDAO.delFreeReply(cfr,req);
+		cDAO.getFreeReply(cfr,req);
+		cDAO.getCommFree2(cf,req);
+		
+		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");
 		return "home";
 		
 	}
@@ -489,7 +554,7 @@ public class CommController {
 	public String comm_free_search(HttpServletRequest req,Comm_free cf,Criteria2 cri2) {
 		
 		cDAO.searchFree(cf,req,cri2);
-		
+		cDAO.getImport(req);
 		
 		
 		req.setAttribute("contentPage", "comm/comm_free.jsp");
@@ -513,6 +578,7 @@ public class CommController {
 		
 		TokenMaker.make(req);
 		cDAO.getFreePageMaker(req, cri2);
+		cDAO.getImport(req);
 		cDAO.getCommFreePaging(req, cri2);
 		req.setAttribute("contentPage", "comm/comm_free.jsp");
 		

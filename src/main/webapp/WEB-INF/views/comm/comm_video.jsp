@@ -28,6 +28,18 @@ $(function() {
 			}
 		}
 	}
+	
+	let aaa = $("#aaa").val();
+	$(".pc" + aaa).css("backgroundColor", "#E2E3FF");
+	$(".pc" + aaa).css("fontWeight", "500");
+	$(".pc" + aaa).css("fontSize", "16pt");
+	
+	let bbb = $("#bbb").val();
+	$(".pc2" + bbb).css("backgroundColor", "#E2E3FF");
+	$(".pc2" + bbb).css("fontWeight", "500");
+	$(".pc2" + bbb).css("fontSize", "16pt");
+	
+	
 });
 </script>
 </head>
@@ -42,13 +54,13 @@ $(function() {
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -60,11 +72,11 @@ $(function() {
 			<form action="comm_video_search">
 				<table id="comm_picture_searchTbl">
 					<tr>
-						<td><select name="search_option">
+						<td><select name="search_option"  id="search_option">
 								<option value="title">제목</option>
 								<option value="writer">작성자</option>
 								<option value="txt">내용</option>
-						</select> <input name="search_input">
+						</select> <input name="search_input"  id="search_input">
 						<input type="hidden" value="1" name="pageNum">
 						 <input type="hidden"		name="pageNum" value="${param.pageNum }" id="pgn">
 						 <input type="hidden" name="search_option" value="${param.search_option }" id="so">
@@ -73,14 +85,18 @@ $(function() {
 					</tr>
 				</table>
 			</form>
-
 			<c:if test="${param.search_input eq null }">
-				<h2 id="">베스트 영상</h2>
-				<div style="border: 1px solid; width: 1600px; float: left;">
+				<div id="content_title_div">
+				 <img id="sdf_img" src="resources/comm/comm_img/best_video.png"><h2  class="best_pic">베스트 영상</h2>
+				</div>
+				<hr>
+				<div style=" width: 1600px; float: left;" >
 					<c:forEach var="g" items="${good_videos }" varStatus="status">
-						<table class="comm_picture_bestTbl2" style="">
+						<table class="comm_picture_bestTbl2">
 							<tr>
-								<td><video id="comm_picture_best_img"
+								<td><video muted="muted" id="hz${status.index }" 
+								class="comm_picture_best_img"  
+								onmouseover="mouse_over(${status.index})" onmouseout="mouse_out(${status.index})" 
 									src="resources/comm/file/${g.cv_name }"
 									onclick="location.href='comm_video_detail?no=${g.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></video></td>
 							</tr>
@@ -96,17 +112,24 @@ $(function() {
 
 				</div>
 			</c:if>
-			<div style="border: 1px solid; width: 1600px; float: left;">
-				<h2
-					<c:if test="${param.search_input eq null }">id="comm_picture_content_title2"</c:if>>영상
-					게시판</h2>
+			<div style=" width: 1600px; float: left;  padding-top: 40px;">
+				<div  id="content_title_div">
+				<img id="sdf_img" src="resources/comm/comm_img/video.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
+					영상게시판</h2>
+					</div>
+					<hr>
 				<c:if test="${videos != null }">
 					<c:forEach var="p" items="${videos }" varStatus="status">
 						<table class="comm_picture_bestTbl2" style="">
 							<tr>
-								<td><video id="comm_picture_best_img"
-									src="resources/comm/file/${p.cv_name }"
-									onclick="location.href='comm_video_detail?no=${p.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></video></td>
+								<td>
+								<video id="mz${status.index }" class="comm_picture_best_img" 
+								muted="muted" 
+								onmouseover="mouse_over2(${status.index})" onmouseout="mouse_out2(${status.index})"
+								src="resources/comm/file/${p.cv_name }"
+								onclick="location.href='comm_video_detail?no=${p.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'">
+								</video>
+								</td>
 							</tr>
 							<tr>
 								<td id="comm_picture_best_writer">${p.cv_write_name }<span
@@ -116,9 +139,9 @@ $(function() {
 					</c:forEach>
 				</c:if>
 				<c:if test="${empty videos }">
-					<table class="comm_picture_bestTbl2" style="padding-top: 20pt;">
+					<table class="comm_empty_Tbl">
 						<tr>
-							<td id="comm_empty_write">등록된 영상이 없습니다.</td>
+							<td id="comm_empty_write">${param.search_input }(으)로 등록된 영상이 없습니다.</td>
 						</tr>
 					</table>
 				</c:if>
@@ -136,14 +159,18 @@ $(function() {
  			   <table id="paging_Tbl">
  			   <tr>
  			   <td><c:if test="${pageMaker.prev}">
-                    <li class="pageInfo_btn previous"><a href="/danim/comm_video_page?pageNum=${pageMaker.startPage-1}">Previous</a></li>
+                    <li class="pageInfo_btn previous"><a href="/danim/comm_video_page?pageNum=${pageMaker.startPage-1}">&lt;&lt;&nbsp;&nbsp;</a></li>
                 </c:if></td>
 				   <!-- 각 번호 페이지 버튼 -->
-                <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                    <td class="paging_Tbl_td"><a href="/danim/comm_video_page?pageNum=${num }">[${num}]</a></td>
-                </c:forEach>
+              	<c:forEach var="num" begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}">
+								<td class="paging_Tbl_td"><a
+									href="/danim/comm_video_page?pageNum=${num }"><span class="pc${num}">[${num}]</span></a>
+									</td>
+							</c:forEach>
+									<input id="aaa" value="${param.pageNum }" type="hidden">
                 <td> <c:if test="${pageMaker.next}">
-                    <li class="pageInfo_btn next"><a href="/danim/comm_video_page?pageNum=${pageMaker.endPage + 1 }">Next</a></li>
+                    <li class="pageInfo_btn next"><a href="/danim/comm_video_page?pageNum=${pageMaker.endPage + 1 }">&nbsp;&nbsp;&gt;&gt;</a></li>
                 </c:if>  </td>
                 </tr>
                 </table>
@@ -155,14 +182,19 @@ $(function() {
  			   <table id="paging_Tbl">
  			   <tr>
  			   <td><c:if test="${pageMakerTitle.prev}">
-                    <li class="pageInfo_btn previous"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.startPage-1}&search_option=${sessionScope.search_option}">Previous</a></li>
+                    <li class="pageInfo_btn previous"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.startPage-1}&search_option=${sessionScope.search_option}">&lt;&lt;&nbsp;&nbsp;</a></li>
                 </c:if></td>
 				   <!-- 각 번호 페이지 버튼 -->
-                <c:forEach var="num" begin="${pageMakerTitle.startPage}" end="${pageMakerTitle.endPage}">
-                    <td ><a class="active" href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${num }&search_option=${sessionScope.search_option}">[${num}]</a></td>
-                </c:forEach>
+               <c:forEach var="num" begin="${pageMakerTitle.startPage}"
+								end="${pageMakerTitle.endPage}">
+								
+								<td class="paging_Tbl_td"><a
+									href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${num }&search_option=${sessionScope.search_option}"><span class="pc2${num }">[${num}]</span></a>
+									</td>
+							</c:forEach>
+							<input id="bbb" value="${param.pageNum }" type="hidden">
                 <td> <c:if test="${pageMakerTitle.next}">
-                    <li class="pageInfo_btn next"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.endPage + 1 }&search_option=${sessionScope.search_option}">Next</a></li>
+                    <li class="pageInfo_btn next"><a href="/danim/comm_video_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.endPage + 1 }&search_option=${sessionScope.search_option}">&nbsp;&nbsp;&gt;&gt;</a></li>
                 </c:if>  </td>
                 			</tr>
                 		</table>

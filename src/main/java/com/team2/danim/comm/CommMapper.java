@@ -154,4 +154,18 @@ public interface CommMapper {
 
 	public int freeReplyUpdate(Comm_free_reply cfr);
 
+	public int delFreeReply(Comm_free_reply cfr);
+
+	public int importUpload(Comm_import ci);
+
+	public List<Comm_import> getImport();
+
+	public int viewImportPlus(Comm_import ci);
+
+	public List<Comm_import_reply> getImportReply(Comm_import_reply cir);
+
+	public List<Comm_import> getCommImport2(Comm_import ci);
+
+	public int delImport(Comm_import ci);
+
 }

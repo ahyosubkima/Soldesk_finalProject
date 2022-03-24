@@ -7,51 +7,67 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="comm_picture_area">
-		<div id="comm_menu112">
+	<div id="comm_write_area">
+		<div id="comm_menu1122">
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
 		</div>
 
 
-		<div id="comm_picture_content112">
+		<div id="comm_write_content112">
+		<div id="content_title_div">
+				<h2  class="best_write_pic2">사진게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/photo.png">
+				</div>
+				<hr class="comm_write_hr">
 			<form action="comm_picture_upload" method="post"
 				enctype="multipart/form-data" name="picture_upload"
 				onsubmit="return pictureUpload();">
-				<table>
+				<table id="comm_write_tbl">
 					<tr>
-						<td>제목</td>
-						<td><input id="title" name="comm_picture_write_name"></td>
+					<td colspan="2" id="comm_write_title">
+					글쓰기
+					</td>
 					</tr>
 					<tr>
-						<td>사진</td>
-						<td><input id="picture" type="file" name="comm_picture_name"></td>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"></textarea> 
-							<input name="token"	type="hidden" value="${token }">
-							<input type="hidden" name="comm_picture_writer" value="${sessionScope.loginMember.dm_id }">
+						<td  class="comm_write_left">사진</td>
+						<td  class="comm_write_file">
+						<input id="picture" type="file" name="comm_picture_name">
 						</td>
 					</tr>
 					<tr>
-						<td><button>작성</button></td>
+						<td class="comm_write_left">제목</td>
+						<td><input id="title" name="comm_picture_write_name" class="comm_write_title"></td>
+					</tr>
+					<tr>
+						<td class="comm_write_left">내용</td>
+						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"></textarea> 
+							<input name="token"	type="hidden" value="${token }">
+							<input type="hidden" name="comm_picture_writer" value="${sessionScope.loginMember.dm_nickname }">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" id="comm_write_Btn_td"><button id="comm_write_Btn">작성</button></td>
 					</tr>
 				</table>
+				<div id="image_container" class="image_container_div">
+				<h2>사진 미리보기</h2>
+				<img id="p_preview">
+				</div>
+
 			</form>
 		</div>
 	</div>

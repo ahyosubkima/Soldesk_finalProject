@@ -37,90 +37,48 @@
 				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/free4.png">
 				</div>
 				<hr class="comm_detail_hr2">
-			<c:forEach var="f" items="${free }">
+			<c:forEach var="i" items="${notification }">
 				<table id="comm_picture_detail_tbl2">
 					<tr>
-						<td id="comm_detail_title" colspan="2">${f.cf_write_name }
+						<td id="comm_detail_title" colspan="2">${i.ci_write_name }
 						<input name="token" type="hidden" value="${token }">
 						</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_detail_td2">조회수  : ${f.cf_view } |
-						추천수 : ${f.cf_good } |
-						작성자 : ${f.cf_writer } |
+						<td id="comm_picture_detail_td2">조회수  : ${i.ci_view } |
+						작성자 : 관리자 |
 						</td>
 					</tr>
 					<tr>
 						<td id="comm_picture_detail_td2">
-						작성일 : <fmt:formatDate value="${f.cf_date }" pattern="yyyy-MM-dd"/>
+						작성일 : <fmt:formatDate value="${i.ci_date }" pattern="yyyy-MM-dd"/>
 						</td>
 					</tr>
 					<tr>
 					</tr>
 					<tr>
-						<c:if test="${f.cf_file_name ne 'basic.jpg' }">
+						<c:if test="${i.ci_file_name ne 'basic.jpg' }">
 						<td>
 						<img id="comm_picture_detail_img2"
-							src="resources/comm/file/${f.cf_file_name }"></td>
+							src="resources/comm/file/${i.ci_file_name }"></td>
 						</c:if>
-						<c:if test="${f.cf_file_name eq 'basic.jpg' }">
+						<c:if test="${i.ci_file_name eq 'basic.jpg' }">
 						</c:if>
 					</tr>
 					<tr>
 						<td colspan="2" class="comm_picture_detail_td4">
-						<pre class="comm_picture_detail_td4">${f.cf_txt }
-						</pre>
+						<pre class="comm_picture_detail_td4">${i.ci_txt }</pre>
 						</td>
 					</tr>
-					<c:if test="${sessionScope.loginMember.dm_nickname eq f.cf_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+					<c:if test="${sessionScope.loginMember.dm_nickname eq i.ci_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 						<tr>
 							<td colspan="4" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_updateFreeOK(${f.cf_no})">수정</button>
+									onclick="comm_updateFreeOK(${i.ci_no})">수정</button>
 								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_FreedelOK(${f.cf_no})">삭제</button></td>
+									onclick="comm_importdelOK(${i.ci_no})">삭제</button></td>
 						</tr>
 					</c:if>
-
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname ne f.cf_writer && sessionScope.loginMember != null && checked.cfg_good eq null or checked.cfg_good == 0 }">
-						<form action="comm_free_good">
-							<table style="padding-left: 72%; padding-top: 10px;">
-								<tr>
-									<td colspan="4" style="text-align: right;"><input
-										name="no" type="hidden" value="${f.cf_no }"> <input
-										name="id" type="hidden"
-										value="${sessionScope.loginMember.dm_id }"> <input
-										name="token2" value="${token2 }" type="hidden">
-										<button class="comm_heart_btn" onclick="return reallyGood();">
-											<img class="comm_heart_img"
-												src="resources/comm/comm_img/heart.png">
-										</button></td>
-								</tr>
-							</table>
-						</form>
-
-					</c:if>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname ne f.cf_writer && sessionScope.loginMember != null && checked.cfg_good == 1 }">
-						<form action="comm_free_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
-								<tr>
-									<td colspan="4" style="text-align: right;"><input
-										name="no" type="hidden" value="${f.cf_no }"> <input
-										name="id" type="hidden"
-										value="${sessionScope.loginMember.dm_id }"> <input
-										name="token2" value="${token2 }" type="hidden">
-										<button class="comm_heart_btn"
-											onclick="return reallyNoGood();">
-											<img class="comm_heart_img"
-												src="resources/comm/comm_img/heart2.png">
-										</button></td>
-								</tr>
-							</table>
-						</form>
-					</c:if>
-
 				</table>
 
 				<table id="comm_picture_detail_reply_title">
@@ -129,22 +87,22 @@
 					</tr>
 				</table>
 
-				<form action="comm_free_reply">
+				<form action="comm_import_reply">
 					<table id="comm_picture_detail_reply">
 					<c:forEach items="${reply }" var="r">
 							<tr>
-								<td style="text-align: center; width: 150px">${r.cfr_owner }<c:if test="${f.cf_writer eq r.cfr_owner }">
+								<td style="text-align: center; width: 150px">${r.cir_owner }<c:if test="${i.ci_writer eq r.cir_owner }">
 								<span id="reply_writer">
 								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 								</c:if>
 								</td>
-								<td style="text-align: center;">${r.cfr_txt }</td>
-								<td style="text-align: center;"><fmt:formatDate value="${r.cfr_when }" pattern="yyyy-MM-dd"/>
+								<td style="text-align: center;">${r.cir_txt }</td>
+								<td style="text-align: center;"><fmt:formatDate value="${r.cir_when }" pattern="yyyy-MM-dd"/>
 								<c:if
-									test="${sessionScope.loginMember.dm_id eq r.cfr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
+									test="${sessionScope.loginMember.dm_id eq r.cir_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
 									
-										<button onclick="freeReplyUpdate(${r.cfr_no},${param.no})">수정</button>
-										<button onclick="freeReplyDel(${r.cfr_no})">삭제</button>
+										<button onclick="freeReplyUpdate(${r.cir_no},${param.no})">수정</button>
+										<button onclick="freeReplyDel(${r.cir_no})">삭제</button>
 								</c:if>
 								</td>	
 							</tr>
@@ -157,15 +115,15 @@
 							<c:if test="${sessionScope.loginMember == null }">
 							로그인이 필요합니다.
 							</c:if>
-								<input name="cfr_owner" type="hidden"
+								<input name="cir_owner" type="hidden"
 								value="${sessionScope.loginMember.dm_nickname }"> <input
-								name="cfr_owner_id" type="hidden"
+								name="cir_owner_id" type="hidden"
 								value="${sessionScope.loginMember.dm_id }">
 							</td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cfr_txt"
+								id="comm_picture_detail_replyInput" name="cir_txt"
 								class="cfr_txt"> <input type="hidden" name="no"
-								value="${f.cf_no }"> <input type="hidden" name="token2"
+								value="${i.ci_no }"> <input type="hidden" name="token2"
 								value="${token2}"></td>
 							<td colspan="2" style="text-align: center;">
 							<c:if test="${sessionScope.loginMember != null }">

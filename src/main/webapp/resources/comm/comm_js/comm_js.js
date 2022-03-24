@@ -6,6 +6,27 @@ function comm_delOK(no) {
 	}
 	
 }
+function comm_importdelOK(no) {
+	var ok = confirm('정말 삭제하시겠습니까?')
+	
+	if (ok) {
+		location.href='comm_import_delete?no='+no;
+	}
+	
+}
+
+function previewImg(){
+
+    document.getElementById("picture").onchange = function () {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById("p_preview").src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+    };
+}
+
 
 function comm_updateOK(no) {
 var ok = confirm('정말 수정하시겠습니까?')
@@ -78,9 +99,13 @@ function pictureReplyUpdate(r_no,no)
 		
 		var txt = prompt("수정할 내용 입력");
 
+		location.href='comm_picture_reply_update?no='+no+"&newReply="+txt+"&cpr_no="+r_no;
 	}
 	
-	location.href='comm_picture_reply_update?no='+no+"&newReply="+txt+"&cpr_no="+r_no;
+	else{
+		return false;
+	}
+	
 }
 
 function videoReplyUpdate(r_no,no)
@@ -119,6 +144,17 @@ function videoReplyDel(no) {
 	
 }
 
+function freeReplyDel(no) {
+	
+	var ok = confirm('정말 삭제하시겠습니까?')
+	
+	if (ok) {
+		location.href='comm_free_reply_delete?no='+no;
+	}
+	
+	
+}
+
 
 function pictureUpload() {
 	/*	var title = document.getElementById('title').value;
@@ -149,6 +185,11 @@ function pictureUpload() {
 		return false;
 		
 	}
+	else if (picture == "") {
+		alert("사진을 등록해주세요");
+	
+		return false;	
+	}
 	else if (fileExt != ".jfif" && fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && 
 			fileExt != ".gif" &&fileExt != ".bmp" && fileExt != ".tif" && fileExt != ".tiff")
 	{
@@ -156,11 +197,6 @@ function pictureUpload() {
 		alert("이미지 파일만 등록해주세요");
 		
 		return false;
-	}
-	else if (picture == "") {
-		alert("사진을 등록해주세요");
-	
-		return false;	
 	}
 	
 	else if (txt == ""){ 
@@ -171,17 +207,16 @@ function pictureUpload() {
 	
 	return true;
 }	
-
-function videoUpload() {
-	/*	var title = document.getElementById('title').value;
+function freeUpload() {
+	var title = document.getElementById('title').value;
 	var picture = document.getElementById('picture').value;
-	var txt = document.getElementById('txt').value;*/
+	var txt = document.getElementById('txt').value;
 	
-	var title = document.picture_upload.cv_write_name.value;
-	var video = document.picture_upload.cv_name.value;
-	var txt = document.picture_upload.cv_txt.value;	
-	
-	var fileLen = video.length;
+	/*var title = document.picture_upload.comm_picture_write_name.value;
+	var picture = document.picture_upload.comm_picture_name.value;
+	var txt = document.picture_upload.comm_picture_txt.value;	
+	*/
+	var fileLen = picture.length;
 	
 	/** 
 	 * lastIndexOf('.') 
@@ -201,7 +236,57 @@ function videoUpload() {
 		return false;
 		
 	}
-	else if (fileExt != ".mp4" && fileExt != ".m4v" && fileExt != ".avi" && fileExt != ".wmv" && 
+	else if (picture != "") {
+		if (fileExt != ".jfif" && fileExt != ".jpg" && fileExt != ".jpeg" && fileExt != ".png" && 
+				fileExt != ".gif" &&fileExt != ".bmp" && fileExt != ".tif" && fileExt != ".tiff")
+		{
+			
+			alert("이미지 파일만 등록해주세요");
+			
+			return false;
+		
+	}
+	}
+	
+	else if (txt == ""){ 
+		alert("내용을 입력해주세요");
+		
+		return false;
+	}
+	
+	return true;
+}	
+
+function videoUpload() {
+	var title = document.getElementById('title').value;
+	var video = document.getElementById('picture').value;
+	var txt = document.getElementById('txt').value;
+
+	
+/*	var title = document.picture_upload.cv_write_name.value;
+	var video = document.picture_upload.cv_name.value;
+	var txt = document.picture_upload.cv_txt.value;	*/
+	
+	var fileLen = video.length;
+	
+
+	var lastDot = video.lastIndexOf('.');
+	var fileExt = video.substring(lastDot, fileLen).toLowerCase();
+	
+	
+	if (title == "") {
+		alert("제목을 입력해주세요");
+		
+		return false;
+		
+	}
+	if (video == "") {
+		alert("영상을 등록해주세요");
+		
+		return false;	
+	}
+	
+	if (fileExt != ".mp4" && fileExt != ".m4v" && fileExt != ".avi" && fileExt != ".wmv" && 
 			fileExt != ".mwa" &&fileExt != ".asf" && fileExt != ".mkv" && fileExt != ".mpg" && fileExt != ".mov" && fileExt != ".webm"
 				&& fileExt != ".3gp" && fileExt != ".3g2" && fileExt != ".mpeg" && fileExt != ".ts")
 	{
@@ -210,13 +295,7 @@ function videoUpload() {
 		
 		return false;
 	}
-	else if (video == "") {
-		alert("영상을 등록해주세요");
-		
-		return false;	
-	}
-	
-	else if (txt == ""){ 
+	if (txt == ""){ 
 		alert("내용을 입력해주세요");
 		
 		return false;
@@ -284,9 +363,59 @@ function videoreplyOK(){
 	}
 }
 
+function freereplyOK(){
+	
+	
+	var txt = document.getElementsByClassName('cfr_txt')[0].value;
+	
+	if (txt == "") {
+		alert('댓글을 입력해주세요');
+		return false;
+	}
+	else{
+		return true;
+		
+	}
+}
+
 
 function replyNoOK(){
 	alert('로그인 후 이용해주세요')
 	return false;
 }
+
+
+
+function mouse_over(i){
+	let aa = "hz"+i
+	document.getElementById('hz'+i).play();
+
 	
+}
+
+function mouse_out(i){
+	
+	let aa = "hz"+i	    
+	document.getElementById("hz"+i).pause();
+	
+}
+
+function mouse_over2(i){
+	let aa = "mz"+i
+	document.getElementById("mz"+i).play();
+	
+}
+
+function mouse_out2(i){
+	
+	let aa = "mz"+i	    
+	document.getElementById("mz"+i).pause();
+	
+}
+
+$(function() {
+	
+	previewImg();
+	previewImg2();
+
+});

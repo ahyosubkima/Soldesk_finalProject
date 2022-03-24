@@ -32,7 +32,7 @@ insert into REVIEW_BOARD values(review_board_seq.nextval, 'test7', 0, 0, 0, sysd
 select * from REVIEW_BOARD where rb_headnum like '1'
 select * from REVIEW_BOARD
 
-
+drop table REVIEW_BOARD;
 
 select * from REVIEW_BOARD where  rb_budget <= '100000' and rb_theme like '%%' and rb_location like '%%';
 

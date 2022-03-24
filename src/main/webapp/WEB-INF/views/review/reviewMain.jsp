@@ -12,17 +12,25 @@
 <style type="text/css">
 
 .img_box{
-
-height: 200px;
+border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#444444, #444444), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+width: 450px;
+height: 250px;
 }
 
 #contents{
 display: flex;
 
-
 flex-direction: column;
 justify-content: center;
 align-items: center;
+border-radius: 5%;
+width: 400px;
+margin-left: 120px;
+margin-bottom: 20px;
 }
 
 
@@ -38,14 +46,17 @@ background-color: green;
 
 div{
 
-border: 1px solid red;
 }
 
 .flex-container{
 display: flex;
 justify-content: center;
 
-
+}
+.flex-container2{
+justify-content: center;
+display: flex;
+padding-bottom: 60px;
 }
 
 
@@ -70,11 +81,18 @@ border: 1px solid gray;
 .selector_unit{
 
 border-radius: 2em;
-padding: 5px;
 margin-right: 5px;
-border: 1px solid gray;
+width: 120px;
+text-align: center;
+border: 4px solid transparent;
+border-radius: 20px;
+background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+background-origin: border-box;
+background-clip: content-box, border-box;
+}
 
-
+.selector_unit:hover{
+background-color: white;
 }
 
 .bb {
@@ -101,12 +119,26 @@ li {
 .tab-container {
   display: flex;
   justify-content: center;
+	padding-top: 25px;
+}
+.tab-container:hover {
+  display: flex;
+  justify-content: center;
+	padding-top: 25px;
+	background-color: white;
+	    -webkit-tap-highlight-color : transparent !important;
 }
 .tab-container__item {
   cursor: pointer;
+  margin-right: 30px;
 }
 .tab-container__item:hover {
-  background-color: #369fff;
+  cursor: pointer;
+  margin-right: 30px;
+ 
+}
+.tab-container__item:hover {
+  background-color: white;
   transition: background-color 0.4s ease-in-out;
 }
 .tab-container__item:hover .tab-container__item--title {
@@ -120,7 +152,7 @@ li {
   color: #369fff;
 }
 .tab-container__item.active:hover {
-  background-color: #369fff;
+  background-color: white;
   transition: background-color 0.4s ease-in-out;
 }
 .tab-container__item.active:hover .tab-container__item--title {
@@ -140,6 +172,7 @@ li {
 .content-container__content {
   display: none;
 }
+
 .content-container__content.target {
   display: block;
 }
@@ -157,16 +190,16 @@ li {
  <div class="container">
       <ul class="tab-container">
         <li class="tab-container__item active" data-tab="tab1">
-        <div class="selector_unit" >#인원수</div>
+        <div class="selector_unit" >#인원 🏃</div>
         </li>
         <li class="tab-container__item" data-tab="tab2">
-          <div class="selector_unit" >#예산</div>
+          <div class="selector_unit" >#예산 💸</div>
         </li>
         <li class="tab-container__item" data-tab="tab3">
-          <div class="selector_unit" >#테마</div>
+          <div class="selector_unit" >#테마 🎨</div>
         </li>
         <li class="tab-container__item" data-tab="tab4">
-          <div class="selector_unit" >#지역</div>
+          <div class="selector_unit" >#지역 🌏</div>
         </li>
       </ul>
      
@@ -188,16 +221,16 @@ li {
 </div>
         </article>
         <article id="tab2" class="content-container__content">
-          <div class="flex-container" style="text-align: center ;">
-          <div class="budget_select_btn" id="budget1">~ 100,000</div>
-          <div class="budget_select_btn" id="budget2">~ 300,000</div>
-          <div class="budget_select_btn" id="budget3">~ 500,000</div>
-          <div class="budget_select_btn" id="budget4">~ 700,000</div>
-          <div class="budget_select_btn" id="budget5">~ 1,000,000</div>
+          <div class="flex-container">
+          <div class="budget_select_btn" id="budget1">~100,000</div>
+          <div class="budget_select_btn" id="budget2">~300,000</div>
+          <div class="budget_select_btn" id="budget3">~500,000</div>
+          <div class="budget_select_btn" id="budget4">~700,000</div>
+          <div class="budget_select_btn" id="budget5">~1,000,000</div>
           </div>
         </article>
         <article id="tab3" class="content-container__content">
-           <div class="flex-container" style="text-align: center ;">
+           <div class="flex-container">
           <div class="theme_select_btn" id="theme1">커플여행</div>
           <div class="theme_select_btn" id="theme2">럭셔리여행</div>
           <div class="theme_select_btn" id="theme3">감성카페찾기</div>
@@ -206,7 +239,7 @@ li {
           </div>
         </article>
         <article id="tab4" class="content-container__content">
-          <div class="flex-container" style="text-align: center ;">
+          <div class="flex-container">
           <div class="location_select_btn" id="location1">서울</div>
           <div class="location_select_btn" id="location2">대전</div>
           <div class="location_select_btn" id="location3">대구</div>
@@ -219,8 +252,7 @@ li {
 
 
 
-<div class="flex-container" id="selectedElements" style="display: none;" >
-
+<div class="flex-container2" id="selectedElements" style="display: none;" >
 <div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
 <div class="flex-container" id="choosedVal">
 <!-- <div id="choosed_head" ></div>
@@ -233,33 +265,24 @@ li {
 </div>
 
 <div >
-<button>추천순</button>
-<button>신규순</button>
 
 <div class="" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
 <div class="flex-container" id="contents">
 <div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/testimg2.jpg" alt="이미지위치"></a> </div>
 <div class="content_title" style="font-size: 30px">${reviews.rb_title }</div> 
-<div>like :${reviews.rb_likecount } view :${reviews.rb_viewcount } comment :${reviews.rb_commentcount }</div>
-<div><fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="yyyy.MM.dd"/> 
-작성자 : ${reviews.rb_username } </div>
-<div> <span> <fmt:formatNumber value="${reviews.rb_budget }" type="currency"/> 이하 </span><span> ${reviews.rb_theme }</span><span> ${reviews.rb_location }</span> </div>
+<div id="icon_div"><img src="resources/review/img/good2.png" id="review_icon">&nbsp;: ${reviews.rb_likecount } &nbsp; <img src="resources/review/img/eye2.png" id="review_icon">&nbsp;: ${reviews.rb_viewcount } &nbsp;<img src="resources/review/img/ripple2.png" id="review_icon">&nbsp;: ${reviews.rb_commentcount }</div>
+<div> <span>#<fmt:formatNumber value="${reviews.rb_budget }" pattern="#,###"/>이하 </span> | <span> #${reviews.rb_theme }</span> | <span> #${reviews.rb_location }</span> </div>
+<%-- <div>날짜 : <fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="MM.dd"/> 
+ | 작성자 : ${reviews.rb_username } </div> --%>
 </div>
 </c:forEach>
 
-<div>
-사진,제목,좋아요,뷰수,댓글수,작성일자, 작성자프사, 작성자 아이디, 검색키워드
-
 </div>
-<div id="name">게시글표시2</div>
-<div>게시글표시3</div>
-</div>
-
 </div>
 
 <div class="flex-container">
-<div> <a href="reviewWrite.go">후기쓰기</a> </div>
+<div id="revuew_write"><a href="reviewWrite.go">후기쓰기</a></div>
 <div>내후기보기</div>
 </div>
 

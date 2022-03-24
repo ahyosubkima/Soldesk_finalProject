@@ -10,7 +10,7 @@
 
 </head>
 <body>
-	<div id="comm_picture_area">
+	<div id="comm_free_detail_area">
 		<div id="comm_menu112">
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
@@ -122,7 +122,8 @@
 					</c:if>
 
 				</table>
-
+				<hr class="comm_detail_hr">
+				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
 						<td>댓글</td>

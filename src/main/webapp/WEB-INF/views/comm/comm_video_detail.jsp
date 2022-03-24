@@ -64,7 +64,7 @@
 								</td>
 					</tr>
 					<tr>
-						<td colspan="2" class="comm_picture_detail_td3">${v.cv_txt }</td>
+						<td colspan="2" class="comm_video_txt">${v.cv_txt }</td>
 					</tr>
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
@@ -117,7 +117,8 @@
 					</c:if>
 
 				</table>
-
+				<hr class="comm_detail_hr">
+				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
 						<td>댓글</td>

@@ -108,7 +108,8 @@
 					</c:if>
 
 				</table>
-
+				<hr class="comm_detail_hr">
+				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
 						<td>댓글</td>

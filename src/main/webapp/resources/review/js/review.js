@@ -90,7 +90,7 @@ else if(target.classList.contains('location_select_btn')){
     newDiv = document.createElement('div');
     newDiv.classList.add('location_selected_btn')
     newDiv.append(word);
-    newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>');
+    newDiv.insertAdjacentHTML('beforeend', '<img class="deleteBtn" src="resources/review/img/close.png">');
 
     if(document.getElementById('choosedVal').querySelectorAll('.location_selected_btn').length == 0 ){
 
@@ -111,7 +111,7 @@ else if(target.classList.contains('location_select_btn')){
     newDiv = document.createElement('div');
     newDiv.classList.add('budget_selected_btn')
     newDiv.append(word);
-    newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>');
+    newDiv.insertAdjacentHTML('beforeend', '<img class="deleteBtn" src="resources/review/img/close.png">');
 
     if(document.getElementById('choosedVal').querySelectorAll('.budget_selected_btn').length == 0 ){
 
@@ -136,7 +136,7 @@ else if(target.classList.contains('location_select_btn')){
     newDiv = document.createElement('div');
     newDiv.classList.add('theme_selected_btn')
     newDiv.append(word);
-    newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>');
+    newDiv.insertAdjacentHTML('beforeend', '<img class="deleteBtn" src="resources/review/img/close.png">');
 
     if(document.getElementById('choosedVal').querySelectorAll('.theme_selected_btn').length == 0 ){
 
@@ -187,7 +187,7 @@ document.getElementById('headcount_select_btn').addEventListener('click',functio
 let newDiv = document.createElement('div')
 newDiv.append(document.getElementById('headcount_value1').value +'명');
 newDiv.classList.add('selected_headcount');
-newDiv.insertAdjacentHTML('beforeend', '<span class="deleteBtn">삭제버튼</span>');
+newDiv.insertAdjacentHTML('beforeend', '<img class="deleteBtn" src="resources/review/img/close.png">');
 
 console.log(document.getElementById('choosedVal').querySelectorAll('.selected_headcount'));
 

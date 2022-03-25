@@ -1,19 +1,19 @@
 
 
 function dayImportant(){
-	$(document).on("click", "#i_am_test", function() {
+	$(document).on("click", "#p_plan", function() {
 		
 		//확인용
 		//alert($(this).text());
 		
 		let placeName = $(this).text();
 		
-		$("#p_dayWriteDiv").before('<table border="1" id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;">' + placeName + '</td></tr>'+
-				'<tr><td style="width: 50px; height:35px;">상품명:</td>'+
-				'<td><input style="width: 130px;"></td></tr>'+
-				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
+		$("#p_dayWriteDiv").before('<table id="setBudgetTb" class="setBudgetTb">'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea class="setBudgetTxtarea" name="p_setTitle" readonly>' + placeName + '</textarea></td></tr>'+
+				'<tr><td style="text-align: right; width: 60px; height:35px;">상품명:</td>'+
+				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
+				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
+				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr><tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
 	});
 }
 
@@ -23,12 +23,12 @@ function addTrans(){
 	//교통비 테이블 추가
 	$(document).on("click", "#p_addTransportation", function() {
 		
-		$("#p_dayWriteDiv").before('<table border="1" id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" style="width: 180px; height: 60px;" placeholder="교통편을 적어주세요"></textarea></td></tr>'+
-				'<tr><td style="width: 50px; height:35px;">내용명:</td>'+
-				'<td><input style="width: 130px;"></td></tr>'+
-				'<tr><td style="width: 50px; height:35px;">금액:</td>'+
-				'<td><input type="number" style="width: 130px;" id="p_setPrice" name="p_setPrice"></td></tr></table>');
+		$("#p_dayWriteDiv").before('<table id="setBudgetTb" class="setBudgetTb">'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" class="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="교통편 종류를 적어주세요"></textarea></td></tr>'+
+				'<tr><td style="text-align: right; width: 60px; height:35px;">편명:</td>'+
+				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
+				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
+				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr><tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
 	});
 	//세줄 이상 금지
 	$(document).on("keydown", "#setBudgetTxtarea", function() {
@@ -47,37 +47,38 @@ function addTrans(){
 /* 여행 예산 계산 */
 function budgetCalc(){
 	
-	$(document).on("click", "#p_openBudget", function() {
-	
-		const allPrice = document.querySelectorAll(".p_setPrice");
-		const person =  document.getElementById('p_person').value;
-		let price = 0;
-		let sum = 0;
-		let onePersonPrice = 0;
-		
-		let nickname = document.getElementById('p_nickname').value;
-		
-		
-		for (var i = 0; i < allPrice.length; i++) {
+		$(document).on("click", "#p_openBudget", function() {
 			
-			price = parseInt(allPrice[i].value);
+			const allPrice = document.querySelectorAll(".p_setPrice");
+			const person =  document.getElementById('p_person').value;
+			let nickname = document.getElementById('p_nickname').value;
 			
-			sum += price;
-			onePersonPrice = sum / person;
-		}
-		//확인용
-		console.log(p_nickname)
-		console.log(sum)
-		console.log(onePersonPrice)
-		
-		$("#p_writeBudgetWrite").html("<textarea name='p_budget'>" + nickname + "님,<p>이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당" + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
+			let price = 0;
+			let sum = 0;
+			let onePersonPrice = 0;
+			
+			
+			
+			for (var i = 0; i < allPrice.length; i++) {
+				
+				price = parseInt(allPrice[i].value);
+				
+				sum += price;
+				onePersonPrice = sum / person;
+			}
+			//확인용
+			console.log(nickname)
+			console.log(sum)
+			console.log(onePersonPrice)
+			
+			$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당 " + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
 		
 	});
 }
 
 
 
-/* 실시간 글자수세기, 엔터 3줄 제한 */
+/* 자유 한마디 실시간 글자수세기, 엔터 3줄 제한 */
 function countTxt() {
 	//글자수세기
 	$("#p_freeWrite").keyup(function(e) {
@@ -101,78 +102,34 @@ function countTxt() {
         });
 	});
 }
-	
 
 
-/*
-function eeeeeeeee(){
-	
-	$(document).ready(function() {
-		
-		$("#p_dayWrite").each(function() {
-			$(this).click(function() {
-				
-				$("section").append('<table border="1">'+
-						'<tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr>'+
-						'<tr><td>주소</td><td>메뉴</td></tr></table>');
-			});
-		});
-            }
-        );
+
+/* 여행 예산 작성 엔터2줄 제한 */
+function lineLimit() {
+	$(document).on("click", "#setBudgetTxtarea", function() {
+	$(this).keydown(function(){
+        var b_rows = $(this).val().split('\n').length;
+        var b_maxRows = 2;
+        if( b_rows > b_maxRows){
+            alert('2줄 까지만 작성 가능합니다');
+            b_modifiedText = $(this).val().split("\n").slice(0, b_maxRows);
+            $(this).val(b_modifiedText.join("\n"));
+        }
+    });
+	});
 }
-*/
 	
 
 
-/*
-function pptest(){
-	
-	$(document).ready(function() {
-		
-           $("#p_lastDay").keyup(function() {
-        	   
-        	   let lastDay = $("#p_lastDay").val(); 
-        	   alert(lastDay);  
-        	   
-        	   if (lastDay == null ) {
-        		   for (var i = 1; i <= lastDay; i++) {
-        			   $("#p_openDayWrite").append('<section><div>'+i+'일차</div><div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div><table id="eeeg" border="1"><tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
-        		   }
-        	   }else {
-        		   $("#p_openDayWrite *").remove();
-        		   for (var i = 1; i <= lastDay; i++) {
-        			   $("#p_openDayWrite").append('<section><div>'+i+'일차</div><div id="p_dayWriteDiv"><input id="p_dayWrite" type="button" value="일정추가하기"></div><table id="eeeg" border="1"><tr><td colspan="2">지도</td><td rowspan="3">➔</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
-        			   $("#p_openDayWrite").append('<section><table border="1"><tr><td colspan="2">'+ i +'일차</td><td rowspan="3">➔</td></tr><tr><td colspan="2">지도</td></tr><tr><td>주소</td><td>메뉴</td></tr></table></section>');
-        		   }
-			}
-                })
-            }
-        );
-}
-*/
-
-
-
-/* 접기 피기 기능 */
-/*
-function p_openBudget(){
-	
-	if(document.getElementById('p_writeBudget').style.display === 'block') {
-	      document.getElementById('p_writeBudget').style.display = 'none';
-	      document.getElementById('p_openBudget').textContent = '💲계산결과 확인';
-	    } else {
-	      document.getElementById('p_writeBudget').style.display = 'block';
-	      document.getElementById('p_openBudget').textContent = '💲계산결과 확인';
-	    }
-}
-*/
+/* 상세페이지 한마디 접기 피기 기능 */
 function p_openFreeWord(){
 	
-	if(document.getElementById('p_writeFree').style.display === 'block') {
-	      document.getElementById('p_writeFree').style.display = 'none';
+	if(document.getElementById('p_writeFreeDetail').style.display === 'block') {
+	      document.getElementById('p_writeFreeDetail').style.display = 'none';
 	      document.getElementById('p_openFreeWord').textContent = '💪여행 전 한마디 ▼';
 	    } else {
-	      document.getElementById('p_writeFree').style.display = 'block';
+	      document.getElementById('p_writeFreeDetail').style.display = 'block';
 	      document.getElementById('p_openFreeWord').textContent = '💪여행 전 한마디 ▲';
 	    }
 }
@@ -191,32 +148,228 @@ function qqq() {
 			  alert("주소:" + MapAddress);
 			  alert("JS에서 이름:" + MapText);
 			  
-			  $("#p_route").append('<div id="i_am_test_all"><div id="i_am_test">' + MapText
-					  			+ '</div>' + MapAddress + '</div>');
+			  $("#p_route").append('<div id="mapNameAll"><div id="mapName"><textarea name="p_plan" id="p_plan">' + MapText
+					  			+ '</textarea></div>' + MapAddress + '<div class="deletePlanMapName">❌</div></div>');
 			  
 		  });
 		});
 }
 
 
+	
+/* 여행플래너 제작 표지이미지 미리보기 */	
+function previewImg(){
+	$(document).ready(function () {
+	document.getElementById("p_titleFiles").onchange = function () {
+	    var reader = new FileReader();
 
-$(function(){
+	    reader.onload = function (e) {
+	        document.getElementById("p_preview").src = e.target.result;
+	    };
 
-	$("#dBtn").click(function(){
-	let aa = $("#p_openDayWrite").html();
-	console.log(aa);
+	    reader.readAsDataURL(this.files[0]);
+	};
 	});
+}
+
+
+/* 여행 전체일정 부분 삭제 */
+function deletePlan() {
+	$(document).ready(function () {
+		  $(document).on("click", ".deletePlanMapName", function () {
+			  if (confirm('정말 삭제하시겠습니까?') == true) {
+				  let thisPlan = this.closest('#mapNameAll');
+				  thisPlan.remove();
+				  alert("삭제 성공!");
+			}else {
+				return;
+			}
+		  });
+		});
+}
+
+
+
+/* 여행 예산 부분 삭제 */
+function deletePlanBudget() {
+	$(document).ready(function () {
+		  $(document).on("click", ".deletePlanBudgetName", function () {
+			  if (confirm('정말 삭제하시겠습니까?') == true) {
+				  let thisBudget = this.closest('#setBudgetTb');
+				  thisBudget.remove();
+				  alert("삭제 성공!");
+			}else {
+				return;
+			}
+		  });
+		});
+}
+
+
+
+/* 작성페이지 null검사 */
+function p_submit() {
+	$(document).on("click", ".p_submit", function () {
+
+/*	if (!$("#p_title").val()) {
+		alert('플래너 제목을 작성해주세요!');
+		setTimeout(function() {
+			$("#p_title").focus();
+		})
+		return false;
+	}
+	if (!$("#p_startDate").val()) {
+		alert('출발날짜를 선택해주세요!')
+		setTimeout(function() {
+			$("#p_startDate").focus();
+		})
+		return false;
+	}
+	if (!$("#p_person").val()) {
+		alert('여행인원을 작성해주세요!')
+		setTimeout(function() {
+			$("#p_person").focus();
+		})
+		return false;
+	}
+	if (!$("#p_place").val()) {
+		alert('여행장소를 작성해주세요!')
+		setTimeout(function() {
+			$("#p_place").focus();
+		})
+		return false;
+	}
+	if (!$("#p_titleFiles").val()) {
+		alert('플래너 사진을 업로드해주세요!')
+		setTimeout(function() {
+			$("#p_titleFiles").focus();
+		})
+		return false;
+	}
+	*/
+		
+		
+	if($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
+		alert('여행 예산을 하나이상 작성해주세요!')
+		var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+		setTimeout(function() {
+			$("html, body").animate({scrollTop: offset.top-280},50);
+		})
+		return false;
+	}else {
+		//console.log('aa');
+		alert('???????????????')
+		$('.setBudgetTb').each(function(i,t) {
+			let txtArea = $(this).find(".setBudgetTxtarea");
+			let item = $(this).find(".p_setItem");
+			let price = $(this).find(".p_setPrice");
+			//console.log($(txtArea).val());			
+			//console.log($(item).val());			
+			//console.log($(price).val());			
+			var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+			
+			if(!$(txtArea).val()){
+				alert('교통편 이름을 작성해주세요');
+				$(txtArea).focus();
+				return false;
+			}
+			if(!$(item).val()){
+				alert('상품 이름을 작성해주세요');
+				$("html, body").animate({scrollTop: offset.top-280},50);
+				$(item).focus();
+				return false;
+			}
+			if(!$(price).val()){
+				alert('가격을 작성해주세요');
+				$("html, body").animate({scrollTop: offset.top-260},50);
+				$(price).focus();
+				return false;
+			}
+		});//foreach문 끝
+		return false;
+	}
+	
+	
+		
+		alert('왜 안이리로안와..')
+		if($.contains(document.body, document.getElementById("p_budget")) == false) {
+		alert('계산하기 버튼을 눌러주세요!')
+		return false;
+	}
+	
+	
+	/*
+	if($.contains(document.body, document.getElementById("p_budget")) == false) {
+		alert('계산하기 버튼을 눌러주세요!')
+		return false;
+	}*/
+	
+	 });
+}
+
+
+
+
+
+/* 메인페이지 작성버튼 null검사 */
+function p_writesubmit() {
+	
+	$(document).ready(function () {
+	$(document).on("click", "#p_writePlannerBtn", function () {
+		
+		if ($("#p_days").val() == "") {
+			alert('여행 일정을 적어주세요')
+			return false;
+		}else {
+			return true;
+		}
+	 });
 	});
+}
+
+
+/* 하트좋아요 기능 */
+
+function plan_like() {
+	
+	
+	$('.like-container > .feeling_a, .dislike-container  > .feeling_a').on('click', function() {
+	    event.preventDefault();
+	    $('.active').removeClass('active');
+	    $(this).addClass('active');
+	});
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 $(function() {
-	addTrans()
+	addTrans();
 	qqq();
 	dayImportant();
 	budgetCalc();
 	countTxt();
+	previewImg();
+	deletePlan();
+	lineLimit();
+	deletePlanBudget();
+	p_submit();
+	p_writesubmit();
+	plan_like();
 });
 
 

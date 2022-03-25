@@ -39,7 +39,7 @@ function modalClose() {
 
 		<div class="nav_wrap">
 			<ul class="nav">
-				<li><a href="planMain">계획 짜기</a></li>
+				<li><a href="plan.page">계획 짜기</a></li>
 				<li><a href="review.go">여행 후기</a></li>
 				<li><a href="/danim/comm_picture_page">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>

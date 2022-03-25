@@ -9,6 +9,10 @@ comm_picture_view number(3) not null,
 comm_picture_date date not null
 );
 
+
+SELECT * FROM comm_picture WHERE ROWNUM <= 6 order by comm_picture_good 
+SELECT * FROM comm_picture WHERE comm_picture_write_name = 'xcvzxcv';
+
 create sequence comm_picture_seq;
 
 /*사진댓글*/
@@ -51,6 +55,17 @@ select * from comm_picture_reply
 
 SELECT * FROM comm_picture WHERE ROWNUM < 6 order by comm_picture_good
 
+select * 
+from (	
+select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name,comm_picture_writer, 
+				comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+				from (
+					select * from comm_picture order by comm_picture_good desc
+				)
+			)
+			where rn <= 6
+
+
 drop table comm_picture_reply
 
 /*좋아요 관리테이블*/
@@ -71,7 +86,6 @@ create table comm_video_good(
 cvg_id varchar2(30 char) not null,
 cvg_good number(3) not null,
 cvg_no number(3) not null,
-
 
 constraint cvg_cv_no 
 foreign key(cvg_no)
@@ -143,7 +157,8 @@ create sequence cf_seq
 
 select * from comm_free
 
-insert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)
+sinsert into comm_free values(cf_seq.nextval,'a.jpg','제목','글쓴이','내용',0,0,sysdate)
+
 insert into comm_free values(cf_seq.nextval,#{cf_file_name},#{cf_write_name},#{cf_writer},#{cf_txt},0,0,sysdate)
 
 /*자유게시판 리플*/
@@ -176,3 +191,37 @@ foreign key(cfg_no)
 		references comm_free(cf_no)
 		on delete cascade
 )
+
+/*공지글*/
+create table comm_import(
+ci_no number(3) primary key,
+ci_file_name varchar2(20 char),
+ci_write_name varchar2(20 char) not null,
+ci_writer varchar2(30 char) not null,
+ci_txt varchar2(300 char) not null,
+ci_view number(3) not null,
+ci_date date not null
+)	
+
+select * from comm_import
+
+create sequence ci_seq
+
+create table comm_import_reply(
+cir_no number(3) primary key,
+cir_ci_no number(3) not null,
+cir_owner varchar(30 char) not null,
+cir_owner_id varchar(30 char) not null,
+cir_txt varchar(300 char) not null,
+cir_when date not null,
+
+constraint cipr_no 
+foreign key(cir_ci_no)
+		references comm_import(ci_no)
+		on delete cascade
+);
+
+
+create sequence comm_import_reply_seq
+
+select * from comm_import 

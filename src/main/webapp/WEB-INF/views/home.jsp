@@ -9,10 +9,9 @@
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
-
+<link rel="stylesheet" href="resources/review/css/review.css" />
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/asset/index/js/jquery.js"></script>
-
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
 <script>
 function modalOpen() {
@@ -28,6 +27,9 @@ function modalClose() {
 	document.querySelector('.modal_wrap').style.display = 'none';
 	document.querySelector('.modal_background').style.display = 'none';
 }
+
+		
+		
 </script>
 
 </head>
@@ -41,7 +43,7 @@ function modalClose() {
 			<ul class="nav">
 				<li><a href="planMain">계획 짜기</a></li>
 				<li><a href="review.go">여행 후기</a></li>
-				<li><a href="/danim/comm_picture_page">커뮤니티</a></li>
+				<li><a href="/danim/comm_picture_page?pageNum=1">커뮤니티</a></li>
 				<li><a href="#">이벤트</a></li>
 			</ul>
 		</div>

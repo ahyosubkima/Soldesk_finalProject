@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,78 +9,111 @@
 <title>Insert title here</title>
 <style type="text/css">
 </style>
-
+<script type="text/javascript">
+window.onpageshow = function(event) {
+	if (event.persisted
+			|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		if(so != ""){
+			location.href="/danim/comm_video_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_video_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_video_page";
+		}
+			
+		}
+	}
+}
+</script>
 </head>
 <body>
-	<div id="comm_picture_area">
+	<div id="comm_picture_detail_area">
 		<div id="comm_menu112">
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>
-						<td id="comm_picture_td_title">커뮤니티</td>
+						<td id="comm_picture_td_title">커뮤니티
+						
+										</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a
-							href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+							href="/danim/comm_video_page?pageNum=1">영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
 		</div>
 		<div id="comm_picture_content112">
+		<div id="content_title_div">
+				<h2  class="best_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video2.png">
+				</div>
+				<hr class="comm_detail_hr">
 			<c:forEach var="v" items="${video }">
-				<table id="comm_picture_detail_tbl" style="border: 1px solid black;">
+				<table id="comm_picture_detail_tbl">
 					<tr>
-						<td colspan="1" id="comm_picture_detail_td2">제목</td>
-						<td colspan="3">${v.cv_write_name }<input name="token"
-							type="hidden" value="${token }"></td>
+						<td id="comm_detail_title" colspan="2">${v.cv_write_name }
+						<input name="token" type="hidden" value="${token }">
+						</td>
 					</tr>
 					<tr>
-						<td>조회수</td>
-						<td id="comm_picture_detail_td">${v.cv_view }</td>
-						<td id="comm_picture_detail_td2">추천수</td>
-						<td>${v.cv_good }</td>
+						<td id="comm_picture_detail_td2">조회수  : ${v.cv_view } |
+						추천수 : ${v.cv_good } |
+						작성자 : ${v.cv_writer } |
+						</td>
 					</tr>
 					<tr>
-					</tr>
-					<tr>
-						<td>내용</td>
-						<td><video controls="controls" id="comm_picture_detail_img"
-								src="resources/comm/file/${v.cv_name }"></video></td>
-						<td colspan="2">${v.cv_txt }</td>
+						<td id="comm_picture_detail_td2">
+						작성일 : <fmt:formatDate value="${v.cv_date }" pattern="yyyy-MM-dd"/>
+						</td>
 					</tr>
 					<tr>
 					</tr>
 					<tr>
-						<td>작성일</td>
-						<td>${v.cv_date }</td>
-						<td>작성자</td>
-						<td>${v.cv_writer }</td>
+					<td>
+						<video controls="controls" id="comm_video_detail_img"
+								src="resources/comm/file/${v.cv_name }"></video>
+								</td>
 					</tr>
-					<c:if test="${sessionScope.loginMember.dm_id eq v.cv_writer}">
+					<tr>
+						<td colspan="2" class="comm_video_txt"><textarea 
+						readonly="readonly"
+						id="video_txt_area" rows="7" cols="50">${v.cv_txt }</textarea></td>
+					</tr>
+					<c:if
+						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 						<tr>
-							<td colspan="4" style="text-align: right"><button
+							<td colspan="2" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
 									onclick="comm_VideoupdateOK(${v.cv_no})">수정</button>
 								<button style="width: 70px; font-size: 15pt;"
 									onclick="comm_VideodelOK(${v.cv_no})">삭제</button></td>
 						</tr>
 					</c:if>
+					
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good eq null or checked.cvg_good == 0 }">
 						<form action="comm_video_good">
-							<table style="padding-left: 75%;">
+							<table style="padding-left: 72%;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
 										name="id" type="hidden"
 										value="${sessionScope.loginMember.dm_id }"> <input
 										name="token2" value="${token2 }" type="hidden">
+										<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
+										<input type="hidden" name="search_input" value="${param.search_input }" id="si">
 										<button class="comm_heart_btn" onclick="return reallyGood();">
 											<img class="comm_heart_img"
 												src="resources/comm/comm_img/heart.png">
@@ -92,13 +126,16 @@
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good == 1 }">
 						<form action="comm_video_Nogood">
-							<table style="padding-left: 77%; padding-top: 10px;">
+							<table style="padding-left: 72%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
 										name="id" type="hidden"
 										value="${sessionScope.loginMember.dm_id }"> <input
 										name="token2" value="${token2 }" type="hidden">
+										<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
+										<input type="hidden" name="search_input" value="${param.search_input }" id="si">
 										<button class="comm_heart_btn"
 											onclick="return reallyNoGood();">
 											<img class="comm_heart_img"
@@ -110,7 +147,8 @@
 					</c:if>
 
 				</table>
-
+				<hr class="comm_detail_hr">
+				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
 						<td>댓글</td>
@@ -119,23 +157,21 @@
 
 				<form action="comm_video_reply">
 					<table id="comm_picture_detail_reply">
-						<c:forEach items="${reply }" var="r">
+					<c:forEach items="${reply }" var="r">
 							<tr>
-								<td style="text-align: center;">${r.cvr_when }</td>
+								<td style="text-align: center;  width: 150px;">${r.cvr_owner }<c:if test="${v.cv_writer eq r.cvr_owner }">
+								<span id="reply_writer">
+								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
+								</c:if></td>
 								<td style="text-align: center;">${r.cvr_txt }</td>
-								<td style="text-align: center;">${r.cvr_owner }<c:if
-										test="${v.cv_writer eq r.cvr_owner_id }">
-								&nbsp;&nbsp;<span id="reply_writer"><img id="crown_img"
-											src="resources/comm/comm_img/crown.png">작성자</span>
-									</c:if>
-								</td>
+								<td style="text-align: center;"><fmt:formatDate value="${r.cvr_when }" pattern="yyyy-MM-dd"/>
 								<c:if
-									test="${sessionScope.loginMember.dm_id eq r.cvr_owner_id }">
-									<td style="text-align: center;">
+									test="${sessionScope.loginMember.dm_id eq r.cvr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+									
 										<button onclick="videoReplyUpdate(${r.cvr_no},${param.no})">수정</button>
 										<button onclick="videoReplyDel(${r.cvr_no})">삭제</button>
-									</td>
 								</c:if>
+								</td>	
 							</tr>
 						</c:forEach>
 						<tr>

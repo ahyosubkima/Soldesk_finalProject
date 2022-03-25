@@ -33,8 +33,9 @@
 
 
 
-		<beans:property name="username" value="c##hs" />
-		<beans:property name="password" value="hs" />
+
+		<beans:property name="username" value="jh" />
+		<beans:property name="password" value="jh" />
 
 
 	</beans:bean>
@@ -63,14 +64,12 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 	
-	<!--파일업로드 설정(multiparts)  -->
+	<!--?�일?�로???�정(multiparts)  -->
 <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <beans:property name="maxUploadSize" value="52428800" />
     <beans:property name="maxInMemorySize" value="1000000" />
     <beans:property name="defaultEncoding" value="utf-8" />
 </beans:bean>
-
-	
 	<beans:bean id="cri" class="com.team2.danim.Criteria">
 	</beans:bean>
 </beans:beans>

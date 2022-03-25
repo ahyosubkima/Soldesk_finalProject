@@ -9,26 +9,14 @@
 <link rel="stylesheet" href="resources/asset/index/css/home.css" />
 <link rel="stylesheet" href="resources/asset/index/css/style.css" />
 <link rel="stylesheet" href="resources/asset/index/css/carousel.css" />
-
+<link rel="stylesheet" href="resources/review/css/review.css" />
 <link rel="stylesheet" href="resources/comm/comm_css/comm_picture.css">
 <script type="text/javascript" src="resources/asset/index/js/jquery.js"></script>
+<script type="text/javascript" src="resources/asset/index/js/valid.js"></script>
 
 <script type="text/javascript" src="resources/comm/comm_js/comm_js.js"></script>
-<script>
-function modalOpen() {
-	const body = document.querySelector('body');
-	body.style.overflow = 'hidden'
-	document.querySelector('.modal_wrap').style.display = 'flex';
-	document.querySelector('.modal_background').style.display = 'block';
-}
 
-function modalClose() {
-	const body = document.querySelector('body');
-	body.style.overflow = 'auto';
-	document.querySelector('.modal_wrap').style.display = 'none';
-	document.querySelector('.modal_background').style.display = 'none';
-}
-</script>
+
 
 </head>
 <body>
@@ -41,8 +29,10 @@ function modalClose() {
 			<ul class="nav">
 				<li><a href="plan.page">계획 짜기</a></li>
 				<li><a href="review.go">여행 후기</a></li>
-				<li><a href="/danim/comm_picture_page">커뮤니티</a></li>
-				<li><a href="#">이벤트</a></li>
+
+				<li><a href="/danim/comm_picture_page?pageNum=1">커뮤니티</a></li>
+			
+
 			</ul>
 		</div>
 		<c:choose>
@@ -88,16 +78,18 @@ function modalClose() {
 				
 			</div>
 
-			<div class="formBx">
+			<div class="formBx" >
 				<div class="form loginForm">
 					<form action="member.login" method="post" name="loginForm">
 						<h3>로그인</h3>
-						<input type="text" placeholder="아이디" name="dm_id"> 
-						<input type="password" placeholder="비밀번호" name="dm_pw">
-						<button>로그인</button>
+						<input type="text" placeholder="아이디" name="dm_id" id="dm_id1" required>
+						<div class="check_fnt" id="id_check1"></div> 
+						<input type="password" placeholder="비밀번호" name="dm_pw" id="dm_pw1" required>
+						<div class="check_fnt" id="pw_check3"></div>
+						<button id="login_submit">로그인</button>
 					</form>
 					<hr>
-					<a>아이디/비밀번호를 잊어버리셨나요?</a>
+					<a href="member.findInfo" onclick="window.open(this.href, '_blank', 'width=700, height=500'); return false;">아이디/비밀번호를 잊어버리셨나요?</a>
 				</div>
 
 				<div class="form registerForm">
@@ -113,7 +105,6 @@ function modalClose() {
 						<div class="check_fnt" id="nick_check"></div> 
 						<input type="text" placeholder="이메일" name="dm_email" id = "dm_email" class="reg_mail" required>
 						<div class="check_fnt" id="mail_check"></div>
-						<input type="text" name="dm_isAdmin" value="N">
 						<button id="reg_submit">회원가입</button>
 					</form>
 				</div>
@@ -171,148 +162,8 @@ function modalClose() {
 			</div>
 		</div>
 	</footer>
-	<script>
-	const modal_loginBtn = document.querySelector('.modal_loginBtn');
-	const registerBtn = document.querySelector('.registerBtn');
-	const formBx = document.querySelector('.formBx');
-
-	registerBtn.onclick = function() {
-		formBx.classList.add('active');
-	}
-
-	modal_loginBtn.onclick = function() {
-		formBx.classList.remove('active');
-	} 
-	</script>
-	<script>
-	
-	const idJ = /^[a-z0-9]{4,12}$/;
 	
 	
-	$("#dm_id").blur(function() {
-		// id = "id_reg" / name = "userId"
-		let dm_id = $('#dm_id').val();
-		$.ajax({
-			url : '${pageContext.request.contextPath}/member.idCheck?dm_id='+ dm_id,
-			type : 'get',
-			success : function(data) {
-				console.log("1 = 중복o / 0 = 중복x : "+ data);							
-				
-				if (data == 1) {
-						// 1 : 아이디가 중복되는 문구
-						$("#id_check").text("사용중인 아이디입니다");
-						$("#id_check").css("color", "red");
-						$("#id_check").css("margin-top", "-18px");
-						$("#reg_submit").attr("disabled", true);
-					} else {
-						
-						if(idJ.test(dm_id)){
-							// 0 : 아이디 길이 / 문자열 검사
-							$("#id_check").text("");
-							$("#id_check").css('margin-top', '0px');
-							$("#reg_submit").attr("disabled", false);
-				
-						} else if(dm_id == ""){
-							$('#id_check').text('아이디를 입력해주세요 :)');
-							$("#id_check").css("margin-top", "-18px");
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);				
-							
-						} else {
-							$('#id_check').text("아이디는 영어 소문자와 숫자 4~12자리만 가능합니다");
-							$("#id_check").css("margin-top", "-18px");
-							$('#id_check').css('color', 'red');
-							$("#reg_submit").attr("disabled", true);
-						}
-						
-					}
-				}, error : function() {
-						console.log("실패");
-				}
-			});
-		});
-		
-		const pwJ = /^[A-Za-z0-9]{4,12}$/;
-		const pw1 = $('#dm_pw').val();
-		const pw2 = $('#dm_pwCheck').val();
-		
-		 /* $('#dm_pw').blur(function pwCheck() {
-			if(pwJ.test(pw1)) {
-				$("#pw_check1").text("");
-				$("#pw_check1").css('margin-top', '0px');
-				$("#reg_submit").attr("disabled", false);
-				
-			} else if(pw1 == ""){
-				$('#pw_check1').text('비밀번호를 입력해주세요');
-				$("#pw_check1").css("margin-top", "-18px");
-				$('#pw_check1').css('color', 'red');
-				$("#reg_submit").attr("disabled", true);				
-				
-			} else {
-				$('#pw_check1').text("영어 대소문자와 숫자로 4~12자리 비밀번호를 입력해주세요");
-				$("#pw_check1").css("margin-top", "-18px");
-				$('#pw_check1').css('color', 'red');
-				$("#reg_submit").attr("disabled", true);
-			}
-		}) */
-		
-		/* $('#dm_pwCheck').blur(function isPwSame() {
-			if(pw1 == pw2) {
-				$("#pw_check2").text("");
-				$("#pw_check2").css('margin-top', '0px');
-				$("#reg_submit").attr("disabled", false);
-			} else {
-				$('#pw_check2').text('비밀번호가 일치하지 않습니다');
-				$("#pw_check2").css("margin-top", "-18px");
-				$('#pw_check2').css('color', 'red');
-				$("#reg_submit").attr("disabled", true);
-			}
-		}) */
-		
-		/* $("#dm_nickname").blur(function() {
-			// id = "id_reg" / name = "userId"
-			let dm_nickname = $('#dm_nickname').val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/member.nickCheck?dm_nickname='+ dm_nickname,
-				type : 'get',
-				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : "+ data);							
-					
-					if (data == 1) {
-							// 1 : 아이디가 중복되는 문구
-							$("#nick_check").text("사용중인 아이디입니다");
-							$("#nick_check").css("color", "red");
-							$("#nick_check").css("margin-top", "-18px");
-							$("#reg_submit").attr("disabled", true);
-						} else {
-							
-							if(nickJ.test(dm_nickname)){
-								// 0 : 아이디 길이 / 문자열 검사
-								$("#nick_check").text("");
-								$("#nick_check").css('margin-top', '0px');
-								$("#reg_submit").attr("disabled", false);
-					
-							} else if(dm_nickname == ""){
-								$('#nick_check').text('아이디를 입력해주세요 :)');
-								$("#nick_check").css("margin-top", "-18px");
-								$('#nick_check').css('color', 'red');
-								$("#reg_submit").attr("disabled", true);				
-								
-							} else {
-								$('#nick_check').text("아이디는 영어 소문자와 숫자 4~12자리만 가능합니다");
-								$("#nick_check").css("margin-top", "-18px");
-								$('#nick_check').css('color', 'red');
-								$("#reg_submit").attr("disabled", true);
-							}
-							
-						}
-					}, error : function() {
-							console.log("실패");
-					}
-				});
-			}); */
-		
-		
-	</script>
+	<script type="text/javascript" src="resources/asset/index/js/modal.js"></script>
 </body>
 </html>

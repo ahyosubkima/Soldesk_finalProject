@@ -16,7 +16,16 @@ function modalClose() {
 
 const modal_loginBtn = document.querySelector('.modal_loginBtn');
 const registerBtn = document.querySelector('.registerBtn');
-const formBx = document.querySelector('.formBx');
+let formBx = document.querySelector('.formBx');
+
+/*$(function () {
+	$(".registerBtn").click(function() {
+		$('.formBx').addClass('active');
+	})
+	$(".modal_loginBtn").click(function() {
+		$('.formBx').removeClass('active');
+	});
+});*/
 
 
 registerBtn.onclick = function() {
@@ -25,4 +34,4 @@ registerBtn.onclick = function() {
 
 modal_loginBtn.onclick = function() {
 	formBx.classList.remove('active');
-}
+} 

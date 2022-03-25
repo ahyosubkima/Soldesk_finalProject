@@ -1361,6 +1361,177 @@ try {
 	
 }
 
+public void freeReplyUpdate(Comm_free_reply cfr, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("cfr_no"));
+		System.out.println(req.getParameter("newReply"));
+		cfr.setCfr_no(Integer.parseInt(req.getParameter("cfr_no")));
+		cfr.setCfr_txt(req.getParameter("newReply"));
+		
+		if (ss.getMapper(CommMapper.class).freeReplyUpdate(cfr)==1) {
+			System.out.println("댓글수정성공");
+		}
+	
+} catch (Exception e) {
+	e.printStackTrace();
+}	
+	
+}
+
+public void delFreeReply(Comm_free_reply cfr, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		cfr.setCfr_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).delFreeReply(cfr)==1) {
+			System.out.println("삭제성공");
+		}
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
+public void importUpload(HttpServletRequest req) {
+	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
+	System.out.println(path);
+	MultipartRequest mr = null;
+	String token = null;
+	try {
+		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+		token = mr.getParameter("token");
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		if (successToken != null && token.equals(successToken)) {
+			String fileName = mr.getFilesystemName("ci_file_name");
+			new File(path + "/" + fileName).delete();
+			return;
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+		return;
+	}
+	
+	
+	try {
+		String fName = "";
+		
+		if (mr.getFilesystemName("ci_file_name") == null) {
+			fName = "basic.jpg";
+		}
+		else { 
+			fName = mr.getFilesystemName("ci_file_name");
+		}
+		System.out.println(fName);
+		System.out.println(mr.getParameter("ci_txt"));
+		System.out.println(mr.getParameter("ci_write_name"));
+		System.out.println(mr.getParameter("ci_writer"));
+		Comm_import ci = new Comm_import();
+		ci.setCi_file_name(fName);
+		ci.setCi_txt(mr.getParameter("ci_txt"));
+		ci.setCi_write_name(mr.getParameter("ci_write_name"));
+		ci.setCi_writer(mr.getParameter("ci_writer"));
+		if (ss.getMapper(CommMapper.class).importUpload(ci) == 1) {
+			req.getSession().setAttribute("successToken", token);
+			System.out.println("업로드성공");
+		}
+		
+		
+		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+	} catch (Exception e) {
+		e.printStackTrace();
+	/*	String fileName = mr.getFilesystemName("g_file");
+		new File(path + "/" + fileName).delete();*/
+		req.setAttribute("result", "업로드실패");
+	}
+	
+}
+
+public void getImport(HttpServletRequest req) {
+	
+	try {
+		req.setAttribute("imports", ss.getMapper(CommMapper.class).getImport());
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+
+public void viewImportPlus(Comm_import ci, HttpServletRequest req) {
+	try {
+		String token = (String)req.getSession().getAttribute("token"); // 디테일 진입시 생성된 토큰 값
+		
+		System.out.println(token);
+		
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		System.out.println(successToken + "?????????????");
+		
+		if(successToken == token) {
+			return;
+		}
+
+		
+			System.out.println(req.getParameter("no"));
+			ci.setCi_no(Integer.parseInt(req.getParameter("no")));
+			if (ss.getMapper(CommMapper.class).viewImportPlus(ci)==1) {
+				req.getSession().setAttribute("successToken", token);
+				System.out.println("조회수증가 성공");
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+}
+
+public void getImportReply(Comm_import_reply cir, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		
+		cir.setCir_ci_no(Integer.parseInt(req.getParameter("no")));
+		req.setAttribute("reply", ss.getMapper(CommMapper.class).getImportReply(cir));
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void getCommImport2(Comm_import ci, HttpServletRequest req) {
+	
+	try {
+		System.out.println(req.getParameter("no"));
+		ci.setCi_no(Integer.parseInt(req.getParameter("no")));
+		req.setAttribute("notification", ss.getMapper(CommMapper.class).getCommImport2(ci));
+		System.out.println("보내는거 확인용!!!!!!!!");
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void delImport(Comm_import ci, HttpServletRequest req) {
+	try {
+		System.out.println(req.getParameter("no"));
+		ci.setCi_no(Integer.parseInt(req.getParameter("no")));
+		if (ss.getMapper(CommMapper.class).delImport(ci)==1) {
+			System.out.println("삭제성공");
+		}
+		
+		
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
 
 }
 

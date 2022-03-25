@@ -17,13 +17,13 @@
 						<td id="comm_picture_td_title">커뮤니티</td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_picture_page">사진게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_free_page">자유게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></td>
 					</tr>
 				</table>
 			</aside>
@@ -32,44 +32,37 @@
 			<c:forEach var="video" items="${video }">
 				<form action="comm_video_update_do" method="post"
 					enctype="multipart/form-data">
-					<table id="comm_picture_detail_tbl"
-						style="border: 1px solid black;">
+					<table id="comm_picture_update_tbl">
 						<tr>
-							<td colspan="1" id="comm_picture_detail_td2">제목</td>
-							<td colspan="3"><input
+					<td id="comm_picture_update_td2">제목</td>
+							<td><input
 								value="${video.cv_write_name }"
-								name="cv_write_name" id="comm_picture_update_title"></td>
-						</tr>
-						<tr>
-							<td>조회수</td>
-							<td id="comm_picture_detail_td">${video.cv_view }</td>
-							<td id="comm_picture_detail_td2">추천수</td>
-							<td>${video.cv_good }</td>
+								name="cv_write_name" id="comm_picture_update_title">
+								</td>
+
 						</tr>
 						<tr>
 						</tr>
 						<tr>
-							<td>내용</td>
-							<td><video id="comm_picture_detail_img"
-								src="resources/comm/file/${video.cv_name }"></video><input
+							<td  id="comm_picture_update_td2">영상</td>
+							<td><video id="p_preview"
+								src="resources/comm/file/${video.cv_name }" controls="controls">
+								</video>
+								<input
 								type="hidden" value="${video.cv_name }"
-								name="oldFile"> <input type="file" name="newFile">
+								name="oldFile"> <input id="picture" type="file" name="newFile">
+								<input type="hidden"
+								value="${video.cv_no }" name="cv_no">
 							</td>
-							<td colspan="2"><textarea id="comm_picture_update_txt"
+						</tr>
+						<tr>
+							<td  id="comm_picture_update_td2">내용</td>
+							<td><textarea id="comm_picture_update_txt"
 									name="cv_txt">${video.cv_txt }</textarea>
 							</td>
 						</tr>
 						<tr>
-						</tr>
-						<tr>
-							<td>작성일</td>
-							<td>${video.cv_date }</td>
-							<td>작성자</td>
-							<td>${video.cv_writer }<input type="hidden"
-								value="${video.cv_no }" name="cv_no"></td>
-						</tr>
-						<tr>
-							<td colspan="4" style="text-align: right"><button
+							<td colspan="2" style="text-align: right"><button
 									style="width: 70px; font-size: 15pt">수정</button></td>
 						</tr>
 					</table>

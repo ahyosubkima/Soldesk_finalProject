@@ -3,6 +3,7 @@ package com.team2.danim.plan;
 import java.io.File;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,11 +15,8 @@ import org.springframework.stereotype.Service;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
-import com.team2.danim.PageMakerDTO2;
 import com.team2.danim.PageMakerDTO3;
-import com.team2.danim.comm.CommMapper;
 
 @Service
 public class PlanDAO {
@@ -51,6 +49,8 @@ public class PlanDAO {
 		}
 
 		try {
+			
+		
 			//값가져오기
 			String p_writer = mr.getParameter("p_writer");
 			String p_title = mr.getParameter("p_title");
@@ -71,26 +71,27 @@ public class PlanDAO {
 			String p_budget = mr.getParameter("p_budget");
 			String p_freeWrite = mr.getParameter("p_freeWrite");
 			
+			
 			String[] p_setItems = mr.getParameterValues("p_setItem");
-			String p_setItem = new String();
-			for (int i = 0; i < p_setItems.length; i++) {
-				p_setItem += p_setItems[i] + ",";
-			}
-			
 			String[] p_setTitles = mr.getParameterValues("p_setTitle");	
-			String p_setTitle = new String();
-			for (int i = 0; i < p_setTitles.length; i++) {
-				p_setTitle += p_setTitles[i] + ",";
-			}
-			
 			String[] p_setPrices = mr.getParameterValues("p_setPrice");
-			String p_setPrice = new String();
-			for (int i = 0; i < p_setPrices.length; i++) {
-				p_setPrice += p_setPrices[i]+",";
+			
+			String item = "";
+			String title = "";
+			String price = "";
+			for (int i = 0; i < p_setItems.length; i++) {
+				item = item + p_setItems[i] + ",";
+				title = title + p_setTitles[i] + ",";
+				price = price + p_setPrices[i] + ",";
 			}
+			Plan_write pw = new Plan_write();
+			pw.setP_setItem(item);
+			pw.setP_setTitle(title);
+			pw.setP_setPrice(price);
+			
+			
 			
 			//빈에 담기
-			Plan_write pw = new Plan_write();
 			pw.setP_writer(p_writer);
 			pw.setP_title(p_title);
 			pw.setP_titleFile(p_titleFile.replace("+", " "));
@@ -101,15 +102,12 @@ public class PlanDAO {
 			pw.setP_plan(p_plan);
 			pw.setP_budget(p_budget);
 			pw.setP_freeWrite(p_freeWrite);
-			pw.setP_setTitle(p_setTitle);
-			pw.setP_setItem(p_setItem);
-			pw.setP_setPrice(p_setPrice);
 			
-			//빈2
+			/*//빈2
 			Plan_budget pb = new Plan_budget();
 			pb.setP_setTitle(p_setTitle);
 			pb.setP_setItem(p_setItem);
-			pb.setP_setPrice(p_setPrice);
+			pb.setP_setPrice(p_setPrice);*/
 			
 			
 			//확인용
@@ -123,13 +121,10 @@ public class PlanDAO {
 			System.out.println("일정(p_plan)::   " + p_plan);
 			System.out.println("총예산(p_budget)::   " + p_budget);
 			System.out.println("한마디(p_freeWrite)::   " + p_freeWrite);
-			System.out.println("예산 상품제목(p_setTitle)::    " + p_setTitle);
-			System.out.println("예산 상품명들(p_setItem)::    " + p_setItem);
-			System.out.println("상품명당 금액들(p_setPrice)::    " + p_setPrice);
 			
 			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
 				req.getSession().setAttribute("successToken", token);
-				req.setAttribute("pbs", pb);
+				/*req.setAttribute("pbs", pb);*/
 				System.out.println("작성 성공");
 			}
 
@@ -155,7 +150,30 @@ public class PlanDAO {
 		try {
 			
 			int p_no = Integer.parseInt(req.getParameter("p_no"));
-			req.setAttribute("plan", ss.getMapper(PlanMapper.class).getPlan(p_no));
+			Plan_write pw = ss.getMapper(PlanMapper.class).getPlan(p_no);
+			req.setAttribute("plan", pw);
+			String[] title = pw.getP_setTitle().split(",");
+			String[] item = pw.getP_setItem().split(",");
+			String[] price = pw.getP_setPrice().split(",");
+			
+			ArrayList<Plan_budget> budgets = new ArrayList<Plan_budget>();
+			Plan_budget pb = null;
+			for (int i = 0; i < title.length; i++) {
+				pb = new Plan_budget();
+				pb.setP_setTitle(title[i]);
+				pb.setP_setItem(item[i]);
+				pb.setP_setPrice(price[i]);
+				budgets.add(pb);
+				
+			}
+			req.setAttribute("budgets", budgets);
+			
+			
+		
+			
+			
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -214,6 +232,7 @@ public class PlanDAO {
 				pw.setP_title(p_searchWrite);
 				
 				int total = ss.getMapper(PlanMapper.class).getp_searchTitle(pw);
+				System.out.println("카운트수" + total);
 				
 				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
 				req.setAttribute("pageMakerTitle", pageMake);
@@ -239,6 +258,7 @@ public class PlanDAO {
 				pw.setP_place((req.getParameter("p_searchWrite")));
 				
 				int total = ss.getMapper(PlanMapper.class).getPlaceCount(pw);
+				System.out.println("카운트수" + total);
 				
 				PageMakerDTO3 pageMake = new PageMakerDTO3(cri3, total);
 				req.setAttribute("pageMakerTitle", pageMake);
@@ -274,6 +294,16 @@ public class PlanDAO {
 			req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchAll(map));
 		}
 	}
+
+/*	public void getHeart(HttpServletRequest req) {
+		try {
+			int p_no = Integer.parseInt(req.getParameter("p_no"));
+			req.setAttribute("plans", ss.getMapper(PlanMapper.class).getHeart());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}*/
 	
 
 

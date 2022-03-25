@@ -40,11 +40,20 @@
 }
 
 #p_days{
-	width: 60px;
+	width: 50px;
 	border: none;
 	border-bottom: 1px solid #404040;
-	text-align: right;
+	text-align: center;
+}
+
+#p_days:focus{
+	outline: none;
+}
 	
+#p_days::-webkit-outer-spin-button,
+#p_days::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #p_writePlannerBtn{
@@ -73,11 +82,6 @@
 #p_searchTbl{
 	margin: auto; 
 	margin-bottom: 30px;
-}
-
-
-#p_days:focus{
-	outline: none;
 }
 
 
@@ -223,6 +227,7 @@ ul li{
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
     background-origin: border-box;
     background-clip: content-box, border-box;
+    text-align: center;
 }
 
 #p_writeSubTitle{
@@ -234,8 +239,10 @@ ul li{
 
 
 #p_writeFreeWriteDetail{
+	width: 800px;
 	height: 150px;
-	font-size: 15pt;
+	font-size: 13pt;
+	text-align: center;
 }
 
 #p_freeWrite{
@@ -260,6 +267,7 @@ ul li{
 	outline: none;
 }
 
+
 #textLengthCheck{
 	font-size: 10pt;
     width: 100px;
@@ -270,8 +278,9 @@ ul li{
 }
 
 #p_writeBudgetWrite{
+	width:800px;
 	height: 150px;
-	font-size: 15pt;
+	font-size: 13pt;
 	text-align: center;
 }
 
@@ -354,6 +363,11 @@ ul li{
 }
 
 
+#p_BudgetAll{
+	text-align: center;
+	margin-top: 30px;
+}
+
 #p_budget{
 	text-align: center;
 	height: 50px;
@@ -363,14 +377,10 @@ ul li{
 	resize: none;
 }
 
-#p_BudgetAll{
-	text-align: center;
-	margin-top: 30px;
-}
-
 #p_budget:focus{
 	outline: none;
 }
+
 
 #p_FreeWordAll{
 	text-align: center;
@@ -390,8 +400,6 @@ ul li{
 
 
 
-/* 테스트 */
-
 
 #p_test{
 	margin: auto;
@@ -409,8 +417,8 @@ ul li{
 
 #p_DayWriteTitle{
 	text-align: center;
-	margin-top: 50px;
 	font-size: 20pt;
+    padding-top: 50px;
 }
 
 
@@ -435,7 +443,6 @@ ul li{
 	width: 800px;
 	display:inline-block;
 	zoom:1;
-	overflow: scroll;
 	
 }
 
@@ -466,7 +473,12 @@ ul li{
 	border: 1px solid #404040;
 	border-radius: 5px;
 }
-
+#testTbl{
+	width: 50px;
+	height: 50px;
+	float: left;
+	font-size: 10pt;
+}
 #BudgetTdDetail_1{
 	width: 250px;
 	height: 70px;
@@ -572,7 +584,13 @@ ul li{
 	color: #404040;
 	padding-top: 15px;
 	font-size: 12pt;
-	text-align: right;
+	text-align: center;
+}
+
+#p_person::-webkit-outer-spin-button,
+#p_person::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 #p_person:focus{
@@ -664,24 +682,36 @@ ul li{
 }
 
 
-
-.feeling_div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} 
-.button-container {
-  margin-left: 20px;
+#p_detailPlanGoBack{
+	text-align: center;
+	margin-top: 100px;
 }
-.feeling_a {
-  background-color: #fff;
-  border: 2px solid #2199e8;
-  padding: 10px 20px;
-  border-radius: 2px;
-  color: #2199e8;
-} 
 
-.active {
-  background-color: #2199e8;
-  color: #fff;
+#p_detailPlanGoBack button{
+	width: 150px;
+	height: 40px;
+	font-size: 13pt;
+	border: 1px dotted #353535;
+	color: #626262;
+	border-radius:5px;
+	background-color: transparent;
 }
+
+#p_regOk{
+	text-align: center;
+	margin-top: 100px;
+}
+
+#p_regOk input{
+	width: 150px;
+	height: 40px;
+	font-size: 13pt;
+	border: 1px dotted #353535;
+	color: #404040;
+	border-radius:5px;
+	background-color: transparent;
+}
+
+
+
+

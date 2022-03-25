@@ -15,10 +15,19 @@
 
 <link rel="stylesheet" href="resources/plan/p_css/plan.css">
 
-
 </head>
 <body>
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
+
+	<!-- 추천 기능 -->
+	<form action="plan.makeHeart">
+<div style="text-align: center;margin: auto;">
+<button id="heart_plan">좋아요  ♡</button>
+<input type="hidden" name="heart_id" value="${sessionScope.loginMember.dm_id }">
+<input type="hidden" name="heart_no" value="${param.p_no }">
+<input type="hidden" name="p_no" value="${param.p_no }">
+</div>
+</form>
 
 <!-- 일전 기본정보 -->
 <table id="p_write">
@@ -48,17 +57,15 @@
 
 <!-- 여행 전체일정 -->
 <div style="margin: auto; width: 800px; text-align: center; font-size: 20pt; margin-top: 60px;">📅 여행 전체일정</div>
-<div style="margin: auto; width: 800px; margin-top: 20px;">
+<div style="margin: auto; width: 800px; margin-top: 20px; display: inline-block; margin-left: 23%">
 			<c:set var="plan" value="${fn:split(plan.p_plan,',') }"></c:set>
-	<table style="margin: auto;">
 			<c:forEach var="plan" items="${plan }" varStatus="p">
-		<c:if test="${p.index%4  == 1 }"><tr></c:if>
-			<td colspan="2">
-			<div id="mapName">${plan }</div>
-			</td>
-		<c:if test="${p.index%4  == 0}"></tr></c:if>
-			</c:forEach>
+	<table style="margin: auto; float: left;">
+		<tr>
+			<td><div id="mapName">${plan }</div></td>
+		</tr>
 	</table>
+			</c:forEach>
 </div>
 
 
@@ -70,49 +77,39 @@
 
 <div id="p_openDayWrite">
 <div id="confirmContent"><div id="p_DayWriteAll"><div id="p_dayWriteDiv">
+		<c:forEach var="bd" items="${budgets }">
+			<table id="setBudgetTb">
+				<tr>
+					<td colspan="2">${bd.p_setTitle }</td>
+				</tr>
 
-		<table id="BudgetTbDetail">
-		<tr>
-<c:forEach var="p_setTitle" items="${fn:split(plan.p_setTitle,',') }">
-		<td id="BudgetTdDetail_1">${p_setTitle }</td>
-</c:forEach>
-		</tr>
-		
-		<tr>
-<c:forEach var="p_setItem" items="${fn:split(plan.p_setItem,',') }">
-		<td id="BudgetTdDetail_1">${p_setItem }</td>
-</c:forEach>	
-		</tr>
-		<tr>
-	<c:forEach var="p_setPrice" items="${fn:split(plan.p_setPrice,',') }">
-		<td id="BudgetTdDetail_2">${p_setPrice }원</td>
-</c:forEach>
-		</tr>
-	</table>
-
-
-				</div></div></div>
+				<tr>
+					<td style="text-align: right; width: 60px; height: 35px;">상품명:</td>
+					<td>${bd.p_setItem }</td>
+				</tr>
 				
-				
-				
-				
-</div>
+				<tr>
+					<td style="text-align: right; width: 60px; height: 35px;">가격:</td>
+					<td><fmt:formatNumber value="${bd.p_setPrice }" pattern="#,###"/> 원</td>
+				</tr>
+			</table>
+		</c:forEach>
+</div></div></div></div>
 
 
-
-	
 	
 <!-- 예산 결과 보여주는 곳 -->
 	<div id="p_DayWriteTitle">💲예산 결과</div>
 	<table border="1" id="p_detailBudgetDetail">
 		<tr>
-			<td id="p_writeBudgetWrite"><textarea id="p_budget">${plan.p_budget }</textarea></td>
+			<td id="p_writeBudgetWrite">${plan.p_budget }</td>
 		</tr>
 	</table>
 
 
 	
 <!-- 자유 한마디 -->
+<c:if test="${not empty plan.p_freeWrite}">
 	<div id="p_FreeWordAll">
 	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
 	<table border="1" id="p_writeFreeDetail">
@@ -122,18 +119,21 @@
 		</tr>
 	</table>
 	</div>
-	
-	<!-- 추천 기능 -->
-	
-	<div class="feeling_div">
-			<div class="button-container like-container">
-			    <button class="feeling_a">
-			      <i class="fa fa-heart-o"> Like</i>    
-			    </a>
-			  </div>
-		</div>
-	
+ </c:if>
 
+ <c:if test="${empty plan.p_freeWrite}">
+	<div id="p_FreeWordAll">
+	<span id="p_openFreeWord" onclick="p_openFreeWord()">💪여행 전 한마디 ▼</span>
+	<table border="1" id="p_writeFreeDetail">
+		
+		<tr>
+			<td id="p_writeFreeWriteDetail">한마디가 없습니다.</td>
+		</tr>
+	</table>
+	</div>
+</c:if>
+	<div id="p_detailPlanGoBack"><button onclick="history.go(-1)" > &lt; 돌아가기</button></div>
+	
 
 </body>
 </html>

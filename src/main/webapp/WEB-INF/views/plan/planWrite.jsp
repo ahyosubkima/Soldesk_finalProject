@@ -21,10 +21,10 @@
 <div id="p_writeTitle"><h1>여행 플래너 제작하기</h1></div>
 
 <!-- 일정 기본정보 등록 -->
-<form action="plan.writeReg" name="planWrite" method="post" enctype="multipart/form-data" >
+<form action="plan.writeReg" name="planWrite" method="post" enctype="multipart/form-data" id="planWrite" onsubmit="return p_submit();" >
 	<table id="p_write">
 	            <!-- 아이디, 닉네임, 박수, token 정보 hidden -->
-		<tr><td><input type="hidden" name="p_writer" value="${param.p_writer }">
+		<tr><td id="p_writeHiddenInput"><input type="hidden" name="p_writer" value="${param.p_writer }">
 				<input type="hidden" id="p_nickname" name="p_nickname" value="${param.p_nickname }">
 				<input type="hidden" id="p_days" name="p_days" value="${param.p_days }">
 				<input type="hidden" name="token" value="${token }">
@@ -37,7 +37,7 @@
 		</tr>
 		
 		<tr>
-			<td style="width: 250px;"><h3>출발 날짜</h3><p><input type="date" name="p_startDate" id="p_startDate"></td>
+			<td style="width: 250px;"><h3>출발 날짜</h3><p><input type="date" name="p_startDate" id="p_startDate" min="1"></td>
 			<td><h3>여행 인원</h3><p><input type="number" name="p_person" id="p_person">명 </td>
 		</tr>
 

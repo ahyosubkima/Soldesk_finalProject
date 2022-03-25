@@ -5,6 +5,7 @@ public class Plan_budget {
 	private String p_setTitle;
 	private String p_setItem;
 	private String p_setPrice;
+	
 	public Plan_budget(String p_setTitle, String p_setItem, String p_setPrice) {
 		super();
 		this.p_setTitle = p_setTitle;

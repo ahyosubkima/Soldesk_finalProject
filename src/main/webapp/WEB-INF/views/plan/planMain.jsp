@@ -17,7 +17,7 @@
 		<tr><td><h3>🏃‍♂️나만의 플래너 제작🏃‍♀️</h3></td></tr>
 		
 			<tr>
-				<td>총 몇일 여행하시나요?&nbsp;&nbsp;<input type="number" name="p_days" id="p_days"> 일 </td>
+				<td>총 몇일 여행하시나요?&nbsp;&nbsp;<input type="number" name="p_days" id="p_days" min="1"> 일 </td>
 			</tr>
 			<tr>
 				<td colspan="2">
@@ -72,6 +72,31 @@
 </div>
 </c:if>
 
+<c:if test="${pageMakerTitle != null }">
+<div id="p_pagingDiv">
+		<!-- 이전페이지 버튼 -->
+	<table id="p_pagingTbl">
+		<tr>
+			<td><c:if test="${pageMakerTitle.prev}">
+				<li class="pageInfo_btn previous"><a
+					href="/danim/plan.search?pageNum=${pageMakerTitle.startPage-1}"> &lt;이전 </a></li>
+				</c:if></td>
+				
+			<!-- 각 번호 페이지 버튼 -->
+			<c:forEach var="num" begin="${pageMakerTitle.startPage}"
+						end="${pageMakerTitle.endPage}">
+				<td><a
+					href="/danim/plan.search?p_searchSelect=${sessionScope.p_searchSelect}&p_searchWrite=${param.p_searchWrite}&pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a></td>
+			</c:forEach>
+				<td><c:if test="${pageMakerTitle.next}">
+					<li class="pageInfo_btn next"><a
+						href="/danim/plan.search?p_searchSelect=${sessionScope.p_searchSelect}&p_searchWrite=${param.p_searchWrite}&pageNum=${pageMakerTitle.endPage + 1 }">다음&gt;</a></li>
+					</c:if></td>
+		</tr>
+	</table>
+</div>
+</c:if>
+
 
 
 <!-- 검색기능 -->
@@ -97,9 +122,9 @@
 
 
 <!-- 등록된 플래너 전체 조회-->
-<c:if test="${pageMaker == null }"> <div id="p_noPlanner"><b>'${param.p_searchWrite }'</b>에 관련된 플래너가 없습니다😭 </div>  </c:if>
+<c:if test="${empty plans}"> <div id="p_noPlanner"><b>'${param.p_searchWrite }'</b>에 관련된 플래너가 없습니다😭 </div>  </c:if>
 
-<c:if test="${pageMaker != null }">
+<c:if test="${not empty plans}">
 	<div id="p_mainDetailDiv">
 			<c:forEach var="p" items="${plans }" varStatus="status">
 		 <table id="p_mainDetail"> 

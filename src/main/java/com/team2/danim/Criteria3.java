@@ -39,9 +39,14 @@ public class Criteria3 {
 
 		@Override
 		public String toString() {
+			return "Criteria3 [pageNum=" + pageNum + ", amount=" + amount + "]";
+		}
+
+		/*@Override
+		public String toString() {
 			return "Criteria [pageNum=" + pageNum + ", amount=" + amount + "]";
 		}
-		
+		*/
 		
 	    
 	    

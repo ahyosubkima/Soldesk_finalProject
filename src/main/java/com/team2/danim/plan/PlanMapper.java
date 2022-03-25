@@ -3,6 +3,7 @@ package com.team2.danim.plan;
 import java.util.List;
 import java.util.Map;
 import com.team2.danim.Criteria3;
+import com.team2.danim.comm.Comm_video;
 
 public interface PlanMapper {
 
@@ -13,7 +14,7 @@ public interface PlanMapper {
 	List<Plan_write> getAllPlan();
 	
 	//게시물 한개 조회
-	Object getPlan(int p_no);
+	Plan_write getPlan(int p_no);
 
 	//페이징
 	public int getTotalPlan();
@@ -35,6 +36,9 @@ public interface PlanMapper {
 	public int getPlaceTitleCount(Plan_write pw);
 	//장소, 제목 검색
 	public List<Plan_write> p_searchAll(Map<String, String> map);
+
+	//하트 좋아요
+	//public List<Plan_write> getHeart();
 	
 
 }

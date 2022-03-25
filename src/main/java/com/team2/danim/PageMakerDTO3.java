@@ -98,7 +98,7 @@ public class PageMakerDTO3 {
 	public String toString() {
 		return "PageMakerDTO3 [startPage=" + startPage + ", endPage=" + endPage + ", prev=" + prev + ", next=" + next
 				+ ", total=" + total + ", cri3=" + cri3 + "]";
-	}	
+	}
 	
 	
 	

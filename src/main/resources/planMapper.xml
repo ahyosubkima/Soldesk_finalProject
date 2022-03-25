@@ -122,4 +122,11 @@ select count(*) from plan_write
 
 
 
+<!-- <select id="getHeart"
+		resultType="com.team2.danim.plan.Plan_write">
+		SELECT * FROM plan_write WHERE ROWNUM &lt;= 6 order by heart_like desc
+</select>
+ -->
+
+
 </mapper>

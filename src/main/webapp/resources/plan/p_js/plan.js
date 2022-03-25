@@ -8,10 +8,10 @@ function dayImportant(){
 		
 		let placeName = $(this).text();
 		
-		$("#p_dayWriteDiv").before('<table id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;"><textarea name="p_setTitle" readonly>' + placeName + '</textarea></td></tr>'+
+		$("#p_dayWriteDiv").before('<table id="setBudgetTb" class="setBudgetTb">'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea class="setBudgetTxtarea" name="p_setTitle" readonly>' + placeName + '</textarea></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">상품명:</td>'+
-				'<td><input name="p_setItem" id="p_setItem"></td></tr>'+
+				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
 				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr><tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
 	});
@@ -23,10 +23,10 @@ function addTrans(){
 	//교통비 테이블 추가
 	$(document).on("click", "#p_addTransportation", function() {
 		
-		$("#p_dayWriteDiv").before('<table id="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="교통편 종류를 적어주세요"></textarea></td></tr>'+
+		$("#p_dayWriteDiv").before('<table id="setBudgetTb" class="setBudgetTb">'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" class="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="교통편 종류를 적어주세요"></textarea></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">편명:</td>'+
-				'<td><input name="p_setItem" id="p_setItem"></td></tr>'+
+				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
 				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr><tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
 	});
@@ -47,31 +47,31 @@ function addTrans(){
 /* 여행 예산 계산 */
 function budgetCalc(){
 	
-	$(document).on("click", "#p_openBudget", function() {
-	
-		const allPrice = document.querySelectorAll(".p_setPrice");
-		const person =  document.getElementById('p_person').value;
-		
-		let price = 0;
-		let sum = 0;
-		let onePersonPrice = 0;
-		
-		let nickname = document.getElementById('p_nickname').value;
-		
-		
-		for (var i = 0; i < allPrice.length; i++) {
+		$(document).on("click", "#p_openBudget", function() {
 			
-			price = parseInt(allPrice[i].value);
+			const allPrice = document.querySelectorAll(".p_setPrice");
+			const person =  document.getElementById('p_person').value;
+			let nickname = document.getElementById('p_nickname').value;
 			
-			sum += price;
-			onePersonPrice = sum / person;
-		}
-		//확인용
-		console.log(p_nickname)
-		console.log(sum)
-		console.log(onePersonPrice)
-		
-		$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당 " + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
+			let price = 0;
+			let sum = 0;
+			let onePersonPrice = 0;
+			
+			
+			
+			for (var i = 0; i < allPrice.length; i++) {
+				
+				price = parseInt(allPrice[i].value);
+				
+				sum += price;
+				onePersonPrice = sum / person;
+			}
+			//확인용
+			console.log(nickname)
+			console.log(sum)
+			console.log(onePersonPrice)
+			
+			$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당 " + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
 		
 	});
 }
@@ -209,34 +209,107 @@ function deletePlanBudget() {
 
 /* 작성페이지 null검사 */
 function p_submit() {
-	$(document).ready(function () {
 	$(document).on("click", ".p_submit", function () {
-		
-	if ($("#p_title").val() == "") {
-		alert('플래너 제목을 작성해주세요!')
+
+/*	if (!$("#p_title").val()) {
+		alert('플래너 제목을 작성해주세요!');
+		setTimeout(function() {
+			$("#p_title").focus();
+		})
 		return false;
-	}else if ($("#p_startDate").val() == "") {
+	}
+	if (!$("#p_startDate").val()) {
 		alert('출발날짜를 선택해주세요!')
+		setTimeout(function() {
+			$("#p_startDate").focus();
+		})
 		return false;
-	}else if ($("#p_person").val() == "") {
+	}
+	if (!$("#p_person").val()) {
 		alert('여행인원을 작성해주세요!')
+		setTimeout(function() {
+			$("#p_person").focus();
+		})
 		return false;
-	}else if ($("#p_place").val() == "") {
+	}
+	if (!$("#p_place").val()) {
 		alert('여행장소를 작성해주세요!')
+		setTimeout(function() {
+			$("#p_place").focus();
+		})
 		return false;
-	}else if ($("#p_titleFiles").val() == "") {
+	}
+	if (!$("#p_titleFiles").val()) {
 		alert('플래너 사진을 업로드해주세요!')
+		setTimeout(function() {
+			$("#p_titleFiles").focus();
+		})
 		return false;
-	}else if ($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
+	}
+	*/
+		
+		
+	if($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
 		alert('여행 예산을 하나이상 작성해주세요!')
+		var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+		setTimeout(function() {
+			$("html, body").animate({scrollTop: offset.top-280},50);
+		})
 		return false;
-	} 
+	}else {
+		//console.log('aa');
+		alert('???????????????')
+		$('.setBudgetTb').each(function(i,t) {
+			let txtArea = $(this).find(".setBudgetTxtarea");
+			let item = $(this).find(".p_setItem");
+			let price = $(this).find(".p_setPrice");
+			//console.log($(txtArea).val());			
+			//console.log($(item).val());			
+			//console.log($(price).val());			
+			var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+			
+			if(!$(txtArea).val()){
+				alert('교통편 이름을 작성해주세요');
+				$(txtArea).focus();
+				return false;
+			}
+			if(!$(item).val()){
+				alert('상품 이름을 작성해주세요');
+				$("html, body").animate({scrollTop: offset.top-280},50);
+				$(item).focus();
+				return false;
+			}
+			if(!$(price).val()){
+				alert('가격을 작성해주세요');
+				$("html, body").animate({scrollTop: offset.top-260},50);
+				$(price).focus();
+				return false;
+			}
+		});//foreach문 끝
+		return false;
+	}
 	
+	
+		
+		alert('왜 안이리로안와..')
+		if($.contains(document.body, document.getElementById("p_budget")) == false) {
+		alert('계산하기 버튼을 눌러주세요!')
+		return false;
+	}
+	
+	
+	/*
+	if($.contains(document.body, document.getElementById("p_budget")) == false) {
+		alert('계산하기 버튼을 눌러주세요!')
+		return false;
+	}*/
 	
 	 });
-	});
-	
 }
+
+
+
+
 
 /* 메인페이지 작성버튼 null검사 */
 function p_writesubmit() {

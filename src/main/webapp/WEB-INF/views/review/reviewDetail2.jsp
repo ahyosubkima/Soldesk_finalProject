@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="resources/review/js/jquery.js"></script>
+<!-- <script src="resources/review/js/jquery.js"></script> -->
 <style>
 textarea{
 	width: 100%;
@@ -13,7 +13,7 @@ textarea{
 }
 
 .dailyBox{
-	display: none;
+	display: block;
 }
 
 .daily_schedule.active{
@@ -97,7 +97,7 @@ div {
 	justify-content: center;
 }
 </style>
-<script type="text/javascript" src="resources/review/js/reviewWrite.js"></script>
+<!-- <script type="text/javascript" src="resources/review/js/reviewWrite.js"></script> -->
 <script type="text/javascript">
 let map, infoWindow, marker, searchBox, input, poly;
 
@@ -105,23 +105,69 @@ let destination = [];
 
 function initMap() {
 
-	let coordinate = document.getElementById("coordinate").textContent;
-	let splitedcoordinate = coordinate.split("{}");
+	let coordinate	 = document.getElementById("coordinate").textContent;
+	console.log(coordinate);
+	let splitedcoordinate = coordinate.split("|");
 	console.log(splitedcoordinate);
-
+	console.log(splitedcoordinate[0]);
+	let spilted = splitedcoordinate[0];
+	let parsed = JSON.parse(spilted);
+	console.log(parsed);
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 37.555946, lng: 126.972317 },
+    center: parsed,
     zoom: 12,
   });
 
+  //폴리라인 다시그리기
+
+  let rootCoordinates = [];
+
+  for (let index = 0; index < splitedcoordinate.length-1; index++) {
+	  let each = splitedcoordinate[index];
+
+	  let eachParsing = JSON.parse(each);
+
+	  rootCoordinates.push(eachParsing);
+	  
+  }
+  console.log(rootCoordinates);
+
+//   const flightPlanCoordinates = [
+//     { lat: 37.772, lng: -122.214 },
+//     { lat: 21.291, lng: -157.821 },
+//     { lat: -18.142, lng: 178.431 },
+//     { lat: -27.467, lng: 153.027 },
+//   ];
+   const rootPath = new google.maps.Polyline({
+     path: rootCoordinates,
+     geodesic: true,
+     strokeColor: "#FF0000",
+    strokeOpacity: 1.0,
+    strokeWeight: 2,
+   });
+
+  rootPath.setMap(map);
+ 
+  //마커추가하기
+
+  rootCoordinates.forEach(function(each,curIdx){
+
+	let locationNum = curIdx+1;
+
+	  const marker = new google.maps.Marker({
+		position: each,
+		map: map,
+		label:'#'+locationNum,
+	  });
+  })
   
  
-  const service = new google.maps.places.PlacesService(map);
+ // const service = new google.maps.places.PlacesService(map);
   //   // We add a DOM event here to show an alert if the DIV containing the
   //   // map is clicked.
 
-  infoWindow = new google.maps.InfoWindow();
-  marker  = new google.maps.Marker();
+ // infoWindow = new google.maps.InfoWindow();
+ // marker  = new google.maps.Marker();
  
 
   // 내위치 찾기
@@ -133,14 +179,15 @@ function initMap() {
 //장소검색끝
 
 //폴리라인 시작
-poly = new google.maps.Polyline({
-    strokeColor: "#000000",
-    strokeOpacity: 1.0,
-    strokeWeight: 3,
-  });
-  poly.setMap(map);
-let markers =[];
-marker = new google.maps.Marker();
+
+// poly = new google.maps.Polyline({
+//     strokeColor: "#000000",
+//     strokeOpacity: 1.0,
+//     strokeWeight: 3,
+//   });
+//   poly.setMap(map);
+// let markers =[];
+// marker = new google.maps.Marker();
 
   // add event listener for click event
  
@@ -222,7 +269,7 @@ marker = new google.maps.Marker();
 
 
 	<div id="schedule">
-		<div id="schedule_inner_nav" style="display: flex;" >
+		<!-- <div id="schedule_inner_nav" style="display: flex;" >
 			<div style="width: 15%;  ">
 				<a>모든경로보기</a> <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
 			</div>
@@ -240,7 +287,7 @@ marker = new google.maps.Marker();
 				</div>
 				<a href="javascript:void(0);" onclick="activateDay(this)"><span>day 1</span></a>
 			</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="dailyBox" id="day1" data-day="1" style="display: block;">
 		일정표시 d1

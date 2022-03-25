@@ -315,7 +315,7 @@ function initMap() {
 //폴리라인 시작
 
 //서버에 좌표보내기용변수
-let coordinate = [];
+let coordinate = "";
 
 poly = new google.maps.Polyline({
     strokeColor: "#000000",
@@ -381,7 +381,7 @@ function addLatLng(event) {
 	console.log(event.latLng.lng());
 
 
-	coordinate.push('{ lat: '+event.latLng.lat()+', lng: '+event.latLng.lng()+'} |');
+	coordinate += '{ "lat": '+event.latLng.lat()+', "lng": '+event.latLng.lng()+'} |';
 
 	
 	console.log(coordinate);
@@ -405,7 +405,7 @@ function addLatLng(event) {
 		  console.log(dds.title);
 		  console.log(destination[destinationNum]);
 		  
-		  let rcdestination = destination[destinationNum];
+		  let rcdestination = dds.title+destination[destinationNum];
 
 	let selectDay =	  document.querySelector('.daily_schedule.active').getAttribute('data-day');
 

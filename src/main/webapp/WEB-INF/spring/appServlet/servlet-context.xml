@@ -34,9 +34,8 @@
 
 
 
-		<beans:property name="username" value="bg" />
-		<beans:property name="password" value="bg" />
-
+		<beans:property name="username" value="c##jy" />
+		<beans:property name="password" value="jy" />
 
 
 	</beans:bean>
@@ -65,7 +64,7 @@
 			ref="sqlSessionFactory" />
 	</beans:bean>
 	
-	<!--?Œì¼?…ë¡œ???¤ì •(multiparts)  -->
+
 <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <beans:property name="maxUploadSize" value="52428800" />
     <beans:property name="maxInMemorySize" value="1000000" />

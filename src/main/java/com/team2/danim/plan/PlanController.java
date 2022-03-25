@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.team2.danim.Criteria2;
+import com.team2.danim.Criteria3;
 import com.team2.danim.TokenMaker;
+import com.team2.danim.comm.Comm_free;
 
 @Controller
 public class PlanController {
@@ -16,7 +20,8 @@ public class PlanController {
 	@Autowired
 	private PlanDAO pDAO;
 	
-	@RequestMapping(value = "/planMain", method = RequestMethod.GET)
+	
+	/*@RequestMapping(value = "/planMain", method = RequestMethod.GET)
 
 	public String planMain(HttpServletRequest req) {
 		TokenMaker.make(req);
@@ -24,6 +29,17 @@ public class PlanController {
 		
 		req.setAttribute("contentPage", "plan/planMain.jsp");
 		return "home";
+	}*/
+	
+	@RequestMapping(value = "/plan.page", method = RequestMethod.GET)
+	public String PlanPage(HttpServletRequest req,Criteria3 cri3) {
+		TokenMaker.make(req);
+		pDAO.getPageMakerPlan(req, cri3);
+		pDAO.getPlanPaging(req, cri3);
+		
+		req.setAttribute("contentPage", "plan/planMain.jsp");
+		return "home";
+		
 	}
 	
 	
@@ -35,13 +51,48 @@ public class PlanController {
 
 	}
 	
+	@RequestMapping(value = "/plan.writeReg", method = RequestMethod.POST)
+	public String planWriteOK(HttpServletRequest req, Criteria3 cri3) {
+		
+		TokenMaker.make(req);
+		pDAO.uploadPlan(req);
+		
+		pDAO.getPageMakerPlan(req, cri3);
+		pDAO.getPlanPaging(req, cri3);
+		
+		req.setAttribute("contentPage", "plan/planMain.jsp");
+		
+		return "home";
+	}
 	
-	@RequestMapping(value = "/plan.detailPlanner", method = RequestMethod.POST)
+	
+	@RequestMapping(value = "/plan.detailPlanner", method = RequestMethod.GET)
 	public String planDetail(HttpServletRequest req) {
 		
 		TokenMaker.make(req);
-		pDAO.upload(req);
-		pDAO.getAllPlan(req);
+		pDAO.getPlan(req);
+		//pDAO.getHeart(req);
+		
+		req.setAttribute("contentPage", "plan/planDetail.jsp");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/plan.makeHeart", method = RequestMethod.GET)
+	public String planMakeHeart(HttpServletRequest req) {
+		
+		TokenMaker.make(req);
+		pDAO.getPlan(req);
+		
+		req.setAttribute("contentPage", "plan/planDetail.jsp");
+		
+		return "home";
+	}
+	
+	@RequestMapping(value = "/plan.search", method = RequestMethod.GET)
+	public String plan_search(HttpServletRequest req,Plan_write pw ,Criteria3 cri3) {
+		
+		pDAO.searchPlan(pw, req, cri3);
 		
 		req.setAttribute("contentPage", "plan/planMain.jsp");
 		
@@ -52,23 +103,7 @@ public class PlanController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
 
-	@RequestMapping(value = "/domestic.getjson", method = RequestMethod.GET,
-			produces = "application/json; charset=utf-8")
-	public String planJson(HttpServletRequest req) {
-		
-		TokenMaker.make(req);
-		req.setAttribute("contentPage", "plan/planWrite.jsp.jsp");
-		
-		return "home";
-
-	}
 	
 	
 	

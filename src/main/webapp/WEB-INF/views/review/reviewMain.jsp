@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
     
 <!DOCTYPE html>
 <html>
@@ -280,7 +282,7 @@ li {
 <div class="" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
 <div class="flex-container" id="contents">
-<div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/testimg2.jpg" alt="이미지위치"></a> </div>
+<div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/${fn:split(reviews.rb_img, ',')[0]}" alt="이미지위치"></a> </div>
 <div class="content_title" style="font-size: 30px">${reviews.rb_title }</div> 
 <div id="icon_div"><img src="resources/review/img/good2.png" id="review_icon">&nbsp;: ${reviews.rb_likecount } &nbsp; <img src="resources/review/img/eye2.png" id="review_icon">&nbsp;: ${reviews.rb_viewcount } &nbsp;<img src="resources/review/img/ripple2.png" id="review_icon">&nbsp;: ${reviews.rb_commentcount }</div>
 <div> <span>#<fmt:formatNumber value="${reviews.rb_budget }" pattern="#,###"/>이하 </span> | <span> #${reviews.rb_theme }</span> | <span> #${reviews.rb_location }</span> </div>
@@ -293,8 +295,13 @@ li {
 </div>
 
 <div class="flex-container">
-<div id="revuew_write"><a href="reviewWrite.go">후기쓰기</a></div>
+
+<c:if test="${not empty sessionScope.loginMember.dm_id }">
+<input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
+<div> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a> </div>
+
 <div>내후기보기</div>
+</c:if>
 </div>
 
 </body>

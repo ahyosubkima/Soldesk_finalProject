@@ -330,8 +330,14 @@ function getReviews(result){
       currency : 'KRW'
     }).format(i.rb_budget);
     
+    //첫번째이미지 가져오기
+    console.log(i.rb_img);
+    let imgStr =i.rb_img;
+    let splitedimg =imgStr.split(",");
+    console.log(splitedimg[0]);
+
     
-    newDiv.insertAdjacentHTML('afterbegin', '<div>'+'<a href="reviewDeatil.go?rb_no='+ i.rb_no +'">'+'<img class="img_box" src="resources/review/img/'+ i.rb_img +'" alt="이미지위치"></a> </div>');
+    newDiv.insertAdjacentHTML('afterbegin', '<div>'+'<a href="reviewDeatil.go?rb_no='+ i.rb_no +'">'+'<img class="img_box" src="resources/review/img/'+ splitedimg[0] +'" alt="이미지위치"></a> </div>');
     newDiv.insertAdjacentHTML('beforeend', '<div class="content_title" style="font-size: 30px">'+ i.rb_title +'</div>');
     newDiv.insertAdjacentHTML('beforeend', '<div>like :'+i.rb_likecount+' view :'+i.rb_viewcount+' comment :'+i.rb_commentcount+'</div>');
     newDiv.insertAdjacentHTML('beforeend', '<div>'+backTODate+'작성자 :'+i.rb_username +' </div>' );

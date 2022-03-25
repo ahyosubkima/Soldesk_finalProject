@@ -4,8 +4,9 @@
 
 //js 준비
 document.addEventListener('DOMContentLoaded', function () {
-	
-	
+
+    
+
 	
    // console.log(document.getElementById('selectBox'));
 
@@ -22,17 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
  });
 	
 
-document.getElementById('dailyAddBtn').addEventListener('click',function(){
 
-    let newDiv = document.createElement('div');
-
-    let clone = document.getElementById('dailyContent').cloneNode(true);
-    
-    document.getElementById('dailyContainer').insertAdjacentElement('afterbegin',clone);
-
-   // console.log(clone);
-
-})
 
 
 
@@ -63,9 +54,17 @@ if(event.target.classList.contains('dropbtn')){
           alert('다음일정이 이미 존재합니다.');
           return false;
       }
+      console.log(daycount);
+      if(daycount < 10){
  createSchedule(event.target);
  document.querySelector('.daily_schedule.active').nextElementSibling.classList.add('active') ;
  document.querySelector('.daily_schedule.active').classList.remove('active') ;
+}
+    if(daycount >=10){
+        console.log('일정생성제한');
+        alert('일정은 10일까지만 생성가능합니다.');
+    }
+
   }
 
 
@@ -96,7 +95,7 @@ function createSchedule(a){
    newDiv.setAttribute('data-day',daycount);
 
    newDiv.innerHTML = '<div class="dropdown">\
-       <button onclick="" class="dropbtn">\
+       <button type="button" onclick="" class="dropbtn">\
            <img alt="" src="resources/review/img/plus-circle.svg">\
        </button>\
        <div id="myDropdown" class="dropdown-content">\
@@ -130,26 +129,40 @@ function moveNextD(){
            console.log(document.querySelector('.daily_schedule.active').childNodes[0]);
         console.log(document.querySelector('.daily_schedule.active').childNodes[0].childNodes[3].childNodes[3]);
         backwardBtn = document.querySelector('.daily_schedule.active').childNodes[0].childNodes[3].childNodes[3];
-           createSchedule(backwardBtn);
+          
+        if(daycount < 10){
+            createSchedule(backwardBtn);
+        }
+        else{
+            console.log('생성제한');
+            alert('일정은 10일까지만 생성가능합니다.');
+        }
         }
         else{
             return false;
         }
     }
     else if(document.querySelector('.daily_schedule.active').nextElementSibling.style.display =='none'){
-        console.log('여곳이요');
+        console.log('다음버튼 view 변경시');
         document.querySelector('.daily_schedule.active').previousElementSibling.previousElementSibling.style.display = 'none';
 
-        document.querySelector('.daily_schedule.active').nextElementSibling.classList.add('active') ;
+        let activateThis = document.querySelector('.daily_schedule.active').nextElementSibling;
+
+        activateThis.classList.add('active') ;
         document.querySelector('.daily_schedule.active').classList.remove('active') ;
         document.querySelector('.daily_schedule.active').style.display ='block';
 
+        onlyShowselected(activateThis);
         
     }
     else{
-        console.log('이곳으로');
-        document.querySelector('.daily_schedule.active').nextElementSibling.classList.add('active') ;
+        console.log('다음버튼 일반상태');
+
+        let activateThis = document.querySelector('.daily_schedule.active').nextElementSibling;
+        activateThis.classList.add('active') ;
         document.querySelector('.daily_schedule.active').classList.remove('active') ;
+
+        onlyShowselected(activateThis);
 
     }
 
@@ -158,20 +171,48 @@ function moveNextD(){
 function activateDay(e){
     document.querySelector('.daily_schedule.active').classList.remove('active');
     e.parentNode.classList.add('active');
+    console.log('일정눌렀을때 활성화상태');
+
+
+   onlyShowselected(e.parentNode);
+
 }
 
+//활성화된 일정만 보여주기
+function onlyShowselected(target){
+    let dayCheck = 'day'+target.getAttribute('data-day');
+    console.log(dayCheck);
+
+
+    document.querySelectorAll('.dailyBox').forEach(function(dailyBox){
+       console.log(dailyBox);
+        dailyBox.style.display ='none';
+    });
+
+    document.getElementById(dayCheck).style.display ='block';
+    console.log(document.getElementById(dayCheck));
+}
+
+//앞으로눌렀을때
 function movePrevD(){
     if(document.querySelector('.daily_schedule.active').getAttribute('data-day') == 1){
         alert('첫번째 일정입니다.');
     } else{
-        console.log('여기');
+        console.log('이전버튼 일반상태');
         console.log(document.querySelector('.daily_schedule.active').previousElementSibling);
-        document.querySelector('.daily_schedule.active').previousElementSibling.classList.add('active');
+
+        let activateThis = document.querySelector('.daily_schedule.active').previousElementSibling;
+
+        activateThis.classList.add('active');
         document.querySelector('.daily_schedule.active').nextElementSibling.classList.remove('active') ;
         if(document.querySelector('.daily_schedule.active').style.display == 'none'){
             document.querySelector('.daily_schedule.active').style.display = 'block';
-            document.querySelector('.daily_schedule.active').nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none';
+
+            if(document.querySelector('.daily_schedule.active').nextElementSibling.nextElementSibling.nextElementSibling != null){
+            document.querySelector('.daily_schedule.active').nextElementSibling.nextElementSibling.nextElementSibling.style.display = 'none';}
         }
+
+        onlyShowselected(activateThis)
     }
 }
 
@@ -181,9 +222,13 @@ function deleteDay(e){
         return false;
     }
     else{
-        if(document.querySelector('.daily_schedule.active') == null){
 
+        console.log(e.parentNode.parentNode.parentNode.getAttribute('data-day'));
+
+        if(e.parentNode.parentNode.parentNode.classList.contains('active')){
+                
             e.parentNode.parentNode.parentNode.previousElementSibling.classList.add('active');
+
         }
         e.parentNode.parentNode.parentNode.remove();
         --daycount;
@@ -192,9 +237,40 @@ function deleteDay(e){
                i.setAttribute('data-day',curidx+1);
                let dayNum = curidx +1;
                i.childNodes[2].firstChild.textContent = 'day ' + dayNum;
-                
+                i.style.display ='none';
         })
+
+        document.querySelector('.daily_schedule.active').style.display = 'block';
+        if(document.querySelector('.daily_schedule.active').previousElementSibling != null){
+        document.querySelector('.daily_schedule.active').previousElementSibling.style.display ='block';}
+        if(document.querySelector('.daily_schedule.active').nextElementSibling != null){
+        document.querySelector('.daily_schedule.active').nextElementSibling.style.display ='block';}
+
         
     }
 }
+
+//미리보기
+
+function showPreview(event) { 
+    console.log(event);
+    console.log(event.target.getAttribute('id')); 
+    let targetId = event.target.getAttribute('id');
+    console.log(event.target.files);
+
+    for (var image of event.target.files) { 
+        var reader = new FileReader(); 
+        reader.readAsDataURL(image);
+        reader.onload = function(event) {
+             var img = document.createElement("img"); 
+             img.classList.add('preview');
+             img.setAttribute("src", event.target.result); 
+             //console.log(event.target.result);
+             document.querySelector("div#"+targetId+"_container").appendChild(img); 
+            };
+              console.log(image); 
+            
+            }
+             }
+
 

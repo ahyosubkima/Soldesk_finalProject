@@ -10,6 +10,11 @@ public interface ReviewMapper {
 
 	public List<ReviewBean> getfilterdByJSON(ReviewBean rb);
 
+	public int insert(ReviewBean rb);
+
+	public ReviewBean selectDetail(ReviewBean rb);
+
+
 
 	
 	

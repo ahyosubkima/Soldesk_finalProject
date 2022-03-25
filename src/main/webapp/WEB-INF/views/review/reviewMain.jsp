@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
     
 <!DOCTYPE html>
 <html>
@@ -239,7 +241,7 @@ li {
 <div class="" id="contentTable">
 <c:forEach items="${reviews }" var="reviews">
 <div class="flex-container" id="contents">
-<div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/testimg2.jpg" alt="이미지위치"></a> </div>
+<div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/${fn:split(reviews.rb_img, ',')[0]}" alt="이미지위치"></a> </div>
 <div class="content_title" style="font-size: 30px">${reviews.rb_title }</div> 
 <div>like :${reviews.rb_likecount } view :${reviews.rb_viewcount } comment :${reviews.rb_commentcount }</div>
 <div><fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="yyyy.MM.dd"/> 
@@ -259,8 +261,12 @@ li {
 </div>
 
 <div class="flex-container">
-<div> <a href="reviewWrite.go">후기쓰기</a> </div>
+
+<c:if test="${not empty sessionScope.loginMember.dm_id }">
+<input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
+<div> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a> </div>
 <div>내후기보기</div>
+</c:if>
 </div>
 
 </body>

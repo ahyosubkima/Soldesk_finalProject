@@ -15,6 +15,7 @@
 	</properties>
 	<dependencies>
 	
+
 	<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
@@ -28,16 +29,30 @@
 		</dependency>
 
 	
+
+	<!-- ?�중 ?�일 ?�로?? -->
+<dependency>
+<groupId>commons-fileupload</groupId>
+<artifactId>commons-fileupload</artifactId>
+<version>1.2.1</version>
+</dependency>
+    
+<dependency>
+<groupId>commons-io</groupId>
+<artifactId>commons-io</artifactId>
+<version>1.4</version>
+</dependency>  
+
 	
-	<!--Spring 환경에서 ORMFramework사용 가능하게 -->
+	<!--Spring ?�경?�서 ORMFramework?�용 가?�하�?-->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-orm</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
 
-<!-- Transaction : DB서버로 명령어 전송해서 실행, 결과 받고..
- Spring환경에서 Transaction할 수 있게 -->
+<!-- Transaction : DB?�버�?명령???�송?�서 ?�행, 결과 받고..
+ Spring?�경?�서 Transaction?????�게 -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
@@ -45,14 +60,14 @@
 </dependency>
 
 
-<!-- Spring환경에서 ConnectionPool 사용 가능하게 -->
+<!-- Spring?�경?�서 ConnectionPool ?�용 가?�하�?-->
 <dependency>
 	<groupId>org.apache.commons</groupId>
 	<artifactId>commons-dbcp2</artifactId>
 	<version>2.5.0</version>
 </dependency>
 
-<!-- Spring환경에서 DB와 연결 할 수 있게 -->
+<!-- Spring?�경?�서 DB?� ?�결 ?????�게 -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-jdbc</artifactId>
@@ -64,7 +79,7 @@
 	<version>3.5.4</version>
 </dependency>
 
-<!-- Spring환경에서 MyBatis쓸 수 있게 -->
+<!-- Spring?�경?�서 MyBatis?????�게 -->
 <dependency>
 	<groupId>org.mybatis</groupId>
 	<artifactId>mybatis-spring</artifactId>

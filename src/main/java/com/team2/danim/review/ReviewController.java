@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class ReviewController {
@@ -15,6 +16,16 @@ public class ReviewController {
 		@Autowired
 		reviewDAO reviewDAO;
 	
+		
+		@RequestMapping(value = "/reviewinsert.do", method = RequestMethod.POST)
+		public String reviewInsert(MultipartHttpServletRequest req2) {
+			
+			reviewDAO.insertReview(req2);
+			
+			req2.setAttribute("contentPage", "review/reviewMain.jsp");
+			
+			return "home";
+		}
 		@RequestMapping(value = "/review.go", method = RequestMethod.GET)
 		public String goReviewMain(HttpServletRequest req) {
 			
@@ -35,6 +46,19 @@ public class ReviewController {
 		
 		@RequestMapping(value = "/reviewDeatil.go", method = RequestMethod.GET)
 		public String goReviewDetail(HttpServletRequest req) {
+			
+			
+			reviewDAO.getDetail(req);
+			req.setAttribute("contentPage", "review/reviewDetail2.jsp");
+			
+			
+			return "home";
+		}
+		
+		@RequestMapping(value = "/reviewUpload.do", method = RequestMethod.GET)
+		public String doReviewupload(HttpServletRequest req) {
+			
+			
 			
 			req.setAttribute("contentPage", "review/reviewDetail.jsp");
 			

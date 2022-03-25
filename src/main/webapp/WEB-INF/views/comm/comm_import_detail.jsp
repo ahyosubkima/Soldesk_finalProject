@@ -7,15 +7,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript">
+	 console.log(11);
+	window.onpageshow = function(event) {
+	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		
+		if(so != ""){
+			location.href="/danim/comm_free_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_free_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_free_page";
+		}	
+		}
+			
+	}
+		}		
+		
+</script>
 </head>
 <body>
-	<div id="comm_picture_area">
+	<div id="comm_import_area">
 		<div id="comm_menu112">
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>
-						<td id="comm_picture_td_title">커뮤니티</td>
+						<td id="comm_picture_td_title">커뮤니티
+						<input type="hidden"
+							name="pageNum" value="${param.pageNum }" id="pgn"> <input
+							type="hidden" name="search_option"
+							value="${param.search_option }" id="so"> <input
+							type="hidden" name="search_input" value="${param.search_input }"
+							id="si">
+						</td>
 					</tr>
 					<tr>
 
@@ -76,66 +105,17 @@
 									style="width: 70px; margin-right: 10px; font-size: 15pt"
 									onclick="comm_updateFreeOK(${i.ci_no})">수정</button>
 								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_importdelOK(${i.ci_no})">삭제</button></td>
+									onclick="comm_importdelOK(${i.ci_no})">삭제</button>
+									</td>
 						</tr>
 					</c:if>
 				</table>
+								<hr class="comm_detail_hr">
+				<button id="list_btn" onclick="window.history.back()">목록
+				
+				</button>
+				
 
-				<table id="comm_picture_detail_reply_title">
-					<tr>
-						<td>댓글</td>
-					</tr>
-				</table>
-
-				<form action="comm_import_reply">
-					<table id="comm_picture_detail_reply">
-					<c:forEach items="${reply }" var="r">
-							<tr>
-								<td style="text-align: center; width: 150px">${r.cir_owner }<c:if test="${i.ci_writer eq r.cir_owner }">
-								<span id="reply_writer">
-								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
-								</c:if>
-								</td>
-								<td style="text-align: center;">${r.cir_txt }</td>
-								<td style="text-align: center;"><fmt:formatDate value="${r.cir_when }" pattern="yyyy-MM-dd"/>
-								<c:if
-									test="${sessionScope.loginMember.dm_id eq r.cir_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
-									
-										<button onclick="freeReplyUpdate(${r.cir_no},${param.no})">수정</button>
-										<button onclick="freeReplyDel(${r.cir_no})">삭제</button>
-								</c:if>
-								</td>	
-							</tr>
-						</c:forEach>
-						<tr>
-							<td style="text-align: center;">
-							<c:if test="${sessionScope.loginMember != null }">
-							${sessionScope.loginMember.dm_nickname }
-							</c:if>
-							<c:if test="${sessionScope.loginMember == null }">
-							로그인이 필요합니다.
-							</c:if>
-								<input name="cir_owner" type="hidden"
-								value="${sessionScope.loginMember.dm_nickname }"> <input
-								name="cir_owner_id" type="hidden"
-								value="${sessionScope.loginMember.dm_id }">
-							</td>
-							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cir_txt"
-								class="cfr_txt"> <input type="hidden" name="no"
-								value="${i.ci_no }"> <input type="hidden" name="token2"
-								value="${token2}"></td>
-							<td colspan="2" style="text-align: center;">
-							<c:if test="${sessionScope.loginMember != null }">
-									<button style="width: 70px; font-size: 15pt;"
-										onclick="return freereplyOK()">작성</button>
-								</c:if> <c:if test="${sessionScope.loginMember == null }">
-									<button style="width: 70px; font-size: 15pt;"
-										onclick="return replyNoOK()">작성</button>
-								</c:if></td>
-						</tr>
-					</table>
-				</form>
 			</c:forEach>
 		</div>
 	</div>

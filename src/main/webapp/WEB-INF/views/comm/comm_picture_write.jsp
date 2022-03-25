@@ -50,11 +50,15 @@
 					</tr>
 					<tr>
 						<td class="comm_write_left">제목</td>
-						<td><input id="title" name="comm_picture_write_name" class="comm_write_title"></td>
+						<td><input id="title" name="comm_picture_write_name" class="comm_write_title"
+						placeholder="제목 입력(최대20자)" maxlength="20"
+						></td>
 					</tr>
 					<tr>
 						<td class="comm_write_left">내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"></textarea> 
+						<td><textarea id="txt" class="comm_picture_write_txt" name="comm_picture_txt"
+						placeholder="내용 입력(최대100자)" maxlength="100"
+						></textarea> 
 							<input name="token"	type="hidden" value="${token }">
 							<input type="hidden" name="comm_picture_writer" value="${sessionScope.loginMember.dm_nickname }">
 						</td>

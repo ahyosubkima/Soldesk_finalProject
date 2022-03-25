@@ -7,7 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script type="text/javascript">
+window.onpageshow = function(event) {
+	if (event.persisted
+			|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		if(so != ""){
+			location.href="/danim/comm_free_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_free_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_free_page";
+		}
+			
+		}
+	}
+}
+</script>
 </head>
 <body>
 	<div id="comm_free_detail_area">
@@ -15,7 +35,11 @@
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>
-						<td id="comm_picture_td_title">커뮤니티</td>
+						<td id="comm_picture_td_title">커뮤니티
+						<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
+										<input type="hidden" name="search_input" value="${param.search_input }" id="si">
+						</td>
 					</tr>
 					<tr>
 

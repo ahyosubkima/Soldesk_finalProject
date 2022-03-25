@@ -15,6 +15,7 @@
 				let pgn = $("#pgn").val();
 				let so = $("#so").val(); 
 				let si = $("#si").val(); 
+				
 				if(so != ""){
 					location.href="/danim/comm_picture_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
 				}
@@ -23,11 +24,12 @@
 					location.href = "/danim/comm_picture_page?pageNum=" + pgn;
 				} else {
 					location.href = "/danim/comm_picture_page";
+				}	
 				}
-					
-				}
-			}
+			
+			
 		}
+		}		
 		
 		
 		let aaa = $("#aaa").val();
@@ -40,7 +42,7 @@
 		$(".pc2" + bbb).css("fontWeight", "500");
 		$(".pc2" + bbb).css("fontSize", "16pt");
 	
-	});
+	}); 
 </script>
 </head>
 <body>
@@ -102,9 +104,11 @@
 					<c:forEach var="g" items="${good_pictures }" varStatus="status">
 						<table class="comm_picture_bestTbl2" style="">
 							<tr>
-								<td><img id="comm_picture_best_img"
+								<td>
+								<img id="comm_picture_best_img"
 									src="resources/comm/file/${g.comm_picture_name }"
-									onclick="location.href='comm_picture_detail?no=${g.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></img></td>
+									onclick="location.href='comm_picture_detail?no=${g.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img>
+									</td>
 							</tr>
 							<tr>
 								<td id="comm_picture_best_writer">${g.comm_picture_write_name }<span
@@ -131,7 +135,7 @@
 							<tr>
 								<td><img id="comm_picture_best_img"
 									src="resources/comm/file/${p.comm_picture_name }"
-									onclick="location.href='comm_picture_detail?no=${p.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></img></td>
+									onclick="location.href='comm_picture_detail?no=${p.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img></td>
 							</tr>
 							<tr>
 								<td id="comm_picture_best_writer">${p.comm_picture_write_name }<span

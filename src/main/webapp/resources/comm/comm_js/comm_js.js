@@ -15,6 +15,23 @@ function comm_importdelOK(no) {
 	
 }
 
+function goToList() {
+	let pgn = $("#pgn").val();
+	let so = $("#so").val(); 
+	let si = $("#si").val(); 
+
+	if(so != ""){
+		location.href="/danim/comm_picture_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+	}
+	else{
+	if (pgn != "") {
+		location.href = "/danim/comm_picture_page?pageNum=" + pgn;
+	} else {
+		location.href = "/danim/comm_picture_page?pageNum=1";
+	}
+	}	
+}
+
 function previewImg(){
 
     document.getElementById("picture").onchange = function () {
@@ -388,8 +405,9 @@ function replyNoOK(){
 
 function mouse_over(i){
 	let aa = "hz"+i
+	
 	document.getElementById('hz'+i).play();
-
+	document.getElementById('play_img'+i).style.visibility="hidden";
 	
 }
 
@@ -397,12 +415,15 @@ function mouse_out(i){
 	
 	let aa = "hz"+i	    
 	document.getElementById("hz"+i).pause();
+	document.getElementById('play_img'+i).style.visibility="visible";
 	
 }
 
 function mouse_over2(i){
 	let aa = "mz"+i
 	document.getElementById("mz"+i).play();
+
+	document.getElementById('play2_img'+i).style.visibility="hidden";
 	
 }
 
@@ -410,7 +431,8 @@ function mouse_out2(i){
 	
 	let aa = "mz"+i	    
 	document.getElementById("mz"+i).pause();
-	
+
+	document.getElementById('play2_img'+i).style.visibility="visible";
 }
 
 $(function() {

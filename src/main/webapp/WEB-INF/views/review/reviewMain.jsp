@@ -19,6 +19,7 @@ border: 5px solid transparent;
     background-clip: content-box, border-box;
 width: 450px;
 height: 250px;
+margin-top: 60px;
 }
 
 #contents{
@@ -51,12 +52,18 @@ div{
 .flex-container{
 display: flex;
 justify-content: center;
-
+margin-top: 30px;
 }
+.flex-container3{
+display: flex;
+justify-content: center;
+}
+
 .flex-container2{
 justify-content: center;
 display: flex;
 padding-bottom: 60px;
+padding-top: 20px;
 }
 
 
@@ -79,10 +86,14 @@ border: 1px solid gray;
 
 }
 .selector_unit{
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 border-radius: 2em;
 margin-right: 5px;
 width: 120px;
+height:	50px;
+font-size:14pt;
 text-align: center;
 border: 4px solid transparent;
 border-radius: 20px;
@@ -206,16 +217,16 @@ li {
       <section class="content-container">
         <article id="tab1" class="content-container__content">
          <div class="flex-container" style="text-align: center ;">
-<div>
-인원수
+<div id="head_count_div">
+인원수&nbsp;&nbsp;
 <input type="range" id="headcount" min="1" max="10" value="1" step="1" >
  <span id="headcount_value"></span><span>명</span>
 </div>
 
-<div>
+<div id="direct_input">
 직접입력 : <input id="headcount_value1" value="1">명
+<button id="headcount_select_btn"><img id="check_img" alt="" src="resources/review/img/check.png"> </button>
 </div>
-<button id="headcount_select_btn">선택</button>
 
 
 </div>
@@ -254,7 +265,7 @@ li {
 
 <div class="flex-container2" id="selectedElements" style="display: none;" >
 <div id="selectCancel" onclick="cancelingSelect()">선택해제</div>
-<div class="flex-container" id="choosedVal">
+<div class="flex-container3" id="choosedVal">
 <!-- <div id="choosed_head" ></div>
 <div id="choosedVal1"></div>
 <div id="choosedVal2"></div>

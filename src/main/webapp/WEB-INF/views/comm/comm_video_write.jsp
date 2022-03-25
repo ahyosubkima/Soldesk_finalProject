@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 	<div id="comm_write_area">
@@ -45,7 +46,8 @@
 					</tr>
 					<tr>
 						<td class="comm_write_left">제목</td>
-						<td><input id="title" name="cv_write_name" class="comm_write_title"></td>
+						<td><input id="title" name="cv_write_name" class="comm_write_title"
+						placeholder="제목 입력(최대20자)" maxlength="20"></td>
 					</tr>
 					<tr>
 						<td  class="comm_write_left">영상</td>
@@ -55,7 +57,9 @@
 					</tr>
 					<tr>
 						<td class="comm_write_left">내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt" name="cv_txt"></textarea> 
+						<td><textarea id="txt" class="comm_picture_write_txt" name="cv_txt"
+						placeholder="내용입력(최대300자)" maxlength="300" rows="4" cols="10"
+						></textarea> 
 							<input name="token"	type="hidden" value="${token }">
 							<input type="hidden" name="cv_writer" value="${sessionScope.loginMember.dm_nickname }">
 						</td>

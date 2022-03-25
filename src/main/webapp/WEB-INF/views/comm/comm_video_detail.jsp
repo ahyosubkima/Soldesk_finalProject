@@ -9,7 +9,27 @@
 <title>Insert title here</title>
 <style type="text/css">
 </style>
-
+<script type="text/javascript">
+window.onpageshow = function(event) {
+	if (event.persisted
+			|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		if(so != ""){
+			location.href="/danim/comm_video_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_video_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_video_page";
+		}
+			
+		}
+	}
+}
+</script>
 </head>
 <body>
 	<div id="comm_picture_detail_area">
@@ -17,7 +37,9 @@
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>
-						<td id="comm_picture_td_title">커뮤니티</td>
+						<td id="comm_picture_td_title">커뮤니티
+						
+										</td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
@@ -64,7 +86,9 @@
 								</td>
 					</tr>
 					<tr>
-						<td colspan="2" class="comm_video_txt">${v.cv_txt }</td>
+						<td colspan="2" class="comm_video_txt"><textarea 
+						readonly="readonly"
+						id="video_txt_area" rows="7" cols="50">${v.cv_txt }</textarea></td>
 					</tr>
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
@@ -87,6 +111,9 @@
 										name="id" type="hidden"
 										value="${sessionScope.loginMember.dm_id }"> <input
 										name="token2" value="${token2 }" type="hidden">
+										<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
+										<input type="hidden" name="search_input" value="${param.search_input }" id="si">
 										<button class="comm_heart_btn" onclick="return reallyGood();">
 											<img class="comm_heart_img"
 												src="resources/comm/comm_img/heart.png">
@@ -106,6 +133,9 @@
 										name="id" type="hidden"
 										value="${sessionScope.loginMember.dm_id }"> <input
 										name="token2" value="${token2 }" type="hidden">
+										<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
+										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
+										<input type="hidden" name="search_input" value="${param.search_input }" id="si">
 										<button class="comm_heart_btn"
 											onclick="return reallyNoGood();">
 											<img class="comm_heart_img"

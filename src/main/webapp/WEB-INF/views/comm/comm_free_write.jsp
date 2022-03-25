@@ -53,11 +53,15 @@
 					</tr>
 					<tr>
 						<td class="comm_write_left">제목</td>
-						<td><input id="title" name="cf_write_name" class="comm_write_title"></td>
+						<td><input id="title" name="cf_write_name" class="comm_write_title"
+						placeholder="제목 입력(최대20자)" maxlength="20"
+						></td>
 					</tr>
 					<tr>
 						<td class="comm_write_left">내용</td>
-						<td><textarea id="txt" class="comm_picture_write_txt" name="cf_txt"></textarea> 
+						<td><textarea id="txt" class="comm_picture_write_txt" name="cf_txt"
+						placeholder="내용 입력(최대300자)" maxlength="300"
+						></textarea> 
 							<input name="token"	type="hidden" value="${token }">
 							<input type="hidden" name="cf_writer" value="${sessionScope.loginMember.dm_nickname }">
 						</td>

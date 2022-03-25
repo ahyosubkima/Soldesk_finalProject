@@ -173,7 +173,7 @@ $(function() {
 				<tr id="comm_free_tbl_title2">
 					<td class="comm_free_td1">공지</td>
 					<td id="comm_free_tbl_main2"
-					onclick="location.href='comm_import_detail?no=${i.ci_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'">
+					onclick="location.href='comm_import_detail?no=${i.ci_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'">
 					${i.ci_write_name }</td>
 					<td>관리자</td>
 					<td>${i.ci_view }</td>
@@ -184,7 +184,7 @@ $(function() {
 					<tr id="comm_free_tbl_tr" class="row">
 						<td class="comm_free_td1">${f.cf_no }</td>
 						<td id="comm_free_tbl_main"
-							onclick="location.href='comm_free_detail?no=${f.cf_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'">
+							onclick="location.href='comm_free_detail?no=${f.cf_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }	'">
 							${f.cf_write_name }</td>
 						<td>${f.cf_writer }</td>
 						<td>${f.cf_view }</td>

@@ -94,11 +94,13 @@ $(function() {
 					<c:forEach var="g" items="${good_videos }" varStatus="status">
 						<table class="comm_picture_bestTbl2">
 							<tr>
-								<td><video muted="muted" id="hz${status.index }" 
-								class="comm_picture_best_img"  
-								onmouseover="mouse_over(${status.index})" onmouseout="mouse_out(${status.index})" 
-									src="resources/comm/file/${g.cv_name }"
-									onclick="location.href='comm_video_detail?no=${g.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'"></video></td>
+								<td>
+								<div id="play_div">
+								<img src="resources/comm/comm_img/play2.png" id="play_img${status.index }" class="pla_img">
+								<video muted="muted" id="hz${status.index }"  class="comm_picture_best_img"  onmouseover="mouse_over(${status.index})" onmouseout="mouse_out(${status.index})" src="resources/comm/file/${g.cv_name }" onclick="location.href='comm_video_detail?no=${g.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></video>
+								</div>
+									</td>
+							
 							</tr>
 							<tr>
 								<td id="comm_picture_best_writer">${g.cv_write_name }<span
@@ -123,12 +125,15 @@ $(function() {
 						<table class="comm_picture_bestTbl2" style="">
 							<tr>
 								<td>
+								<div id="play_div">
+								<img src="resources/comm/comm_img/play2.png" id="play2_img${status.index }" class="pla_img">
 								<video id="mz${status.index }" class="comm_picture_best_img" 
 								muted="muted" 
 								onmouseover="mouse_over2(${status.index})" onmouseout="mouse_out2(${status.index})"
 								src="resources/comm/file/${p.cv_name }"
-								onclick="location.href='comm_video_detail?no=${p.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}'">
+								onclick="location.href='comm_video_detail?no=${p.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'">
 								</video>
+								</div>
 								</td>
 							</tr>
 							<tr>

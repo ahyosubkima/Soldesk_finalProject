@@ -9,6 +9,10 @@ comm_picture_view number(3) not null,
 comm_picture_date date not null
 );
 
+
+SELECT * FROM comm_picture WHERE ROWNUM <= 6 order by comm_picture_good 
+SELECT * FROM comm_picture WHERE comm_picture_write_name = 'xcvzxcv';
+
 create sequence comm_picture_seq;
 
 /*사진댓글*/
@@ -51,6 +55,17 @@ select * from comm_picture_reply
 
 SELECT * FROM comm_picture WHERE ROWNUM < 6 order by comm_picture_good
 
+select * 
+from (	
+select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name,comm_picture_writer, 
+				comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+				from (
+					select * from comm_picture order by comm_picture_good desc
+				)
+			)
+			where rn <= 6
+
+
 drop table comm_picture_reply
 
 /*좋아요 관리테이블*/
@@ -71,7 +86,6 @@ create table comm_video_good(
 cvg_id varchar2(30 char) not null,
 cvg_good number(3) not null,
 cvg_no number(3) not null,
-
 
 constraint cvg_cv_no 
 foreign key(cvg_no)

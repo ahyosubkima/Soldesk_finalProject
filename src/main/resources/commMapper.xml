@@ -368,14 +368,29 @@
 
 	<select id="getGoodPicture"
 		resultType="com.team2.danim.comm.Comm_picture">
-		SELECT * FROM comm_picture WHERE ROWNUM &lt;= 6 order by comm_picture_good
-		desc
+		select * 
+from (	
+select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name,comm_picture_writer, 
+				comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+				from (
+					select * from comm_picture order by comm_picture_good desc
+				)
+			)
+			where rn &lt;= 6
 	</select>
 
 
 	<select id="getGoodVideo"
 		resultType="com.team2.danim.comm.Comm_video">
-		SELECT * FROM comm_video WHERE ROWNUM &lt;= 6 order by cv_good desc
+			select * 
+from (	
+select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer, 
+				cv_txt, cv_good,cv_view,cv_date
+				from (
+					select * from comm_video order by cv_good desc
+				)
+			)
+			where rn &lt;= 6
 	</select>
 
 	<insert id="goodPlusById"

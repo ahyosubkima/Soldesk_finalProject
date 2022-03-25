@@ -5,6 +5,47 @@
 #paging_div{
 	text-align: center;
 }
+#video_txt_area{
+	border: none;
+	resize: none;
+	font-size: 12pt;
+	width: 700px;
+	text-align: center;
+}
+.pla_img{
+	width: 150px;
+	position: absolute;
+	visibility: visible;	
+}
+
+
+#play_div{
+display: flex;
+align-items: center;
+justify-content: center; 
+	}
+#play_div:hover{
+
+	}
+#picture_txt_area{
+	border: none;
+	resize: none;
+	background-image: url("../comm_img/phone_img.png");
+	background-size: 100% 100%;
+	background-position:center;
+	width:500px;
+	height: 350px;
+	background-repeat: no-repeat;
+	font-size: 30pt; 
+	font-family: 'Nanum Brush Script', serif; line-height: 1.5; color: black;
+	text-align: center;
+}
+#video_txt_area:focus{
+	outline: none;
+	}
+#picture_txt_area:focus{
+	outline: none;
+	}
 #paging_div2{
 	text-align: left;
 }
@@ -125,6 +166,7 @@ border-bottom: 3px solid #444444;
 font-size: 15px;
 font-weight: bold;
 ​font-style: italic;
+padding-bottom: 30px;	
 }
 #comm_free_tbl_tr{
 	height: 40px;
@@ -182,7 +224,6 @@ text-align: center;
 }
 .comm_detail_hr{
 	margin-left: 205px;
-	margin-top: -5px;
 	width: 1000px;
 }
 .comm_detail_hr2{
@@ -384,6 +425,10 @@ position:absolute;
 width: 1900px;	
 height: 2000px;
 }
+#comm_import_area{
+width: 1900px;	
+height: 800px;
+}
 #comm_free_detail_area{
 width: 1900px;	
 height: 1200px;
@@ -460,7 +505,7 @@ font-size: 15pt;
 	background-color: #C3C3C3; 
 }	
 .comm_picture_detail_td3{
-	background-image: url("../comm_img/blank-notebook.jpg");
+	background-image: url("../comm_img/note1.png");
 	background-size: 100% 100%;
 	background-position:center;
 	width:500px;

@@ -45,4 +45,12 @@
 	<select id="findId" parameterType="String" resultType="String">
 	select dm_id from danim_member where dm_email=#{dm_email}
 	</select>
+	
+	<select id="isValidInfo" resultType="com.team2.danim.member.Member">
+	select * from danim_member where dm_id=#{dm_id} and dm_email=#{dm_email}
+	</select>
+	
+	<update id="searchPw" parameterType="com.team2.danim.member.Member">
+	update danim_member set dm_pw=#{dm_pw} where dm_id=#{dm_id} and dm_email=#{dm_email}
+	</update>
 </mapper>

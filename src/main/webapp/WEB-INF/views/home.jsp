@@ -84,7 +84,7 @@
 						<button id="login_submit">로그인</button>
 					</form>
 					<hr>
-					<a href="member.findInfo" onclick="window.open(this.href, '_blank', 'width=800, height=500'); return false;">아이디/비밀번호를 잊어버리셨나요?</a>
+					<a href="member.findInfo" onclick="window.open(this.href, '_blank', 'width=700, height=500'); return false;">아이디/비밀번호를 잊어버리셨나요?</a>
 				</div>
 
 				<div class="form registerForm">

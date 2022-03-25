@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
+	
 	@Autowired
 	private MemberDAO mDAO;
-	
 
 	//로그인 처리
 
@@ -135,5 +135,11 @@ public class MemberController {
 		return mDAO.findId(dm_email);
 	}
 	
-	
+	//비밀번호 찾기
+	@RequestMapping(value = "member.findPw", method = RequestMethod.GET)
+	@ResponseBody
+	public int findPw(Member m) {
+		
+		return mDAO.findPw(m);
+	}
 }

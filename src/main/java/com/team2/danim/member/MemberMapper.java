@@ -19,5 +19,14 @@ public interface MemberMapper {
 	Member checkExistId(String dm_id);
 	
 	String findId(String dm_email);
+	
+	Member isValidInfo(Member m);
 
+	int searchPw(Member m);
+
+
+	
+
+	
+	
 }

@@ -44,10 +44,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 </dependency>   
 
 	
-	<!--Spring ?�경?�서 ORMFramework?�용 가?�하�?-->
-
-</dependency>  
-	
 
 <dependency>
 	<groupId>org.springframework</groupId>

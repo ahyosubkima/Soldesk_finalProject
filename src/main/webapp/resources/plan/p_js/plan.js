@@ -367,7 +367,7 @@ $(function() {
 	deletePlan();
 	lineLimit();
 	deletePlanBudget();
-	p_submit();
+/*	p_submit();*/
 	p_writesubmit();
 	plan_like();
 });

@@ -47,7 +47,6 @@
 						</td>
 					</tr>
 					<tr>
-
 						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>

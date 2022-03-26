@@ -1,6 +1,6 @@
 package com.team2.danim.plan;
 
-public class Plan_budget {
+public class Plan_budget{
 	
 	private String p_setTitle;
 	private String p_setItem;

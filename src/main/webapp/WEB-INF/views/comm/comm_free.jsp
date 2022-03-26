@@ -201,7 +201,7 @@ $(function() {
 					</table>
 				</c:if>
 			<c:if test="${sessionScope.loginMember != null}">
-				<input type="button" id="comm_picture_writeBtn2" value="글쓰기"
+				<input type="button" id="comm_free_writeBtn2" value="글쓰기"
 					onclick="location.href='/danim/comm_free_write'">
 			</c:if>
 			<c:if test="${ sessionScope.loginMember.dm_isAdmin eq 'Y'}">

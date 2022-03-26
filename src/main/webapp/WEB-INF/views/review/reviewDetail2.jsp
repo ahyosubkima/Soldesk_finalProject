@@ -10,6 +10,105 @@
 <title>Insert title here</title>
  <script src="resources/review/js/reviewDetail.js"></script>
 <style>
+.arrowImg:hover{
+	filter: invert(81%) sepia(17%) saturate(1561%) hue-rotate(113deg) brightness(86%) contrast(89%);
+	transition: 0.3s;
+}
+
+.totalText{
+border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    width: 80%;
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dtContent{
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    width: 70%;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+.scheTitle, .dtTitle, .trTitle{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+.scheduleBox{
+    display: flex;
+    justify-content: center;
+}
+.schedule_con{
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    height: 50px;
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule_wrapper{
+	display: inline-block;
+    justify-content: center;
+    flex-direction: row;
+    width: 70%;
+    border: 1px solid #44ffe0;
+    border-top: none;
+}
+
+
+	.scheduleController_wrapper{
+		display: flex;
+    justify-content: center;
+	margin-top: 20px;
+    margin-bottom: 0px;
+	}
+.scheduleController{
+	display: flex;
+    border: 1px solid #44ffe0;
+    width: 70%;
+}
+
+.totalroute_content{
+	text-align: center;
+	border-bottom: 2px solid #545479;
+	width: 60%;
+	display: inline-block;
+	padding-bottom: 5px;
+}
+.img_box{
+	width: 33%;
+    height: 400px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+
+.imgContainer_wrapper{
+text-align: center;
+}
+.imgContainer{
+	/* border: 1px solid #38CEB5; */
+}
+
+.totalroute_title{
+	margin-bottom: 10px;
+}	
 .totalRoute_wrapper{
 
 	margin-top: 20px;
@@ -47,16 +146,21 @@ margin-right: 10px;
 
 .dailySelected{
 	display: none;
+    height: 100%;
+    font-size: 22pt;
 }
 
 .dailySelected.activate{
 	display: block;
+	background-color: aliceblue;
+	
 }
 
 
 .daySelector_wrapper{
  width: 80%;
  text-align: center;
+ 
 }
 
 textarea{
@@ -67,6 +171,7 @@ textarea{
 .dailyBox{
 	display: none;
 	text-align: center;
+	justify-content: center;
 }
 
 .dailyBox.activate{
@@ -163,6 +268,8 @@ let destination = [];
 
 function initMap() {
 
+
+//좌표가져와서 첫위치 설정
 	let coordinate	 = document.getElementById("coordinate").textContent;
 	console.log(coordinate);
 	let splitedcoordinate = coordinate.split("|");
@@ -176,19 +283,20 @@ function initMap() {
     zoom: 12,
   });
 
-  //폴리라인 다시그리기
-
+  //좌표값 jsonparsing해서 배열에담기
   let rootCoordinates = [];
-
+  
   for (let index = 0; index < splitedcoordinate.length-1; index++) {
 	  let each = splitedcoordinate[index];
-
+	  
 	  let eachParsing = JSON.parse(each);
-
+	  
 	  rootCoordinates.push(eachParsing);
 	  
-  }
-  console.log(rootCoordinates);
+	}
+	console.log(rootCoordinates);
+
+	//폴리라인 다시그리기
 
    const rootPath = new google.maps.Polyline({
      path: rootCoordinates,
@@ -204,16 +312,26 @@ function initMap() {
  
   //마커추가하기
 
-  rootCoordinates.forEach(function(each,curIdx){
+  let totalroute =document.getElementById("hidtotalroute").textContent;
+  let splitedRoute = totalroute.split(",");
+  console.log(splitedRoute);
 
-	let locationNum = curIdx+1;
+  //좌표값 json배열, 총루트 배열을 이용하여 마커에 설정
+
+  for (let index = 0; index < rootCoordinates.length; index++) {
+	  const pos = rootCoordinates[index];
+	  const tit = splitedRoute[index];
+
+	  let locationNum = index+1;
 
 	  const marker = new google.maps.Marker({
-		position: each,
+		position: pos,
 		map: map,
 		label:'#'+locationNum,
+		title: tit,
 	  });
-  })
+	  
+  }
   
   
 }
@@ -251,7 +369,7 @@ function initMap() {
 		</div>
 
 			<span id="coordinate" style="display: none;"> ${result.rb_coordinate} </span>
-			</div>
+			<span id="hidtotalroute" style="display: none;"> ${result.rb_totalroute} </span>
 		</div>
 		<div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">여행순서 표시 지도 🛬</div>
 	<div id="map" style=" height: 400px; border: 2px solid #38CEB5;"></div>
@@ -260,144 +378,236 @@ function initMap() {
 	 <script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHwlLJC7x2AYE7IuJZCOkKJ1KRSBgCmoY&callback=initMap&libraries=places&v=weekly&region=KR&language=ko"
 		async></script> 
-		<div>
 			<div class="totalRoute_wrapper">
-			<div>총 여행 방문지</div>
-			<c:set var="route" value="${result.rb_totalroute }"></c:set>
-			<div><c:out value="${fn:replace(route,',','->') }"></c:out> </div>
-		</div>
+				<div class="totalroute_title">총 여행 방문지 📍</div>
+				<c:set var="route" value="${result.rb_totalroute }"></c:set>
+				<div class="totalroute_content" >
+					<c:out value="${fn:replace(route,',','➨') }"></c:out>
+				</div>
+			</div>
 			
-		<div> <div>후기사진</div>
-				<!-- ,로 잘라낸 값을 imgArr에 저장 -->
+		<div class="imgContainer_wrapper"> 
+		<div class="imgContainer_title" style="margin-bottom: 10px;">후기사진📸</div>
+			<div class="imgContainer">
+			<!-- ,로 잘라낸 값을 imgArr에 저장 -->
 				<c:set var="imgArr" value="${fn:split(result.rb_img, ',')}"></c:set>
 				<c:forEach items="${imgArr}" var="img">
 					<img class="img_box" src="resources/review/img/${img}" alt="이미지위치">
 					
 				</c:forEach>
 			</div>
+			</div>
 			
-		</div>
-	</div>
 	
 	<!-- The div element for the map -->
 	
 	
 
-
-	<div id="schedule" style="display: flex;">
-		<div style="width: 10%;  ">
-			<a href="javascript:void(0);" onclick="veiwPrevDay(this)">&lt;-</a>
+<div class="scheduleController_wrapper">
+	<div class="scheduleController"id="schedule">
+		<div style="width: 10%;
+		display: flex;
+		align-items: center;
+		justify-content: center; 
+		background-color: aliceblue; ">
+			<a href="javascript:void(0);" onclick="veiwPrevDay(this)">
+			<img class="arrowImg" style="width: 28px;    padding-top: 2px;" alt="" src="resources/review/img/arrow-left-circle.svg"></a>
 		</div>
 		<div class="daySelector_wrapper" id="dayselWrap"></div>
-		<div style="width: 10%;  ">
-			<a href="javascript:void(0);" onclick="veiwNextDay(this)">-&gt;</a>
+		<div style="width: 10%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: aliceblue;  ">
+			<a href="javascript:void(0);" onclick="veiwNextDay(this)">
+			<img class="arrowImg" style="width: 28px;    padding-top: 2px;" alt="" src="resources/review/img/arrow-right-circle.svg"></a>
 		</div>
-		
 	</div>
+</div>
 	<div class="dailyBox" id="day1" data-day="1" style="display: block;">
-		일정표시 d1
-		<div class="scehduleBox">
-		${result.rb_d1Schedule}
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day1 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr1" value="${fn:split(result.rb_d1Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr1}" var="d1Sch">
+					<div class="schedule_con">${d1Sch}</div>
+					
+				</c:forEach>
 		</div>
 		<div class="dailyText">
-		<div>1일차 간단후기</div>
-		${result.rb_d1Text}
+		<div class="dtTitle">1일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d1Text}</div></div> 
 		</div>
 	</div>
-	<div class="dailyBox" id="day2" data-day="2">
-		일정표시 d2
-		<div class="scehduleBox">
-			${result.rb_d2Schedule}
-			</div>
-			<div class="dailyText">
-			<div>2일차 간단후기</div>
-			${result.rb_d2Text}
-			</div>
 	</div>
-	<div class="dailyBox"  id="day3" data-day="3">
-		일정표시 d3
-		<div class="scehduleBox">
-			${result.rb_d3Schedule}
-			</div>
-			<div class="dailyText">
-			<div>3일차 간단후기</div>
-			${result.rb_d3Text}
-			</div>
+	
+	<div class="dailyBox" id="day2" data-day="2" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day2 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr2" value="${fn:split(result.rb_d2Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr2}" var="d2Sch">
+					<div class="schedule_con">${d2Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">2일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d2Text}</div></div> 
+		</div>
 	</div>
-	<div class="dailyBox" id="day4" data-day="4">
-		일정표시 d4
-		<div class="scehduleBox">
-			${result.rb_d4Schedule}
-			</div>
-			<div class="dailyText">
-			<div>4일차 간단후기</div>
-			${result.rb_d4Text}
-			</div>
 	</div>
-	<div class="dailyBox" id="day5" data-day="5">
-		일정표시 d5
-		<div class="scehduleBox">
-			${result.rb_d5Schedule}
-			</div>
-			<div class="dailyText">
-			<div>5일차 간단후기</div>
-			${result.rb_d5Text}
-			</div>
+	
+	<div class="dailyBox" id="day3" data-day="3" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day3 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr3" value="${fn:split(result.rb_d3Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr3}" var="d3Sch">
+					<div class="schedule_con">${d3Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">3일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d3Text}</div></div> 
+		</div>
 	</div>
-	<div class="dailyBox" id="day6" data-day="6">
-		일정표시 d6
-		<div class="scehduleBox">
-			${result.rb_d6Schedule}
-			</div>
-			<div class="dailyText">
-			<div>6일차 간단후기</div>
-			${result.rb_d6Text}
-			</div>
 	</div>
-	<div class="dailyBox" id="day7" data-day="7">
-		일정표시 d7
-		<div class="scehduleBox">
-			${result.rb_d7Schedule}
-			</div>
-			<div class="dailyText">
-			<div>7일차 간단후기</div>
-			${result.rb_d7Text}
-			</div>
+	
+	<div class="dailyBox" id="day4" data-day="4" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day4 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr4" value="${fn:split(result.rb_d4Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr4}" var="d4Sch">
+					<div class="schedule_con">${d4Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">4일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d4Text}</div></div> 
+		</div>
 	</div>
-	<div class="dailyBox" id="day8" data-day="8">
-		일정표시 d8
-		<div class="scehduleBox">
-			${result.rb_d8Schedule}
-			</div>
-			<div class="dailyText">
-			<div>8일차 간단후기</div>
-			${result.rb_d8Text}
-			</div>
 	</div>
-	<div class="dailyBox" id="day9" data-day="9">
-		일정표시 d9
-		<div class="scehduleBox">
-			${result.rb_d9Schedule}
-			</div>
-			<div class="dailyText">
-			<div>9일차 간단후기</div>
-			${result.rb_d9Text}
-			</div>
+	
+	<div class="dailyBox" id="day5" data-day="5" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day5 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr5" value="${fn:split(result.rb_d5Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr5}" var="d5Sch">
+					<div class="schedule_con">${d5Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">5일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d5Text}</div></div> 
+		</div>
 	</div>
-	<div class="dailyBox" id="day10" data-day="10">
-		일정표시 10
-		<div class="scehduleBox">
-			${result.rb_d10Schedule}
-			</div>
-			<div class="dailyText">
-			<div>10일차 간단후기</div>
-			${result.rb_d10Text}
-			</div>
+	</div>
+	
+	<div class="dailyBox" id="day6" data-day="6" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day6 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr6" value="${fn:split(result.rb_d6Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr6}" var="d6Sch">
+					<div class="schedule_con">${d6Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">6일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d6Text}</div></div> 
+		</div>
+	</div>
+	</div>
+	
+	<div class="dailyBox" id="day7" data-day="7" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day7 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr7" value="${fn:split(result.rb_d7Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr7}" var="d7Sch">
+					<div class="schedule_con">${d7Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">7일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d7Text}</div></div> 
+		</div>
+	</div>
 	</div>
 
-	<div class="totalReview">총 후기
+<div class="dailyBox" id="day8" data-day="8" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day8 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr8" value="${fn:split(result.rb_d8Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr8}" var="d8Sch">
+					<div class="schedule_con">${d8Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">8일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d8Text}</div></div> 
+		</div>
+	</div>
+	</div>	
 
-		<div>${result.rb_text}</div>
+<div class="dailyBox" id="day9" data-day="9" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day9 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr9" value="${fn:split(result.rb_d9Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr9}" var="d9Sch">
+					<div class="schedule_con">${d9Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">9일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d9Text}</div></div> 
+		</div>
+	</div>
+	</div>
+	
+	<div class="dailyBox" id="day10" data-day="10" >
+		<div class="schedule_wrapper">
+		<div class="scheTitle">day10 일정🦶</div>
+		<div class="scheduleBox">
+		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
+				<c:set var="scheduleArr10" value="${fn:split(result.rb_d10Schedule, ',')}"></c:set>
+				<c:forEach items="${scheduleArr10}" var="d10Sch">
+					<div class="schedule_con">${d10Sch}</div>
+					
+				</c:forEach>
+		</div>
+		<div class="dailyText">
+		<div class="dtTitle">10일차 간단후기✒</div>
+		<div class="flex-container"><div class="dtContent">${result.rb_d10Text}</div></div> 
+		</div>
+	</div>
+	</div>
+	
+	<div class="totalReview">
+			<div class="trTitle">총 후기📝</div>
+
+		<div class="flex-container"><div class="totalText">${result.rb_text}</div></div>
 	</div>
 
 	<input type="text" id="totalday" value="${result.rb_totalday}" hidden>

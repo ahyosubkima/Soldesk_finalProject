@@ -417,8 +417,8 @@ function addLatLng(event) {
 	let newDiv = document.createElement('div');
 
 	newDiv.setAttribute('id', 'scheduled'+ dds.title);
-
 	newDiv.innerHTML = rcdestination;
+
 
 	if(document.getElementById('scheduled'+ dds.title)){
 

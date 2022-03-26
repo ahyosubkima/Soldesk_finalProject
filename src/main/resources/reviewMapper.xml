@@ -34,7 +34,7 @@ rb_theme like '%'||#{rb_theme}||'%' and rb_location like '%'||#{rb_location}||'%
 insert into REVIEW_BOARD values(review_board_seq.nextval, #{rb_title}, 0, 0, 0, sysdate, #{rb_text},#{rb_headNum},
 #{rb_budget},#{rb_theme},#{rb_location},#{rb_img},#{rb_username},#{rb_coordinate},#{rb_d1Schedule},#{rb_d1Text},
 #{rb_d2Schedule},#{rb_d2Text},#{rb_d3Schedule},#{rb_d3Text},#{rb_d4Schedule},#{rb_d4Text},#{rb_d5Schedule},#{rb_d5Text},#{rb_d6Schedule},#{rb_d6Text},
-#{rb_d7Schedule},#{rb_d7Text},#{rb_d8Schedule},#{rb_d8Text},#{rb_d9Schedule},#{rb_d9Text},#{rb_d10Schedule},#{rb_d10Text})
+#{rb_d7Schedule},#{rb_d7Text},#{rb_d8Schedule},#{rb_d8Text},#{rb_d9Schedule},#{rb_d9Text},#{rb_d10Schedule},#{rb_d10Text},#{rb_totalroute},#{rb_totalday})
 
 </insert>
 

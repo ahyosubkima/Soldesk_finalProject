@@ -1,13 +1,17 @@
 package com.team2.danim.comm;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -950,56 +954,56 @@ public void getCommFreePaging(HttpServletRequest req, Criteria2 cri2) {
 		}
 	
 }
-
+//여기바꿈
 public void freeUpload(HttpServletRequest req) {
-	
 	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	System.out.println(path);
-	MultipartRequest mr = null;
-	String token = null;
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-		token = mr.getParameter("token");
-		String successToken = (String) req.getSession().getAttribute("successToken");
-		if (successToken != null && token.equals(successToken)) {
-			String fileName = mr.getFilesystemName("cf_file_name");
-			new File(path + "/" + fileName).delete();
-			return;
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
-	
-	
-	try {
-		String fName = "";
-		
-		if (mr.getFilesystemName("cf_file_name") == null) {
-			fName = "basic.jpg";
-		}
-		else { 
-			fName = mr.getFilesystemName("cf_file_name");
-		}
-		System.out.println(fName);
-		Comm_free cf = new Comm_free();
-		cf.setCf_file_name(fName);
-		cf.setCf_txt(mr.getParameter("cf_txt"));
-		cf.setCf_write_name(mr.getParameter("cf_write_name"));
-		cf.setCf_writer(mr.getParameter("cf_writer"));
-		if (ss.getMapper(CommMapper.class).freeUpload(cf) == 1) {
-			req.getSession().setAttribute("successToken", token);
-			req.setAttribute("result", "업로드성공");
-		}
-		
-		
-		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
-	} catch (Exception e) {
-		e.printStackTrace();
-	/*	String fileName = mr.getFilesystemName("g_file");
-		new File(path + "/" + fileName).delete();*/
-		req.setAttribute("result", "업로드실패");
-	}
+    System.out.println(path);
+    MultipartRequest mr = null;
+    String token = null;
+    System.out.println("프리업로드!!!!!!");
+    try {
+        mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+        token = mr.getParameter("token");
+        String successToken = (String) req.getSession().getAttribute("successToken");
+        if (successToken != null && token.equals(successToken)) {
+            String fileName = mr.getFilesystemName("cf_file_name");
+            new File(path + "/" + fileName).delete();
+            return;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return;
+    }
+
+
+    try {
+        String fName = "";
+
+        if (mr.getFilesystemName("cf_file_name") == null) {
+            fName = "basic.jpg";
+        }
+        else { 
+            fName = mr.getFilesystemName("cf_file_name");
+        }
+        System.out.println(fName);
+        Comm_free cf = new Comm_free();
+        cf.setCf_file_name(fName);
+        cf.setCf_txt(mr.getParameter("cf_txt"));
+        cf.setCf_write_name(mr.getParameter("cf_write_name"));
+        cf.setCf_writer(mr.getParameter("cf_writer"));
+        if (ss.getMapper(CommMapper.class).freeUpload(cf) == 1) {
+            req.getSession().setAttribute("successToken", token);
+            req.setAttribute("result", "업로드성공");
+        }
+
+
+        //  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+    } catch (Exception e) {
+        e.printStackTrace();
+    /*    String fileName = mr.getFilesystemName("g_file");
+        new File(path + "/" + fileName).delete();*/
+        req.setAttribute("result", "업로드실패");
+    }
 	
 	
 }

@@ -1,18 +1,75 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <script src="resources/review/js/jquery.js"></script> -->
+ <script src="resources/review/js/reviewDetail.js"></script>
 <style>
+.totalRoute_wrapper{
+
+	margin-top: 20px;
+	margin-bottom: 20px ;
+	text-align: center;
+}
+
+.uninInfo_content{
+margin-left: 10px;
+margin-right: 10px;
+
+}
+
+.unitInfo{
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.content_wrapper{
+	margin-top: 30px;
+}
+.titleBox{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.totalReview{
+	text-align: center;
+}
+
+.dailySelected{
+	display: none;
+}
+
+.dailySelected.activate{
+	display: block;
+}
+
+
+.daySelector_wrapper{
+ width: 80%;
+ text-align: center;
+}
+
 textarea{
 	width: 100%;
 	resize: none;
 }
 
 .dailyBox{
+	display: none;
+	text-align: center;
+}
+
+.dailyBox.activate{
 	display: block;
 }
 
@@ -87,10 +144,11 @@ width: 25%;
 td, tr {
 	border: 1px solid black;
 }
-
-div {
+/* div{
 	border: 1px solid red;
-}
+} */
+
+
 
 .flex-container {
 	display: flex;
@@ -132,12 +190,6 @@ function initMap() {
   }
   console.log(rootCoordinates);
 
-//   const flightPlanCoordinates = [
-//     { lat: 37.772, lng: -122.214 },
-//     { lat: 21.291, lng: -157.821 },
-//     { lat: -18.142, lng: 178.431 },
-//     { lat: -27.467, lng: 153.027 },
-//   ];
    const rootPath = new google.maps.Polyline({
      path: rootCoordinates,
      geodesic: true,
@@ -147,6 +199,8 @@ function initMap() {
    });
 
   rootPath.setMap(map);
+
+  //폴리라인 끝
  
   //마커추가하기
 
@@ -161,43 +215,6 @@ function initMap() {
 	  });
   })
   
- 
- // const service = new google.maps.places.PlacesService(map);
-  //   // We add a DOM event here to show an alert if the DIV containing the
-  //   // map is clicked.
-
- // infoWindow = new google.maps.InfoWindow();
- // marker  = new google.maps.Marker();
- 
-
-  // 내위치 찾기
-
-  
-
-  //장소검색시작
- 
-//장소검색끝
-
-//폴리라인 시작
-
-// poly = new google.maps.Polyline({
-//     strokeColor: "#000000",
-//     strokeOpacity: 1.0,
-//     strokeWeight: 3,
-//   });
-//   poly.setMap(map);
-// let markers =[];
-// marker = new google.maps.Marker();
-
-  // add event listener for click event
- 
-
-// Handles click events on a map, and adds a new point to the Polyline.
-
-//폴리라인 끝
-
-  
-
   
 }
 
@@ -207,148 +224,183 @@ function initMap() {
 <body>
 
 	<div class="content_wrapper">
-		<div> Title : ${result.rb_title} </div>
+		<div class="titleBox"> <h2>${result.rb_title}</h2> </div>
 
 		<div class="flex-container">
 
-			<div>
-				인원 : ${result.rb_headNum}
+			<div class="unitInfo">
+				<div class="uninInfo_content">#인원 🏃 : ${result.rb_headNum} 명</div>
 			</div>
-			<div>
-				비용 : ${result.rb_budget} 이하
-
-			</div>
-
-			<div>
-				테마 : ${result.rb_theme}
+			<div class="unitInfo">
+				<div class="uninInfo_content">#비용 💸 : <fmt:formatNumber value="${result.rb_budget}" type="currency"></fmt:formatNumber> 이하</div>
 
 			</div>
 
-			<div>
-				지역 : ${result.rb_location}
+			<div class="unitInfo">
+				<div class="uninInfo_content">#테마 🎨: ${result.rb_theme}</div>
+
+			</div>
+
+			<div class="unitInfo">
+				<div class="uninInfo_content">#지역 🌏: ${result.rb_location}</div>
+			</div>
+			<div class="unitInfo">
+				<div class="uninInfo_content">#여행일정 📅 : ${result.rb_totalday} 일</div>
 			</div>
 
 		</div>
 
-		<div class="flex-container">
-			<span id="coordinate"> ${result.rb_coordinate} </div>
-			<div id="dailyContainer" style="display: flex;">
-				<div id="dailyContent">
-					데이(변수) <span id="dailyAddBtn"> <img alt=""
-						src="resources/review/img/plus-circle.svg"></span>
-					
-
-				</div>
+			<span id="coordinate" style="display: none;"> ${result.rb_coordinate} </span>
 			</div>
-			<div>화살표&gt;</div>
 		</div>
-
-		<div>경로표시 지도</div>
-		<div>
-			요약페이지
-			<div>경로</div>
-			<div>비용</div>
-			<div>후기</div>
-
-		</div>
-		<div>댓글</div>
-
-	</div>
-
-
-
-	<h3>My Google Maps Demo</h3>
-	<!-- The div element for the map -->
-	
-	<div id="map" style="height: 200px"></div>
+		<div style="text-align: center; margin-top: 10px; margin-bottom: 10px;">여행순서 표시 지도 🛬</div>
+	<div id="map" style=" height: 400px; border: 2px solid #38CEB5;"></div>
 
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 	 <script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHwlLJC7x2AYE7IuJZCOkKJ1KRSBgCmoY&callback=initMap&libraries=places&v=weekly&region=KR&language=ko"
 		async></script> 
+		<div>
+			<div class="totalRoute_wrapper">
+			<div>총 여행 방문지</div>
+			<c:set var="route" value="${result.rb_totalroute }"></c:set>
+			<div><c:out value="${fn:replace(route,',','->') }"></c:out> </div>
+		</div>
+			
+		<div> <div>후기사진</div>
+				<!-- ,로 잘라낸 값을 imgArr에 저장 -->
+				<c:set var="imgArr" value="${fn:split(result.rb_img, ',')}"></c:set>
+				<c:forEach items="${imgArr}" var="img">
+					<img class="img_box" src="resources/review/img/${img}" alt="이미지위치">
+					
+				</c:forEach>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- The div element for the map -->
+	
+	
 
 
-	<div id="schedule">
-		<!-- <div id="schedule_inner_nav" style="display: flex;" >
-			<div style="width: 15%;  ">
-				<a>모든경로보기</a> <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
-			</div>
-			<div style="width: 10%; position: absolute; right: 0; ">
-			<a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> next</a>
-			</div>
-			<div id="daily_schedule_con" class="daily_schedule active" data-day="1"><div class="dropdown">
-					<button onclick="" class="dropbtn">
-						<img alt="" src="resources/review/img/plus-circle.svg">
-					</button>
-					<div id="myDropdown" class="dropdown-content">
-						<a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> <a href="javascript:void(0);" onclick="deleteDay(this)">일정
-							삭제</a>
-					</div>
-				</div>
-				<a href="javascript:void(0);" onclick="activateDay(this)"><span>day 1</span></a>
-			</div>
-		</div> -->
+	<div id="schedule" style="display: flex;">
+		<div style="width: 10%;  ">
+			<a href="javascript:void(0);" onclick="veiwPrevDay(this)">&lt;-</a>
+		</div>
+		<div class="daySelector_wrapper" id="dayselWrap"></div>
+		<div style="width: 10%;  ">
+			<a href="javascript:void(0);" onclick="veiwNextDay(this)">-&gt;</a>
+		</div>
+		
 	</div>
 	<div class="dailyBox" id="day1" data-day="1" style="display: block;">
 		일정표시 d1
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+		${result.rb_d1Schedule}
+		</div>
+		<div class="dailyText">
+		<div>1일차 간단후기</div>
+		${result.rb_d1Text}
+		</div>
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
 		일정표시 d2
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d2Schedule}
+			</div>
+			<div class="dailyText">
+			<div>2일차 간단후기</div>
+			${result.rb_d2Text}
+			</div>
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
 		일정표시 d3
-		<div class="scehduleBox"></div> 
-		<input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d3Schedule}
+			</div>
+			<div class="dailyText">
+			<div>3일차 간단후기</div>
+			${result.rb_d3Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
 		일정표시 d4
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d4Schedule}
+			</div>
+			<div class="dailyText">
+			<div>4일차 간단후기</div>
+			${result.rb_d4Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
 		일정표시 d5
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d5Schedule}
+			</div>
+			<div class="dailyText">
+			<div>5일차 간단후기</div>
+			${result.rb_d5Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
 		일정표시 d6
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d6Schedule}
+			</div>
+			<div class="dailyText">
+			<div>6일차 간단후기</div>
+			${result.rb_d6Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day7" data-day="7">
 		일정표시 d7
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d7Schedule}
+			</div>
+			<div class="dailyText">
+			<div>7일차 간단후기</div>
+			${result.rb_d7Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day8" data-day="8">
 		일정표시 d8
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d8Schedule}
+			</div>
+			<div class="dailyText">
+			<div>8일차 간단후기</div>
+			${result.rb_d8Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day9" data-day="9">
 		일정표시 d9
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d9Schedule}
+			</div>
+			<div class="dailyText">
+			<div>9일차 간단후기</div>
+			${result.rb_d9Text}
+			</div>
 	</div>
 	<div class="dailyBox" id="day10" data-day="10">
 		일정표시 10
-		<div class="scehduleBox"></div>
-		 <input type="file" multiple="multiple">
-		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<div class="scehduleBox">
+			${result.rb_d10Schedule}
+			</div>
+			<div class="dailyText">
+			<div>10일차 간단후기</div>
+			${result.rb_d10Text}
+			</div>
 	</div>
+
+	<div class="totalReview">총 후기
+
+		<div>${result.rb_text}</div>
+	</div>
+
+	<input type="text" id="totalday" value="${result.rb_totalday}" hidden>
 
 
 

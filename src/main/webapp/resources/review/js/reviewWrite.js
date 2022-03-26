@@ -57,6 +57,7 @@ if(event.target.classList.contains('dropbtn')){
       console.log(daycount);
       if(daycount < 10){
  createSchedule(event.target);
+ document.getElementById('totalday').value=daycount;
  document.querySelector('.daily_schedule.active').nextElementSibling.classList.add('active') ;
  document.querySelector('.daily_schedule.active').classList.remove('active') ;
 }
@@ -132,6 +133,7 @@ function moveNextD(){
           
         if(daycount < 10){
             createSchedule(backwardBtn);
+            document.getElementById('totalday').value=daycount;
         }
         else{
             console.log('생성제한');
@@ -232,6 +234,7 @@ function deleteDay(e){
         }
         e.parentNode.parentNode.parentNode.remove();
         --daycount;
+        document.getElementById('totalday').value=daycount;
         document.querySelectorAll('.daily_schedule').forEach(function reset(i, curidx){
                 console.log(i, curidx);
                i.setAttribute('data-day',curidx+1);

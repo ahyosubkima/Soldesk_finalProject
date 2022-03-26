@@ -663,6 +663,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<!-- 총 여행사진 -->
 	<div id="d1Img_container"></div>
 	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
+	<input type="text" name="totalday" id="totalday" value="1"> 히든토탈데이
 
 </form>
 

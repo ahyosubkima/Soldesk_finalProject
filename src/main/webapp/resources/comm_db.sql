@@ -10,6 +10,10 @@ comm_picture_date date not null
 );
 
 
+
+
+select * from COMM_PICTURE
+
 SELECT * FROM comm_picture WHERE ROWNUM <= 6 order by comm_picture_good 
 SELECT * FROM comm_picture WHERE comm_picture_write_name = 'xcvzxcv';
 
@@ -96,6 +100,7 @@ foreign key(cvg_no)
 select count(*) from comm_picture
 
 select * from comm_picture_good where cpg_id = 'jh' and cpg_no= 57
+
 /*영상게시판*/
 create table comm_video(
 cv_no number(3) primary key,
@@ -107,6 +112,7 @@ cv_good number(3) not null,
 cv_view number(3) not null,
 cv_date date not null
 );
+
 
 select * 
 from (	
@@ -150,6 +156,11 @@ cf_good number(3) not null,
 cf_view number(3) not null,
 cf_date date not null
 )	
+
+
+
+
+select * from comm_free
 
 drop table comm_free
 
@@ -202,6 +213,9 @@ ci_txt varchar2(300 char) not null,
 ci_view number(3) not null,
 ci_date date not null
 )	
+
+
+
 
 select * from comm_import
 

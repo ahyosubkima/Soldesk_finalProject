@@ -90,21 +90,12 @@ window.onpageshow = function(event) {
 						readonly="readonly"
 						id="video_txt_area" rows="7" cols="50">${v.cv_txt }</textarea></td>
 					</tr>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-						<tr>
-							<td colspan="2" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_VideoupdateOK(${v.cv_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_VideodelOK(${v.cv_no})">삭제</button></td>
-						</tr>
-					</c:if>
-					
+					<tr>
+					<td>
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good eq null or checked.cvg_good == 0 }">
 						<form action="comm_video_good">
-							<table style="padding-left: 72%;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
@@ -126,7 +117,7 @@ window.onpageshow = function(event) {
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good == 1 }">
 						<form action="comm_video_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
@@ -145,7 +136,25 @@ window.onpageshow = function(event) {
 							</table>
 						</form>
 					</c:if>
-
+					
+					
+					</td>
+					
+					</tr>
+					
+					
+					<c:if
+						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+						<tr>
+							<td colspan="2" style="text-align: right"><button
+									style="width: 70px; margin-right: 10px; font-size: 15pt"
+									onclick="comm_VideoupdateOK(${v.cv_no})">수정</button>
+								<button style="width: 70px; font-size: 15pt;"
+									onclick="comm_VideodelOK(${v.cv_no})">삭제</button></td>
+						</tr>
+					</c:if>
+					
+					
 				</table>
 				<hr class="comm_detail_hr">
 				<button id="list_btn" onclick="window.history.back()">목록</button>

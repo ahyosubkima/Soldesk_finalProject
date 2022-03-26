@@ -97,21 +97,12 @@
 						${picture.comm_picture_txt }
 						</textarea></td>
 					</tr>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-						<tr>
-							<td colspan="2" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_updateOK(${picture.comm_picture_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_delOK(${picture.comm_picture_no})">삭제</button></td>
-						</tr>
-					</c:if>
-
+					<tr>
+					<td>
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="2" style="text-align: right;"><input
 										name="no" type="hidden" value="${picture.comm_picture_no }">
@@ -134,7 +125,7 @@
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
 						<form action="comm_picture_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="2" style="text-align: right;"><input
 										name="no" type="hidden" value="${picture.comm_picture_no }">
@@ -155,6 +146,18 @@
 								</tr>
 							</table>
 						</form>
+					</c:if>
+					</td>
+					</tr>
+					<c:if
+						test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+						<tr>
+							<td colspan="2" style="text-align: right"><button
+									style="width: 70px; margin-right: 10px; font-size: 15pt"
+									onclick="comm_updateOK(${picture.comm_picture_no})">수정</button>
+								<button style="width: 70px; font-size: 15pt;"
+									onclick="comm_delOK(${picture.comm_picture_no})">삭제</button></td>
+						</tr>
 					</c:if>
 
 				</table>
@@ -182,8 +185,6 @@
 										<button onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">수정</button>
 										<button onclick="pictureReplyDel(${r.cpr_no})">삭제</button>
 									</c:if></td>
-
-
 
 							</tr>
 						</c:forEach>

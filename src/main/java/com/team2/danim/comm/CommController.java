@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team2.danim.Criteria;
 import com.team2.danim.Criteria2;
@@ -83,11 +84,11 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_picture_upload", method = RequestMethod.POST)
-	public String comm_picture_upload(HttpServletRequest req,Criteria cri) {
+	public String comm_picture_upload(HttpServletRequest req,Criteria cri,MultipartHttpServletRequest req2) {
 		
 		
 		TokenMaker.make(req);
-		cDAO.upload(req);
+		cDAO.upload(req,req2);
 		cDAO.getPageMaker(req, cri);
 		cDAO.getCommPicturePaging(req, cri);
 		cDAO.getGoodPicture(req);
@@ -98,11 +99,11 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_video_upload", method = RequestMethod.POST)
-	public String comm_video_upload(HttpServletRequest req,Criteria cri) {
+	public String comm_video_upload(HttpServletRequest req,Criteria cri,MultipartHttpServletRequest req2) {
 		
 		
 		TokenMaker.make(req);
-		cDAO.videoUpload(req);
+		cDAO.videoUpload(req,req2);
 		cDAO.getPageMakerVideo(req, cri);
 		cDAO.getCommVideoPaging(req, cri);
 		cDAO.getGoodVideo(req);
@@ -113,11 +114,11 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_free_upload", method = RequestMethod.POST)
-	public String comm_free_upload(HttpServletRequest req,Criteria2 cri2) {
+	public String comm_free_upload(HttpServletRequest req,Criteria2 cri2,MultipartHttpServletRequest req2) {
 		
 		
 		TokenMaker.make(req);
-		cDAO.freeUpload(req);
+		cDAO.freeUpload(req2,req);
 		cDAO.getImport(req);
 		cDAO.getFreePageMaker(req, cri2);
 		cDAO.getCommFreePaging(req, cri2);
@@ -128,11 +129,11 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_import_upload", method = RequestMethod.POST)
-	public String comm_import_upload(HttpServletRequest req,Criteria2 cri2) {
+	public String comm_import_upload(HttpServletRequest req,Criteria2 cri2,MultipartHttpServletRequest req2) {
 		
 		
 		TokenMaker.make(req);
-		cDAO.importUpload(req);
+		cDAO.importUpload(req,req2);
 		cDAO.getImport(req);
 		cDAO.getFreePageMaker(req, cri2);
 		cDAO.getCommFreePaging(req, cri2);
@@ -491,10 +492,10 @@ public class CommController {
 	}
 	
 	@RequestMapping(value = "/comm_picture_update_do", method = RequestMethod.POST)
-	public String comm_picture_update_do(HttpServletRequest req,Comm_picture cp) {
+	public String comm_picture_update_do(HttpServletRequest req,Comm_picture cp,MultipartHttpServletRequest req2) {
 		
 		
-		cDAO.updatePicture(cp,req);
+		cDAO.updatePicture(cp,req,req2);
 		
 		
 		req.setAttribute("contentPage", "comm/comm_picture_detail.jsp");
@@ -503,10 +504,10 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_video_update_do", method = RequestMethod.POST)
-	public String comm_video_update_do(HttpServletRequest req,Comm_video cv) {
+	public String comm_video_update_do(HttpServletRequest req,Comm_video cv,MultipartHttpServletRequest req2) {
 		
 		
-		cDAO.updateVideo(cv,req);
+		cDAO.updateVideo(cv,req,req2);
 		
 		
 		req.setAttribute("contentPage", "comm/comm_video_detail.jsp");
@@ -515,10 +516,10 @@ public class CommController {
 	}
 
 	@RequestMapping(value = "/comm_free_update_do", method = RequestMethod.POST)
-	public String comm_free_update_do(HttpServletRequest req,Comm_free cf) {
+	public String comm_free_update_do(HttpServletRequest req,Comm_free cf,MultipartHttpServletRequest req2) {
 		
 		
-		cDAO.updateFree(cf,req);
+		cDAO.updateFree(cf,req,req2);
 		
 		
 		req.setAttribute("contentPage", "comm/comm_free_detail.jsp");

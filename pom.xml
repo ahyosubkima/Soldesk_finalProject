@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.team2</groupId>
 	<artifactId>danim</artifactId>
@@ -30,7 +30,6 @@
 
 	
 
-	<!-- ?¤ì¤‘ ?Œì¼ ?…ë¡œ?? -->
 <dependency>
 <groupId>commons-fileupload</groupId>
 <artifactId>commons-fileupload</artifactId>
@@ -42,17 +41,13 @@
 <artifactId>commons-io</artifactId>
 <version>1.4</version>
 </dependency>  
-
 	
-	<!--Spring ?˜ê²½?ì„œ ORMFramework?¬ìš© ê°€?¥í•˜ê²?-->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-orm</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
 
-<!-- Transaction : DB?œë²„ë¡?ëª…ë ¹???„ì†¡?´ì„œ ?¤í–‰, ê²°ê³¼ ë°›ê³ ..
- Spring?˜ê²½?ì„œ Transaction?????ˆê²Œ -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
@@ -60,14 +55,12 @@
 </dependency>
 
 
-<!-- Spring?˜ê²½?ì„œ ConnectionPool ?¬ìš© ê°€?¥í•˜ê²?-->
 <dependency>
 	<groupId>org.apache.commons</groupId>
 	<artifactId>commons-dbcp2</artifactId>
 	<version>2.5.0</version>
 </dependency>
 
-<!-- Spring?˜ê²½?ì„œ DB?€ ?°ê²° ?????ˆê²Œ -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-jdbc</artifactId>
@@ -79,7 +72,6 @@
 	<version>3.5.4</version>
 </dependency>
 
-<!-- Spring?˜ê²½?ì„œ MyBatis?????ˆê²Œ -->
 <dependency>
 	<groupId>org.mybatis</groupId>
 	<artifactId>mybatis-spring</artifactId>

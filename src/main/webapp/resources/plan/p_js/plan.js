@@ -250,22 +250,29 @@ function p_submit() {
 		
 		
 	if($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
+		
 		alert('여행 예산을 하나이상 작성해주세요!')
+		
 		var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+	
 		setTimeout(function() {
 			$("html, body").animate({scrollTop: offset.top-280},50);
-		})
+		});
 		return false;
 	}else {
 		//console.log('aa');
 		alert('???????????????')
+		
 		$('.setBudgetTb').each(function(i,t) {
+			
 			let txtArea = $(this).find(".setBudgetTxtarea");
 			let item = $(this).find(".p_setItem");
 			let price = $(this).find(".p_setPrice");
+			
 			//console.log($(txtArea).val());			
 			//console.log($(item).val());			
-			//console.log($(price).val());			
+			//console.log($(price).val());		
+			
 			var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
 			
 			if(!$(txtArea).val()){
@@ -288,21 +295,11 @@ function p_submit() {
 		});//foreach문 끝
 		return false;
 	}
+	return false;
 	
 	
 		
-		alert('왜 안이리로안와..')
-		if($.contains(document.body, document.getElementById("p_budget")) == false) {
-		alert('계산하기 버튼을 눌러주세요!')
-		return false;
-	}
-	
-	
-	/*
-	if($.contains(document.body, document.getElementById("p_budget")) == false) {
-		alert('계산하기 버튼을 눌러주세요!')
-		return false;
-	}*/
+	/*$.contains(document.body, document.getElementById("p_budget")) == false	*/
 	
 	 });
 }
@@ -367,7 +364,7 @@ $(function() {
 	deletePlan();
 	lineLimit();
 	deletePlanBudget();
-	p_submit();
+	/*p_submit();*/
 	p_writesubmit();
 	plan_like();
 });

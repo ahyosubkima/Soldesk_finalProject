@@ -8,12 +8,6 @@
 <title>Insert title here</title>
 <script src="resources/review/js/jquery.js"></script>
 <style>
-.preview{
-
-width: 200px;
-height: 100px;
-
-}
 
 textarea{
 	width: 100%;
@@ -22,15 +16,6 @@ textarea{
 
 .dailyBox{
 	display: none;
-}
-
-.daily_schedule.active{
-
-	background-color: red;
-}
-
-#daily_schedule_con{
-width: 25%;
 }
 
 .axis{
@@ -44,47 +29,12 @@ width: 25%;
 /* #schedule_inner_nav>a {
 	border: 1px solid black;
 } */
-/* Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
 
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-	background-color: #3e8e41;
-}
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
 	position: relative;
 	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: #f1f1f1
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -414,8 +364,10 @@ function addLatLng(event) {
 	let newDiv = document.createElement('div');
 
 	newDiv.setAttribute('id', 'scheduled'+ dds.title);
-
+	newDiv.classList.add('schedule_wrapper')
+	
 	newDiv.innerHTML = rcdestination;
+	
 
 	if(document.getElementById('scheduled'+ dds.title)){
 
@@ -569,95 +521,96 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<div id="schedule_inner_nav">
 			<div style="width: 15%;  ">
 				<!-- <a>모든경로보기</a> -->
-				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
+				<div id="prevbtnDiv"><a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev&lt;</a></div>
 			</div>
 			<div style="width: 10%; position: absolute; right: 0; ">
-			<a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> next</a>
+			<div id="prevbtnDiv"><a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> &gt;next</a></div>
 			</div>
 			<div id="daily_schedule_con" class="daily_schedule active" data-day="1"><div class="dropdown">
-					<button type="button" onclick="" class="dropbtn">
-						<img alt="" src="resources/review/img/plus-circle.svg">
+					<button type="button" onclick="" class="dropbtn"> +
+					<!-- <img id="dropbtnPlus" src="resources/review/img/plusBtn.png"/> -->
 					</button>
 					<div id="myDropdown" class="dropdown-content">
-						<a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> <a href="javascript:void(0);" onclick="deleteDay(this)">일정
-							삭제</a>
+						<a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> 
+						<a href="javascript:void(0);" onclick="deleteDay(this)" class="delete_col_back">일정삭제</a>
 					</div>
 				</div>
 				<a href="javascript:void(0);" onclick="activateDay(this)"><span>day 1</span></a>
 			</div>
 		</div>
 	</div>
-	<div class="dailyBox" id="day1" data-day="1" style="display: block;">
-		일정표시 d1
+	<div class="dailyBox" id="day1" data-day="1">
+		<h3>day1 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d1Schedule" id="day1" value="">
 		<textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
-		일정표시 d2
+		<h3>day2 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d2Schedule" id="day2" value="">
 		<textarea name="d2Text" id="d2Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
-		일정표시 d3
+		<h3>day3 일정표시</h3>
 		<div class="scehduleBox"></div> 
 		<input class="dScedule" type="hidden" name="d3Schedule" id="day3" value="">
 		<textarea name="d3Text" id="d3Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
-		일정표시 d4
+		<h3>day4 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d4Schedule" id="day4" value="">
 		<textarea name="d4Text" id="d4Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
-		일정표시 d5
+		<h3>day5 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d5Schedule" id="day5" value="">
 		<textarea name="d5Text" id="d5Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
-		일정표시 d6
+		<h3>day6 일정표시</h3>
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d6Schedule" id="day6" value="">
+		<input class="dScedule" type="hidden" name="d6Schedule" id="day6" value="">
 		<textarea name="d6Text" id="d6Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day7" data-day="7">
-		일정표시 d7
+		<h3>day7 일정표시</h3>
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d7Schedule" id="day7" value="">
+		<input class="dScedule" type="hidden" name="d7Schedule" id="day7" value="">
 		<textarea name="d7Text" id="d7Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day8" data-day="8">
-		일정표시 d8
+		<h3>day8 일정표시</h3>
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d8Schedule" id="day8" value="">
+		<input class="dScedule" type="hidden" name="d8Schedule" id="day8" value="">
 		<textarea name="d8Text" id="d8Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day9" data-day="9">
-		일정표시 d9
+		<h3>day9 일정표시</h3>
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d9Schedule" id="day9" value="">
+		<input class="dScedule" type="hidden" name="d9Schedule" id="day9" value="">
 		<textarea name="d9Text" id="d9Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day10" data-day="10">
-		일정표시 10
+		<h3>day10 일정표시</h3>
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d10Schedule" id="day10" value="">
+		<input class="dScedule" type="hidden" name="d10Schedule" id="day10" value="">
 		<textarea name="d10Text" id="d10Text" cols="30" rows="10"></textarea>
 	</div>
 
-<div>여행총후기<p><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div>
+<div id="r_writeAllreview"><h2>여행총후기</h2><p><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div>
 	
 		<!-- 전체경로히든 --><input type="hidden" name="totalRoute" id="" value="">
 		<!-- 작성자히든 --><input type="hidden" name="writer" id="writer" value="${param.writer}">
 
 	<!-- 총 여행사진 -->
+	<div id="r_writeAllreview"><h2>총 여행사진 업로드</h2>❗업로드할 사진을 한꺼번에 업로드해주세요</div>
+	<div style="text-align: center; padding-left: 100px;"><input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);"></div>
 	<div id="d1Img_container"></div>
-	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
 
-<div><button>제출</button></div>
+<div id="review_submit"><button>여행후기 등록</button></div>
 
 
 </form>

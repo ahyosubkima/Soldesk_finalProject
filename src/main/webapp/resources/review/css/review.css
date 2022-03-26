@@ -183,7 +183,7 @@ text-align: center;
 
 #r_write_Title{
 text-align: center; 
-margin-top: 10px;
+margin-top: 50px;
 margin-bottom: 30px;
 }
 
@@ -224,6 +224,7 @@ margin-bottom: 30px;
 }
 
 #selectBox{
+	width:70px;
 	text-align: center;
 	margin-right: 20px;
 	border: 2px solid transparent;
@@ -274,7 +275,7 @@ margin-bottom: 30px;
 }
 
 #selectBox3{
-	width: 100px;
+	width: 105px;
 	text-align: center;
     margin-right: 20px;
     border: 2px solid transparent;
@@ -291,7 +292,6 @@ margin-bottom: 30px;
 #selectBox4{
 	width: 70px;
 	text-align: center;
-    margin-right: 20px;
 	height:20px;
     border: 2px solid transparent;
     border-radius: 20px;
@@ -343,10 +343,46 @@ margin-bottom: 30px;
 }
 
 /* 여기부터 모든 일정 */
+
+.dropdown-content {
+/* Dropdown Content (Hidden by Default) */
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+/* Links inside the dropdown */
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	font-size: 12pt;
+	font-weight: normal;
+}
+
+.dropdown-content a:hover {
+/* Change color of dropdown links on hover */
+	background-color: #f1f1f1
+}
+#prevbtnDiv{
+	width:90px;
+	margin: auto;
+	border-radius: 40px;
+	background-color: #9f74b1;
+}
+#prevbtnDiv a{
+	color: white;
+	font-size: 17pt;
+}
+
+
 #allSchedule_wrapper{
 	text-align: center;
-	margin-top: 30px;
-	margin-bottom: 20px;
+	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
 #schedule_inner_nav{
@@ -357,6 +393,152 @@ margin-bottom: 30px;
 	width: 90%;
 	text-align: center;
 }
+
+#daily_schedule_con{
+	width: 25%;
+	margin-right: 10px;
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.dropbtn {
+	/* Dropdown Button */
+	color: black;
+    font-size: 16px;
+    border: 1px solid;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    cursor: pointer;
+    padding-top: 1.6px;
+    margin-top: 1.5px;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+/* Dropdown button on hover & focus */
+	 background-color: #96e4d7; 
+}
+
+#dropbtnPlus{
+	width: 16px;
+	width: 16px;
+}
+
+.daily_schedule.active{
+	font-weight: bold;
+	font-size: 15pt;
+}
+
+.insert_col_back{
+	font-size: 12pt;
+	font-weight: normal;
+}
+
+.delete_col_back{
+	font-size: 12pt;
+	font-weight: normal;
+}
+
+#scehduleBox{
+	text-align: center;
+}
+
+.dailyBox{
+	text-align: center;
+	display: block;
+	margin-top: 30px;
+}
+
+.dailyBox textarea{
+	width: 80%;
+	height: 200px;
+	border: 3px solid transparent;
+	border-radius: 20px;
+	font-size: 11pt;
+	font-weight: bolder;
+    color: #404040;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #6D1E91, #38CEB5);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    text-align: center;
+}
+
+.dailyBox textarea:focus{
+	outline: none;
+}
+
+.schedule_wrapper{
+	margin-bottom: 10px;
+}
+
+/* 여행총후기 */
+#d1Img_container{
+	text-align: center;
+}
+.preview{
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-right: 10px;
+	border: 3px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+	width: 200px;
+	height: 100px;
+}
+
+#totalText{
+	width: 80%;
+	height: 300px;
+	border: 3px solid transparent;
+	border-radius: 20px;
+	font-size: 11pt;
+	font-weight: bolder;
+    color: #404040;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #6D1E91, #38CEB5);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    text-align: center;
+}
+
+#totalText:focus{
+	outline: none;
+}
+
+#r_writeAllreview {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+
+
+/* 등록 버튼 */
+#review_submit{
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 50px;
+}
+
+#review_submit button{
+	width: 150px;
+	height: 40px;
+	font-size: 13pt;
+	border: 1px dotted #404040;
+	color: #404040;
+	border-radius:5px;
+	background-color: transparent;
+}
+
+
+
+
+
 
 
 

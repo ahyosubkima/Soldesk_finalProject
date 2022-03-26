@@ -41,9 +41,9 @@ width: 25%;
 	width: 25%;
 }
 
-#schedule_inner_nav>a {
+/* #schedule_inner_nav>a {
 	border: 1px solid black;
-}
+} */
 /* Dropdown Button */
 .dropbtn {
 	background-color: #4CAF50;
@@ -92,18 +92,14 @@ width: 25%;
 	display: block;
 }
 
-td, tr {
+/* td, tr {
 	border: 1px solid black;
 }
 
 div {
 	border: 1px solid red;
 }
-
-.flex-container {
-	display: flex;
-	justify-content: center;
-}
+ */
 </style>
 <script type="text/javascript" src="resources/review/js/reviewWrite.js"></script>
 <script type="text/javascript">
@@ -222,7 +218,8 @@ function initMap() {
   input = document.getElementById('pac-input');
   searchBox = new google.maps.places.SearchBox(input);
 
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+ 
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
   // Bias the SearchBox results towards current map's viewport.
   map.addListener("bounds_changed", () => {
     searchBox.setBounds(map.getBounds());
@@ -469,17 +466,13 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 <body>
 	<div class="content_wrapper">
-		<div>후기쓰기 페이지</div>
+		<div id="r_write_Title"><h1>여행 후기 작성하기</h1></div>
 
-	<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
-		<div><input type="text" name="title" placeholder="제목을 입력해주세요"></div>
-			좌표히든<input type="text" name ="coordinate" id="coordinate" value="">
+<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
+		<div id="r_reviewTitle"><input type="text" name="title" placeholder="여행 후기 제목을 입력해주세요"></div>
+			
+			<!-- 좌표히든 --><input type="hidden" name ="coordinate" id="coordinate" value="">
 
-			<button>제출</button>
-
-		
-
-		
 		<div class="flex-container">
 					
 			<div>
@@ -497,8 +490,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 					<option>10</option>
 					<option value="direct">직접입력</option>
 
-				</select> <span id="inputContainer" style="display: none;"> <input
-					id="selectBoxDirect" name="selectBoxDirect" type="number"> 명
+				</select>
+				<span id="inputContainer">
+				<input id="selectBoxDirect" name="selectBoxDirect" type="number" min="1"> 명
 				</span>
 			</div>
 
@@ -552,28 +546,27 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 
 
-	<h3>여행spot 지도</h3>
+	<div style="text-align: center; margin-bottom: 20px;"><h2>여행spot 지도</h2></div>
 	<!-- The div element for the map -->
-	 <input
+	 <div><input
       id="pac-input"
       class="controls"
       type="text"
-      placeholder="Search Box"
-	  style="width: 40%;"
+      placeholder="검색어를 입력해주세요"
     />
 	<input id="remove-line" type="button" value="일정삭제" />
-
-		<div id="map" style="height: 200px"></div>
+</div>
+		<div id="map"></div>
 
 	<!-- Async script executes immediately and must be after any DOM elements used in callback. -->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHwlLJC7x2AYE7IuJZCOkKJ1KRSBgCmoY&callback=initMap&libraries=places&v=weekly&region=KR&language=ko"
 		async></script> 
-<div id="allSchedule_wrapper"> 모든일정
+<div id="allSchedule_wrapper"> <h2>모든 일정</h2>
 <div id="allSchedule"></div>
 </div>
 	<div id="schedule">
-		<div id="schedule_inner_nav" style="display: flex;" >
+		<div id="schedule_inner_nav">
 			<div style="width: 15%;  ">
 				<!-- <a>모든경로보기</a> -->
 				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
@@ -597,31 +590,31 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<div class="dailyBox" id="day1" data-day="1" style="display: block;">
 		일정표시 d1
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d1Schedule" id="day1" value="">
+		<input class="dScedule" type="hidden" name="d1Schedule" id="day1" value="">
 		<textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
 		일정표시 d2
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d2Schedule" id="day2" value="">
+		<input class="dScedule" type="hidden" name="d2Schedule" id="day2" value="">
 		<textarea name="d2Text" id="d2Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
 		일정표시 d3
 		<div class="scehduleBox"></div> 
-		<input class="dScedule" type="text" name="d3Schedule" id="day3" value="">
+		<input class="dScedule" type="hidden" name="d3Schedule" id="day3" value="">
 		<textarea name="d3Text" id="d3Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
 		일정표시 d4
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d4Schedule" id="day4" value="">
+		<input class="dScedule" type="hidden" name="d4Schedule" id="day4" value="">
 		<textarea name="d4Text" id="d4Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
 		일정표시 d5
 		<div class="scehduleBox"></div>
-		<input class="dScedule" type="text" name="d5Schedule" id="day5" value="">
+		<input class="dScedule" type="hidden" name="d5Schedule" id="day5" value="">
 		<textarea name="d5Text" id="d5Text" cols="30" rows="10"></textarea>
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
@@ -657,12 +650,15 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 <div>여행총후기<p><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div>
 	
-		전체경로히든<input type="text" name="totalRoute" id="" value="">
-		작성자히든<input type="text" name="writer" id="writer" value="${param.writer}">
+		<!-- 전체경로히든 --><input type="hidden" name="totalRoute" id="" value="">
+		<!-- 작성자히든 --><input type="hidden" name="writer" id="writer" value="${param.writer}">
 
 	<!-- 총 여행사진 -->
 	<div id="d1Img_container"></div>
 	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
+
+<div><button>제출</button></div>
+
 
 </form>
 

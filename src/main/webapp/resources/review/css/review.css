@@ -177,3 +177,193 @@ margin-top: 30px;
 display: inline;
 text-align: center;
 }
+
+/* -------------------------------------------- */
+
+
+#r_write_Title{
+text-align: center; 
+margin-top: 10px;
+margin-bottom: 30px;
+}
+
+#r_reviewTitle{
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 12pt;
+}
+
+#r_reviewTitle input{
+	width: 250px;
+	height: 30px;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #404040;
+	font-size: 15pt;
+}
+
+#r_reviewTitle input::placeholder{
+	text-align: center;	
+	font-size: 12pt;
+}
+
+#r_reviewTitle input:focus{
+	outline: none;
+}
+
+.flex-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+}
+
+#inputContainer{
+	display: none;
+	margin-right: 15px;
+	font-size: 10pt;
+}
+
+#selectBox{
+	text-align: center;
+	margin-right: 20px;
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#selectBox:focus{
+	outline: none;
+}
+
+#selectBoxDirect{
+	width: 50px;
+	height: 20px;
+	text-align: center;
+	border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#selectBoxDirect:focus{
+	outline: none;
+}
+
+#selectBoxDirect::-webkit-outer-spin-button,
+#selectBoxDirect::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#selectBox2{
+	width: 105px;
+	text-align: center;
+    margin-right: 20px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#selectBox2:focus{
+	outline: none;
+}
+
+#selectBox3{
+	width: 100px;
+	text-align: center;
+    margin-right: 20px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#selectBox3:focus{
+	outline: none;
+}
+
+#selectBox4{
+	width: 70px;
+	text-align: center;
+    margin-right: 20px;
+	height:20px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+#selectBox4:focus{
+	outline: none;
+}
+
+/* 여기부터 지도 */
+#map{
+	width: 90%;
+	height: 500px;
+	text-align: center;
+	margin: auto;
+	border: 1px solid #404040;
+}
+
+#pac-input{
+	width: 40%;
+	height: 30px;
+	text-align: center;
+	border-radius:5px;
+	border: 1px solid #404040;
+	margin-top: 3px;
+}
+
+#pac-input::placeholder{
+	text-align: center;
+}
+
+#remove-line{
+	height: 30px;
+	border-radius:5px;
+	border: 1px solid #404040;
+	background-color: white;
+	margin-top: 3px;
+}
+
+.custom-map-control-button{
+	height: 30px;
+	border-radius:5px;
+	border: 1px solid #404040;
+	background-color: white;
+	margin-top: 3px;
+}
+
+/* 여기부터 모든 일정 */
+#allSchedule_wrapper{
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+#schedule_inner_nav{
+	display: flex;
+}
+
+#schedule{
+	width: 90%;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+

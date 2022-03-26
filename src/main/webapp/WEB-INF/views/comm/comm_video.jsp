@@ -90,7 +90,7 @@ $(function() {
 				 <img id="sdf_img" src="resources/comm/comm_img/best_video.png"><h2  class="best_pic">베스트 영상</h2>
 				</div>
 				<hr>
-				<div style=" width: 1600px; float: left;" >
+				<div style=" width: 100%; float: left;" >
 					<c:forEach var="g" items="${good_videos }" varStatus="status">
 						<table class="comm_picture_bestTbl2">
 							<tr>
@@ -114,7 +114,7 @@ $(function() {
 
 				</div>
 			</c:if>
-			<div style=" width: 1600px; float: left;  padding-top: 40px;">
+			<div style=" width: 100%; float: left;  padding-top: 40px;">
 				<div  id="content_title_div">
 				<img id="sdf_img" src="resources/comm/comm_img/video.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
 					영상게시판</h2>

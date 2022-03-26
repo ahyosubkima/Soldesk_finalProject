@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
@@ -52,7 +53,7 @@ public class PlanController {
 	}
 	
 	@RequestMapping(value = "/plan.writeReg", method = RequestMethod.POST)
-	public String planWriteOK(HttpServletRequest req, Criteria3 cri3) {
+	public String planWriteOK(MultipartHttpServletRequest req, Criteria3 cri3) {
 		
 		TokenMaker.make(req);
 		pDAO.uploadPlan(req);

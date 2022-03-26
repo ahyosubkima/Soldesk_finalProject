@@ -10,17 +10,18 @@
 $(document).ready() = $(function(){
 	
 	$('#txt').val().replace(/\n/g, "<br>");
-
+	previewImg();
 }); 
 
 
 </script>
+
 </head>
 <body>
 
 
 	<div id="comm_picture_area">
-		<div id="comm_menu112">
+		<div id="comm_menu1122">
 			<aside id="comm_menu_side">
 				<table id="comm_picture_tbl">
 					<tr>

@@ -435,9 +435,3 @@ function mouse_out2(i){
 	document.getElementById('play2_img'+i).style.visibility="visible";
 }
 
-$(function() {
-	
-	previewImg();
-	previewImg2();
-
-});

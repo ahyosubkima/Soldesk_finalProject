@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.team2</groupId>
 	<artifactId>danim</artifactId>
@@ -41,17 +41,15 @@
 <artifactId>commons-io</artifactId>
 <version>1.4</version>
 </dependency>  
-
 	
-	<!--Spring ?�경?�서 ORMFramework?�용 가?�하�?-->
+
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-orm</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
 
-<!-- Transaction : DB?�버�?명령???�송?�서 ?�행, 결과 받고..
- Spring?�경?�서 Transaction?????�게 -->
+
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
@@ -59,14 +57,14 @@
 </dependency>
 
 
-<!-- Spring?�경?�서 ConnectionPool ?�용 가?�하�?-->
+
 <dependency>
 	<groupId>org.apache.commons</groupId>
 	<artifactId>commons-dbcp2</artifactId>
 	<version>2.5.0</version>
 </dependency>
 
-<!-- Spring?�경?�서 DB?� ?�결 ?????�게 -->
+
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-jdbc</artifactId>
@@ -78,7 +76,7 @@
 	<version>3.5.4</version>
 </dependency>
 
-<!-- Spring?�경?�서 MyBatis?????�게 -->
+
 <dependency>
 	<groupId>org.mybatis</groupId>
 	<artifactId>mybatis-spring</artifactId>

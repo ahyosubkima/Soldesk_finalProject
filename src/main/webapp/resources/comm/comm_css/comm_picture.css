@@ -118,7 +118,7 @@ text-align: center;
 border-bottom: 3px solid #444444;
 }
 #comm_free_tbl{
-	width: 1200px;
+	width: 79%;
 	text-align: center;
 	
 }
@@ -328,13 +328,13 @@ font-size: 25pt;
 }
 
 #comm_picture_best_img{
-width: 500px;
+width: 450px;
 height: 330px;
 border-radius: 3%;
 border: 0;
 }
 .comm_picture_best_img{
-width: 500px;
+width: 450px;
 height: 330px;
 border-radius: 3%;
 border: 0;

@@ -44,8 +44,7 @@
 							<td>${sessionScope.loginMember.dm_nickname}님 환영합니다.</td>
 						</tr>
 						<tr>
-							<td><button onclick="location.href='member.logout'">로그아웃</button></td>
-							<td><button onclick="location.href='member.myPage'">마이페이지</button>
+							<td><button onclick="location.href='member.logout'">로그아웃</button> <button onclick="location.href='member.myPage'" style="margin-left:30px;">마이페이지</button></td>
 						</tr>
 					</table>
 

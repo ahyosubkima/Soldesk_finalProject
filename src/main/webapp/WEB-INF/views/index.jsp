@@ -31,7 +31,7 @@
 			<div class="section_title">
 				<h1>즐거운 여행, 다님</h1>
 			</div>
-			<div class="section_desc">다님으로 여행과 관련된 정보를 얻어보세요</div>
+			<div class="section_desc">다님에서 여행과 관련된 정보를 얻어보세요</div>
 		</div>
 		<div class="boxWrap">
 			<div class="box">
@@ -66,7 +66,7 @@
 					<h2>커뮤니티</h2>
 				</div>
 				<div class="imgDesc">
-					<h3>어쩌고 저쩌고 ㅇㅇㅇㅇ</h3>
+					<h3>다른 사람들과 소통해보세요!</h3>
 				</div>
 			</div>
 

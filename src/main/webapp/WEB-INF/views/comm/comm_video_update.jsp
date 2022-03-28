@@ -12,6 +12,26 @@ $(function() {
 	previewImg();
 
 });
+
+window.onpageshow = function(event) {
+	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		
+		if(so != ""){
+			location.href="/danim/comm_video_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_video_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_video_page";
+		}	
+		}
+			
+	}
+		}		
 </script>
 </head>
 <body>
@@ -35,7 +55,11 @@ $(function() {
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_update_content112">
+		<div id="content_title_div">
+				<h2  class="best_update_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
+				</div>
+				<hr class="comm_update_hr">
 			<c:forEach var="video" items="${video }">
 				<form action="comm_video_update_do" method="post"
 					enctype="multipart/form-data">
@@ -45,6 +69,12 @@ $(function() {
 							<td><input
 								value="${video.cv_write_name }"
 								name="cv_write_name" id="comm_picture_update_title">
+								<input type="hidden"
+										name="pageNum" value="${param.pageNum }" id="pgn"> <input
+										type="hidden" name="search_option"
+										value="${param.search_option }" id="so"> <input
+										type="hidden" name="search_input"
+										value="${param.search_input }" id="si"> 
 								</td>
 
 						</tr>

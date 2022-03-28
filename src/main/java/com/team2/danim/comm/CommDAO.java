@@ -1013,6 +1013,7 @@ public void getCommFreePaging(HttpServletRequest req, Criteria2 cri2) {
 	
 }
 
+
 public void freeUpload(MultipartHttpServletRequest req2,HttpServletRequest req){
 	
 	try {
@@ -1074,7 +1075,6 @@ public void freeUpload(MultipartHttpServletRequest req2,HttpServletRequest req){
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	
 	
 }
 

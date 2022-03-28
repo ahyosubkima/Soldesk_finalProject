@@ -82,3 +82,6 @@ insert into REVIEW_BOARD values(review_board_seq.nextval, 'title', 0, 0, 0, sysd
 'budget','theme','location','img','username','coordinate','d1schedule','d1text',
 'd2schedule','d2text','d3schedule','d3text','d4schedule','d4text','d5schedule','d5text','d6schedule','d6text',
 'd7schedule','d7text','d8schedule','d8text','d9schedule','d9text','d10schedule','d10text');
+
+alter table REVIEW_BOARD add (rb_totalroute varchar2(2000 char) not null);
+alter table REVIEW_BOARD add (rb_totalday number(20) not null);

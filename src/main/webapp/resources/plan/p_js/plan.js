@@ -211,7 +211,7 @@ function deletePlanBudget() {
 function p_submit() {
 	$(document).on("click", ".p_submit", function () {
 
-/*	if (!$("#p_title").val()) {
+	if (!$("#p_title").val()) {
 		alert('플래너 제목을 작성해주세요!');
 		setTimeout(function() {
 			$("#p_title").focus();
@@ -246,63 +246,77 @@ function p_submit() {
 		})
 		return false;
 	}
-	*/
+	
+
+	if ($.contains(document.body, document.getElementById("mapNameAll"))== false) {
+		alert('전체일정을 하나 이상 등록해주세요!');
 		
-		
-	if($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
-		alert('여행 예산을 하나이상 작성해주세요!')
-		var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
-		setTimeout(function() {
-			$("html, body").animate({scrollTop: offset.top-280},50);
-		})
+		let offsetMna = $("#p_mapSearchDiv").offset(); //해당 위치 반환
+		$("html, body").animate({scrollTop: offsetMna.top-280},50);
 		return false;
-	}else {
+	}
+
+
+	if($.contains(document.body, document.getElementById("setBudgetTb"))== false) {
+		alert('여행 예산을 하나이상 작성해주세요!');
+		
+		var offsetBtb = $("#p_DayWriteAll").offset(); //해당 위치 반환
+		$("html, body").animate({scrollTop: offsetBtb.top-280},50);
+		return false;
+		
+		
+	} else {
 		//console.log('aa');
-		alert('???????????????')
+		let tf = true;
 		$('.setBudgetTb').each(function(i,t) {
+			
 			let txtArea = $(this).find(".setBudgetTxtarea");
 			let item = $(this).find(".p_setItem");
 			let price = $(this).find(".p_setPrice");
+			
 			//console.log($(txtArea).val());			
 			//console.log($(item).val());			
-			//console.log($(price).val());			
-			var offset = $("#p_DayWriteAll").offset(); //해당 위치 반환
+			//console.log($(price).val());		
+			
+			var offset = $("#confirmContent").offset(); //해당 위치 반환
 			
 			if(!$(txtArea).val()){
 				alert('교통편 이름을 작성해주세요');
-				$(txtArea).focus();
-				return false;
-			}
-			if(!$(item).val()){
+					$("html, body").animate({scrollTop: offset.top-280},50);
+					$(txtArea).focus();
+					tf = false;
+				return tf;
+			} else if(!$(item).val()){
 				alert('상품 이름을 작성해주세요');
-				$("html, body").animate({scrollTop: offset.top-280},50);
-				$(item).focus();
-				return false;
-			}
-			if(!$(price).val()){
+					$("html, body").animate({scrollTop: offset.top-280},50);
+					$(item).focus();
+					tf = false;
+					return tf;
+				
+			}else if(!$(price).val()){
 				alert('가격을 작성해주세요');
-				$("html, body").animate({scrollTop: offset.top-260},50);
-				$(price).focus();
-				return false;
+					$("html, body").animate({scrollTop: offset.top-260},50);
+					$(price).focus();
+					tf = false;
+					return tf;
+			
 			}
+			return tf;
 		});//foreach문 끝
-		return false;
-	}
-	
-	
+		if(tf == false){
+			return tf;
+		}
 		
-		alert('왜 안이리로안와..')
-		if($.contains(document.body, document.getElementById("p_budget")) == false) {
-		alert('계산하기 버튼을 눌러주세요!')
-		return false;
 	}
 	
 	
-	/*
-	if($.contains(document.body, document.getElementById("p_budget")) == false) {
-		alert('계산하기 버튼을 눌러주세요!')
+	if ($.contains(document.body, document.getElementById("p_budget")) == false	) {
+			alert('계산하기 버튼를 눌러주세요!');
+			
+			var Bdoffset = $("#p_writeBudget").offset(); 
+			$("html, body").animate({scrollTop: Bdoffset.top-280},50);
 		return false;
-	}*/
+	}
 	
 	 });
 }
@@ -329,7 +343,6 @@ function p_writesubmit() {
 
 
 /* 하트좋아요 기능 */
-
 function plan_like() {
 	
 	
@@ -346,17 +359,6 @@ function plan_like() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 $(function() {
 	addTrans();
 	qqq();
@@ -367,7 +369,7 @@ $(function() {
 	deletePlan();
 	lineLimit();
 	deletePlanBudget();
-/*	p_submit();*/
+	p_submit();
 	p_writesubmit();
 	plan_like();
 });

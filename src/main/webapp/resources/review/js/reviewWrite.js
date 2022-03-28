@@ -89,7 +89,7 @@ toggle between hiding and showing the dropdown content */
 let daycount = 1;
 
 function createSchedule(a){
-
+/*98번과 99번줄 사이에 주석처리 한것 -> <img alt="" src="resources/review/img/plus-circle.svg">\*/
     ++daycount;
    let newDiv =  document.createElement('div');
    newDiv.setAttribute('id','daily_schedule_con');
@@ -98,8 +98,7 @@ function createSchedule(a){
    newDiv.setAttribute('data-day',daycount);
 
    newDiv.innerHTML = '<div class="dropdown">\
-       <button type="button" onclick="" class="dropbtn">\
-           <img alt="" src="resources/review/img/plus-circle.svg">\
+       <button type="button" onclick="" class="dropbtn">+\
        </button>\
        <div id="myDropdown" class="dropdown-content">\
            <a href="javascript:void(0);" class="insert_col_back">뒤에 일정추가</a> <a href="#" onclick="deleteDay(this)">일정삭제</a>\
@@ -262,7 +261,7 @@ function showPreview(event) {
     console.log(event.target.getAttribute('id')); 
     let targetId = event.target.getAttribute('id');
     console.log(event.target.files);
-
+    document.querySelector("div#"+targetId+"_container").innerHTML =""
     for (var image of event.target.files) { 
         var reader = new FileReader(); 
         reader.readAsDataURL(image);

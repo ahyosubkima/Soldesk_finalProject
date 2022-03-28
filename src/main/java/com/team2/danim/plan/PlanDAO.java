@@ -129,6 +129,9 @@ public class PlanDAO {
 			System.out.println("일정(p_plan)::   " + p_plan);
 			System.out.println("총예산(p_budget)::   " + p_budget);
 			System.out.println("한마디(p_freeWrite)::   " + p_freeWrite);
+			System.out.println("제목배열(setTitle)::   " + title);
+			System.out.println("상품명배열(setItem)::   " + item);
+			System.out.println("가격배열(setPrice)::   " + price);
 			
 			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
 				req2.getSession().setAttribute("successToken", token);

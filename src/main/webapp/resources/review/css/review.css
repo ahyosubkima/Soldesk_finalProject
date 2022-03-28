@@ -225,6 +225,7 @@ margin-bottom: 30px;
 
 #selectBox{
 	width:70px;
+	height: 30px;
 	text-align: center;
 	margin-right: 20px;
 	border: 2px solid transparent;
@@ -261,6 +262,7 @@ margin-bottom: 30px;
 
 #selectBox2{
 	width: 105px;
+	height: 30px;
 	text-align: center;
     margin-right: 20px;
     border: 2px solid transparent;
@@ -276,6 +278,7 @@ margin-bottom: 30px;
 
 #selectBox3{
 	width: 105px;
+	height: 30px;
 	text-align: center;
     margin-right: 20px;
     border: 2px solid transparent;
@@ -291,8 +294,8 @@ margin-bottom: 30px;
 
 #selectBox4{
 	width: 70px;
+	height: 30px;
 	text-align: center;
-	height:20px;
     border: 2px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
@@ -306,7 +309,7 @@ margin-bottom: 30px;
 
 /* 여기부터 지도 */
 #map{
-	width: 90%;
+	width: 80%;
 	height: 500px;
 	text-align: center;
 	margin: auto;
@@ -443,8 +446,11 @@ margin-bottom: 30px;
 	font-weight: normal;
 }
 
-#scehduleBox{
-	text-align: center;
+
+.scehduleBox{
+	width: 400px;
+    border: 1px solid;
+    float: left;
 }
 
 .dailyBox{
@@ -454,7 +460,7 @@ margin-bottom: 30px;
 }
 
 .dailyBox textarea{
-	width: 80%;
+	width: 400px;
 	height: 200px;
 	border: 3px solid transparent;
 	border-radius: 20px;
@@ -465,6 +471,11 @@ margin-bottom: 30px;
     background-origin: border-box;
     background-clip: content-box, border-box;
     text-align: center;
+}
+
+.d1TextDiv{
+	width: 500px;
+	float: left;
 }
 
 .dailyBox textarea:focus{

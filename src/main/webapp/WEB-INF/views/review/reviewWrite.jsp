@@ -26,11 +26,6 @@ textarea{
 	width: 25%;
 }
 
-/* #schedule_inner_nav>a {
-	border: 1px solid black;
-} */
-
-
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
 	position: relative;
@@ -42,14 +37,6 @@ textarea{
 	display: block;
 }
 
-/* td, tr {
-	border: 1px solid black;
-}
-
-div {
-	border: 1px solid red;
-}
- */
 </style>
 <script type="text/javascript" src="resources/review/js/reviewWrite.js"></script>
 <script type="text/javascript">
@@ -543,7 +530,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<h3>day1 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d1Schedule" id="day1" value="">
-		<textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea>
+		<div class="d1TextDiv"><textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea></div>
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
 		<h3>day2 일정표시</h3>

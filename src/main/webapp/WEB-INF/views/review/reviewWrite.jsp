@@ -576,7 +576,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<div id="schedule_inner_nav" style="display: flex;" >
 			<div style="width: 15%;  ">
 				<!-- <a>모든경로보기</a> -->
-				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
+				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" >prev</a>
 			</div>
 			<div style="width: 10%; position: absolute; right: 0; ">
 			<a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> next</a>
@@ -663,7 +663,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<!-- 총 여행사진 -->
 	<div id="d1Img_container"></div>
 	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
-
+	
 </form>
 
 </body>

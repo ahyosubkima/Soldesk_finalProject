@@ -74,7 +74,7 @@ $(function() {
 			
 
 			<div id="content_title_div">
-				 <img id="sdf_img" src="resources/comm/comm_img/free2.png"><h2  class="best_pic">자유게시판</h2>
+				 <img id="sdf_img" src="resources/comm/comm_img/board1.png"><h2  class="best_pic">자유게시판</h2>
 				</div>
 				<hr id="comm_free_hr">
 				<c:if test="${pageMaker != null && not empty frees }">
@@ -100,7 +100,7 @@ $(function() {
 						</tr>
 					</table>
 					<form action="comm_free_search">
-				<table id="comm_picture_searchTbl2">
+				<table id="comm_free_searchTbl">
 					<tr>
 						<td><select name="search_option" id="search_option">
 								<option value="title">제목</option>
@@ -199,13 +199,16 @@ $(function() {
 							<td id="comm_empty_write">${param.search_input }(으)로 등록된 게시글이 없습니다.</td>
 						</tr>
 					</table>
+
+
 				</c:if>
-			<c:if test="${sessionScope.loginMember != null}">
-				<input type="button" id="comm_free_writeBtn2" value="글쓰기"
+							<c:if test="${sessionScope.loginMember != null}">
+				<input type="button" id="comm_free_writeBtn2" value=" 🖋 글쓰기"
 					onclick="location.href='/danim/comm_free_write'">
 			</c:if>
-			<c:if test="${ sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-				<input type="button" id="comm_picture_writeBtn2" value="공지쓰기"
+
+				<c:if test="${ sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+				<input type="button" id="comm_free_writeBtn" value="공지쓰기"
 					onclick="location.href='/danim/comm_import_write'">
 								
 			</c:if>

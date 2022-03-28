@@ -12,6 +12,26 @@ $(function() {
 	previewImg();
 
 });
+
+window.onpageshow = function(event) {
+	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		
+		if(so != ""){
+			location.href="/danim/comm_picture_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_picture_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_picture_page";
+		}	
+		}
+			
+	}
+		}		
 </script>
 </head>
 <body>
@@ -37,9 +57,9 @@ $(function() {
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_update_content112">
 		<div id="content_title_div">
-				<h2  class="best_update_pic2">사진게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/photo.png">
+				<h2  class="best_update_pic2">사진게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/photo-1.png">
 				</div>
 				<hr class="comm_update_hr">
 			<c:forEach var="picture" items="${picture }">
@@ -65,6 +85,12 @@ $(function() {
 								name="oldFile"> <input id="picture" type="file" name="newFile">
 								<input type="hidden"
 								value="${picture.comm_picture_no }" name="comm_picture_no">
+								<input type="hidden"
+										name="pageNum" value="${param.pageNum }" id="pgn"> <input
+										type="hidden" name="search_option"
+										value="${param.search_option }" id="so"> <input
+										type="hidden" name="search_input"
+										value="${param.search_input }" id="si"> 
 							</td>
 						</tr>
 						<tr>

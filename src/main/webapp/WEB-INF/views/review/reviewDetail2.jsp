@@ -10,6 +10,9 @@
 <title>Insert title here</title>
  <script src="resources/review/js/reviewDetail.js"></script>
 <style>
+.schedule_cell{
+	margin: 1px;
+}
 .arrowImg:hover{
 	filter: invert(81%) sepia(17%) saturate(1561%) hue-rotate(113deg) brightness(86%) contrast(89%);
 	transition: 0.3s;
@@ -22,7 +25,7 @@ border: 2px solid transparent;
     background-origin: border-box;
     background-clip: content-box, border-box;
     width: 80%;
-    height: 140px;
+    /* height: 140px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +39,7 @@ border: 2px solid transparent;
     background-clip: content-box, border-box;
     width: 70%;
     display: flex;
-    height: 80px;
+    /* height: 80px; */
     justify-content: center;
     align-items: center;
 }
@@ -55,11 +58,14 @@ margin-bottom: 10px;
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    height: 50px;
+    /* height: 50px; */
     width: 33%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 3px;
+    margin-right: 3px;
+	
 }
 
 .schedule_wrapper{
@@ -67,8 +73,9 @@ margin-bottom: 10px;
     justify-content: center;
     flex-direction: row;
     width: 70%;
-    border: 1px solid #44ffe0;
+	border: 2px solid rgb(232, 248, 240);
     border-top: none;
+    padding-bottom: 10px;
 }
 
 
@@ -80,9 +87,10 @@ margin-bottom: 10px;
 	}
 .scheduleController{
 	display: flex;
-    border: 1px solid #44ffe0;
+    border: 2px solid  rgb(232, 248, 240);
     width: 70%;
 }
+
 
 .totalroute_content{
 	text-align: center;
@@ -431,13 +439,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr1" value="${fn:split(result.rb_d1Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr1}" var="d1Sch">
-					<div class="schedule_con">${d1Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d1Sch}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">1일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d1Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d1Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -449,13 +457,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr2" value="${fn:split(result.rb_d2Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr2}" var="d2Sch">
-					<div class="schedule_con">${d2Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d2Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">2일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d2Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d2Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -467,13 +475,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr3" value="${fn:split(result.rb_d3Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr3}" var="d3Sch">
-					<div class="schedule_con">${d3Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d3Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">3일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d3Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d3Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -485,13 +493,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr4" value="${fn:split(result.rb_d4Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr4}" var="d4Sch">
-					<div class="schedule_con">${d4Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d4Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">4일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d4Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d4Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -503,13 +511,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr5" value="${fn:split(result.rb_d5Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr5}" var="d5Sch">
-					<div class="schedule_con">${d5Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d5Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">5일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d5Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d5Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -521,13 +529,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr6" value="${fn:split(result.rb_d6Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr6}" var="d6Sch">
-					<div class="schedule_con">${d6Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d6Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">6일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d6Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d6Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -539,13 +547,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr7" value="${fn:split(result.rb_d7Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr7}" var="d7Sch">
-					<div class="schedule_con">${d7Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d7Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">7일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d7Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d7Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -557,13 +565,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr8" value="${fn:split(result.rb_d8Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr8}" var="d8Sch">
-					<div class="schedule_con">${d8Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d8Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">8일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d8Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d8Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>	
@@ -575,13 +583,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr9" value="${fn:split(result.rb_d9Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr9}" var="d9Sch">
-					<div class="schedule_con">${d9Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d9Sch}}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">9일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d9Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d9Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -593,13 +601,13 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr10" value="${fn:split(result.rb_d10Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr10}" var="d10Sch">
-					<div class="schedule_con">${d10Sch}</div>
+					<div class="schedule_con"><div class="schedule_cell">${d10Sch}</div></div>
 					
 				</c:forEach>
 		</div>
 		<div class="dailyText">
 		<div class="dtTitle">10일차 간단후기✒</div>
-		<div class="flex-container"><div class="dtContent">${result.rb_d10Text}</div></div> 
+		<div class="flex-container"><div class="dtContent"><pre style="white-space: pre-wrap;">${result.rb_d10Text}</pre></div></div> 
 		</div>
 	</div>
 	</div>
@@ -607,10 +615,10 @@ function initMap() {
 	<div class="totalReview">
 			<div class="trTitle">총 후기📝</div>
 
-		<div class="flex-container"><div class="totalText">${result.rb_text}</div></div>
+		<div class="flex-container"><div class="totalText">  <pre style="white-space: pre-wrap;">${result.rb_text}</pre>   </div></div>
 	</div>
 
-	<input type="text" id="totalday" value="${result.rb_totalday}" hidden>
+	<input type="text" id="totalday" value="${result.rb_totalday}" hidden ="hidden">
 
 
 

@@ -5,7 +5,9 @@
 //js 준비
 document.addEventListener('DOMContentLoaded', function () {
 
-    
+
+                /* 자유 한마디 실시간 글자수세기, 엔터 3줄 제한 */
+                countTxt();
 
 	
    // console.log(document.getElementById('selectBox'));
@@ -275,5 +277,32 @@ function showPreview(event) {
             
             }
              }
+
+             function countTxt() {
+                //글자수세기
+                document.getElementById('totalText').addEventListener('input',function(e) {
+                    console.log("키업!");
+                    let content = e.value;
+                    console.log(e.target.value.length)
+            
+                // 	$("#textLengthCheck").val("(" + content.length + "/ 100)"); //실시간 글자수 카운팅
+                // 	if (content.length > 100) {
+                // 		alert("최대 100자까지만 입력 가능합니다.");
+                // 		$(this).val(content.substring(0, 100));
+                // 		$('#textLengthCheck').html("(100 / 최대 100자)");
+                // 	}
+                // //엔터 3줄 제한
+                // 	$('#p_freeWrite').keydown(function(){
+                //         var rows = $('#p_freeWrite').val().split('\n').length;
+                //         var maxRows = 3;
+                //         if( rows > maxRows){
+                //             alert('3줄 까지만 작성 가능합니다');
+                //             modifiedText = $('#p_freeWrite').val().split("\n").slice(0, maxRows);
+                //             $('#p_freeWrite').val(modifiedText.join("\n"));
+                //         }
+                //     });
+                });
+            }
+ 
 
 

@@ -31,9 +31,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 border-radius: 5%;
-width: 400px;
-margin-left: 120px;
-margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 

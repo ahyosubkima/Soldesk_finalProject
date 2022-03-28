@@ -87,7 +87,7 @@ public class CommController {
 	public String comm_picture_upload(HttpServletRequest req,Criteria cri,MultipartHttpServletRequest req2) {
 		
 		
-		TokenMaker.make(req);
+		/*TokenMaker.make(req);*/		
 		cDAO.upload(req,req2);
 		cDAO.getPageMaker(req, cri);
 		cDAO.getCommPicturePaging(req, cri);

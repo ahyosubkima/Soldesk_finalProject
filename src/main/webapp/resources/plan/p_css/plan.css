@@ -15,14 +15,13 @@
 }
 
 #p_mainPic{
-	width: 180px;
-	height: 250px;
+	width: 220px;
+	height: 290px;
 	border: 5px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(#444444, #444444), linear-gradient(to bottom right, #38CEB5, #6D1E91);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    margin: 5px;
 }
 
 #p_mainWrite{
@@ -87,17 +86,25 @@
 
 #p_mainDetail{
 	width: 230px;
-	margin-left: 100px;
-    margin-bottom: 50px;
-	overflow: inherit;
-	float: left;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 70px;
+    overflow: inherit;
+    float: left;
 }
 
 
 #p_mainDetailDiv{
+	display:inline-block;
+	width: 99%;
+	border: 1px solid red;
+}
+
+#p_mainDetailAllDiv{
 	width: 100%;
 	display:inline-block;
 	text-align: center;
+	padding-left: 1%;
 }
 
 #p_noPlanner{
@@ -125,7 +132,7 @@ ul li{
 
 #map{
 	width: 800px;
-	height: 300px;
+	height: 400px;
 	border: 2px solid gray;
 }
 
@@ -278,10 +285,26 @@ ul li{
 }
 
 #p_writeBudgetWrite{
-	width:800px;
+	width:790px;;
 	height: 150px;
 	font-size: 13pt;
 	text-align: center;
+}
+
+#p_writeBudgetWrite textarea{
+	width: 780px;
+	height: 130px;
+	font-size: 13pt;
+	text-align: center;
+	font-size: 13pt;
+	border: none;
+	resize: none;
+	padding-top: 45px;
+}
+
+#p_budget:focus{
+	outline: none;
+}
 }
 
 
@@ -365,10 +388,10 @@ ul li{
 
 #p_BudgetAll{
 	text-align: center;
-	margin-top: 30px;
+	margin-top: 50px;
 }
 
-#p_budget{
+/* #p_budget{
 	text-align: center;
 	height: 50px;
 	width: 90%;
@@ -379,7 +402,7 @@ ul li{
 
 #p_budget:focus{
 	outline: none;
-}
+} */
 
 
 #p_FreeWordAll{

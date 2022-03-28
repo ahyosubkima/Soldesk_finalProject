@@ -101,7 +101,7 @@
 
 <!-- 검색기능 -->
 <form action="plan.search">
-<div style="text-align: center;">
+<div style="text-align: center; margin-bottom: 50px;">
 	<table id="p_searchTbl">
 		<tr>
 		<td align="center" colspan="3">
@@ -125,7 +125,8 @@
 <c:if test="${empty plans}"> <div id="p_noPlanner"><b>'${param.p_searchWrite }'</b>에 관련된 플래너가 없습니다😭 </div>  </c:if>
 
 <c:if test="${not empty plans}">
-	<div id="p_mainDetailDiv">
+ <div id="p_mainDetailAllDiv"> 
+ 	<div id="p_mainDetailDiv">
 			<c:forEach var="p" items="${plans }" varStatus="status">
 		 <table id="p_mainDetail"> 
 			 <tr>
@@ -133,12 +134,11 @@
 						<img id="p_mainPic"src="resources/plan/p_file/${p.p_titleFile }"></a></div></td>
 				</tr>
 				<tr>
-					<td align="center">${p. p_title}</td>
+					<td align="center"><h3>${p. p_title}</h3></td>
 				</tr>  
 		 </table> 
 			</c:forEach>
-	</div>
-
+</div> </div> 
 </c:if>
 
 

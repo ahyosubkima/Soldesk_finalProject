@@ -40,7 +40,7 @@ $(function() {
 
 		<div id="comm_free_write_content112">
 		<div id="content_title_div">
-				<h2  class="best_write_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/free4.png">
+				<h2  class="best_write_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
 				</div>
 				<hr class="comm_write_hr2">
 			<form action="comm_free_upload" method="post"
@@ -77,6 +77,10 @@ $(function() {
 						<td colspan="2" id="comm_write_Btn_td"><button id="comm_write_Btn">작성</button></td>
 					</tr>
 				</table>
+					<div id="image_container" class="image_container_div2">
+				<h2>사진 미리보기</h2>
+				<img id="p_preview" src="resources/comm/comm_img/noImage.png">
+				</div>
 			</form>
 		</div>
 	</div>

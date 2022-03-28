@@ -60,9 +60,9 @@
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
-				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/free4.png">
+				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
 				</div>
 				<hr class="comm_detail_hr2">
 			<c:forEach var="i" items="${notification }">
@@ -100,11 +100,9 @@
 					</tr>
 					<c:if test="${sessionScope.loginMember.dm_nickname eq i.ci_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 						<tr>
-							<td colspan="4" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_updateFreeOK(${i.ci_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
+							<td colspan="4" style="text-align: right"><button style="width: 70px; font-size: 15pt;"
 									onclick="comm_importdelOK(${i.ci_no})">삭제</button>
+								
 									</td>
 						</tr>
 					</c:if>

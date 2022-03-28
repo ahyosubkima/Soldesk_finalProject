@@ -51,6 +51,8 @@ public class MemberController {
 	@RequestMapping(value = "member.myPage", method = RequestMethod.GET)
 	public String toMyPage(Member m, HttpServletRequest req) {
 		req.setAttribute("contentPage", "member/myPage.jsp");
+		
+		
 		return "home";
 	}
 	

@@ -87,9 +87,9 @@ $(function() {
 			</form>
 			<c:if test="${param.search_input eq null }">
 				<div id="content_title_div">
-				 <img id="sdf_img" src="resources/comm/comm_img/best_video.png"><h2  class="best_pic">베스트 영상</h2>
+				 <img id="sdf_img" src="resources/comm/comm_img/best2.png"><h2  class="best_pic">베스트 영상</h2>
 				</div>
-				<hr>
+				<hr  id="comm_hr">
 				<div style=" width: 100%; float: left;" >
 					<c:forEach var="g" items="${good_videos }" varStatus="status">
 						<table class="comm_picture_bestTbl2">
@@ -116,10 +116,10 @@ $(function() {
 			</c:if>
 			<div style=" width: 100%; float: left;  padding-top: 40px;">
 				<div  id="content_title_div">
-				<img id="sdf_img" src="resources/comm/comm_img/video.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
+				<img id="sdf_img" src="resources/comm/comm_img/video-1.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
 					영상게시판</h2>
 					</div>
-					<hr>
+					<hr id="comm_hr">
 				<c:if test="${videos != null }">
 					<c:forEach var="p" items="${videos }" varStatus="status">
 						<table class="comm_picture_bestTbl2" style="">
@@ -155,7 +155,7 @@ $(function() {
 
 			</div>
 			<c:if test="${sessionScope.loginMember != null}">
-				<input type="button" id="comm_picture_writeBtn" value="글쓰기"
+				<input type="button" id="comm_picture_writeBtn" value="🎥 작성"
 					onclick="location.href='/danim/comm_video_write'">
 			</c:if>
 			<c:if test="${pageMaker != null && not empty videos }">

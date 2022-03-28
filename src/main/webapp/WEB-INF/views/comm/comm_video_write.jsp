@@ -37,7 +37,7 @@ $(function() {
 
 		<div id="comm_write_content112">
 		<div id="content_title_div">
-				<h2  class="best_write_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video2.png">
+				<h2  class="best_write_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
 				</div>
 				<hr class="comm_write_hr">
 				
@@ -76,7 +76,8 @@ $(function() {
 				</table>
 				<div id="image_container" class="image_container_div">
 				<h2>영상 미리보기</h2>
-				<video id="p_preview" controls="controls" autoplay="autoplay"></video>
+				<video id="p_preview" controls="controls" autoplay="autoplay"
+				></video>
 				</div>
 			</form>
 		</div>

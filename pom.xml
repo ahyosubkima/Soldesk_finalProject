@@ -34,7 +34,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 <dependency>
 <groupId>commons-fileupload</groupId>
 <artifactId>commons-fileupload</artifactId>
-<version>1.2.1</version>
+<version>1.4</version>
 </dependency>
     
 <dependency>
@@ -52,15 +52,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 </dependency>
 
 
-<!-- Transaction : DB?�버�?명령???�송?�서 ?�행, 결과 받고..
- Spring?�경?�서 Transaction?????�게 -->
-
-
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
+
 
 
 <dependency>
@@ -80,6 +77,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/m
 	<artifactId>mybatis</artifactId>
 	<version>3.5.4</version>
 </dependency>
+
 
 <dependency>
 	<groupId>org.mybatis</groupId>

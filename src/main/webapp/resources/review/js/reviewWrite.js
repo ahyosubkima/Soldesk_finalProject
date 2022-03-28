@@ -5,7 +5,9 @@
 //js 준비
 document.addEventListener('DOMContentLoaded', function () {
 
-    
+
+                /* 자유 한마디 실시간 글자수세기, 엔터 3줄 제한 */
+                countTxt();
 
 	
    // console.log(document.getElementById('selectBox'));
@@ -57,6 +59,7 @@ if(event.target.classList.contains('dropbtn')){
       console.log(daycount);
       if(daycount < 10){
  createSchedule(event.target);
+ document.getElementById('totalday').value=daycount;
  document.querySelector('.daily_schedule.active').nextElementSibling.classList.add('active') ;
  document.querySelector('.daily_schedule.active').classList.remove('active') ;
 }
@@ -131,6 +134,7 @@ function moveNextD(){
           
         if(daycount < 10){
             createSchedule(backwardBtn);
+            document.getElementById('totalday').value=daycount;
         }
         else{
             console.log('생성제한');
@@ -231,6 +235,7 @@ function deleteDay(e){
         }
         e.parentNode.parentNode.parentNode.remove();
         --daycount;
+        document.getElementById('totalday').value=daycount;
         document.querySelectorAll('.daily_schedule').forEach(function reset(i, curidx){
                 console.log(i, curidx);
                i.setAttribute('data-day',curidx+1);
@@ -271,5 +276,32 @@ function showPreview(event) {
             
             }
              }
+
+             function countTxt() {
+                //글자수세기
+                document.getElementById('totalText').addEventListener('input',function(e) {
+                    console.log("키업!");
+                    let content = e.value;
+                    console.log(e.target.value.length)
+            
+                // 	$("#textLengthCheck").val("(" + content.length + "/ 100)"); //실시간 글자수 카운팅
+                // 	if (content.length > 100) {
+                // 		alert("최대 100자까지만 입력 가능합니다.");
+                // 		$(this).val(content.substring(0, 100));
+                // 		$('#textLengthCheck').html("(100 / 최대 100자)");
+                // 	}
+                // //엔터 3줄 제한
+                // 	$('#p_freeWrite').keydown(function(){
+                //         var rows = $('#p_freeWrite').val().split('\n').length;
+                //         var maxRows = 3;
+                //         if( rows > maxRows){
+                //             alert('3줄 까지만 작성 가능합니다');
+                //             modifiedText = $('#p_freeWrite').val().split("\n").slice(0, maxRows);
+                //             $('#p_freeWrite').val(modifiedText.join("\n"));
+                //         }
+                //     });
+                });
+            }
+ 
 
 

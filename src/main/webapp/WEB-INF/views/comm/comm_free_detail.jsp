@@ -57,9 +57,9 @@ window.onpageshow = function(event) {
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
-				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/free4.png">
+				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
 				</div>
 				<hr class="comm_detail_hr2">
 			<c:forEach var="f" items="${free }">
@@ -97,20 +97,12 @@ window.onpageshow = function(event) {
 						</pre>
 						</td>
 					</tr>
-					<c:if test="${sessionScope.loginMember.dm_nickname eq f.cf_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-						<tr>
-							<td colspan="4" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_updateFreeOK(${f.cf_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_FreedelOK(${f.cf_no})">삭제</button></td>
-						</tr>
-					</c:if>
-
+					<tr>
+					<td>
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne f.cf_writer && sessionScope.loginMember != null && checked.cfg_good eq null or checked.cfg_good == 0 }">
 						<form action="comm_free_good">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${f.cf_no }"> <input
@@ -129,7 +121,7 @@ window.onpageshow = function(event) {
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne f.cf_writer && sessionScope.loginMember != null && checked.cfg_good == 1 }">
 						<form action="comm_free_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${f.cf_no }"> <input
@@ -145,13 +137,23 @@ window.onpageshow = function(event) {
 							</table>
 						</form>
 					</c:if>
-
+					</td>
+					</tr>
+					<c:if test="${sessionScope.loginMember.dm_nickname eq f.cf_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+						<tr>
+							<td colspan="4" style="text-align: right"><button
+									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
+									onclick="comm_updateFreeOK(${f.cf_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+								<button style="width: 70px; font-size: 15pt; border: none; background: none"
+									onclick="comm_FreedelOK(${f.cf_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button></td>
+						</tr>
+					</c:if>
 				</table>
 				<hr class="comm_detail_hr">
 				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
-						<td>댓글</td>
+						<td><div id="comment_div">Comment &nbsp;<img src="resources/comm/comm_img/comment.png" id="comment_img"></div></td>
 					</tr>
 				</table>
 
@@ -165,13 +167,16 @@ window.onpageshow = function(event) {
 								</c:if>
 								</td>
 								<td style="text-align: center;">${r.cfr_txt }</td>
-								<td style="text-align: center;"><fmt:formatDate value="${r.cfr_when }" pattern="yyyy-MM-dd"/>
+								<td style="text-align: center;">
+								<div id="reply_div">
+								<fmt:formatDate value="${r.cfr_when }" pattern="yyyy-MM-dd"/>
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cfr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
 									
-										<button onclick="freeReplyUpdate(${r.cfr_no},${param.no})">수정</button>
-										<button onclick="freeReplyDel(${r.cfr_no})">삭제</button>
+										&nbsp;<button id="reply_btn" onclick="freeReplyUpdate(${r.cfr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="freeReplyDel(${r.cfr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
 								</c:if>
+								</div>
 								</td>	
 							</tr>
 						</c:forEach>
@@ -189,7 +194,7 @@ window.onpageshow = function(event) {
 								value="${sessionScope.loginMember.dm_id }">
 							</td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cfr_txt"
+								id="comm_picture_detail_replyInput" placeholder="댓글입력..." name="cfr_txt"
 								class="cfr_txt"> <input type="hidden" name="no"
 								value="${f.cf_no }"> <input type="hidden" name="token2"
 								value="${token2}"></td>

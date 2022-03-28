@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team2.danim.TokenMaker;
+
 @Controller
 public class ReviewController {
 
@@ -28,7 +30,7 @@ public class ReviewController {
 		}
 		@RequestMapping(value = "/review.go", method = RequestMethod.GET)
 		public String goReviewMain(HttpServletRequest req) {
-			
+			TokenMaker.make(req);
 			reviewDAO.getAllreview(req);
 			req.setAttribute("contentPage", "review/reviewMain.jsp");
 			
@@ -45,10 +47,11 @@ public class ReviewController {
 		}
 		
 		@RequestMapping(value = "/reviewDeatil.go", method = RequestMethod.GET)
-		public String goReviewDetail(HttpServletRequest req) {
+		public String goReviewDetail(ReviewBean rb , Review_reply rbr ,HttpServletRequest req) {
 			
-			
+			reviewDAO.viewPlus(rb,req);
 			reviewDAO.getDetail(req);
+			reviewDAO.getReply(rbr, req);
 			req.setAttribute("contentPage", "review/reviewDetail2.jsp");
 			
 			
@@ -67,7 +70,7 @@ public class ReviewController {
 		}
 		
 		
-
+// 비동기로 선택메뉴 필터
 		@RequestMapping(value = "/getfilterdByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 		public @ResponseBody ReviewsAjaxDTO getfilterdByJSON( ReviewBean rb ) {
 			
@@ -80,6 +83,34 @@ public class ReviewController {
 			
 			return reviews;
 
+		}
+		
+		//댓글작성
+		@RequestMapping(value = "/writeReplyByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReplysAjaxDTO wirteReplyByJSON( Review_reply rrp, ReviewBean rb ) {
+			
+			
+			
+			ReplysAjaxDTO replys = reviewDAO.wirteReplyByJSON(rrp, rb);
+			
+			
+			
+			return replys;
+			
+		}
+		
+		//댓글삭제
+		@RequestMapping(value = "/deleteReplyByJSON", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+		public @ResponseBody ReplysAjaxDTO deleteReplyByJSON( Review_reply rrp, ReviewBean rb ) {
+			
+			
+			
+			ReplysAjaxDTO replys = reviewDAO.deleteReplyByJSON(rrp, rb);
+			
+			
+			
+			return replys;
+			
 		}
 		
 }

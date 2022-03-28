@@ -9,6 +9,10 @@
 <script src="resources/review/js/jquery.js"></script>
 <style>
 
+#day1{
+display: block;
+}
+
 textarea{
 	width: 100%;
 	resize: none;
@@ -57,12 +61,44 @@ function initMap() {
   //   // map is clicked.
   map.addListener('click', function(event) {
 	console.log(event.placeId);
+	console.log(event);
+
 
 	if(event.placeId){
-
 		service.getDetails({placeId: event.placeId}, function(place, status){
-			console.log(place.name);
+			console.log(place);
+			//console.log(place.name);
+			if(place == null){
+				console.log('dd');
+				let lat =event.latLng.lat();
+		let lng =event.latLng.lng();
 
+		let latlng = {
+    lat: parseFloat(lat),
+    lng: parseFloat(lng),
+  };
+		
+  const geocoder = new google.maps.Geocoder();
+
+  geocoder
+    .geocode({ location: latlng })
+    .then((response) => {
+		console.log(response);
+		console.log(response.results[0].formatted_address);
+		
+
+		//데스티네이션에 넣음
+		destination.push(response.results[0].formatted_address);
+		document.getElementById('allSchedule').innerHTML = destination.join('->');
+
+		 //서버제출용
+		 document.getElementsByName('totalRoute')[0].value = destination;
+		console.log(document.getElementsByName('totalRoute')[0].value);
+	})
+
+			}
+			
+else{
 			//데스티네이션에 넣음
 			destination.push(place.name);
 			document.getElementById('allSchedule').innerHTML = destination.join('->');
@@ -70,7 +106,7 @@ function initMap() {
 			//서버제출용
  document.getElementsByName('totalRoute')[0].value = destination;
 		console.log(document.getElementsByName('totalRoute')[0].value);
-
+	}
 		})
 	}else{
 		
@@ -278,7 +314,11 @@ marker = new google.maps.Marker();
 		console.log(poly.getPath());
 		console.log(destination);
 
-		//div삭제
+
+		//모든경로비우기
+		document.getElementById('allSchedule').innerHTML =""
+
+		//각 일정삭제
 
 		document.querySelectorAll('.scehduleBox').forEach(function(eachBox){
 
@@ -337,6 +377,7 @@ function addLatLng(event) {
   //우클릭시 일정에추가
   dds.addListener('rightclick',function(){
 		  console.log(dds.title);
+		  console.log(destination);
 		  console.log(destination[destinationNum]);
 		  
 		  let rcdestination = dds.title+destination[destinationNum];
@@ -346,7 +387,7 @@ function addLatLng(event) {
 	let dayfinder = 'day'+selectDay;
 
 	let targetScedule = document.getElementById(dayfinder).querySelector('.scehduleBox');
-	console.log(targetScedule);
+	console.log(targetScedule +'여기');
 
 	let newDiv = document.createElement('div');
 
@@ -359,18 +400,24 @@ function addLatLng(event) {
 	
 
 
-
+//일정중복방지
 	if(document.getElementById('scheduled'+ dds.title)){
 
 		alert('이미 추가된 일정입니다.');
 	}
 	else{
-	targetScedule.insertAdjacentElement('beforeend',newDiv);
 
+		//하루 최대일정제한 10개
+		if(targetScedule.childElementCount >= 10){
+			alert('하루최대일정3개 다른날짜에 넣어주세요');
+		}
+		else{
+	targetScedule.insertAdjacentElement('beforeend',newDiv);
+		console.log(targetScedule.childElementCount);
 	console.log(dayfinder);
 	console.log(document.querySelector('input#'+dayfinder));
 	document.querySelector('input#'+dayfinder).value += rcdestination+',';
-
+}
 }
 
 
@@ -414,7 +461,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<div id="r_write_Title"><h1>여행 후기 작성하기</h1></div>
 
 
-<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
 		<div id="r_reviewTitle"><input type="text" name="title" placeholder="여행 후기 제목을 입력해주세요"></div>
 			
 			<!-- 좌표히든 --><input type="hidden" name ="coordinate" id="coordinate" value="">
@@ -518,7 +564,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 				<!-- <a>모든경로보기</a> -->
 
 
-				<div id="prevbtnDiv"><a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev&lt;</a></div>
+				<div id="prevbtnDiv"><a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn">prev&lt;</a></div>
 
 			</div>
 			<div style="width: 10%; position: absolute; right: 0; ">
@@ -627,8 +673,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<div id="r_writeAllreview"><h2>총 여행사진 업로드</h2>❗업로드할 사진을 한꺼번에 업로드해주세요</div>
 	<div style="text-align: center; padding-left: 100px;"><input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);"></div>
 	<div id="d1Img_container"></div>
-	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
-	<input type="text" name="totalday" id="totalday" value="1"> 히든토탈데이
+	<input type="hidden" name="totalday" id="totalday" value="1"> <!-- 히든토탈데이 -->
 <div id="review_submit"><button>여행후기 등록</button></div>
 
 </form>

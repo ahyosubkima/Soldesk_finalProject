@@ -14,6 +14,18 @@ public interface ReviewMapper {
 
 	public ReviewBean selectDetail(ReviewBean rb);
 
+	public int viewPlus(ReviewBean rb);
+
+	public List<Review_reply> getReply(Review_reply rbr);
+
+	public int wirteReplyByJSON(Review_reply rrp);
+
+	public int repCountPlus(ReviewBean rb);
+
+	public int deleteReplyByJSON(Review_reply rrp);
+
+	public int repCountMinus(ReviewBean rb);
+
 
 
 	

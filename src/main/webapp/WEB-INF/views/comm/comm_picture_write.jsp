@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(function() {
+	
+	previewImg();
+
+});
+</script>
 </head>
 <body>
 	<div id="comm_write_area">
@@ -30,7 +37,7 @@
 
 		<div id="comm_write_content112">
 		<div id="content_title_div">
-				<h2  class="best_write_pic2">사진게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/photo.png">
+				<h2  class="best_write_pic2">사진게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/photo-1.png">
 				</div>
 				<hr class="comm_write_hr">
 			<form action="comm_picture_upload" method="post"
@@ -69,7 +76,7 @@
 				</table>
 				<div id="image_container" class="image_container_div">
 				<h2>사진 미리보기</h2>
-				<img id="p_preview">
+				<img id="p_preview" src="resources/comm/comm_img/noImage.png">
 				</div>
 
 			</form>

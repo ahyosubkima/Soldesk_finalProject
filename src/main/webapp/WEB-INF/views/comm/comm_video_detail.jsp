@@ -10,6 +10,10 @@
 <style type="text/css">
 </style>
 <script type="text/javascript">
+$(function() {
+	adjustHeight();
+});
+
 window.onpageshow = function(event) {
 	if (event.persisted
 			|| (window.performance && window.performance.navigation.type == 2)) {
@@ -29,6 +33,13 @@ window.onpageshow = function(event) {
 		}
 	}
 }
+
+function adjustHeight() {
+	  var textEle = $('#video_txt_area');
+	  textEle[0].style.height = 'auto';
+	  var textEleHeight = textEle.prop('scrollHeight');
+	  textEle.css('height', textEleHeight);
+	};
 </script>
 </head>
 <body>
@@ -54,9 +65,9 @@ window.onpageshow = function(event) {
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_picture_detail_content112">
 		<div id="content_title_div">
-				<h2  class="best_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video2.png">
+				<h2  class="best_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
 				</div>
 				<hr class="comm_detail_hr">
 			<c:forEach var="v" items="${video }">
@@ -88,23 +99,14 @@ window.onpageshow = function(event) {
 					<tr>
 						<td colspan="2" class="comm_video_txt"><textarea 
 						readonly="readonly"
-						id="video_txt_area" rows="7" cols="50">${v.cv_txt }</textarea></td>
+						id="video_txt_area">${v.cv_txt }</textarea></td>
 					</tr>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-						<tr>
-							<td colspan="2" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_VideoupdateOK(${v.cv_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_VideodelOK(${v.cv_no})">삭제</button></td>
-						</tr>
-					</c:if>
-					
+					<tr>
+					<td>
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good eq null or checked.cvg_good == 0 }">
 						<form action="comm_video_good">
-							<table style="padding-left: 72%;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
@@ -126,7 +128,7 @@ window.onpageshow = function(event) {
 					<c:if
 						test="${sessionScope.loginMember.dm_id ne v.cv_writer && sessionScope.loginMember != null && checked.cvg_good == 1 }">
 						<form action="comm_video_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%; padding-top: 10px;">
 								<tr>
 									<td colspan="4" style="text-align: right;"><input
 										name="no" type="hidden" value="${v.cv_no }"> <input
@@ -145,13 +147,32 @@ window.onpageshow = function(event) {
 							</table>
 						</form>
 					</c:if>
-
+					
+					
+					</td>
+					
+					</tr>
+					
+					
+					<c:if
+						test="${sessionScope.loginMember.dm_nickname eq v.cv_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+						<tr>
+							<td colspan="2" style="text-align: right">
+							<button style="width: 70px; margin-right: 10px; font-size: 15pt; background: none; border: none;"
+			onclick="comm_VideoupdateOK(${v.cv_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+								<button style="width: 70px; font-size: 15pt; background: none; border: none;"
+									onclick="comm_VideodelOK(${v.cv_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button>
+									</td>
+						</tr>
+					</c:if>
+					
+					
 				</table>
 				<hr class="comm_detail_hr">
 				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
-						<td>댓글</td>
+						<td><div id="comment_div">Comment &nbsp;<img src="resources/comm/comm_img/comment.png" id="comment_img"></div></td>
 					</tr>
 				</table>
 
@@ -164,13 +185,16 @@ window.onpageshow = function(event) {
 								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 								</c:if></td>
 								<td style="text-align: center;">${r.cvr_txt }</td>
-								<td style="text-align: center;"><fmt:formatDate value="${r.cvr_when }" pattern="yyyy-MM-dd"/>
+								<td style="text-align: center;">
+								<div id="reply_div">
+								<fmt:formatDate value="${r.cvr_when }" pattern="yyyy-MM-dd"/>
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cvr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 									
-										<button onclick="videoReplyUpdate(${r.cvr_no},${param.no})">수정</button>
-										<button onclick="videoReplyDel(${r.cvr_no})">삭제</button>
+										&nbsp;<button id="reply_btn" onclick="videoReplyUpdate(${r.cvr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="videoReplyDel(${r.cvr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
 								</c:if>
+								</div>
 								</td>	
 							</tr>
 						</c:forEach>
@@ -188,7 +212,7 @@ window.onpageshow = function(event) {
 								value="${sessionScope.loginMember.dm_id }">
 							</td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cvr_txt"
+								id="comm_picture_detail_replyInput" placeholder="댓글입력..."name="cvr_txt"
 								class="cvr_txt"> <input type="hidden" name="no"
 								value="${v.cv_no }"> <input type="hidden" name="token2"
 								value="${token2}"></td>

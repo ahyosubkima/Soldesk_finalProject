@@ -1,13 +1,17 @@
 package com.team2.danim.comm;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -15,6 +19,8 @@ import com.team2.danim.Criteria;
 import com.team2.danim.Criteria2;
 import com.team2.danim.PageMakerDTO;
 import com.team2.danim.PageMakerDTO2;
+import com.team2.danim.review.ReviewBean;
+import com.team2.danim.review.ReviewMapper;
 
 
 @Service
@@ -81,45 +87,60 @@ public void getPageMakerVideo(HttpServletRequest req,Criteria cri) {
 	
 }
 
-public void upload(HttpServletRequest req) {
+public void upload(HttpServletRequest req,MultipartHttpServletRequest req2) {
 		
 	
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	System.out.println(path);
-	MultipartRequest mr = null;
-	String token = null;
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-		token = mr.getParameter("token");
-		String successToken = (String) req.getSession().getAttribute("successToken");
-		if (successToken != null && token.equals(successToken)) {
-			String fileName = mr.getFilesystemName("comm_picture_name");
-			new File(path + "/" + fileName).delete();
-			return;
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
-	
-	
-	try {
-		String fName = mr.getFilesystemName("comm_picture_name");
-		System.out.println(mr.getParameter("comm_picture_write_name"));
-		System.out.println(fName);
-		System.out.println(mr.getParameter("comm_picture_txt"));
-		Comm_picture cp = new Comm_picture();
-		cp.setComm_picture_name(fName);
-		cp.setComm_picture_txt(mr.getParameter("comm_picture_txt"));
-		cp.setComm_picture_write_name(mr.getParameter("comm_picture_write_name"));
-		cp.setComm_picture_writer(mr.getParameter("comm_picture_writer"));
-		if (ss.getMapper(CommMapper.class).upload(cp) == 1) {
-			req.getSession().setAttribute("successToken", token);
-			req.setAttribute("result", "업로드성공");
-		}
+try {
+		
+		MultipartFile file = req2.getFile("comm_picture_name");
+		System.out.println(file);
+		String token = null;
+		System.out.println("사진업로드!!!!!!");
+		  token = req2.getParameter("token");
+	        String successToken = (String) req.getSession().getAttribute("successToken");
+	        
+	        if (successToken != null && token.equals(successToken)) {
+	            return;
+	        }
+	        System.out.println(file);
+	        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			long size = file.getSize();
+			
+			String fileName = file.getOriginalFilename();
+			System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+			
+			//랜덤파일명생성
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+			//System.out.println(realPath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			System.out.println(realPath);
+			//파일저장
+			realPath += File.separator +storedFileName;
+			File saveFile = new File(realPath);
+			file.transferTo(saveFile);
+			
+			
 		
 		
-		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
+			Comm_picture cp = new Comm_picture();
+			cp.setComm_picture_name(storedFileName);
+			cp.setComm_picture_txt(req2.getParameter("comm_picture_txt"));
+			cp.setComm_picture_write_name(req2.getParameter("comm_picture_write_name"));
+			cp.setComm_picture_writer(req2.getParameter("comm_picture_writer"));
+			if (ss.getMapper(CommMapper.class).upload(cp) == 1) {
+				req.getSession().setAttribute("successToken", token);
+				req.setAttribute("result", "업로드성공");
+			}
+		
+	
+	
+	
 	} catch (Exception e) {
 		e.printStackTrace();
 	/*	String fileName = mr.getFilesystemName("g_file");
@@ -165,27 +186,40 @@ public void delPicture(Comm_picture cp, HttpServletRequest req) {
 	
 	}
 
-public void updatePicture(Comm_picture cp, HttpServletRequest req) {
+public void updatePicture(Comm_picture cp, HttpServletRequest req,MultipartHttpServletRequest req2) {
 	
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	MultipartRequest mr = null;
-	System.out.println(path);
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+try {
 		
+		System.out.println(req2.getParameter("comm_picture_write_name"));
+		System.out.println(req2.getParameter("comm_picture_txt"));
+		System.out.println(req2.getParameter("comm_picture_no"));
 		
+		MultipartFile newFile = req2.getFile("newFile");
+		String oldFile = req2.getParameter("oldFile");
 		
+		  long size = newFile.getSize();
+          String fileName = newFile.getOriginalFilename();
+          System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+
+          //랜덤파일명생성
+          String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+
+          String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+          //System.out.println(realPath);
+
+          File savePath = new File(realPath);
+          if(!savePath.exists()) {
+              savePath.mkdirs();
+          }
+          System.out.println(realPath);
+          //파일저장
+          realPath += File.separator +storedFileName;
+          File saveFile = new File(realPath);
+          newFile.transferTo(saveFile);
 		
-		System.out.println(mr.getParameter("comm_picture_write_name"));
-		System.out.println(mr.getParameter("comm_picture_txt"));
-		System.out.println(mr.getParameter("comm_picture_no"));
-		
-		String newFile = mr.getFilesystemName("newFile");
-		String oldFile = mr.getParameter("oldFile");
-		
-		if (newFile != null) {
+		if (fileName != "") {
 			
-			cp.setComm_picture_name(newFile);
+			cp.setComm_picture_name(storedFileName);
 			
 			
 		}
@@ -193,9 +227,9 @@ public void updatePicture(Comm_picture cp, HttpServletRequest req) {
 			cp.setComm_picture_name(oldFile);
 		}
 		
-		cp.setComm_picture_write_name(mr.getParameter("comm_picture_write_name"));
-		cp.setComm_picture_txt(mr.getParameter("comm_picture_txt"));
-		cp.setComm_picture_no(Integer.parseInt(mr.getParameter("comm_picture_no")));
+		cp.setComm_picture_write_name(req2.getParameter("comm_picture_write_name"));
+		cp.setComm_picture_txt(req2.getParameter("comm_picture_txt"));
+		cp.setComm_picture_no(Integer.parseInt(req2.getParameter("comm_picture_no")));
 		if (ss.getMapper(CommMapper.class).updatePicture(cp) == 1) {
 			System.out.println("수정성공");
 			req.setAttribute("picture", ss.getMapper(CommMapper.class).getCommPicture2(cp));
@@ -523,37 +557,52 @@ public void getGoodVideo(HttpServletRequest req) {
 	}
 }
 
-public void videoUpload(HttpServletRequest req) {
+public void videoUpload(HttpServletRequest req, MultipartHttpServletRequest req2) {
 	
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	System.out.println(path);
-	MultipartRequest mr = null;
-	String token = null;
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-		token = mr.getParameter("token");
-		String successToken = (String) req.getSession().getAttribute("successToken");
-		if (successToken != null && token.equals(successToken)) {
-			String fileName = mr.getFilesystemName("cv_name");
-			new File(path + "/" + fileName).delete();
-			return;
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
-	
-	
-	try {
-		String fName = mr.getFilesystemName("cv_name");
-		System.out.println(mr.getParameter("cv_write_name"));
-		System.out.println(fName);
-		System.out.println(mr.getParameter("cv_txt"));
+try {
+		
+		MultipartFile file = req2.getFile("cv_name");
+		System.out.println(file);
+		String token = null;
+		System.out.println("비디오업로드!!!!!!");
+		  token = req2.getParameter("token");
+	        String successToken = (String) req.getSession().getAttribute("successToken");
+	        
+	        if (successToken != null && token.equals(successToken)) {
+	            return;
+	        }
+	        System.out.println(file);
+	        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			long size = file.getSize();
+			
+			String fileName = file.getOriginalFilename();
+			System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+			
+			//랜덤파일명생성
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+			//System.out.println(realPath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			System.out.println(realPath);
+			//파일저장
+			realPath += File.separator +storedFileName;
+			File saveFile = new File(realPath);
+			file.transferTo(saveFile);
+			
+			
+		
+		
 		Comm_video cv = new Comm_video();
-		cv.setCv_name(fName);
-		cv.setCv_txt(mr.getParameter("cv_txt"));
-		cv.setCv_write_name(mr.getParameter("cv_write_name"));
-		cv.setCv_writer(mr.getParameter("cv_writer"));
+		
+		 cv.setCv_txt(req2.getParameter("cv_txt"));
+	        cv.setCv_write_name(req2.getParameter("cv_write_name"));
+	        cv.setCv_writer(req2.getParameter("cv_writer"));
+	        cv.setCv_name(storedFileName);
 		if (ss.getMapper(CommMapper.class).videoUpload(cv) == 1) {
 			req.getSession().setAttribute("successToken", token);
 			req.setAttribute("result", "업로드성공");
@@ -768,26 +817,39 @@ public void delVideo(Comm_video cv, HttpServletRequest req) {
 	}
 }
 
-public void updateVideo(Comm_video cv, HttpServletRequest req) {
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	MultipartRequest mr = null;
-	System.out.println(path);
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
+public void updateVideo(Comm_video cv, HttpServletRequest req,MultipartHttpServletRequest req2) {
+try {
 		
+		System.out.println(req2.getParameter("cv_write_name"));
+		System.out.println(req2.getParameter("cv_txt"));
+		System.out.println(req2.getParameter("cv_no"));
 		
+		MultipartFile newFile = req2.getFile("newFile");
+		String oldFile = req2.getParameter("oldFile");
 		
+		  long size = newFile.getSize();
+          String fileName = newFile.getOriginalFilename();
+          System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+
+          //랜덤파일명생성
+          String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+
+          String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+          //System.out.println(realPath);
+
+          File savePath = new File(realPath);
+          if(!savePath.exists()) {
+              savePath.mkdirs();
+          }
+          System.out.println(realPath);
+          //파일저장
+          realPath += File.separator +storedFileName;
+          File saveFile = new File(realPath);
+          newFile.transferTo(saveFile);
 		
-		System.out.println(mr.getParameter("cv_name"));
-		System.out.println(mr.getParameter("cv_txt"));
-		System.out.println(mr.getParameter("cv_no"));
-		
-		String newFile = mr.getFilesystemName("newFile");
-		String oldFile = mr.getParameter("oldFile");
-		
-		if (newFile != null) {
+		if (fileName != "") {
 			
-			cv.setCv_name(newFile);
+			cv.setCv_name(storedFileName);
 			
 			
 		}
@@ -795,9 +857,9 @@ public void updateVideo(Comm_video cv, HttpServletRequest req) {
 			cv.setCv_name(oldFile);
 		}
 		
-		cv.setCv_write_name(mr.getParameter("cv_write_name"));
-		cv.setCv_txt(mr.getParameter("cv_txt"));
-		cv.setCv_no(Integer.parseInt(mr.getParameter("cv_no")));
+		cv.setCv_write_name(req2.getParameter("cv_write_name"));
+		cv.setCv_txt(req2.getParameter("cv_txt"));
+		cv.setCv_no(Integer.parseInt(req2.getParameter("cv_no")));
 		if (ss.getMapper(CommMapper.class).updateVideo(cv) == 1) {
 			System.out.println("수정성공");
 			req.setAttribute("video", ss.getMapper(CommMapper.class).getCommVideo2(cv));
@@ -951,56 +1013,68 @@ public void getCommFreePaging(HttpServletRequest req, Criteria2 cri2) {
 	
 }
 
-public void freeUpload(HttpServletRequest req) {
-	
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	System.out.println(path);
-	MultipartRequest mr = null;
-	String token = null;
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-		token = mr.getParameter("token");
-		String successToken = (String) req.getSession().getAttribute("successToken");
-		if (successToken != null && token.equals(successToken)) {
-			String fileName = mr.getFilesystemName("cf_file_name");
-			new File(path + "/" + fileName).delete();
-			return;
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
-	
+
+public void freeUpload(MultipartHttpServletRequest req2,HttpServletRequest req){
 	
 	try {
-		String fName = "";
 		
-		if (mr.getFilesystemName("cf_file_name") == null) {
-			fName = "basic.jpg";
-		}
-		else { 
-			fName = mr.getFilesystemName("cf_file_name");
-		}
-		System.out.println(fName);
+		MultipartFile file = req2.getFile("cf_file_name");
+		System.out.println(file);
+		String token = null;
+		System.out.println("프리업로드!!!!!!");
+		  token = req2.getParameter("token");
+	        String successToken = (String) req.getSession().getAttribute("successToken");
+	        
+	        if (successToken != null && token.equals(successToken)) {
+	            return;
+	        }
+	        System.out.println(file);
+	        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			long size = file.getSize();
+			
+			String fileName = file.getOriginalFilename();
+			System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+			
+			//랜덤파일명생성
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+			//System.out.println(realPath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			System.out.println(realPath);
+			//파일저장
+			realPath += File.separator +storedFileName;
+			File saveFile = new File(realPath);
+			file.transferTo(saveFile);
+			
+			
+		
+		
 		Comm_free cf = new Comm_free();
-		cf.setCf_file_name(fName);
-		cf.setCf_txt(mr.getParameter("cf_txt"));
-		cf.setCf_write_name(mr.getParameter("cf_write_name"));
-		cf.setCf_writer(mr.getParameter("cf_writer"));
-		if (ss.getMapper(CommMapper.class).freeUpload(cf) == 1) {
-			req.getSession().setAttribute("successToken", token);
-			req.setAttribute("result", "업로드성공");
+		
+		if(fileName.equals("")) {
+			System.out.println("배이직들어감");
+			cf.setCf_file_name("basic.jpg");			
+		}else {
+			cf.setCf_file_name(storedFileName);
 		}
+		 cf.setCf_txt(req2.getParameter("cf_txt"));
+	        cf.setCf_write_name(req2.getParameter("cf_write_name"));
+	        cf.setCf_writer(req2.getParameter("cf_writer"));
+		
+	        if (ss.getMapper(CommMapper.class).freeUpload(cf) == 1) {
+	            req.getSession().setAttribute("successToken", token);
+	            req.setAttribute("result", "업로드성공");
+	        }
 		
 		
-		//  '#{comm_picture_name}','#{comm_picture_write_name}','김진현','#{comm_picture_txt}'
 	} catch (Exception e) {
 		e.printStackTrace();
-	/*	String fileName = mr.getFilesystemName("g_file");
-		new File(path + "/" + fileName).delete();*/
-		req.setAttribute("result", "업로드실패");
 	}
-	
 	
 }
 
@@ -1100,26 +1174,41 @@ public void delFree(Comm_free cf, HttpServletRequest req) {
 	
 }
 
-public void updateFree(Comm_free cf, HttpServletRequest req) {
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	MultipartRequest mr = null;
-	System.out.println(path);
+public void updateFree(Comm_free cf, HttpServletRequest req,MultipartHttpServletRequest req2) {
+	
+	
 	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
 		
+		System.out.println(req2.getParameter("cf_write_name"));
+		System.out.println(req2.getParameter("cf_txt"));
+		System.out.println(req2.getParameter("cf_no"));
 		
+		MultipartFile newFile = req2.getFile("newFile");
+		String oldFile = req2.getParameter("oldFile");
 		
+		  long size = newFile.getSize();
+          String fileName = newFile.getOriginalFilename();
+          System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+
+          //랜덤파일명생성
+          String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+
+          String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+          //System.out.println(realPath);
+
+          File savePath = new File(realPath);
+          if(!savePath.exists()) {
+              savePath.mkdirs();
+          }
+          System.out.println(realPath);
+          //파일저장
+          realPath += File.separator +storedFileName;
+          File saveFile = new File(realPath);
+          newFile.transferTo(saveFile);
 		
-		System.out.println(mr.getParameter("cf_write_name"));
-		System.out.println(mr.getParameter("cf_txt"));
-		System.out.println(mr.getParameter("cf_no"));
-		
-		String newFile = mr.getFilesystemName("newFile");
-		String oldFile = mr.getParameter("oldFile");
-		
-		if (newFile != null) {
+		if (fileName != "") {
 			
-			cf.setCf_file_name(newFile);
+			cf.setCf_file_name(storedFileName);
 			
 			
 		}
@@ -1127,9 +1216,9 @@ public void updateFree(Comm_free cf, HttpServletRequest req) {
 			cf.setCf_file_name(oldFile);
 		}
 		
-		cf.setCf_write_name(mr.getParameter("cf_write_name"));
-		cf.setCf_txt(mr.getParameter("cf_txt"));
-		cf.setCf_no(Integer.parseInt(mr.getParameter("cf_no")));
+		cf.setCf_write_name(req2.getParameter("cf_write_name"));
+		cf.setCf_txt(req2.getParameter("cf_txt"));
+		cf.setCf_no(Integer.parseInt(req2.getParameter("cf_no")));
 		if (ss.getMapper(CommMapper.class).updateFree(cf) == 1) {
 			System.out.println("수정성공");
 			req.setAttribute("free", ss.getMapper(CommMapper.class).getCommFree2(cf));
@@ -1393,44 +1482,58 @@ public void delFreeReply(Comm_free_reply cfr, HttpServletRequest req) {
 	}
 }
 
-public void importUpload(HttpServletRequest req) {
-	String path = req.getSession().getServletContext().getRealPath("resources/comm/file");
-	System.out.println(path);
-	MultipartRequest mr = null;
-	String token = null;
-	try {
-		mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-		token = mr.getParameter("token");
-		String successToken = (String) req.getSession().getAttribute("successToken");
-		if (successToken != null && token.equals(successToken)) {
-			String fileName = mr.getFilesystemName("ci_file_name");
-			new File(path + "/" + fileName).delete();
-			return;
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-		return;
-	}
-	
-	
-	try {
-		String fName = "";
+public void importUpload(HttpServletRequest req,MultipartHttpServletRequest req2) {
+try {
 		
-		if (mr.getFilesystemName("ci_file_name") == null) {
-			fName = "basic.jpg";
-		}
-		else { 
-			fName = mr.getFilesystemName("ci_file_name");
-		}
-		System.out.println(fName);
-		System.out.println(mr.getParameter("ci_txt"));
-		System.out.println(mr.getParameter("ci_write_name"));
-		System.out.println(mr.getParameter("ci_writer"));
+		MultipartFile file = req2.getFile("ci_file_name");
+		System.out.println(file);
+		String token = null;
+		System.out.println("임폴트업로드!!!!!!");
+		  token = req2.getParameter("token");
+	        String successToken = (String) req.getSession().getAttribute("successToken");
+	        
+	        if (successToken != null && token.equals(successToken)) {
+	            return;
+	        }
+	        System.out.println(file);
+	        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			long size = file.getSize();
+			
+			String fileName = file.getOriginalFilename();
+			System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+			
+			//랜덤파일명생성
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("resources/comm/file");
+			//System.out.println(realPath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			System.out.println(realPath);
+			//파일저장
+			realPath += File.separator +storedFileName;
+			File saveFile = new File(realPath);
+			file.transferTo(saveFile);
+			
+			
+		
+		
 		Comm_import ci = new Comm_import();
-		ci.setCi_file_name(fName);
-		ci.setCi_txt(mr.getParameter("ci_txt"));
-		ci.setCi_write_name(mr.getParameter("ci_write_name"));
-		ci.setCi_writer(mr.getParameter("ci_writer"));
+		
+		if(fileName.equals("")) {
+			System.out.println("배이직들어감");
+			ci.setCi_file_name("basic.jpg");			
+		}else {
+			ci.setCi_file_name(storedFileName);
+		}
+		 ci.setCi_txt(req2.getParameter("ci_txt"));
+	        ci.setCi_write_name(req2.getParameter("ci_write_name"));
+	        ci.setCi_writer(req2.getParameter("ci_writer"));
+		
+		
 		if (ss.getMapper(CommMapper.class).importUpload(ci) == 1) {
 			req.getSession().setAttribute("successToken", token);
 			System.out.println("업로드성공");

@@ -35,6 +35,7 @@
 	</servlet-mapping>
 
 
+
 	<filter>
 
 		<filter-name>encodingFilter</filter-name>
@@ -66,4 +67,15 @@
 
 	</filter-mapping>
 
+
+<filter>
+ <filter-name>multipart</filter-name>
+    <filter-class>org.springframework.web.multipart.support.MultipartFilter</filter-class>
+ </filter>
+
+ <filter-mapping>
+    <filter-name>multipart</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping> 
+	
 </web-app>

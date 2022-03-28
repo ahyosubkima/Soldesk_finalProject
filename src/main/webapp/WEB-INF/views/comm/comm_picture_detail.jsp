@@ -8,7 +8,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	 console.log(11);
+	$(function() {
+		adjustHeight();
+	});
+
 	window.onpageshow = function(event) {
 	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
 		let pgn = $("#pgn").val();
@@ -29,6 +32,13 @@
 	}
 		}		
 		
+	function adjustHeight() {
+		  var textEle = $('#picture_txt_area');
+		  textEle[0].style.height = 'auto';
+		  var textEleHeight = textEle.prop('scrollHeight');
+		  textEle.css('height', textEleHeight);
+		};
+
 </script>
 </head>
 <body>
@@ -62,10 +72,10 @@
 				</table>
 			</aside>
 		</div>
-		<div id="comm_picture_content112">
+		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
 				<h2 class="best_pic2">사진게시판</h2>
-				<img id="sdf_img2" src="resources/comm/comm_img/photo.png">
+				<img id="sdf_img2" src="resources/comm/comm_img/photo-1.png">
 			</div>
 			<hr class="comm_detail_hr">
 			<c:forEach var="picture" items="${picture }">
@@ -92,26 +102,16 @@
 							src="resources/comm/file/${picture.comm_picture_name }"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea id="picture_txt_area" rows="5"
-								cols="20" readonly="readonly">
+						<td colspan="2"><textarea id="picture_txt_area"  cols="10" readonly="readonly">
 						${picture.comm_picture_txt }
 						</textarea></td>
 					</tr>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
-						<tr>
-							<td colspan="2" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt"
-									onclick="comm_updateOK(${picture.comm_picture_no})">수정</button>
-								<button style="width: 70px; font-size: 15pt;"
-									onclick="comm_delOK(${picture.comm_picture_no})">삭제</button></td>
-						</tr>
-					</c:if>
-
+					<tr>
+					<td>
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
 						<form action="comm_picture_good">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%;">
 								<tr>
 									<td colspan="2" style="text-align: right;"><input
 										name="no" type="hidden" value="${picture.comm_picture_no }">
@@ -134,7 +134,7 @@
 					<c:if
 						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
 						<form action="comm_picture_Nogood">
-							<table style="padding-left: 72%; padding-top: 10px;">
+							<table style="padding-left: 48%;">
 								<tr>
 									<td colspan="2" style="text-align: right;"><input
 										name="no" type="hidden" value="${picture.comm_picture_no }">
@@ -156,13 +156,25 @@
 							</table>
 						</form>
 					</c:if>
+					</td>
+					</tr>
+					<c:if
+						test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+						<tr>
+							<td colspan="2" style="text-align: right"><button
+									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
+									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+								<button style="width: 70px; font-size: 15pt; border: none; background: none;"
+									onclick="comm_delOK(${picture.comm_picture_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button></td>
+						</tr>
+					</c:if>
 
 				</table>
 				<hr class="comm_detail_hr">
 				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
-						<td>댓글</td>
+						<td><div id="comment_div">Comment &nbsp;<img src="resources/comm/comm_img/comment.png" id="comment_img"></div></td>
 					</tr>
 				</table>
 
@@ -175,15 +187,17 @@
 										<span id="reply_writer"> &nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 									</c:if></td>
 								<td style="text-align: center;">${r.cpr_txt }</td>
-								<td style="text-align: center;"><fmt:formatDate
+								<td style="text-align: center;">
+								<div id="reply_div">
+								<fmt:formatDate
 										value="${r.cpr_when }" pattern="yyyy-MM-dd" /> <c:if
 										test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 
-										<button onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">수정</button>
-										<button onclick="pictureReplyDel(${r.cpr_no})">삭제</button>
-									</c:if></td>
-
-
+										&nbsp;<button id="reply_btn" onclick="pictureReplyUpdate(${r.cpr_no},${param.no })"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="pictureReplyDel(${r.cpr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
+									</c:if>
+									</div>
+									</td>
 
 							</tr>
 						</c:forEach>
@@ -198,7 +212,7 @@
 								name="cpr_owner_id" type="hidden"
 								value="${sessionScope.loginMember.dm_id }"></td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" name="cpr_txt"
+								id="comm_picture_detail_replyInput" placeholder="댓글입력..." name="cpr_txt"
 								class="cpr_txt"> <input type="hidden" name="no"
 								value="${picture.comm_picture_no }"> <input
 								type="hidden" name="token2" value="${token2}"></td>

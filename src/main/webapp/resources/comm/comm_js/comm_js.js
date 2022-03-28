@@ -2,7 +2,7 @@ function comm_delOK(no) {
 	var ok = confirm('정말 삭제하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_picture_delete?no='+no;
+		location.href='comm_picture_delete?pageNum=1&no='+no;
 	}
 	
 }
@@ -10,7 +10,7 @@ function comm_importdelOK(no) {
 	var ok = confirm('정말 삭제하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_import_delete?no='+no;
+		location.href='comm_import_delete?pageNum=1&no='+no;
 	}
 	
 }
@@ -45,11 +45,11 @@ function previewImg(){
 }
 
 
-function comm_updateOK(no) {
+function comm_updateOK(no,pg,so,si) {
 var ok = confirm('정말 수정하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_picture_update?no='+no;
+		location.href='comm_picture_update?no='+no+'&pageNum='+pg+'&search_option='+so+'&search_input='+si;
 	}
 }
 function comm_VideodelOK(no) {
@@ -61,11 +61,11 @@ function comm_VideodelOK(no) {
 	
 }
 
-function comm_VideoupdateOK(no) {
+function comm_VideoupdateOK(no,pg,so,si) {
 	var ok = confirm('정말 수정하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_video_update?no='+no;
+		location.href='comm_video_update?no='+no+'&pageNum='+pg+'&search_option='+so+'&search_input='+si;
 	}
 }
 function comm_FreedelOK(no) {
@@ -78,11 +78,11 @@ function comm_FreedelOK(no) {
 }
 
 
-function comm_updateFreeOK(no) {
+function comm_updateFreeOK(no,pg,so,si) {
 	var ok = confirm('정말 수정하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_free_update?no='+no;
+		location.href='comm_free_update?no='+no+'&pageNum='+pg+'&search_option='+so+'&search_input='+si;
 	}
 }
 
@@ -435,9 +435,3 @@ function mouse_out2(i){
 	document.getElementById('play2_img'+i).style.visibility="visible";
 }
 
-$(function() {
-	
-	previewImg();
-	previewImg2();
-
-});

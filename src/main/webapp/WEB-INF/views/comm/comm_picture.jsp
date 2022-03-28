@@ -97,21 +97,25 @@
 			</form>	
 			<c:if test="${param.search_input eq null}">
 				<div id="content_title_div">
-				 <img id="sdf_img" src="resources/comm/comm_img/best.png"><h2  class="best_pic">베스트 사진</h2>
+				 <img id="sdf_img" src="resources/comm/comm_img/best2.png"><h2  class="best_pic">베스트 사진</h2>
 				</div>
-				<hr>
-				<div style="width: 1600px; float: left;">
+				<hr id="comm_hr">
+				<div style="width: 100%; float: left;">
 					<c:forEach var="g" items="${good_pictures }" varStatus="status">
 						<table class="comm_picture_bestTbl2" style="">
+							<tr><td id="write_name_Td">
+								${g.comm_picture_write_name }
+								</td>
+								</tr>
 							<tr>
-								<td>
+							<td>
 								<img id="comm_picture_best_img"
 									src="resources/comm/file/${g.comm_picture_name }"
 									onclick="location.href='comm_picture_detail?no=${g.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img>
 									</td>
 							</tr>
 							<tr>
-								<td id="comm_picture_best_writer">${g.comm_picture_write_name }<span
+								<td id="comm_picture_best_writer"><span
 									style="float: right;">-${g.comm_picture_writer }님&nbsp;&nbsp;</span></td>
 							</tr>
 
@@ -123,22 +127,26 @@
 				</div>
 			</c:if>
 			
-			<div style="width: 1600px; float: left; padding-top: 40px;">
+			<div style="width: 100%; float: left; padding-top: 40px;">
 			<div  id="content_title_div">
-				<img id="sdf_img" src="resources/comm/comm_img/nature.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
+				<img id="sdf_img" src="resources/comm/comm_img/photo-1.png"><h2 <c:if test="${param.search_input eq null }"> class="best_pic3"</c:if> <c:if test="${param.search_input ne null }"> id="comm_picture_content_title2"</c:if>>
 					사진게시판</h2>
 					</div>
-					<hr>
+					<hr id="comm_hr">
 				<c:if test="${pictures != null }">
 					<c:forEach var="p" items="${pictures }" varStatus="status">
 						<table class="comm_picture_bestTbl2">
+						<tr><td id="write_name_Td">
+								&lt;${p.comm_picture_write_name }>
+								</td>
+								</tr>
 							<tr>
 								<td><img id="comm_picture_best_img"
 									src="resources/comm/file/${p.comm_picture_name }"
 									onclick="location.href='comm_picture_detail?no=${p.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img></td>
 							</tr>
 							<tr>
-								<td id="comm_picture_best_writer">${p.comm_picture_write_name }<span
+								<td id="comm_picture_best_writer"><span
 									style="float: right;">-${p.comm_picture_writer }님</span></td>
 							</tr>
 						</table>
@@ -157,7 +165,7 @@
 
 			</div>
 			<c:if test="${sessionScope.loginMember != null}">
-				<input type="button" id="comm_picture_writeBtn" value="글쓰기"
+				<input type="button" id="comm_picture_writeBtn" value="📸 작성"
 					onclick="location.href='/danim/comm_picture_write'">
 			</c:if>
 			<c:if test="${pageMaker != null && not empty pictures }">

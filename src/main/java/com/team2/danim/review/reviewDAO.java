@@ -56,8 +56,6 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 		// TODO Auto-generated method stub
 		try {
 			
-			//ArrayList<String> picsName = new ArrayList<String>();
-			
 			List<MultipartFile> fileList = req2.getFiles("d1Img");
 			System.out.println(fileList);
 			String strF = "";
@@ -128,6 +126,8 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 			rb.setRb_d9Text(req2.getParameter("d9Text"));
 			rb.setRb_d10Schedule(req2.getParameter("d10Schedule"));
 			rb.setRb_d10Text(req2.getParameter("d10Text"));
+			rb.setRb_totalroute(req2.getParameter("totalRoute"));
+			rb.setRb_totalday(req2.getParameter("totalday"));
 		
 			
 			//System.out.println(rb.getRb_coordinate());

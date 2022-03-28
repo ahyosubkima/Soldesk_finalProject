@@ -21,7 +21,7 @@ public class ReviewController {
 		public String reviewInsert(MultipartHttpServletRequest req2) {
 			
 			reviewDAO.insertReview(req2);
-			
+			reviewDAO.getAllreview(req2);
 			req2.setAttribute("contentPage", "review/reviewMain.jsp");
 			
 			return "home";

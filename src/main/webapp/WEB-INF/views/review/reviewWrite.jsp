@@ -315,7 +315,7 @@ function initMap() {
 //폴리라인 시작
 
 //서버에 좌표보내기용변수
-let coordinate = [];
+let coordinate = "";
 
 poly = new google.maps.Polyline({
     strokeColor: "#000000",
@@ -381,7 +381,7 @@ function addLatLng(event) {
 	console.log(event.latLng.lng());
 
 
-	coordinate.push('{ lat: '+event.latLng.lat()+', lng: '+event.latLng.lng()+'} |');
+	coordinate += '{ "lat": '+event.latLng.lat()+', "lng": '+event.latLng.lng()+'} |';
 
 	
 	console.log(coordinate);
@@ -405,7 +405,7 @@ function addLatLng(event) {
 		  console.log(dds.title);
 		  console.log(destination[destinationNum]);
 		  
-		  let rcdestination = destination[destinationNum];
+		  let rcdestination = dds.title+destination[destinationNum];
 
 	let selectDay =	  document.querySelector('.daily_schedule.active').getAttribute('data-day');
 
@@ -417,8 +417,8 @@ function addLatLng(event) {
 	let newDiv = document.createElement('div');
 
 	newDiv.setAttribute('id', 'scheduled'+ dds.title);
-
 	newDiv.innerHTML = rcdestination;
+
 
 	if(document.getElementById('scheduled'+ dds.title)){
 
@@ -468,10 +468,10 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 </head>
 
 <body>
+	<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
 	<div class="content_wrapper">
 		<div>후기쓰기 페이지</div>
 
-	<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
 		<div><input type="text" name="title" placeholder="제목을 입력해주세요"></div>
 			좌표히든<input type="text" name ="coordinate" id="coordinate" value="">
 
@@ -576,7 +576,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<div id="schedule_inner_nav" style="display: flex;" >
 			<div style="width: 15%;  ">
 				<!-- <a>모든경로보기</a> -->
-				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" da>prev</a>
+				 <a href="javascript:void(0);" onclick="movePrevD()" id="prevbtn" >prev</a>
 			</div>
 			<div style="width: 10%; position: absolute; right: 0; ">
 			<a href="javascript:void(0);" onclick="moveNextD()" id="nextbtn"> next</a>
@@ -598,71 +598,72 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		일정표시 d1
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d1Schedule" id="day1" value="">
-		<textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea>
+		<textarea name="d1Text" id="d1Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
 		일정표시 d2
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d2Schedule" id="day2" value="">
-		<textarea name="d2Text" id="d2Text" cols="30" rows="10"></textarea>
+		<textarea name="d2Text" id="d2Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
 		일정표시 d3
 		<div class="scehduleBox"></div> 
 		<input class="dScedule" type="text" name="d3Schedule" id="day3" value="">
-		<textarea name="d3Text" id="d3Text" cols="30" rows="10"></textarea>
+		<textarea name="d3Text" id="d3Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
 		일정표시 d4
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d4Schedule" id="day4" value="">
-		<textarea name="d4Text" id="d4Text" cols="30" rows="10"></textarea>
+		<textarea name="d4Text" id="d4Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
 		일정표시 d5
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d5Schedule" id="day5" value="">
-		<textarea name="d5Text" id="d5Text" cols="30" rows="10"></textarea>
+		<textarea name="d5Text" id="d5Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
 		일정표시 d6
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d6Schedule" id="day6" value="">
-		<textarea name="d6Text" id="d6Text" cols="30" rows="10"></textarea>
+		<textarea name="d6Text" id="d6Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day7" data-day="7">
 		일정표시 d7
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d7Schedule" id="day7" value="">
-		<textarea name="d7Text" id="d7Text" cols="30" rows="10"></textarea>
+		<textarea name="d7Text" id="d7Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day8" data-day="8">
 		일정표시 d8
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d8Schedule" id="day8" value="">
-		<textarea name="d8Text" id="d8Text" cols="30" rows="10"></textarea>
+		<textarea name="d8Text" id="d8Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day9" data-day="9">
 		일정표시 d9
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d9Schedule" id="day9" value="">
-		<textarea name="d9Text" id="d9Text" cols="30" rows="10"></textarea>
+		<textarea name="d9Text" id="d9Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 	<div class="dailyBox" id="day10" data-day="10">
 		일정표시 10
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="text" name="d10Schedule" id="day10" value="">
-		<textarea name="d10Text" id="d10Text" cols="30" rows="10"></textarea>
+		<textarea name="d10Text" id="d10Text" cols="30" rows="10" maxlength="200"></textarea>
 	</div>
 
-<div>여행총후기<p><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div>
+<div>여행총후기<p><textarea name="totalText" id="totalText" cols="30" rows="10" maxlength="499"></textarea></div>
 	
-		전체경로히든<input type="text" name="totalRoute" id="" value="">
-		작성자히든<input type="text" name="writer" id="writer" value="${param.writer}">
+		<div>전체경로히든<input type="text" name="totalRoute" id="" value="">
+		작성자히든<input type="text" name="writer" id="writer" value="${param.writer}"></div>
 
 	<!-- 총 여행사진 -->
 	<div id="d1Img_container"></div>
 	<input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);">
+	<input type="text" name="totalday" id="totalday" value="1"> 히든토탈데이
 
 </form>
 

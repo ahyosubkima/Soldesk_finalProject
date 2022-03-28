@@ -145,8 +145,8 @@ function qqq() {
 			  let MapAddress = $(".p_markerInfo").val();
 			  //let MapAddress = $("#infoo").val();
 			  
-			  alert("주소:" + MapAddress);
-			  alert("JS에서 이름:" + MapText);
+			 // alert("주소:" + MapAddress);
+			 // alert("JS에서 이름:" + MapText);
 			  
 			  $("#p_route").append('<div id="mapNameAll"><div id="mapName"><textarea name="p_plan" id="p_plan">' + MapText
 					  			+ '</textarea></div>' + MapAddress + '<div class="deletePlanMapName">❌</div></div>');

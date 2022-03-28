@@ -65,7 +65,7 @@ function initMap() {
 
 			//데스티네이션에 넣음
 			destination.push(place.name);
-			document.getElementById('allSchedule').innerHTML = destination.join('->');
+			document.getElementById('allSchedule').innerHTML = destination.join('　➜　');
 
 			//서버제출용
  document.getElementsByName('totalRoute')[0].value = destination;
@@ -92,7 +92,7 @@ function initMap() {
 
 		//데스티네이션에 넣음
 		destination.push(response.results[0].formatted_address);
-		document.getElementById('allSchedule').innerHTML = destination.join('->');
+		document.getElementById('allSchedule').innerHTML = destination.join('　➜　');
 
 		 //서버제출용
 		 document.getElementsByName('totalRoute')[0].value = destination;
@@ -412,14 +412,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		<div id="r_write_Title"><h1>여행 후기 작성하기</h1></div>
 
 
-<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
 		<div id="r_reviewTitle"><input type="text" name="title" placeholder="여행 후기 제목을 입력해주세요"></div>
 			
 			<!-- 좌표히든 --><input type="hidden" name ="coordinate" id="coordinate" value="">
-
-		<div><input type="text" name="title" placeholder="제목을 입력해주세요"></div>
-			좌표히든<input type="text" name ="coordinate" id="coordinate" value="">
-
 
 		<div class="flex-container">
 					
@@ -510,7 +505,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHwlLJC7x2AYE7IuJZCOkKJ1KRSBgCmoY&callback=initMap&libraries=places&v=weekly&region=KR&language=ko"
 		async></script> 
-<div id="allSchedule_wrapper"> <h2>모든 일정</h2>
+<div id="allSchedule_wrapper"> <h2 style="margin-bottom: 20px;">모든 일정</h2>
 <div id="allSchedule"></div>
 </div>
 	<div id="schedule">
@@ -538,85 +533,86 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		</div>
 	</div>
 	<div class="dailyBox" id="day1" data-day="1">
-		<h3>day1 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day1 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d1Schedule" id="day1" value="">
-		<div class="d1TextDiv"><textarea name="d1Text" id="d1Text" cols="30" rows="10"></textarea></div>
+		<div class="dTextDiv"><textarea name="d1Text" id="d1Text" cols="30" rows="10" placeholder="day1의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
-		<h3>day2 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day2 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d2Schedule" id="day2" value="">
-		<textarea name="d2Text" id="d2Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d2Text" id="d2Text" cols="30" rows="10" placeholder="day2의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
-		<h3>day3 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day3 일정표시</h3>
 		<div class="scehduleBox"></div> 
 
 		<input class="dScedule" type="hidden" name="d3Schedule" id="day3" value="">
-		<textarea name="d3Text" id="d3Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d3Text" id="d3Text" cols="30" rows="10" placeholder="day3의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
-		<h3>day4 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day4 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d4Schedule" id="day4" value="">
-		<textarea name="d4Text" id="d4Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d4Text" id="d4Text" cols="30" rows="10" placeholder="day4의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
-		<h3>day5 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day5 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d5Schedule" id="day5" value="">
-		<textarea name="d5Text" id="d5Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d5Text" id="d5Text" cols="30" rows="10" placeholder="day5의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
-		<h3>day6 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day6 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d6Schedule" id="day6" value="">
-		<textarea name="d6Text" id="d6Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d6Text" id="d6Text" cols="30" rows="10" placeholder="day6의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day7" data-day="7">
-		<h3>day7 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day7 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d7Schedule" id="day7" value="">
-		<textarea name="d7Text" id="d7Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d7Text" id="d7Text" cols="30" rows="10" placeholder="day7의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day8" data-day="8">
-		<h3>day8 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day8 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d8Schedule" id="day8" value="">
-		<textarea name="d8Text" id="d8Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d8Text" id="d8Text" cols="30" rows="10" placeholder="day8의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day9" data-day="9">
-		<h3>day9 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day9 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d9Schedule" id="day9" value="">
-		<textarea name="d9Text" id="d9Text" cols="30" rows="10"></textarea>
+		<div class="dTextDiv"><textarea name="d9Text" id="d9Text" cols="30" rows="10" placeholder="day9의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day10" data-day="10">
-		<h3>day10 일정표시</h3>
+		<h3 style="margin-bottom: 20px;">day10 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d10Schedule" id="day10" value="">
-		<textarea name="d10Text" id="d10Text" cols="30" rows="10"></textarea>
+	<div class="dTextDiv"><textarea name="d10Text" id="d10Text" cols="30" rows="10" placeholder="day10의 후기를 작성해주세요"></textarea></div>
 	</div>
 
-<div id="r_writeAllreview"><h2>여행총후기</h2><p><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div>
+<div id="r_writeAllreview"><h2>여행총후기</h2>
+<div id="totalTextDiv"><textarea name="totalText" id="totalText" cols="30" rows="10"></textarea></div></div>
 	
 		<!-- 전체경로히든 --><input type="hidden" name="totalRoute" id="" value="">
 		<!-- 작성자히든 --><input type="hidden" name="writer" id="writer" value="${param.writer}">
@@ -630,9 +626,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 <div id="review_submit"><button>여행후기 등록</button></div>
 
-
-
-	<input type="text" name="totalday" id="totalday" value="1"> 히든토탈데이
 
 
 </form>

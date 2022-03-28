@@ -30,7 +30,6 @@
 
 	
 
-	<!-- ?�중 ?�일 ?�로?? -->
 <dependency>
 <groupId>commons-fileupload</groupId>
 <artifactId>commons-fileupload</artifactId>
@@ -44,15 +43,15 @@
 </dependency>  
 
 	
-	<!--Spring ?�경?�서 ORMFramework?�용 가?�하�?-->
+	<!--Spring ?�경?�서 ORMFramework?�용 가?�하�?-->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-orm</artifactId>
 	<version>${org.springframework-version}</version>
 </dependency>
 
-<!-- Transaction : DB?�버�?명령???�송?�서 ?�행, 결과 받고..
- Spring?�경?�서 Transaction?????�게 -->
+<!-- Transaction : DB?�버�?명령???�송?�서 ?�행, 결과 받고..
+ Spring?�경?�서 Transaction?????�게 -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-tx</artifactId>
@@ -60,14 +59,14 @@
 </dependency>
 
 
-<!-- Spring?�경?�서 ConnectionPool ?�용 가?�하�?-->
+<!-- Spring?�경?�서 ConnectionPool ?�용 가?�하�?-->
 <dependency>
 	<groupId>org.apache.commons</groupId>
 	<artifactId>commons-dbcp2</artifactId>
 	<version>2.5.0</version>
 </dependency>
 
-<!-- Spring?�경?�서 DB?� ?�결 ?????�게 -->
+<!-- Spring?�경?�서 DB?� ?�결 ?????�게 -->
 <dependency>
 	<groupId>org.springframework</groupId>
 	<artifactId>spring-jdbc</artifactId>
@@ -79,7 +78,7 @@
 	<version>3.5.4</version>
 </dependency>
 
-<!-- Spring?�경?�서 MyBatis?????�게 -->
+<!-- Spring?�경?�서 MyBatis?????�게 -->
 <dependency>
 	<groupId>org.mybatis</groupId>
 	<artifactId>mybatis-spring</artifactId>

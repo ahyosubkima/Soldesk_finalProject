@@ -19,16 +19,6 @@
 <body>
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
 
-	<!-- 추천 기능 -->
-	<form action="plan.makeHeart">
-<div style="text-align: center;margin: auto;">
-<button id="heart_plan">좋아요  ♡</button>
-<input type="hidden" name="heart_id" value="${sessionScope.loginMember.dm_id }">
-<input type="hidden" name="heart_no" value="${param.p_no }">
-<input type="hidden" name="p_no" value="${param.p_no }">
-</div>
-</form>
-
 <!-- 일전 기본정보 -->
 <table id="p_write">
 		<tr>
@@ -57,7 +47,7 @@
 
 <!-- 여행 전체일정 -->
 <div style="margin: auto; width: 800px; text-align: center; font-size: 20pt; margin-top: 60px;">📅 여행 전체일정</div>
-<div style="margin: auto; width: 800px; margin-top: 20px; display: inline-block; margin-left: 23%">
+<div style="margin: auto; width: 800px; margin-top: 20px; display: inline-block; margin-left: 26%">
 			<c:set var="plan" value="${fn:split(plan.p_plan,',') }"></c:set>
 			<c:forEach var="plan" items="${plan }" varStatus="p">
 	<table style="margin: auto; float: left;">
@@ -102,7 +92,7 @@
 	<div id="p_DayWriteTitle">💲예산 결과</div>
 	<table border="1" id="p_detailBudgetDetail">
 		<tr>
-			<td id="p_writeBudgetWrite">${plan.p_budget }</td>
+			<td id="p_writeBudgetWrite"><textarea> ${plan.p_budget } </textarea></td>
 		</tr>
 	</table>
 

@@ -6,12 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -26,55 +29,65 @@ public class PlanDAO {
 	
 	
 
-	public void uploadPlan(HttpServletRequest req) {
+	public void uploadPlan(MultipartHttpServletRequest req2) {
 
-		String path = req.getSession().getServletContext().getRealPath("resources/plan/p_file");
-		System.out.println(path);
-		MultipartRequest mr = null;
-		String token = null;
+		String strF = "";
 
 		try {
-			mr = new MultipartRequest(req, path, 1500 * 1024 * 1024, "utf-8", new DefaultFileRenamePolicy());
-			token = mr.getParameter("token");
-			String successToken = (String) req.getSession().getAttribute("successToken");
+			MultipartFile mf = req2.getFile("p_titleFile");
+			System.out.println(mf);
+			
+			long size = mf.getSize();
+			String fileName = mf.getOriginalFilename();
+			
+			String token = req2.getParameter("token");
+			String successToken = (String) req2.getSession().getAttribute("successToken");
+			
+			
+			System.out.printf("fileName:%s, fileSize: %d\n", fileName, size);
+			
+			//랜덤파일명생성
+			String storedFileName = UUID.randomUUID().toString().replaceAll("-", "") + fileName;
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("resources/plan/p_file");
+			System.out.println(realPath);
+			
+			File savePath = new File(realPath);
+			if(!savePath.exists()) {
+				savePath.mkdirs();
+			}
+			//파일저장
+			realPath += File.separator +storedFileName;
+			File saveFile = new File(realPath);
+			mf.transferTo(saveFile);
 			
 			if (successToken != null && token.equals(successToken)) {
-				String fileName = mr.getFilesystemName("p_titleFile");
-				new File(path + "/" + fileName).delete();
+				strF += storedFileName +",";
 				return;
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-
-		try {
-			
 		
 			//값가져오기
-			String p_writer = mr.getParameter("p_writer");
-			String p_title = mr.getParameter("p_title");
-			String p_titleFile = mr.getFilesystemName("p_titleFile");
-			p_titleFile = URLEncoder.encode(p_titleFile, "utf-8");
-			int p_days = Integer.parseInt(mr.getParameter("p_days"));
+			String p_writer = req2.getParameter("p_writer");
+			String p_title = req2.getParameter("p_title");
+			int p_days = Integer.parseInt(req2.getParameter("p_days"));
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-			String p_startDate = mr.getParameter("p_startDate");
-			int p_person = Integer.parseInt(mr.getParameter("p_person"));
-			String p_place = mr.getParameter("p_place");
+			String p_startDate = req2.getParameter("p_startDate");
+			int p_person = Integer.parseInt(req2.getParameter("p_person"));
+			String p_place = req2.getParameter("p_place");
 			
-			String[] p_plans = mr.getParameterValues("p_plan");
+			String[] p_plans = req2.getParameterValues("p_plan");
 			String p_plan = new String();
 			for (int i = 0; i < p_plans.length; i++) {
 				p_plan += p_plans[i] + ",";
 			}
 			
-			String p_budget = mr.getParameter("p_budget");
-			String p_freeWrite = mr.getParameter("p_freeWrite");
+			String p_budget = req2.getParameter("p_budget");
+			String p_freeWrite = req2.getParameter("p_freeWrite");
 			
 			
-			String[] p_setItems = mr.getParameterValues("p_setItem");
-			String[] p_setTitles = mr.getParameterValues("p_setTitle");	
-			String[] p_setPrices = mr.getParameterValues("p_setPrice");
+			String[] p_setItems = req2.getParameterValues("p_setItem");
+			String[] p_setTitles = req2.getParameterValues("p_setTitle");	
+			String[] p_setPrices = req2.getParameterValues("p_setPrice");
 			
 			String item = "";
 			String title = "";
@@ -94,7 +107,7 @@ public class PlanDAO {
 			//빈에 담기
 			pw.setP_writer(p_writer);
 			pw.setP_title(p_title);
-			pw.setP_titleFile(p_titleFile.replace("+", " "));
+			pw.setP_titleFile(storedFileName);
 			pw.setP_days(p_days);
 			pw.setP_startDate(sdf.parse(p_startDate));
 			pw.setP_person(p_person);
@@ -103,17 +116,12 @@ public class PlanDAO {
 			pw.setP_budget(p_budget);
 			pw.setP_freeWrite(p_freeWrite);
 			
-			/*//빈2
-			Plan_budget pb = new Plan_budget();
-			pb.setP_setTitle(p_setTitle);
-			pb.setP_setItem(p_setItem);
-			pb.setP_setPrice(p_setPrice);*/
 			
 			
 			//확인용
 			System.out.println("작성자(p_writer)::   " + p_writer);
 			System.out.println("제목(p_title)::   " + p_title);
-			System.out.println("사진(p_titleFile)::   " + p_titleFile);
+			System.out.println("사진(p_titleFile)::   " + storedFileName);
 			System.out.println("박수(p_days)::   " + p_days);
 			System.out.println("출발일(p_startDate)::   " + p_startDate);
 			System.out.println("사람수(p_person)::   " + p_person);
@@ -121,9 +129,12 @@ public class PlanDAO {
 			System.out.println("일정(p_plan)::   " + p_plan);
 			System.out.println("총예산(p_budget)::   " + p_budget);
 			System.out.println("한마디(p_freeWrite)::   " + p_freeWrite);
+			System.out.println("제목배열(setTitle)::   " + title);
+			System.out.println("상품명배열(setItem)::   " + item);
+			System.out.println("가격배열(setPrice)::   " + price);
 			
 			if (ss.getMapper(PlanMapper.class).uploadPlan(pw) == 1) {
-				req.getSession().setAttribute("successToken", token);
+				req2.getSession().setAttribute("successToken", token);
 				/*req.setAttribute("pbs", pb);*/
 				System.out.println("작성 성공");
 			}

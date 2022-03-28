@@ -34,6 +34,7 @@
 
 
 
+
 		<beans:property name="username" value="jh" />
 		<beans:property name="password" value="jh" />
 
@@ -68,12 +69,16 @@
 	</beans:bean>
 	
 
-<beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+
+<beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
     <beans:property name="maxUploadSize" value="52428800" />
     <beans:property name="maxInMemorySize" value="1000000" />
     <beans:property name="defaultEncoding" value="utf-8" />
-</beans:bean>   
+
+</beans:bean>
+
+
 	
 	<beans:bean id="mailSender"	class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<beans:property name="host" value="smtp.gmail.com" />

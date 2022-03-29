@@ -2,18 +2,13 @@ package com.team2.danim.plan;
 
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.team2.danim.Criteria2;
 import com.team2.danim.Criteria3;
 import com.team2.danim.TokenMaker;
-import com.team2.danim.comm.Comm_free;
 
 @Controller
 public class PlanController {
@@ -93,7 +88,8 @@ public class PlanController {
 @RequestMapping(value = "/plan.delete", method = RequestMethod.GET)
 public String planDelete(HttpServletRequest req,Criteria3 cri3) {
 	TokenMaker.make(req);
-	pDAO.deletePlan(req,cri3);
+	
+	pDAO.deletePlan(req);
 	pDAO.getPageMakerPlan(req, cri3);
 	pDAO.getPlanPaging(req, cri3);
 	

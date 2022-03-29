@@ -60,8 +60,9 @@
 			<!-- 각 번호 페이지 버튼 -->
 			<c:forEach var="num" begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}">
-				<td><a
-					href="/danim/plan.page?pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a></td>
+				<td>
+					<a href="/danim/plan.page?pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a>
+				</td>
 			</c:forEach>
 				<td><c:if test="${pageMaker.next}">
 					<li class="pageInfo_btn next"><a

@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	 console.log(11);
 	window.onpageshow = function(event) {
 	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
 		let pgn = $("#pgn").val();

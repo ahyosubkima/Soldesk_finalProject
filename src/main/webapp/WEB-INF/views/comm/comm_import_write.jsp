@@ -7,11 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-$(document).ready() = $(function(){
-	
-	$('#txt').val().replace(/\n/g, "<br>");
-	previewImg();
-}); 
 
 
 </script>
@@ -67,7 +62,7 @@ $(document).ready() = $(function(){
 					</tr>
 					<tr>
 						<td class="comm_write_left">내용</td>
-						<td><textarea wrap="hard" id="txt" class="comm_picture_write_txt" name="ci_txt"></textarea> 
+						<td><textarea id="txt" class="comm_picture_write_txt" name="ci_txt"></textarea> 
 							<input name="token"	type="hidden" value="${token }">
 							<input type="hidden" name="ci_writer" value="${sessionScope.loginMember.dm_nickname }">
 						</td>

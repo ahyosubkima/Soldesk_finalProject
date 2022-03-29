@@ -99,7 +99,9 @@ $(function() {
 								BEST ${status.index +1}
 								<div id="play_div">
 								<img src="resources/comm/comm_img/play2.png" id="play_img${status.index }" class="pla_img">
-								<video muted="muted" id="hz${status.index }"  class="comm_picture_best_img2"  onmouseover="mouse_over(${status.index})" onmouseout="mouse_out(${status.index})" src="resources/comm/file/${g.cv_name }" onclick="location.href='comm_video_detail?no=${g.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></video>
+								<video muted="muted" id="hz${status.index }" 
+								style="object-fit:fill;"
+								 class="comm_picture_best_img2"  onmouseover="mouse_over(${status.index})" onmouseout="mouse_out(${status.index})" src="resources/comm/file/${g.cv_name }" onclick="location.href='comm_video_detail?no=${g.cv_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></video>
 								</div>
 									</td>
 							
@@ -131,6 +133,7 @@ $(function() {
 								<div id="play_div">
 								<img src="resources/comm/comm_img/play2.png" id="play2_img${status.index }" class="pla_img">
 								<video id="mz${status.index }" class="comm_picture_best_img" 
+								style="object-fit:fill;"
 								muted="muted" 
 								onmouseover="mouse_over2(${status.index})" onmouseout="mouse_out2(${status.index})"
 								src="resources/comm/file/${p.cv_name }"

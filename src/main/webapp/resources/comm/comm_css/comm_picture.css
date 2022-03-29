@@ -19,6 +19,7 @@ font-size: 18pt;
 font-weight: bold;
 ​font-style: italic;
 padding-bottom: 30px;	
+
 }
 .pla_img{
 	width: 100px;
@@ -191,7 +192,7 @@ text-decoration: none;
 text-align: center;
 }
 .best_pic{
-	font-size: 25pt;
+	font-size: 35pt;
 	display: inline;
 }
 .best_pic2{
@@ -222,7 +223,7 @@ text-align: center;
 	background-color: gray;
 }
 .best_pic3{
-	font-size: 25pt;
+	font-size: 35pt;
 	display: inline;
 }
 .comm_detail_hr{
@@ -330,7 +331,7 @@ margin-top: -5px;
 
 
 #comm_picture_content_title2{
-font-size: 25pt;
+font-size: 35pt;
 }
 
 #comm_picture_best_img{
@@ -342,11 +343,33 @@ height: 250px;
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
+#comm_picture_best_img:hover{
+	cursor: pointer;
+}
+#comm_picture_best_img2{
+width: 350px;
+height: 250px;
+border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+#comm_picture_best_img2:hover{
+	cursor: pointer;
+}
 #write_name_Td{
-	font-size: 18pt;
+	font-size: 23pt;
 	padding-top:30px;
 	text-align: center;
 	font-weight: bold;
+}
+#write_name_Td2{
+	font-size: 23pt;
+	padding-top:30px;
+	text-align: center;
+	font-weight: bold;
+	font-style: italic;
 }
 .comm_picture_best_img{
 width: 350px;
@@ -357,7 +380,22 @@ border: 5px solid transparent;
     background-origin: border-box;
     background-clip: content-box, border-box;
 }
-
+.comm_picture_best_img:hover{
+	cursor: pointer;
+}
+.comm_picture_best_img2{
+width: 350px;
+height: 250px;
+border: 5px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+ 
+}
+.comm_picture_best_img2:hover{
+	cursor: pointer;
+}
 #comm_picture_best_writer{
 
 text-align: center;
@@ -658,13 +696,11 @@ text-align: center;
 
 #comm_picture_update_txt{
 	width: 500px;
-	height: 200px;
 	text-align: center;
 	resize:none;
 	display: table-cell; 
 	vertical-align: middle;
-	padding-top: 90px;
-
+	overflow: hi
 }
 
 #comm_picture_detail_reply{

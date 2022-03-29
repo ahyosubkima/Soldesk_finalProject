@@ -67,7 +67,7 @@ function adjustHeight() {
 		</div>
 		<div id="comm_picture_detail_content112">
 		<div id="content_title_div">
-				<h2  class="best_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
+				<h2  class="best_pic2">영상게시판</h2>
 				</div>
 				<hr class="comm_detail_hr">
 			<c:forEach var="v" items="${video }">
@@ -159,7 +159,7 @@ function adjustHeight() {
 						<tr>
 							<td colspan="2" style="text-align: right">
 							<button style="width: 70px; margin-right: 10px; font-size: 15pt; background: none; border: none;"
-			onclick="comm_VideoupdateOK(${v.cv_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+			onclick="comm_VideoupdateOK(${v.cv_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/edit.png"></button>
 								<button style="width: 70px; font-size: 15pt; background: none; border: none;"
 									onclick="comm_VideodelOK(${v.cv_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button>
 									</td>
@@ -180,7 +180,7 @@ function adjustHeight() {
 					<table id="comm_picture_detail_reply">
 					<c:forEach items="${reply }" var="r">
 							<tr>
-								<td style="text-align: center;  width: 150px;">${r.cvr_owner }<c:if test="${v.cv_writer eq r.cvr_owner }">
+								<td style="text-align: center;  width: 180px;">${r.cvr_owner }<c:if test="${v.cv_writer eq r.cvr_owner }">
 								<span id="reply_writer">
 								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 								</c:if></td>
@@ -191,7 +191,7 @@ function adjustHeight() {
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cvr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 									
-										&nbsp;<button id="reply_btn" onclick="videoReplyUpdate(${r.cvr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="videoReplyUpdate(${r.cvr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/edit.png"></button>
 										&nbsp;<button id="reply_btn" onclick="videoReplyDel(${r.cvr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
 								</c:if>
 								</div>

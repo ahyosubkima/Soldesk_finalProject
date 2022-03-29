@@ -33,10 +33,10 @@
 
 
 
-		<beans:property name="username" value="bg" />
-		<beans:property name="password" value="bg" />
 
 
+		<beans:property name="username" value="jh" />
+		<beans:property name="password" value="jh" />
 
 
 	</beans:bean>
@@ -68,6 +68,7 @@
  	<beans:bean id="cri" class="com.team2.danim.Criteria">
 	</beans:bean>
 	
+
 
 
 <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

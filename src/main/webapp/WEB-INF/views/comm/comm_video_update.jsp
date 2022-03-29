@@ -10,8 +10,16 @@
 $(function() {
 	
 	previewImg();
-
+	adjustHeight();
 });
+
+function adjustHeight() {
+	  var textEle = $('#comm_picture_update_txt');
+	  textEle[0].style.height = 'auto';
+	  var textEleHeight = textEle.prop('scrollHeight');
+	  textEle.css('height', textEleHeight);
+	};
+
 
 window.onpageshow = function(event) {
 	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
@@ -31,7 +39,9 @@ window.onpageshow = function(event) {
 		}
 			
 	}
-		}		
+		}	
+
+
 </script>
 </head>
 <body>
@@ -47,7 +57,7 @@ window.onpageshow = function(event) {
 						<td id="comm_picture_td"><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></td>
 					</tr>
 					<tr>
-						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">동영상게시판</a></td>
+						<td id="comm_picture_td"><a href="/danim/comm_video_page?pageNum=1">영상게시판</a></td>
 					</tr>
 					<tr>
 						<td id="comm_picture_td"><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></td>
@@ -57,7 +67,7 @@ window.onpageshow = function(event) {
 		</div>
 		<div id="comm_update_content112">
 		<div id="content_title_div">
-				<h2  class="best_update_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
+				<h2  class="best_update_pic2">영상게시판</h2>
 				</div>
 				<hr class="comm_update_hr">
 			<c:forEach var="video" items="${video }">

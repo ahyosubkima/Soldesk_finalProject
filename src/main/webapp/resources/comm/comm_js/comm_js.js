@@ -410,6 +410,18 @@ function mouse_over(i){
 	document.getElementById('play_img'+i).style.visibility="hidden";
 	
 }
+function mouse_over3(i){
+	/*
+	document.getElementById('big_img'+i).style.filter="blur(2.5px)";*/
+	
+}
+function mouse_out3(i){
+	/*
+	document.getElementById('big_img'+i).style.filter="blur(0px)";*/
+	
+	
+}
+
 
 function mouse_out(i){
 	

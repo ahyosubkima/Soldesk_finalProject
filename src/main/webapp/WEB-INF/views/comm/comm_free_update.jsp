@@ -10,8 +10,15 @@
 $(function() {
 	
 	previewImg();
-
+	adjustHeight();
 });
+
+function adjustHeight() {
+	  var textEle = $('#comm_picture_update_txt');
+	  textEle[0].style.height = 'auto';
+	  var textEleHeight = textEle.prop('scrollHeight');
+	  textEle.css('height', textEleHeight);
+	};
 
 window.onpageshow = function(event) {
 	if (event.persisted	|| (window.performance && window.performance.navigation.type == 2)) {
@@ -59,7 +66,7 @@ window.onpageshow = function(event) {
 		</div>
 		<div id="comm_update_content112">
 			<div id="content_title_div2">
-				<h2  class="best_update_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
+				<h2  class="best_update_pic2">자유게시판</h2>
 				</div>
 				<hr class="comm_update_hr">
 			<c:forEach var="f" items="${free }">

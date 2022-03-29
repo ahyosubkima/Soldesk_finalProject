@@ -145,8 +145,8 @@ function qqq() {
 			  let MapAddress = $(".p_markerInfo").val();
 			  //let MapAddress = $("#infoo").val();
 			  
-			  alert("주소:" + MapAddress);
-			  alert("JS에서 이름:" + MapText);
+			 // alert("주소:" + MapAddress);
+			 // alert("JS에서 이름:" + MapText);
 			  
 			  $("#p_route").append('<div id="mapNameAll"><div id="mapName"><textarea name="p_plan" id="p_plan">' + MapText
 					  			+ '</textarea></div>' + MapAddress + '<div class="deletePlanMapName">❌</div></div>');
@@ -341,19 +341,19 @@ function p_writesubmit() {
 	});
 }
 
-
-/* 하트좋아요 기능 */
-function plan_like() {
+function p_delete() {
+	$(document).on("click", "#p_delete", function () {
+		
+	confirm('게시글을 삭제할까요?');
+	alert('게시글이 삭제되었습니다!')
 	
+	let p_no = document.getElementById("p_no").value;
 	
-	$('.like-container > .feeling_a, .dislike-container  > .feeling_a').on('click', function() {
-	    event.preventDefault();
-	    $('.active').removeClass('active');
-	    $(this).addClass('active');
-	});
+	location.href="plan.delete?p_no=" + p_no 
+	
+	 });
 	
 }
-
 
 
 
@@ -371,7 +371,7 @@ $(function() {
 	deletePlanBudget();
 	p_submit();
 	p_writesubmit();
-	plan_like();
+	p_delete();
 });
 
 

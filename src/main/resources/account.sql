@@ -9,6 +9,6 @@ d_addr varchar2(200 char) not null
 
 select * from account;
 
-insert into account values ('aa', 'bb', 'cc', 'dd', 'ee');
+insert into account values ('admin', 'admin', 'admin', 'admin', 'admin');
 
 

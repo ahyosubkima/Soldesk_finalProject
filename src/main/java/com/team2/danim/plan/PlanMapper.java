@@ -37,8 +37,9 @@ public interface PlanMapper {
 	//장소, 제목 검색
 	public List<Plan_write> p_searchAll(Map<String, String> map);
 
-	//하트 좋아요
-	//public List<Plan_write> getHeart();
+	//게시글 삭제
+	int deletePlan(int p_no);
+
 	
 
 }

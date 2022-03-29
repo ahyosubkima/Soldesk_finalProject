@@ -180,12 +180,6 @@ public class PlanDAO {
 			req.setAttribute("budgets", budgets);
 			
 			
-		
-			
-			
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -207,7 +201,6 @@ public class PlanDAO {
 
 	
 	public void getPlanPaging(HttpServletRequest req,Criteria3 cri3) {
-		
 		
 		try {
 				
@@ -306,15 +299,25 @@ public class PlanDAO {
 		}
 	}
 
-/*	public void getHeart(HttpServletRequest req) {
+	public void deletePlan(HttpServletRequest req, Criteria3 cri3) {
+		
 		try {
 			int p_no = Integer.parseInt(req.getParameter("p_no"));
-			req.setAttribute("plans", ss.getMapper(PlanMapper.class).getHeart());
 			
+			if (ss.getMapper(PlanMapper.class).deletePlan(p_no) == 1) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("DB에러");
 		}
-	}*/
+		
+		
+		
+	}
+
 	
 
 

@@ -121,12 +121,9 @@ select count(*) from plan_write
 </select>	
 
 
-
-<!-- <select id="getHeart"
-		resultType="com.team2.danim.plan.Plan_write">
-		SELECT * FROM plan_write WHERE ROWNUM &lt;= 6 order by heart_like desc
-</select>
- -->
+<delete id="deletePlan" parameterType="com.team2.danim.plan.Plan_write">
+	delete from plan_write where p_no = #{p_no}
+</delete>
 
 
 </mapper>

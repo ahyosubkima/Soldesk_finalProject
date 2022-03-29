@@ -32,11 +32,8 @@
 
 
 
-
-
-
-		<beans:property name="username" value="jh" />
-		<beans:property name="password" value="jh" />
+		<beans:property name="username" value="c##jy" />
+		<beans:property name="password" value="jy" />
 
 
 	</beans:bean>

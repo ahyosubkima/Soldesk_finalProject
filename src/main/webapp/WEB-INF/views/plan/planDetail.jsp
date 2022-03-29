@@ -39,7 +39,9 @@
 		</tr>
 		
 		<tr>
-			<td colspan="2"><h3>여행 장소</h3><div style="margin-top: 10px;">${plan.p_place }</div></td>
+			<td><h3>여행 장소</h3><div style="margin-top: 10px;">${plan.p_place }</div></td>
+			<td><h3>작성날짜</h3><div style="margin-top: 10px;"><fmt:formatDate value="${plan.p_writedate }" pattern="yyyy년 MM월 dd일"/></td>
+			
 		</tr>
 </table>
 
@@ -47,7 +49,8 @@
 
 <!-- 여행 전체일정 -->
 <div style="margin: auto; width: 800px; text-align: center; font-size: 20pt; margin-top: 60px;">📅 여행 전체일정</div>
-<div style="margin: auto; width: 800px; margin-top: 20px; display: inline-block; margin-left: 26%">
+<div style="margin: auto; width: 800px;">
+<div style="margin: auto; width: 800px; margin-top: 20px; display: inline-block;">
 			<c:set var="plan" value="${fn:split(plan.p_plan,',') }"></c:set>
 			<c:forEach var="plan" items="${plan }" varStatus="p">
 	<table style="margin: auto; float: left;">
@@ -56,7 +59,7 @@
 		</tr>
 	</table>
 			</c:forEach>
-</div>
+</div></div>
 
 
 	
@@ -122,8 +125,13 @@
 	</table>
 	</div>
 </c:if>
-	<div id="p_detailPlanGoBack"><button onclick="history.go(-1)" > &lt; 돌아가기</button></div>
-	
+	<div id="p_detailPlanGoBack">
+		<button onclick="history.go(-1)" > &lt; 돌아가기</button>
+	<c:if test="${sessionScope.loginMember.dm_id eq plan.p_writer }">
+		<button id="p_delete">삭제하기</button>
+	</c:if>
+	</div>
+	<input type="hidden" id="p_no" value="${param.p_no}">
 
 </body>
 </html>

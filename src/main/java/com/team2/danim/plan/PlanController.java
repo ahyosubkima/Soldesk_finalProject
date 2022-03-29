@@ -79,17 +79,6 @@ public class PlanController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/plan.makeHeart", method = RequestMethod.GET)
-	public String planMakeHeart(HttpServletRequest req) {
-		
-		TokenMaker.make(req);
-		pDAO.getPlan(req);
-		
-		req.setAttribute("contentPage", "plan/planDetail.jsp");
-		
-		return "home";
-	}
-	
 	@RequestMapping(value = "/plan.search", method = RequestMethod.GET)
 	public String plan_search(HttpServletRequest req,Plan_write pw ,Criteria3 cri3) {
 		
@@ -101,8 +90,17 @@ public class PlanController {
 	}
 	
 	
+@RequestMapping(value = "/plan.delete", method = RequestMethod.GET)
+public String planDelete(HttpServletRequest req,Criteria3 cri3) {
+	TokenMaker.make(req);
+	pDAO.deletePlan(req,cri3);
+	pDAO.getPageMakerPlan(req, cri3);
+	pDAO.getPlanPaging(req, cri3);
 	
+	req.setAttribute("contentPage", "plan/planMain.jsp");
+	return "home";
 	
+}
 	
 
 	

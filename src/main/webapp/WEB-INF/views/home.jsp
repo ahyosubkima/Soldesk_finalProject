@@ -44,7 +44,7 @@
 							<td>${sessionScope.loginMember.dm_nickname}님 환영합니다.</td>
 						</tr>
 						<tr>
-							<td><button onclick="location.href='member.logout'">로그아웃</button> <button onclick="location.href='member.myPage'" style="margin-left:30px;">마이페이지</button></td>
+							<td><button class="login_btn" onclick="location.href='member.logout'">로그아웃</button> <button class="login_btn" onclick="location.href='member.myPage'" style="margin-left:30px;">마이페이지</button></td>
 						</tr>
 					</table>
 
@@ -88,7 +88,7 @@
 						<button id="login_submit">로그인</button>
 					</form>
 					<hr>
-					<a href="member.findInfo" onclick="window.open(this.href, '_blank', 'width=700, height=500'); return false;">아이디/비밀번호를 잊어버리셨나요?</a>
+					<a href="member.findInfo" onclick="window.open(this.href, '_blank', 'width=700, height=500'); return false;" onkeydown="return enter(event)">아이디/비밀번호를 잊어버리셨나요?</a>
 				</div>
 
 				<div class="form registerForm">
@@ -102,9 +102,9 @@
 						<div class="check_fnt" id="pw_check2"></div>
 						<input type="text" placeholder="닉네임" name="dm_nickname" id = "dm_nickname" class="reg_nick" required> 
 						<div class="check_fnt" id="nick_check"></div> 
-						<input type="text" placeholder="이메일" name="dm_email" id = "dm_email" class="reg_mail" required>
+						<input type="text" placeholder="이메일" name="dm_email" id = "dm_email" class="reg_mail" required onkeydown="return enter(event)">
 						<div class="check_fnt" id="mail_check"></div>
-						<button id="reg_submit">회원가입</button>
+						<button id="reg_submit" onkeydown="return enter(event)">회원가입</button>
 					</form>
 				</div>
 
@@ -129,36 +129,22 @@
 				<ul>
 					<li><a href="">계획짜기</a></li>
 					<li><a href="">여행후기</a></li>
-					<li><a href="">이벤트</a></li>
-					<li><a href="">후기</a></li>
+					<li><a href="">커뮤니티</a></li>
 				</ul>
 			</div>
 			<div class="footer_column">
 
 				<div class="footer_title">
-					<h2>대충</h2>
+					<h2>커뮤니티</h2>
 				</div>
 
 				<ul>
-					<li><a href="">하위메뉴1</a></li>
-					<li><a href="">하위메뉴2</a></li>
-					<li><a href="">하위메뉴3</a></li>
-					<li><a href="">하위메뉴4</a></li>
+					<li><a href="/danim/comm_picture_page?pageNum=1">사진게시판</a></li>
+					<li><a href="/danim/comm_video_page?pageNum=1">영상게시판</a></li>
+					<li><a href="/danim/comm_free_page?pageNum=1">자유게시판</a></li>
 				</ul>
 			</div>
-			<div class="footer_column">
-
-				<div class="footer_title">
-					<h2>대충</h2>
-				</div>
-
-				<ul>
-					<li><a href="">하위메뉴1</a></li>
-					<li><a href="">하위메뉴2</a></li>
-					<li><a href="">하위메뉴3</a></li>
-					<li><a href="">하위메뉴4</a></li>
-				</ul>
-			</div>
+			
 		</div>
 	</footer>
 	

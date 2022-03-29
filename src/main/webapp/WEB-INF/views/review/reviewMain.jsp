@@ -201,6 +201,7 @@ li {
 
 
  <div class="container">
+ 
       <ul class="tab-container">
         <li class="tab-container__item active" data-tab="tab1">
         <div class="selector_unit" >#인원 🏃</div>
@@ -278,8 +279,9 @@ li {
 </div>
 
 <div >
-
+<div id="review_write_div"> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기<img style="width: 20px;" src="resources/review/img/pencil.png"></a></div>
 <div class="" id="contentTable">
+
 <c:forEach items="${reviews }" var="reviews">
 <div class="flex-container" id="contents">
 <div><a href="reviewDeatil.go?rb_no=${reviews.rb_no }"><img class="img_box" src="resources/review/img/${fn:split(reviews.rb_img, ',')[0]}" alt="이미지위치"></a> </div>
@@ -298,9 +300,6 @@ li {
 
 <c:if test="${not empty sessionScope.loginMember.dm_id }">
 <input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
-<div> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a> </div>
-
-<div>내후기보기</div>
 </c:if>
 </div>
 

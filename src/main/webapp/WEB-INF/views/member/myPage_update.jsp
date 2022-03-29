@@ -24,7 +24,7 @@
 		<form action="member.updateInfo" name="member_form" method="post" >
 		<div class="my_info">
 			<label for="dm_id">아이디</label> 
-			<input type="text" name="dm_id" value="${sessionScope.loginMember.dm_id}" readonly>
+			<input class="none" type="text" name="dm_id" value="${sessionScope.loginMember.dm_id}" readonly>
 			<label for="dm_pw">비밀번호</label>
 			<input type="password" name="dm_pw" value="${sessionScope.loginMember.dm_pw}">
 			
@@ -43,6 +43,5 @@
 	
 	</div>
 	
-	<script type="text/javascript" src="resources/asset/member/js/updateInfo.js"></script>
 </body>
 </html>

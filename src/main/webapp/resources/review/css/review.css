@@ -16,7 +16,23 @@
 	align-items: center;
 	justify-content: center;
 }
-
+#review_write_div{
+	padding-top: 12%;
+	padding-left: 94%;
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#review_write_div a{
+	border: 3px solid #38CEB5;
+    border-radius: 20px;
+    padding: 5px;
+    font-size: 11pt;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 .location_select_btn{
 	margin-right: 30px;
 	 border: 2px solid transparent;

@@ -1,14 +1,26 @@
 create table comm_picture(
-comm_picture_no number(3) primary key,
-comm_picture_name varchar2(20 char) not null,
-comm_picture_write_name varchar2(20 char) not null,
-comm_picture_writer varchar2(30 char) not null,
-comm_picture_txt varchar2(30 char) not null,
-comm_picture_good number(3) not null,
-comm_picture_view number(3) not null,
+comm_picture_no number(5) primary key,
+comm_picture_name varchar2(300 char) not null,
+comm_picture_write_name varchar2(200 char) not null,
+comm_picture_writer varchar2(300 char) not null,
+comm_picture_txt varchar2(300 char) not null,
+comm_picture_good number(5) not null,
+comm_picture_view number(5) not null,
 comm_picture_date date not null
 );
 
+
+
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','일본-오사카','진지밥','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','대구에서~','준모','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','별헤는밤','장빡','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','그림같은 그리스','마당을나온암탉','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','몽글몽글','맨발의동수','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','레전드 성당','캉문진','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','가을이네요','킹스윙스','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','에펠탑명당','유럽쟁이','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','도톤보리','유희왕','더미데이터',0,0,sysdate)
+insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','그림같은 사진','우왁굳','더미데이터',0,0,sysdate)
 
 
 
@@ -33,6 +45,7 @@ foreign key(cpr_cp_no)
 		references comm_picture(comm_picture_no)
 		on delete cascade
 );
+
 
 /*영상댓글*/
 create table comm_video_reply(
@@ -70,7 +83,6 @@ select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name
 			where rn <= 6
 
 
-drop table comm_picture_reply
 
 /*좋아요 관리테이블*/
 create table comm_picture_good(
@@ -112,6 +124,18 @@ cv_good number(3) not null,
 cv_view number(3) not null,
 cv_date date not null
 );
+
+insert into COMM_video values(cv_seq.nextval,'a.jpg','일본-오사카','진지밥','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','대구에서~','준모','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','별헤는밤','장빡','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','그림같은 그리스','마당을나온암탉','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','몽글몽글','맨발의동수','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','레전드 성당','캉문진','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','가을이네요','킹스윙스','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','너무 좋아요~','킹스윙스','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','도톤보리','유희왕','더미데이터',0,0,sysdate);
+insert into COMM_video values(cv_seq.nextval,'a.jpg','그림같은 사진','우왁굳','더미데이터',0,0,sysdate);
+
 
 
 select * 
@@ -206,14 +230,13 @@ foreign key(cfg_no)
 /*공지글*/
 create table comm_import(
 ci_no number(3) primary key,
-ci_file_name varchar2(20 char),
-ci_write_name varchar2(20 char) not null,
-ci_writer varchar2(30 char) not null,
+ci_file_name varchar2(200 char),
+ci_write_name varchar2(200 char) not null,
+ci_writer varchar2(300 char) not null,
 ci_txt varchar2(300 char) not null,
 ci_view number(3) not null,
 ci_date date not null
 )	
-
 
 
 

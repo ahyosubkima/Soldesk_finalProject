@@ -75,7 +75,6 @@
 		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
 				<h2 class="best_pic2">사진게시판</h2>
-				<img id="sdf_img2" src="resources/comm/comm_img/photo-1.png">
 			</div>
 			<hr class="comm_detail_hr">
 			<c:forEach var="picture" items="${picture }">
@@ -163,7 +162,7 @@
 						<tr>
 							<td colspan="2" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/edit.png"></button>
 								<button style="width: 70px; font-size: 15pt; border: none; background: none;"
 									onclick="comm_delOK(${picture.comm_picture_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button></td>
 						</tr>
@@ -182,7 +181,7 @@
 					<table id="comm_picture_detail_reply">
 						<c:forEach items="${reply }" var="r">
 							<tr>
-								<td style="text-align: center; width: 150px;">${r.cpr_owner }<c:if
+								<td style="text-align: center; width: 180px;">${r.cpr_owner }<c:if
 										test="${picture.comm_picture_writer eq r.cpr_owner }">
 										<span id="reply_writer"> &nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 									</c:if></td>
@@ -193,7 +192,7 @@
 										value="${r.cpr_when }" pattern="yyyy-MM-dd" /> <c:if
 										test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 
-										&nbsp;<button id="reply_btn" onclick="pictureReplyUpdate(${r.cpr_no},${param.no })"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="pictureReplyUpdate(${r.cpr_no},${param.no })"><img id="reply_icon" src="resources/comm/comm_img/edit.png"></button>
 										&nbsp;<button id="reply_btn" onclick="pictureReplyDel(${r.cpr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
 									</c:if>
 									</div>

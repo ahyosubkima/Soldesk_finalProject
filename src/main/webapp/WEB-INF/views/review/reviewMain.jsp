@@ -297,7 +297,10 @@ ul, li {
 	</div>
 
 	<div>
-    <div id="review_write_div"> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기<img style="width: 20px;" src="resources/review/img/pencil.png"></a></div>
+	<c:if test="${not empty sessionScope.loginMember.dm_id }">
+<input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
+    <div id="review_write_div"> <div id="write_cover"><span id="test"><a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a></span><div id="penImg"><img style="width: 20px;" src="resources/review/img/pencil.png"></div></div></div>
+</c:if>
 
 		<div class="" id="contentTable">
 			<c:forEach items="${reviews }" var="reviews">
@@ -335,9 +338,7 @@ ul, li {
 	<div class="flex-container">
 
 
-<c:if test="${not empty sessionScope.loginMember.dm_id }">
-<input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
-</c:if>
+
 </div>
 
 </body>

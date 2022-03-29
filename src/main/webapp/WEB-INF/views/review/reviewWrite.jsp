@@ -674,7 +674,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<div style="text-align: center; padding-left: 100px;"><input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);"></div>
 	<div id="d1Img_container"></div>
 	<input type="hidden" name="totalday" id="totalday" value="1"> <!-- 히든토탈데이 -->
-<div id="review_submit"><button>여행후기 등록</button></div>
+<div id="review_submit"><button type="button">여행후기 등록</button></div>
 
 </form>
 

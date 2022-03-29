@@ -114,13 +114,11 @@ public class MemberDAO {
 			String reg_dbPw = Sha256.encodeSha256(reg_rawPw);
 			String reg_nick = req.getParameter("dm_nickname");
 			String reg_email = req.getParameter("dm_email");
-			String reg_isAdmin = req.getParameter("dm_isAdmin");
 			
 			m.setDm_id(reg_id);
 			m.setDm_pw(reg_dbPw);
 			m.setDm_nickname(reg_nick);
 			m.setDm_email(reg_email);
-			m.setDm_isAdmin(reg_isAdmin);
 			
 			if(ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
 				System.out.println("수정 성공");

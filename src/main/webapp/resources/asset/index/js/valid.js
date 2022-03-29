@@ -95,7 +95,7 @@ $(function () {
 						$("#pw_check3").text("비밀번호를 다시 확인해주세요");
 						$("#pw_check3").css("color", "red");
 						$("#pw_check3").css("margin-top", "-18px");
-						$("#login_submit").attr("disabled", false);
+						$("#login_submit").attr("disabled", true);
 					}
 				}, error : function() {
 						console.log("실패");

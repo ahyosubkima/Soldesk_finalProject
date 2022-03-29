@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 65vh;
+	height: 68vh;
 	top: 50%;
 }
 
@@ -13,7 +13,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 80vh;
+	height: 68vh;
 	top: 50%;
 }
 
@@ -51,6 +51,11 @@ label {
 	border: 1px solid #333;
 }
 
+.my_info .none {
+	border: none;
+	border-bottom: 2px solid black;
+}
+
 .btn_wrap button {
 	cursor: pointer;
 	padding: 10px 10px;
@@ -85,6 +90,8 @@ label {
 	background: rgb(56,206,181);
 	transition: 0.3s;
 }
+
+
 
 
 

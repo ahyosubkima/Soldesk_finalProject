@@ -16,6 +16,7 @@
 	display: flex;
     justify-content: center;
     margin-top: 30px;
+       text-align: center;
 }
 .btnCover{
 	background: none;

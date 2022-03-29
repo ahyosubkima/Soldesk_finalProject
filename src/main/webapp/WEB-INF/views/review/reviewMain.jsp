@@ -320,8 +320,7 @@ ul, li {
 						${reviews.rb_commentcount }
 					</div>
 					<div>
-						<span>#<fmt:formatNumber value="${reviews.rb_budget }"
-								pattern="#,###" />이하
+						<span>#<fmt:formatNumber value="${reviews.rb_budget }"	type="currency" />이하
 						</span> | <span> #${reviews.rb_theme }</span> | <span>
 							#${reviews.rb_location }</span>
 					</div>

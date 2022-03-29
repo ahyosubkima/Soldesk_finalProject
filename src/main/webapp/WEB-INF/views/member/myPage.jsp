@@ -21,18 +21,18 @@
 			<div class="my_info">
 					<label for="dm_id">아이디</label>
 				<div>
-					<input type="text" class="form-control" id="dm_id" name="dm_id"
+					<input type="text" class="form-control none" id="dm_id" name="dm_id"
 						value="${sessionScope.loginMember.dm_id}" readonly>
 				</div>
 					<label for="dm_nickname">닉네임</label>
 				
 				<div>
-					<input type="text" class="form-control" id="dm_nickname" name="dm_nickname"
+					<input type="text" class="form-control none" id="dm_nickname" name="dm_nickname"
 						value="${sessionScope.loginMember.dm_nickname}" readonly>
 				</div>
 				<label for="dm_email">이메일</label>
 				<div>
-					<input type="email" class="form-control" id="dm_email2"
+					<input type="email" class="form-control none" id="dm_email2"
 						name="dm_email" value="${sessionScope.loginMember.dm_email}" readonly>
 				</div>
 			</div>

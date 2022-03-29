@@ -59,7 +59,7 @@ window.onpageshow = function(event) {
 		</div>
 		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
-				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
+				<h2  class="best_pic2">자유게시판</h2>
 				</div>
 				<hr class="comm_detail_hr2">
 			<c:forEach var="f" items="${free }">
@@ -143,7 +143,7 @@ window.onpageshow = function(event) {
 						<tr>
 							<td colspan="4" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_updateFreeOK(${f.cf_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+									onclick="comm_updateFreeOK(${f.cf_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/edit.png"></button>
 								<button style="width: 70px; font-size: 15pt; border: none; background: none"
 									onclick="comm_FreedelOK(${f.cf_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button></td>
 						</tr>
@@ -161,7 +161,7 @@ window.onpageshow = function(event) {
 					<table id="comm_picture_detail_reply">
 					<c:forEach items="${reply }" var="r">
 							<tr>
-								<td style="text-align: center; width: 150px">${r.cfr_owner }<c:if test="${f.cf_writer eq r.cfr_owner }">
+								<td style="text-align: center; width: 180px">${r.cfr_owner }<c:if test="${f.cf_writer eq r.cfr_owner }">
 								<span id="reply_writer">
 								&nbsp;&nbsp;작성자&nbsp;&nbsp;</span>
 								</c:if>
@@ -173,7 +173,7 @@ window.onpageshow = function(event) {
 								<c:if
 									test="${sessionScope.loginMember.dm_id eq r.cfr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
 									
-										&nbsp;<button id="reply_btn" onclick="freeReplyUpdate(${r.cfr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/update-arrow.png"></button>
+										&nbsp;<button id="reply_btn" onclick="freeReplyUpdate(${r.cfr_no},${param.no})"><img id="reply_icon" src="resources/comm/comm_img/edit.png"></button>
 										&nbsp;<button id="reply_btn" onclick="freeReplyDel(${r.cfr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
 								</c:if>
 								</div>

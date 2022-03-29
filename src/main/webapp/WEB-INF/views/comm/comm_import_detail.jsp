@@ -62,7 +62,7 @@
 		</div>
 		<div id="comm_picture_detail_content112">
 			<div id="content_title_div">
-				<h2  class="best_pic2">자유게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/board1.png">
+				<h2  class="best_pic2">자유게시판</h2>
 				</div>
 				<hr class="comm_detail_hr2">
 			<c:forEach var="i" items="${notification }">

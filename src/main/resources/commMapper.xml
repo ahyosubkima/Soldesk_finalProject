@@ -24,7 +24,6 @@
 		#{comm_picture_writer},
 		#{comm_picture_txt},
 		0,
-
 		0,
 		sysdate)
 	</insert>

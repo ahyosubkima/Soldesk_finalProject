@@ -32,8 +32,6 @@
 
 
 
-
-		
 		<beans:property name="username" value="c##hs" />
 		<beans:property name="password" value="hs" />
 
@@ -68,6 +66,7 @@
  	<beans:bean id="cri" class="com.team2.danim.Criteria">
 	</beans:bean>
 	
+
 
 
 <beans:bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

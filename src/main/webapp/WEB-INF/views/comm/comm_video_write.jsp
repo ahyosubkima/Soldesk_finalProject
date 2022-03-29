@@ -37,7 +37,7 @@ $(function() {
 
 		<div id="comm_write_content112">
 		<div id="content_title_div">
-				<h2  class="best_write_pic2">영상게시판</h2> <img id="sdf_img2" src="resources/comm/comm_img/video-1.png">
+				<h2  class="best_write_pic2">영상게시판</h2>
 				</div>
 				<hr class="comm_write_hr">
 				

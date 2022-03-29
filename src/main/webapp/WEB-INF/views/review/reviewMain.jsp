@@ -297,6 +297,7 @@ ul, li {
 	</div>
 
 	<div>
+    <div id="review_write_div"> <a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기<img style="width: 20px;" src="resources/review/img/pencil.png"></a></div>
 
 		<div class="" id="contentTable">
 			<c:forEach items="${reviews }" var="reviews">
@@ -324,8 +325,7 @@ ul, li {
 						</span> | <span> #${reviews.rb_theme }</span> | <span>
 							#${reviews.rb_location }</span>
 					</div>
-					<%-- <div>날짜 : <fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="MM.dd"/> 
- | 작성자 : ${reviews.rb_username } </div> --%>
+					<%-- <div>날짜 : <fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="MM.dd"/>  | 작성자 : ${reviews.rb_username } </div> --%>
 				</div>
 			</c:forEach>
 
@@ -334,16 +334,11 @@ ul, li {
 
 	<div class="flex-container">
 
-		<c:if test="${not empty sessionScope.loginMember.dm_id }">
-			<input type="hidden" name="writer"
-				value="${sessionScope.loginMember.dm_id }">
-			<div>
-				<a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a>
-			</div>
 
-			<div>내후기보기</div>
-		</c:if>
-	</div>
+<c:if test="${not empty sessionScope.loginMember.dm_id }">
+<input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
+</c:if>
+</div>
 
 </body>
 </html>

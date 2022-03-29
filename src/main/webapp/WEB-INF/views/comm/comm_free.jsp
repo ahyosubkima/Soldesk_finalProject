@@ -74,7 +74,7 @@ $(function() {
 			
 
 			<div id="content_title_div">
-				 <img id="sdf_img" src="resources/comm/comm_img/board1.png"><h2  class="best_pic">자유게시판</h2>
+<!-- 				 <img id="sdf_img" src="resources/comm/comm_img/board1.png"> --><h2  class="best_pic">자유게시판</h2>
 				</div>
 				<hr id="comm_free_hr">
 				<c:if test="${pageMaker != null && not empty frees }">
@@ -203,7 +203,7 @@ $(function() {
 
 				</c:if>
 							<c:if test="${sessionScope.loginMember != null}">
-				<input type="button" id="comm_free_writeBtn2" value=" 🖋 글쓰기"
+				<input type="button" id="comm_free_writeBtn2" value="글쓰기"
 					onclick="location.href='/danim/comm_free_write'">
 			</c:if>
 

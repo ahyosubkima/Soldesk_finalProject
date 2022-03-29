@@ -125,8 +125,13 @@
 	</table>
 	</div>
 </c:if>
-	<div id="p_detailPlanGoBack"><button onclick="history.go(-1)" > &lt; 돌아가기</button></div>
-	
+	<div id="p_detailPlanGoBack">
+		<button onclick="history.go(-1)" > &lt; 돌아가기</button>
+	<c:if test="${sessionScope.loginMember.dm_id eq plan.p_writer }">
+		<button id="p_delete">삭제하기</button>
+	</c:if>
+	</div>
+	<input type="hidden" id="p_no" value="${param.p_no}">
 
 </body>
 </html>

@@ -97,7 +97,6 @@
 #p_mainDetailDiv{
 	display:inline-block;
 	width: 99%;
-	border: 1px solid red;
 }
 
 #p_mainDetailAllDiv{
@@ -721,6 +720,7 @@ ul li{
 	color: #626262;
 	border-radius:5px;
 	background-color: transparent;
+	margin: 5px;
 }
 
 #p_regOk{

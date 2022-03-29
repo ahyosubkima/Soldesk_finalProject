@@ -1,5 +1,5 @@
 
-const nickJ2 = /^[가-힣A-Za-z0-9]{3,12}$/;
+
 const mailJ2 = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
 $(function () {
@@ -7,6 +7,7 @@ $(function () {
 	
 	$("#dm_nickname3").blur(function() {
 		let dm_nickname = $('#dm_nickname3').val();
+		const nickJ2 = /^[가-힣A-Za-z0-9]{3,12}$/;
 		$.ajax({
 			url : 'member.nickCheck?dm_nickname='+ dm_nickname,
 			type : 'get',

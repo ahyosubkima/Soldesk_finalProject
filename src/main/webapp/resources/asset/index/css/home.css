@@ -304,6 +304,23 @@ header {
 	align-self: center;
 }
 
+.login_btn {
+	cursor: pointer;
+	padding: 5px 10px;
+	border-radius: 5px;
+	width: 100px;
+	background: #000;
+	color: #fff;
+	font-size: 16px;
+	border: none;
+	margin-top: 5px;
+}
+
+.login_btn:hover {
+	background-color: #38ceb5;
+	transition: 0.3s;
+}
+
 hr {
 	margin: 20px 0 10px 0;
 }

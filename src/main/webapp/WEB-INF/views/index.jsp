@@ -36,7 +36,7 @@
 		<div class="boxWrap">
 			<div class="box">
 				<div class="imgBx">
-					<a href="planMain"><img src="resources/comm_img/testimg1.jpg"></a>
+					<a href="planMain"><img src="resources/asset/index/img/4.jpg"></a>
 				</div>
 				<div class="imgTitle">
 					<h2>계획 짜기</h2>
@@ -47,20 +47,20 @@
 			</div>
 			<div class="box">
 				<div class="imgBx">
-					<a href="review.go"><img src="resources/comm_img/testimg2.jpg"></a>
+					<a href="review.go"><img src="resources/asset/index/img/5.jpg"></a>
 				</div>
 				<div class="imgTitle">
 					<h2>여행 후기</h2>
 				</div>
 				<div class="imgDesc">
 					<h3>
-						다른 여행 후기를 바탕으로<br>자신의 계획을!
+						다른 여행 후기를 바탕으로<br>자신만의 계획을 세워보세요!
 					</h3>
 				</div>
 			</div>
 			<div class="box">
 				<div class="imgBx">
-					<a href="comm_free"><img src="resources/comm_img/testimg3.jpg"></a>
+					<a href="/danim/comm_free_page?pageNum=1"><img src="resources/asset/index/img/6.jpg"></a>
 				</div>
 				<div class="imgTitle">
 					<h2>커뮤니티</h2>
@@ -73,8 +73,42 @@
 		</div>
 	</section>
 	<section class="section_content2">
-		<h1>대충 컨텐츠 섹션 2</h1>
+		<div class="title_wrap">
+			<div class="section_title">
+				<h1>여행지에서의 추억들</h1>
+			</div>
+			<div class="section_desc">다른 사람들의 추억을 엿볼수 있어요</div>
+		</div>
+		<div class="boxWrap">
+			<div class="box">
+				<div class="imgBx">
+					<a href="/danim/comm_picture_page?pageNum=1"><img src="resources/asset/index/img/7.jpg"></a>
+				</div>
+				<div class="imgTitle">
+					<h2>베스트 사진</h2>
+				</div>
+				<div class="imgDesc">
+					<h3>여행에서의 최고의<br>한 장을 확인해보세요</h3>
+				</div>
+			</div>
+			<div class="box">
+				<div class="imgBx">
+					<a href="/danim/comm_video_page?pageNum=1"><img src="resources/asset/index/img/8.jpg"></a>
+				</div>
+				<div class="imgTitle">
+					<h2>베스트 영상</h2>
+				</div>
+				<div class="imgDesc">
+					<h3>
+						여행지에서의 최고의 추억을<br>생생한 영상으로 확인해보세요
+					</h3>
+				</div>
+			</div>
+			
+
+		</div>
 	</section>
+	
 
 	<script src="resources/asset/index/js/carousel.js"></script>
 

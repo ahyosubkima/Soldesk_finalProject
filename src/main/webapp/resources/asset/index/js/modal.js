@@ -4,7 +4,7 @@ function modalOpen() {
 	body.style.overflow = 'hidden'
 	document.querySelector('.modal_wrap').style.display = 'flex';
 	document.querySelector('.modal_background').style.display = 'block';
-
+	
 }
 
 function modalClose() {
@@ -35,3 +35,14 @@ registerBtn.onclick = function() {
 modal_loginBtn.onclick = function() {
 	formBx.classList.remove('active');
 } 
+
+function enter(e) {
+	if(window.event) {
+		key = window.event.keyCode;
+	} else if (e) {
+		key = e.which;
+	}
+	if(key == 9) {
+		return false;
+	}
+}

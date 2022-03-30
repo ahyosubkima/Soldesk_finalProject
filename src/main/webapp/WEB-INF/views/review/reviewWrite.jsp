@@ -74,15 +74,15 @@ function initMap() {
 		let lng =event.latLng.lng();
 
 		let latlng = {
-    lat: parseFloat(lat),
-    lng: parseFloat(lng),
-  };
+   			 lat: parseFloat(lat),
+    		lng: parseFloat(lng),
+ 					 };
 		
-  const geocoder = new google.maps.Geocoder();
+ 		 const geocoder = new google.maps.Geocoder();
 
-  geocoder
-    .geocode({ location: latlng })
-    .then((response) => {
+ 		 geocoder
+  		  .geocode({ location: latlng })
+  		  .then((response) => {
 		console.log(response);
 		console.log(response.results[0].formatted_address);
 		
@@ -94,7 +94,7 @@ function initMap() {
 		 //서버제출용
 		 document.getElementsByName('totalRoute')[0].value = destination;
 		console.log(document.getElementsByName('totalRoute')[0].value);
-	})
+			})
 
 			}
 			
@@ -507,7 +507,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 				<select name="theme" id="selectBox3">
 					<option selected="selected" disabled="disabled">테마</option>
 					<option>커플여행</option>
-					<option>럭셔리여행</option>
+					<option>나홀로여행</option>
 					<option>감성카페찾기</option>
 					<option>맛집투어</option>
 					<option>비즈니스여행</option>
@@ -523,7 +523,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 					<option>대전</option>
 					<option>대구</option>
 					<option>부산</option>
-					<option>인천</option>
+					<option>제주</option>
 
 				</select>
 

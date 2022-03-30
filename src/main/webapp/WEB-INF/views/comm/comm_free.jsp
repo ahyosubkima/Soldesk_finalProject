@@ -10,25 +10,7 @@
 <script type="text/javascript" src="resources/plan/p_js/jquery.js"></script>
 <script type="text/javascript">
 $(function() {
-	window.onpageshow = function(event) {
-		if (event.persisted
-				|| (window.performance && window.performance.navigation.type == 2)) {
-			let pgn = $("#pgn").val();
-			let so = $("#so").val(); 
-			let si = $("#si").val(); 
-			if(so != ""){
-				location.href="/danim/comm_free_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
-			}
-			else{
-			if (pgn != "") {
-				location.href = "/danim/comm_free_page?pageNum=" + pgn;
-			} else {
-				location.href = "/danim/comm_free_page";
-			}
-				
-			}
-		}
-	}
+	
 	
 	let aaa = $("#aaa").val();
 	$(".pc" + aaa).css("backgroundColor", "#E2E3FF");
@@ -43,6 +25,26 @@ $(function() {
 	
 	
 });
+window.onpageshow = function(event) {
+	if (event.persisted
+			|| (window.performance && window.performance.navigation.type == 2)) {
+		let pgn = $("#pgn").val();
+		let so = $("#so").val(); 
+		let si = $("#si").val(); 
+		if(so != ""){
+			location.href="/danim/comm_free_search?search_option="+so+"&search_input="+si+"&pageNum="+pgn;
+		}
+		else{
+		if (pgn != "") {
+			location.href = "/danim/comm_free_page?pageNum=" + pgn;
+		} else {
+			location.href = "/danim/comm_free_page";
+		}
+			
+		}
+	}
+}
+
 </script>
 </head>
 <body>
@@ -80,6 +82,7 @@ $(function() {
 				<c:if test="${pageMaker != null && not empty frees }">
 				<div id="paging_div2">
 					<!-- 이전페이지 버튼 -->
+							<input id="aaa" value="${param.pageNum }" type="hidden">
 					<table id="paging_Tbl2">
 						<tr>
 							<td><c:if test="${pageMaker.prev}">
@@ -92,7 +95,6 @@ $(function() {
 								<td class="paging_Tbl_td"><a
 									href="/danim/comm_free_page?pageNum=${num }"><span class="pc${num}">[${num}]</span></a></td>
 							</c:forEach>
-							<input id="aaa" value="${param.pageNum }" type="hidden">
 							<td><c:if test="${pageMaker.next}">
 									<li class="pageInfo_btn next"><a
 										href="/danim/comm_free_page?pageNum=${pageMaker.endPage + 1 }">&nbsp;&nbsp;&gt;&gt;</a></li>
@@ -106,7 +108,7 @@ $(function() {
 								<option value="title">제목</option>
 								<option value="writer">작성자</option>
 								<option value="txt">내용</option>
-						</select> <input name="search_input" id="search_option">
+						</select> <input name="search_input" id="search_option" value="${param.search_input }">
 						<input type="hidden" value="1" name="pageNum">
 						 <input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn">
 						 <input type="hidden" name="search_option" value="${param.search_option }" id="so">
@@ -119,6 +121,7 @@ $(function() {
 			</c:if>
 			<c:if test="${pageMakerTitle != null && not empty frees }">
 				<div id="paging_div2">
+							<input id="bbb" value="${param.pageNum }" type="hidden">
 					<!-- 이전페이지 버튼 -->
 					<table id="paging_Tbl2">
 						<tr>
@@ -133,7 +136,6 @@ $(function() {
 									href="/danim/comm_free_search?search_input=${param.search_input }&pageNum=${num }&search_option=${sessionScope.search_option}">
 									<span class="pc2${num}">[${num}]</span></a></td>
 							</c:forEach>
-							<input id="bbb" value="${param.pageNum }" type="hidden">
 							<td><c:if test="${pageMakerTitle.next}">
 									<li class="pageInfo_btn next"><a
 										href="/danim/comm_free_search?search_input=${param.search_input }&pageNum=${pageMakerTitle.endPage + 1 }&search_option=${sessionScope.search_option}">&nbsp;&nbsp;&gt;&gt;</a></li>
@@ -141,14 +143,14 @@ $(function() {
 						</tr>
 					</table>
 					<form action="comm_free_search">
-				<table id="comm_picture_searchTbl2">
+				<table id="comm_free_searchTbl">
 					<tr>
 						<td><select name="search_option" id="search_option">
 								<option value="title">제목</option>
 								<option value="writer">작성자</option>
 								<option value="txt">내용</option>
-						</select> <input name="search_input" id="search_option">
-						<input type="hidden" value="1" name="pageNum">
+						</select> <input name="search_input" id="search_option" value="${param.search_input }">
+						<input type="hidden" value="1" name="pageNum" >
 						 <input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn">
 						 <input type="hidden" name="search_option" value="${param.search_option }" id="so">
 					<input type="hidden" name="search_input" value="${param.search_input }" id="si">
@@ -197,6 +199,7 @@ $(function() {
 					<table class="comm_empty_Tbl">
 						<tr>
 							<td id="comm_empty_write">${param.search_input }(으)로 등록된 게시글이 없습니다.</td>
+							<td><a onclick="window.history.back()">&nbsp;&nbsp;&nbsp;돌아가기</a></td>
 						</tr>
 					</table>
 

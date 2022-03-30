@@ -14,6 +14,9 @@ rb_text varchar2(500 char) not null
 );
 
 
+drop table review_board cascade constraint purge;
+
+drop sequence review_board_seq;
 
 create sequence review_board_seq;
 

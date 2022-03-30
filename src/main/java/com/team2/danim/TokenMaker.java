@@ -17,6 +17,8 @@ public class TokenMaker {
 		
 		
 	}
+	
+	
 	public static void make2(HttpServletRequest req) {
 		Date d = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss:SS");

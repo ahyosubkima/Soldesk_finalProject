@@ -204,7 +204,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr2" value="${fn:split(result.rb_d2Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr2}" var="d2Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d2Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d2Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -222,7 +222,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr3" value="${fn:split(result.rb_d3Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr3}" var="d3Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d3Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d3Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -240,7 +240,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr4" value="${fn:split(result.rb_d4Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr4}" var="d4Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d4Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d4Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -258,7 +258,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr5" value="${fn:split(result.rb_d5Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr5}" var="d5Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d5Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d5Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -276,7 +276,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr6" value="${fn:split(result.rb_d6Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr6}" var="d6Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d6Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d6Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -294,7 +294,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr7" value="${fn:split(result.rb_d7Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr7}" var="d7Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d7Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d7Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -312,7 +312,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr8" value="${fn:split(result.rb_d8Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr8}" var="d8Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d8Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d8Sch}</div></div>
 					
 				</c:forEach>
 		</div>
@@ -330,7 +330,7 @@ function initMap() {
 		<!-- ,로 잘라낸 값을 scheduleArr에 저장 -->
 				<c:set var="scheduleArr9" value="${fn:split(result.rb_d9Schedule, ',')}"></c:set>
 				<c:forEach items="${scheduleArr9}" var="d9Sch">
-					<div class="schedule_con"><div class="schedule_cell">${d9Sch}}</div></div>
+					<div class="schedule_con"><div class="schedule_cell">${d9Sch}</div></div>
 					
 				</c:forEach>
 		</div>

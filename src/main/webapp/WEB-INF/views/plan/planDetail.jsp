@@ -18,7 +18,6 @@
 </head>
 <body>
 <div id="p_writeTitle"><h1>여행 플래너 상세</h1></div>
-
 <!-- 일전 기본정보 -->
 <table id="p_write">
 		<tr>
@@ -131,8 +130,7 @@
 <div id="p_detailPlanBackDel">
 		<button onclick="history.go(-1)" > &lt; 돌아가기</button>
 
-	<c:if test="${sessionScope.loginMember.dm_id eq plan.p_writer } 
-				|| ${sessionScope.loginMember.dm_isAdmin eq 'Y' }">
+	<c:if test="${sessionScope.loginMember.dm_id eq plan.p_writer || sessionScope.loginMember.dm_isAdmin eq 'Y' }">
 		<button id="p_delete">삭제하기</button>
 	</c:if>
 </div>

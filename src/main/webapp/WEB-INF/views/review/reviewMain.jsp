@@ -24,7 +24,7 @@
 		linear-gradient(to bottom right, #38CEB5, #6D1E91);
 	background-origin: border-box;
 	background-clip: content-box, border-box;
-	width: 100%;
+	width: 420px;
 	height: 250px;
 	margin-top: 60px;
 }

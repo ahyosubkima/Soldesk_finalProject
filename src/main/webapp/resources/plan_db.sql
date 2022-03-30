@@ -49,6 +49,8 @@ select * from plan_write;
 
 delete from plan_write where p_no = 1042;
 
+update plan_write set p_title = '대전 맛집 투어 :p' where p_no=130;
+
 select *
 		from (
 		select rownum as rn, p_no, p_writer,p_title,p_titleFile,p_days,

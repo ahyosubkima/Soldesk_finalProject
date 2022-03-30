@@ -42,10 +42,6 @@ public interface PlanMapper {
 	//전체 검색
 	public List<Plan_write> p_searchAll(Map<String, String> map);
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> ceb6b412b48cb64444cc86ffc49851299c11ee49
 	//게시글 삭제
 	int deletePlan(int p_no);
 

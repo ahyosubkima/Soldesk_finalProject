@@ -201,16 +201,6 @@ ul, li {
 <script type="text/javascript" src="resources/review/js/jquery.js"></script>
 <script type="text/javascript" src="resources/review/js/review.js"></script>
 <script type="text/javascript">
-	$(function() {
-		window.onpageshow = function(event) {
-			if (event.persisted
-					|| (window.performance && window.performance.navigation.type == 2)) {
-
-				location.href = "/danim/review.go";
-			}
-
-		}
-	});
 </script>
 </head>
 <body>
@@ -263,7 +253,7 @@ ul, li {
 			<article id="tab3" class="content-container__content">
 				<div class="flex-container">
 					<div class="theme_select_btn" id="theme1">커플여행</div>
-					<div class="theme_select_btn" id="theme2">럭셔리여행</div>
+					<div class="theme_select_btn" id="theme2">나홀로여행</div>
 					<div class="theme_select_btn" id="theme3">감성카페찾기</div>
 					<div class="theme_select_btn" id="theme4">맛집투어</div>
 					<div class="theme_select_btn" id="theme5">비즈니스여행</div>
@@ -275,7 +265,7 @@ ul, li {
 					<div class="location_select_btn" id="location2">대전</div>
 					<div class="location_select_btn" id="location3">대구</div>
 					<div class="location_select_btn" id="location4">부산</div>
-					<div class="location_select_btn" id="location5">인천</div>
+					<div class="location_select_btn" id="location5">제주</div>
 				</div>
 			</article>
 		</section>

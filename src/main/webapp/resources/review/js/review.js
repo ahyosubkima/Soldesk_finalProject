@@ -10,7 +10,15 @@
 
 // js준비
 document.addEventListener('DOMContentLoaded', function () {
+	
+	window.onpageshow = function(event) {
+		if (event.persisted
+				|| (window.performance && window.performance.navigation.type == 2)) {
 
+			location.href = "/danim/review.go";
+		}
+
+	}
   document.querySelectorAll('.budget_select_btn, .theme_select_btn, .location_select_btn').forEach(function(target,curin) {
 
     target.addEventListener('click',function(){

@@ -96,6 +96,8 @@ public String planDelete(HttpServletRequest req,Criteria3 cri3) {
 	req.setAttribute("contentPage", "plan/planMain.jsp");
 	return "home";
 	
+
 	
 }
+
 }

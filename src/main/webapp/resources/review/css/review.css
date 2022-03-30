@@ -1,27 +1,29 @@
 @charset "UTF-8";
 #test{
-	/* display: none; */
-	opacity: 0;
-	width: 0;
- height: 0;
- overflow: hidden;
- transition: opacity 1s ease-in;
-}
-#penImg{
-	border: 1px solid #96e4d7;
+opacity:0;
+  
+/*   overflow: hidden;*/}
+#penImg #penimgg{
+	/* border: 1px solid #96e4d7; */
+	position:absolute;
+	right:40px;
+	top : 205px;
 	border-radius: 20px;
 }
 #write_cover:hover #test{
-	/* display: block; */
-	opacity: 1;
+	transition:all 3s;
+	opacity:1;
 	width: auto;
- height: auto;
-	text-decoration: underline;
+ 	height: auto;
 	text-decoration-color: aliceblue;
-}
-#write_cover:hover{
 	background-color: aliceblue;
-	border: 1px solid #9f74b1;
+}
+#write_cover:hover #penimgg{
+	transition:all 0.7s ease-out;
+	right:5px;
+	top : 205px;
+	
+	/* border: 1px solid #9f74b1; */
 }
 
 #write_cover{

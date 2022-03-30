@@ -97,7 +97,7 @@ function initMap() {
 	<div class="content_wrapper">
 		<div class="titleBox"> <h2>${result.rb_title}</h2> </div>
 		<c:if test="${sessionScope.loginMember.dm_id eq result.rb_username}">
-<div style="width: 90%; text-align: right;"><button type="button" onclick="deleteRD()">글삭제</button></div>
+<div id="r_delDiv"><button type="button" onclick="deleteRD()">글삭제</button></div>
 		</c:if>
 		<div class="flex-container">
 

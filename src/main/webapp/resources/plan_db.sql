@@ -16,7 +16,6 @@ p_setPrice varchar2(2000 char) not null,
 p_writedate date not null
 );
 
-
 create sequence plan_write_seq;
 
 
@@ -42,14 +41,13 @@ insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진',
 '장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
 insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
 '장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+>>>>>>> ceb6b412b48cb64444cc86ffc49851299c11ee49
 
 drop table plan_write;
 
 select * from plan_write;
 
 delete from plan_write where p_no = 1042;
-
-select * from plan_write where p_no = 103;
 
 select *
 		from (

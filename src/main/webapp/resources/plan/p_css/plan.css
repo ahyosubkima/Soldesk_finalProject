@@ -251,6 +251,20 @@ ul li{
 	text-align: center;
 }
 
+#p_writeFreeWriteDetail textarea{
+	width: 80%;
+	height: 80px;
+	font-size: 13pt;
+	text-align: center;
+	border: none;
+	resize: none;
+	margin-top: 35px;
+}
+
+#p_writeFreeWriteDetail textarea:focus{
+	outline: none;
+}
+
 #p_freeWrite{
 	width: 750px;
 	height: 120px;
@@ -680,7 +694,7 @@ ul li{
 }
 
 #p_addTransportation{
-	width: 100px;
+	width: 150px;
 	height: 35px;
 	margin-top: 10px;
 	vertical-align: middle;
@@ -707,12 +721,12 @@ ul li{
 }
 
 
-#p_detailPlanGoBack{
+#p_detailPlanBackDel{
 	text-align: center;
 	margin-top: 100px;
 }
 
-#p_detailPlanGoBack button{
+#p_detailPlanBackDel button{
 	width: 150px;
 	height: 40px;
 	font-size: 13pt;

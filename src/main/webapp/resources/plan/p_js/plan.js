@@ -1,6 +1,6 @@
 
-
-function dayImportant(){
+/* 비용발생하는 일정 추가 */
+function p_needToPay(){
 	$(document).on("click", "#p_plan", function() {
 		
 		//확인용
@@ -13,18 +13,19 @@ function dayImportant(){
 				'<tr><td style="text-align: right; width: 60px; height:35px;">상품명:</td>'+
 				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
-				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr><tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
+				'<td><input type="number" id="p_setPrice" name="p_setPrice" class="p_setPrice"></td></tr>'+
+				'<tr><td colspan="2" class="deletePlanBudgetName">❌</td></tr></table>');
 	});
 }
 
 
-
-function addTrans(){
-	//교통비 테이블 추가
+/* 예산 작성 테이블 추가 */
+function p_addTransFood(){
+	//교통비, 식비 테이블 추가
 	$(document).on("click", "#p_addTransportation", function() {
 		
 		$("#p_dayWriteDiv").before('<table id="setBudgetTb" class="setBudgetTb">'+
-				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" class="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="교통편 종류를 적어주세요"></textarea></td></tr>'+
+				'<tr><td colspan="2" style="height: 70px;"><textarea id="setBudgetTxtarea" class="setBudgetTxtarea" name="p_setTitle" style="width: 180px; height: 60px;" placeholder="종류를 작성해주세요"></textarea></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">편명:</td>'+
 				'<td><input name="p_setItem" id="p_setItem" class="p_setItem"></td></tr>'+
 				'<tr><td style="text-align: right; width: 60px; height:35px;">금액:</td>'+
@@ -45,8 +46,7 @@ function addTrans(){
 
 
 /* 여행 예산 계산 */
-function budgetCalc(){
-	
+function p_budgetCalc(){
 		$(document).on("click", "#p_openBudget", function() {
 			
 			const allPrice = document.querySelectorAll(".p_setPrice");
@@ -57,8 +57,6 @@ function budgetCalc(){
 			let sum = 0;
 			let onePersonPrice = 0;
 			
-			
-			
 			for (var i = 0; i < allPrice.length; i++) {
 				
 				price = parseInt(allPrice[i].value);
@@ -66,12 +64,15 @@ function budgetCalc(){
 				sum += price;
 				onePersonPrice = sum / person;
 			}
+			
 			//확인용
 			console.log(nickname)
 			console.log(sum)
 			console.log(onePersonPrice)
 			
-			$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString() + "원으로 "+ person +"명이 여행할 경우 1인당 " + onePersonPrice.toLocaleString() + "원 입니다.</textarea>")
+			$("#p_writeBudgetWrite").html("<textarea name='p_budget' id='p_budget' readonly>" + 
+											nickname + "님,\n이번 여행에 필요한 총 비용은 " + sum.toLocaleString().split(".")[0] + "원으로 "+ 
+											person +"명이 여행할 경우 1인당 " + onePersonPrice.toLocaleString().split(".")[0] + "원 입니다.</textarea>")
 		
 	});
 }
@@ -79,7 +80,7 @@ function budgetCalc(){
 
 
 /* 자유 한마디 실시간 글자수세기, 엔터 3줄 제한 */
-function countTxt() {
+function p_countTxt() {
 	//글자수세기
 	$("#p_freeWrite").keyup(function(e) {
 	    console.log("키업!");
@@ -106,7 +107,7 @@ function countTxt() {
 
 
 /* 여행 예산 작성 엔터2줄 제한 */
-function lineLimit() {
+function p_lineLimit() {
 	$(document).on("click", "#setBudgetTxtarea", function() {
 	$(this).keydown(function(){
         var b_rows = $(this).val().split('\n').length;
@@ -124,7 +125,6 @@ function lineLimit() {
 
 /* 상세페이지 한마디 접기 피기 기능 */
 function p_openFreeWord(){
-	
 	if(document.getElementById('p_writeFreeDetail').style.display === 'block') {
 	      document.getElementById('p_writeFreeDetail').style.display = 'none';
 	      document.getElementById('p_openFreeWord').textContent = '💪여행 전 한마디 ▼';
@@ -136,21 +136,19 @@ function p_openFreeWord(){
 
 
 
-
-function qqq() {
-	
+/* 여행 전체일정 일정 추가 */
+function p_markerChoice() {
 	$(document).ready(function () {
 		  $(document).on("click", ".p_markerInfo", function () {
 			  let MapText = this.innerText;
 			  let MapAddress = $(".p_markerInfo").val();
-			  //let MapAddress = $("#infoo").val();
-			  
+
 			 // alert("주소:" + MapAddress);
 			 // alert("JS에서 이름:" + MapText);
-			  
-			  $("#p_route").append('<div id="mapNameAll"><div id="mapName"><textarea name="p_plan" id="p_plan">' + MapText
-					  			+ '</textarea></div>' + MapAddress + '<div class="deletePlanMapName">❌</div></div>');
-			  
+
+			  $("#p_route").append('<div id="mapNameAll"><div id="mapName"><textarea name="p_plan" id="p_plan">' + 
+					  				MapText + '</textarea></div>' + 
+					  				MapAddress + '<div class="deletePlanMapName">❌</div></div>');
 		  });
 		});
 }
@@ -158,13 +156,13 @@ function qqq() {
 
 	
 /* 여행플래너 제작 표지이미지 미리보기 */	
-function previewImg(){
+function p_previewImg(){
 	$(document).ready(function () {
 	document.getElementById("p_titleFiles").onchange = function () {
-	    var reader = new FileReader();
+	    var reader = new FileReader(); //파일 읽기
 
 	    reader.onload = function (e) {
-	        document.getElementById("p_preview").src = e.target.result;
+	        document.getElementById("p_preview").src = e.target.result; //결과를 표시
 	    };
 
 	    reader.readAsDataURL(this.files[0]);
@@ -174,7 +172,7 @@ function previewImg(){
 
 
 /* 여행 전체일정 부분 삭제 */
-function deletePlan() {
+function p_deletePlan() {
 	$(document).ready(function () {
 		  $(document).on("click", ".deletePlanMapName", function () {
 			  if (confirm('정말 삭제하시겠습니까?') == true) {
@@ -191,7 +189,7 @@ function deletePlan() {
 
 
 /* 여행 예산 부분 삭제 */
-function deletePlanBudget() {
+function p_deletePlanBudget() {
 	$(document).ready(function () {
 		  $(document).on("click", ".deletePlanBudgetName", function () {
 			  if (confirm('정말 삭제하시겠습니까?') == true) {
@@ -341,6 +339,9 @@ function p_writesubmit() {
 	});
 }
 
+
+
+/* 게시글 삭제 확인 */
 function p_delete() {
 	$(document).on("click", "#p_delete", function () {
 		
@@ -360,15 +361,15 @@ function p_delete() {
 
 
 $(function() {
-	addTrans();
-	qqq();
-	dayImportant();
-	budgetCalc();
-	countTxt();
-	previewImg();
-	deletePlan();
-	lineLimit();
-	deletePlanBudget();
+	p_addTransFood(); 
+	p_markerChoice();
+	p_needToPay();
+	p_budgetCalc();
+	p_countTxt();
+	p_previewImg();
+	p_deletePlan();
+	p_lineLimit();
+	p_deletePlanBudget();
 	p_submit();
 	p_writesubmit();
 	p_delete();

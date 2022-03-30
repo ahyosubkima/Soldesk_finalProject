@@ -299,7 +299,9 @@ ul, li {
 	<div>
 	<c:if test="${not empty sessionScope.loginMember.dm_id }">
 <input type="hidden" name="writer" value="${sessionScope.loginMember.dm_id }">
-    <div id="review_write_div"><div id="write_cover"><span id="test"><a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a></span><div id="penImg"><img id="note2" style="width: 30px;" src="resources/review/img/note.png"></div></div></div>
+
+    <div id="review_write_div"> <div id="write_cover"><span id="test"><a href="reviewWrite.go?writer=${sessionScope.loginMember.dm_id }">후기쓰기</a></span><div id="penImg"><img id="penimgg" style="width: 20px;" src="resources/review/img/pencil.png"></div></div></div>
+
 </c:if>
 
 		<div class="" id="contentTable">

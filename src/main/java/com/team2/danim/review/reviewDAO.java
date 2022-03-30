@@ -18,6 +18,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.team2.danim.comm.CommMapper;
+import com.team2.danim.comm.Comm_picture;
+import com.team2.danim.comm.Comm_picture_reply;
 
 @Service
 public class reviewDAO {
@@ -154,11 +156,127 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 		
 		ReviewBean result = ss.getMapper(ReviewMapper.class).selectDetail(rb);
 		req.setAttribute("result", result);
-		System.out.println("set성공");
+//		System.out.println("set성공");
 		
 		
 		
 		
 	}
+	
+	//조회수
+	public void viewPlus(ReviewBean rb, HttpServletRequest req) {
+		
+		try {
+		String token = (String)req.getSession().getAttribute("token"); // 디테일 진입시 생성된 토큰 값
+		
+		System.out.println(token);
+		
+		String successToken = (String) req.getSession().getAttribute("successToken");
+		System.out.println(successToken + "?????????????");
+		
+		if(successToken == token) {
+			return;
+		}
+
+		
+			System.out.println(req.getParameter("rb_no"));
+			rb.setRb_no(Integer.parseInt(req.getParameter("rb_no")));
+			if (ss.getMapper(ReviewMapper.class).viewPlus(rb)==1) {
+				req.getSession().setAttribute("successToken", token);
+				System.out.println("조회수증가 성공");
+			}
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//댓글
+	public void getReply(Review_reply rbr, HttpServletRequest req) {
+		
+		try {
+			System.out.println(req.getParameter("rb_no"));
+			
+			rbr.setRbr_rb_no(Integer.parseInt(req.getParameter("rb_no")));
+			req.setAttribute("reply", ss.getMapper(ReviewMapper.class).getReply(rbr));
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	public ReplysAjaxDTO wirteReplyByJSON(Review_reply rrp, ReviewBean rb) {
+		// TODO Auto-generated method stub
+		
+		int writeSuccess = ss.getMapper(ReviewMapper.class).wirteReplyByJSON(rrp);
+		
+		if(writeSuccess ==1) {
+			System.out.println("성공이니까 get실행");
+			List<Review_reply> replys =ss.getMapper(ReviewMapper.class).getReply(rrp);
+			ReplysAjaxDTO replysArr = new ReplysAjaxDTO(replys);
+			//작성할 때 댓글숫자도 올려주기
+			int commentCount =replysArr.getReplys().size();
+			rb.setRb_no(rrp.getRbr_rb_no());
+			rb.setRb_commentcount(commentCount);
+			int repCountUp = ss.getMapper(ReviewMapper.class).repCountPlus(rb);
+			
+			if(repCountUp ==1) {
+				System.out.println("댓글수 갱신성공");
+			}
+			
+			return replysArr;
+		}
+		else {
+			System.out.println("작성실패");
+		return null;
+				}
+	}
+
+
+	public ReplysAjaxDTO deleteReplyByJSON(Review_reply rrp, ReviewBean rb) {
+		
+		int deleteSuccess = ss.getMapper(ReviewMapper.class).deleteReplyByJSON(rrp);
+		
+		if(deleteSuccess ==1) {
+			System.out.println("삭제성공이니까 get실행");
+			List<Review_reply> replys =ss.getMapper(ReviewMapper.class).getReply(rrp);
+			ReplysAjaxDTO replysArr = new ReplysAjaxDTO(replys);
+			//삭제할 때 댓글숫자도 내려주기
+			int commentCount =replysArr.getReplys().size();
+			rb.setRb_no(rrp.getRbr_rb_no());
+			rb.setRb_commentcount(commentCount);
+			int repCountDown = ss.getMapper(ReviewMapper.class).repCountMinus(rb);
+			
+			if(repCountDown ==1) {
+				System.out.println("댓글수 갱신성공");
+			}
+			
+			return replysArr;
+		}
+		else {
+			System.out.println("작성실패");
+		return null;
+				}
+	}
+
+
+	public void deleteReview(HttpServletRequest req) {
+		ReviewBean rb = new ReviewBean();
+		
+		rb.setRb_no(Integer.parseInt(req.getParameter("rb_no")));
+		
+		int delR =ss.getMapper(ReviewMapper.class).deleteReivew(rb);
+		
+		if(delR == 1) {
+		System.out.println("삭제성공");
+		}
+		}
+	
 
 }

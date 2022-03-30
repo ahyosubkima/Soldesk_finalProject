@@ -126,7 +126,7 @@ else if(target.classList.contains('location_select_btn')){
        // sql 검색을 위해 변수에 넣을때 콤마제거 
     let delComma = db.textContent.replaceAll(",","");
     console.log(delComma);
-    rb_budget =delComma.substring(2, db.textContent.length);
+    rb_budget =delComma.substring(1, db.textContent.length);
 
   }else if(db.classList.contains('theme_select_btn')){
     rb_theme = db.textContent;
@@ -337,11 +337,11 @@ function getReviews(result){
     console.log(splitedimg[0]);
 
     
-    newDiv.insertAdjacentHTML('afterbegin', '<div>'+'<a href="reviewDeatil.go?rb_no='+ i.rb_no +'">'+'<img class="img_box" src="resources/review/img/'+ splitedimg[0] +'" alt="이미지위치"></a> </div>');
+    newDiv.insertAdjacentHTML('afterbegin', '<div class="img_box_container">'+'<a href="reviewDeatil.go?rb_no='+ i.rb_no +'">'+'<img class="img_box" src="resources/review/img/'+ splitedimg[0] +'" alt="이미지위치"></a> </div>');
     newDiv.insertAdjacentHTML('beforeend', '<div class="content_title" style="font-size: 30px">'+ i.rb_title +'</div>');
-    newDiv.insertAdjacentHTML('beforeend', '<div>like :'+i.rb_likecount+' view :'+i.rb_viewcount+' comment :'+i.rb_commentcount+'</div>');
-    newDiv.insertAdjacentHTML('beforeend', '<div>'+backTODate+'작성자 :'+i.rb_username +' </div>' );
-    newDiv.insertAdjacentHTML('beforeend', '<div> <span> '+korCurrency+' 이하 </span><span>'+i.rb_theme+' </span><span>'+i.rb_location+'</span> </div>' );
+    newDiv.insertAdjacentHTML('beforeend', '<div id="icon_div"> <img src="resources/review/img/eye2.png" id="review_icon">&nbsp;:'+i.rb_viewcount+' <img src="resources/review/img/ripple2.png" id="review_icon">&nbsp;:'+i.rb_commentcount+'</div>');
+    //newDiv.insertAdjacentHTML('beforeend', '<div>'+backTODate+'작성자 :'+i.rb_username +' </div>' );
+    newDiv.insertAdjacentHTML('beforeend', '<div> <span># '+korCurrency+' 이하 </span> | <span>#'+i.rb_theme+' </span> | <span>#'+i.rb_location+'</span> | <span>#'+i.rb_headNum+'인</span> </div>' );
 
 
      });

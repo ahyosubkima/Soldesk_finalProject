@@ -43,4 +43,36 @@ select * from REVIEW_BOARD where rb_no = #{rb_no}
 
 </select>
 
+<update id="viewPlus" parameterType="com.team2.danim.review.ReviewBean">
+update REVIEW_BOARD set rb_viewcount = rb_viewcount +1 where rb_no = #{rb_no}
+
+</update>
+
+<select id="getReply"
+		resultType="com.team2.danim.review.Review_reply">
+		select * from review_reply where rbr_rb_no = #{rbr_rb_no} order by
+		rbr_when desc
+	</select>
+	
+	<insert id="wirteReplyByJSON" parameterType="com.team2.danim.review.Review_reply">
+insert into review_reply values(review_reply_seq.nextval,#{rbr_rb_no},#{rbr_owner},#{rbr_txt},sysdate)	
+	</insert>
+	
+	<update id="repCountPlus" parameterType="com.team2.danim.review.ReviewBean">
+	update REVIEW_BOARD set rb_commentcount = #{rb_commentcount} where rb_no = #{rb_no}
+	</update>
+	
+	<delete id="deleteReplyByJSON" parameterType="com.team2.danim.review.Review_reply">
+	
+	delete from review_reply where rbr_no = #{rbr_no}
+	</delete>
+	
+	<update id="repCountMinus" parameterType="com.team2.danim.review.ReviewBean">
+	update REVIEW_BOARD set rb_commentcount = #{rb_commentcount} where rb_no = #{rb_no}
+	</update>
+
+	<delete id="deleteReivew" parameterType="com.team2.danim.review.ReviewBean">
+	
+	delete from REVIEW_BOARD where rb_no = #{rb_no}
+	</delete>
 </mapper>

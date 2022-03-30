@@ -1,7 +1,8 @@
  // 현재위치
 		let p_nowLatitude = 0;
 		let p_nowLongitude = 0;
-
+		let infowindow = "";
+		
         if(navigator.geolocation) {
             
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -40,6 +41,11 @@ $(function() {
 	//"https://dapi.kakao.com/v2/local/search/keyword.json?
 	
 	$("#p_searchBtn").click(function() {
+			
+			if(infowindow !=""){
+				
+				infowindow.close();
+			}
 			let search = $("#p_search").val();
 			let routeClick = "";
 			
@@ -74,10 +80,11 @@ $(function() {
 			        iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
 			    // 인포윈도우를 생성하고 지도에 표시합니다
-			    var infowindow = new kakao.maps.InfoWindow({
+			    infowindow = new kakao.maps.InfoWindow ({
 			        content : iwContent,
 			        removable : iwRemoveable
 			    });
+			    
 					$.each(r.documents, function(i, l) {
 						console.log(l.place_name);
 						// 마커를 생성합니다
@@ -95,12 +102,12 @@ $(function() {
 					    $(".p_markerInfo").text(l.place_name);
 					    $(".p_markerInfo").val(l.address_name);
 					    
+					    
+					    
 					});
 					});
-					
 					
 				
-				    
 				    
 				    
 				}

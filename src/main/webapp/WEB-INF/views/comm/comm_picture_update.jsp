@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+
 	$(function() {
 
 		previewImg();
@@ -37,6 +38,7 @@
 					location.href = "/danim/comm_picture_page";
 				}
 			}
+
 
 		}
 	}
@@ -73,6 +75,7 @@
 				<h2 class="best_update_pic2">사진게시판</h2>
 			</div>
 			<hr class="comm_update_hr">
+
 			<c:forEach var="picture" items="${picture }">
 				<form action="comm_picture_update_do" method="post"
 					enctype="multipart/form-data">

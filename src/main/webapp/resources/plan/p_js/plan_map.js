@@ -91,7 +91,7 @@ $(function() {
 					    // 마커 위에 인포윈도우를 표시합니다
 					    infowindow.open(map, marker);
 					    
-					    alert("지도장소이름:" + l.place_name);
+					   // alert("지도장소이름:" + l.place_name);
 					    $(".p_markerInfo").text(l.place_name);
 					    $(".p_markerInfo").val(l.address_name);
 					    

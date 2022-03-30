@@ -23,6 +23,7 @@ dm_isAdmin varchar2(2 char)
  * 
  * */
 insert into danim_member values ('dm_admin', 'ecd102bd4d2c50cb22cdae4ed7c7a395a22f0dd5b448db3b36224bbcd61a8320', '어드민', 'abc@abc.abc', '서울', 'dog4.jpg', 'Y');
+insert into danim_member values ('admin', 'admin', '어드민', 'abc@abc.abc', '서울', 'admin', 'Y');
 
 
 insert into danim_member

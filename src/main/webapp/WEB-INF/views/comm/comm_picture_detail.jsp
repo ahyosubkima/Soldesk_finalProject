@@ -173,6 +173,7 @@
 									onclick="comm_delOK(${picture.comm_picture_no})">
 									<img id="detail_icon" src="resources/comm/comm_img/delete.png">
 								</button></td>
+
 						</tr>
 					</c:if>
 
@@ -213,6 +214,7 @@
 													src="resources/comm/comm_img/delete.png">
 											</button>
 										</c:if>
+
 									</div>
 								</td>
 

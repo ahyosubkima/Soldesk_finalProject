@@ -1,23 +1,17 @@
 package com.team2.danim.plan;
 
 import java.io.File;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.team2.danim.Criteria3;
 import com.team2.danim.PageMakerDTO3;
 
@@ -180,12 +174,6 @@ public class PlanDAO {
 			req.setAttribute("budgets", budgets);
 			
 			
-		
-			
-			
-			
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -207,7 +195,6 @@ public class PlanDAO {
 
 	
 	public void getPlanPaging(HttpServletRequest req,Criteria3 cri3) {
-		
 		
 		try {
 				
@@ -252,10 +239,7 @@ public class PlanDAO {
 				map.put("amount",cri3.getAmount()+"");
 				map.put("pageNum",cri3.getPageNum()+"");
 				
-				
 				req.setAttribute("plans", ss.getMapper(PlanMapper.class).p_searchTitle(map));
-				
-				
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -306,15 +290,25 @@ public class PlanDAO {
 		}
 	}
 
-/*	public void getHeart(HttpServletRequest req) {
+	public void deletePlan(HttpServletRequest req) {
+
 		try {
 			int p_no = Integer.parseInt(req.getParameter("p_no"));
-			req.setAttribute("plans", ss.getMapper(PlanMapper.class).getHeart());
 			
+			if (ss.getMapper(PlanMapper.class).deletePlan(p_no) == 1) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("DB에러");
 		}
-	}*/
+		
+		
+		
+	}
+
 	
 
 

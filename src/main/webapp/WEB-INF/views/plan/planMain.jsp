@@ -60,8 +60,9 @@
 			<!-- 각 번호 페이지 버튼 -->
 			<c:forEach var="num" begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}">
-				<td><a
-					href="/danim/plan.page?pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a></td>
+				<td>
+					<a href="/danim/plan.page?pageNum=${num }">&nbsp;${num}&nbsp;&nbsp;|&nbsp;</a>
+				</td>
 			</c:forEach>
 				<td><c:if test="${pageMaker.next}">
 					<li class="pageInfo_btn next"><a
@@ -131,7 +132,13 @@
 		 <table id="p_mainDetail"> 
 			 <tr>
 					<td><div style="text-align: center;"><a href="plan.detailPlanner?p_no=${p.p_no }">
-						<img id="p_mainPic"src="resources/plan/p_file/${p.p_titleFile }"></a></div></td>
+						<c:if test="${p.p_titleFile eq 'danimPagingTest00'}">
+							<img id="p_mainPic"src="resources/plan/p_img/paging.png">
+						</c:if>
+						<c:if test="${p.p_titleFile ne 'danimPagingTest00'}">
+						<img id="p_mainPic"src="resources/plan/p_file/${p.p_titleFile }">
+						</c:if>
+						</a></div></td>
 				</tr>
 				<tr>
 					<td align="center"><h3>${p. p_title}</h3></td>

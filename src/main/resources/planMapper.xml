@@ -104,16 +104,15 @@ select count(*) from plan_write
 		(p_title LIKE '%'||#{p_title}||'%' OR p_place LIKE '%'||#{p_place}||'%')
 </select>
 
-<select id="p_searchAll"
-		resultType="com.team2.danim.plan.Plan_write" parameterType="map">
+<select id="p_searchAll" resultType="com.team2.danim.plan.Plan_write" parameterType="map">
 		SELECT *
 		from (
-		select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
-		p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
-		p_setTitle, p_setItem, p_setPrice, p_writedate
+			select rownum as rn, p_no, p_writer, p_title, p_titleFile, p_days,
+			p_startDate, p_person, p_place, p_plan, p_budget, p_freeWrite,
+			p_setTitle, p_setItem, p_setPrice, p_writedate
 		from (
-		select * from plan_write where (p_title || p_place) like '%'||#{p_searchWrite}||'%'
-		order by p_writedate desc
+			select * from plan_write where (p_title || p_place) like '%'||#{p_searchWrite}||'%'
+			order by p_writedate desc
 		)
 		)
 		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
@@ -121,12 +120,9 @@ select count(*) from plan_write
 </select>	
 
 
-
-<!-- <select id="getHeart"
-		resultType="com.team2.danim.plan.Plan_write">
-		SELECT * FROM plan_write WHERE ROWNUM &lt;= 6 order by heart_like desc
-</select>
- -->
+<delete id="deletePlan" parameterType="com.team2.danim.plan.Plan_write">
+	delete from plan_write where p_no = #{p_no}
+</delete>
 
 
 </mapper>

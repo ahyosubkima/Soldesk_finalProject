@@ -96,8 +96,10 @@
 			</form>
 			<c:if test="${param.search_input eq null}">
 				<div id="content_title_div">
+
 					<!-- 				 <img id="sdf_img" src="resources/comm/comm_img/best2.png"> -->
 					<h2 class="best_pic">베스트 사진</h2>
+
 				</div>
 				<hr id="comm_hr">
 				<div style="width: 100%; float: left;">
@@ -108,6 +110,7 @@
 							</tr>
 							<tr>
 								<td><img class="comm_picture_best_img2"
+
 									src="resources/comm/file/${g.comm_picture_name }"
 									onclick="location.href='comm_picture_detail?no=${g.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img>
 								</td>
@@ -124,6 +127,7 @@
 			</c:if>
 
 			<div style="width: 100%; float: left; padding-top: 40px;">
+
 				<div id="content_title_div">
 					<!-- <img id="sdf_img" src="resources/comm/comm_img/photo-1.png"> -->
 					<h2
@@ -140,9 +144,6 @@
 							</tr>
 							<tr>
 								<td><img id="comm_picture_best_img"
-									onmouseover="mouse_over4(${status.index})"
-									id="big_img2${status.index }"
-									onmouseout="mouse_out4(${status.index})"
 									src="resources/comm/file/${p.comm_picture_name }"
 									onclick="location.href='comm_picture_detail?no=${p.comm_picture_no }&t=${sessionScope.token }&id=${sessionScope.loginMember.dm_id}&pageNum=${param.pageNum }&search_option=${param.search_option }&search_input=${param.search_input }'"></img></td>
 							</tr>

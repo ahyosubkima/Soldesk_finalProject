@@ -101,70 +101,78 @@
 							src="resources/comm/file/${picture.comm_picture_name }"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea id="picture_txt_area"  cols="10" readonly="readonly">
+						<td colspan="2"><textarea id="picture_txt_area" cols="10"
+								readonly="readonly">
 						${picture.comm_picture_txt }
 						</textarea></td>
 					</tr>
 					<tr>
-					<td>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good eq null or checked.cpg_good == 0 }">
-						<form action="comm_picture_good">
-							<table style="padding-left: 48%;">
-								<tr>
-									<td colspan="2" style="text-align: right;"><input
-										name="no" type="hidden" value="${picture.comm_picture_no }">
-										<input name="id" type="hidden"
-										value="${sessionScope.loginMember.dm_id }">
-										<input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn"> 
-										<input type="hidden" name="search_option" value="${param.search_option }" id="so"> 
-										<input type="hidden" name="search_input" value="${param.search_input }" id="si"> 
-										<input
-										name="token2" value="${token2 }" type="hidden">
-										<button class="comm_heart_btn" onclick="return reallyGood();">
-											<img class="comm_heart_img"
-												src="resources/comm/comm_img/heart.png">
-										</button></td>
-								</tr>
-							</table>
-						</form>
+						<td><c:if
+								test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null 
+								&& checked.cpg_good eq null or checked.cpg_good == 0 }">
+								<form action="comm_picture_good">
+									<table style="padding-left: 48%;">
+										<tr>
+											<td colspan="2" style="text-align: right;"><input
+												name="no" type="hidden" value="${picture.comm_picture_no }">
+												<input name="id" type="hidden"
+												value="${sessionScope.loginMember.dm_id }"> <input
+												type="hidden" name="pageNum" value="${param.pageNum }"
+												id="pgn"> <input type="hidden" name="search_option"
+												value="${param.search_option }" id="so"> <input
+												type="hidden" name="search_input"
+												value="${param.search_input }" id="si"> <input
+												name="token2" value="${token2 }" type="hidden">
+												<button class="comm_heart_btn"
+													onclick="return reallyGood();">
+													<img class="comm_heart_img"
+														src="resources/comm/comm_img/heart.png">
+												</button></td>
+										</tr>
+									</table>
+								</form>
 
-					</c:if>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null && checked.cpg_good == 1 }">
-						<form action="comm_picture_Nogood">
-							<table style="padding-left: 48%;">
-								<tr>
-									<td colspan="2" style="text-align: right;"><input
-										name="no" type="hidden" value="${picture.comm_picture_no }">
-										<input name="id" type="hidden"
-										value="${sessionScope.loginMember.dm_id }"> <input
-										name="good" value="1" type="hidden" id="good"> <input type="hidden"
-										name="pageNum" value="${param.pageNum }" id="pgn"> <input
-										type="hidden" name="search_option"
-										value="${param.search_option }" id="so"> <input
-										type="hidden" name="search_input"
-										value="${param.search_input }" id="si"> <input
-										name="token2" value="${token2 }" type="hidden">
-										<button class="comm_heart_btn"
-											onclick="return reallyNoGood();">
-											<img class="comm_heart_img"
-												src="resources/comm/comm_img/heart2.png">
-										</button></td>
-								</tr>
-							</table>
-						</form>
-					</c:if>
-					</td>
+							</c:if> <c:if
+								test="${sessionScope.loginMember.dm_nickname ne picture.comm_picture_writer && sessionScope.loginMember != null 
+								&& checked.cpg_good == 1 }">
+								<form action="comm_picture_Nogood">
+									<table style="padding-left: 48%;">
+										<tr>
+											<td colspan="2" style="text-align: right;"><input
+												name="no" type="hidden" value="${picture.comm_picture_no }">
+												<input name="id" type="hidden"
+												value="${sessionScope.loginMember.dm_id }"> <input
+												name="good" value="1" type="hidden" id="good"> <input
+												type="hidden" name="pageNum" value="${param.pageNum }"
+												id="pgn"> <input type="hidden" name="search_option"
+												value="${param.search_option }" id="so"> <input
+												type="hidden" name="search_input"
+												value="${param.search_input }" id="si"> <input
+												name="token2" value="${token2 }" type="hidden">
+												<button class="comm_heart_btn"
+													onclick="return reallyNoGood();">
+													<img class="comm_heart_img"
+														src="resources/comm/comm_img/heart2.png">
+												</button></td>
+										</tr>
+									</table>
+								</form>
+							</c:if></td>
 					</tr>
-					<c:if
-						test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+					<c:if test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer 
+						|| sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 						<tr>
 							<td colspan="2" style="text-align: right"><button
 									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },'${param.search_option }','${param.search_input }')"><img id="detail_icon" src="resources/comm/comm_img/edit.png"></button>
-								<button style="width: 70px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_delOK(${picture.comm_picture_no})"><img id="detail_icon" src="resources/comm/comm_img/delete.png"></button></td>
+									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },
+									'${param.search_option }','${param.search_input }')">
+									<img id="detail_icon" src="resources/comm/comm_img/edit.png">
+								</button>
+								<button
+									style="width: 70px; font-size: 15pt; border: none; background: none;"
+									onclick="comm_delOK(${picture.comm_picture_no})">
+									<img id="detail_icon" src="resources/comm/comm_img/delete.png">
+								</button></td>
 						</tr>
 					</c:if>
 
@@ -173,7 +181,10 @@
 				<button id="list_btn" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
-						<td><div id="comment_div">Comment &nbsp;<img src="resources/comm/comm_img/comment.png" id="comment_img"></div></td>
+						<td><div id="comment_div">
+								Comment &nbsp;<img src="resources/comm/comm_img/comment.png"
+									id="comment_img">
+							</div></td>
 					</tr>
 				</table>
 
@@ -187,16 +198,23 @@
 									</c:if></td>
 								<td style="text-align: center;">${r.cpr_txt }</td>
 								<td style="text-align: center;">
-								<div id="reply_div">
-								<fmt:formatDate
-										value="${r.cpr_when }" pattern="yyyy-MM-dd" /> <c:if
-										test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
+									<div id="reply_div">
+										<fmt:formatDate value="${r.cpr_when }" pattern="yyyy-MM-dd" />
+										<c:if
+											test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 
-										&nbsp;<button id="reply_btn" onclick="pictureReplyUpdate(${r.cpr_no},${param.no })"><img id="reply_icon" src="resources/comm/comm_img/edit.png"></button>
-										&nbsp;<button id="reply_btn" onclick="pictureReplyDel(${r.cpr_no})"><img id="reply_icon" src="resources/comm/comm_img/delete.png"></button>
-									</c:if>
+										&nbsp;<button id="reply_btn"
+												onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">
+												<img id="reply_icon" src="resources/comm/comm_img/edit.png">
+											</button>
+										&nbsp;<button id="reply_btn"
+												onclick="pictureReplyDel(${r.cpr_no})">
+												<img id="reply_icon"
+													src="resources/comm/comm_img/delete.png">
+											</button>
+										</c:if>
 									</div>
-									</td>
+								</td>
 
 							</tr>
 						</c:forEach>
@@ -211,9 +229,9 @@
 								name="cpr_owner_id" type="hidden"
 								value="${sessionScope.loginMember.dm_id }"></td>
 							<td style="text-align: center;"><input
-								id="comm_picture_detail_replyInput" placeholder="댓글입력..." name="cpr_txt"
-								class="cpr_txt"> <input type="hidden" name="no"
-								value="${picture.comm_picture_no }"> <input
+								id="comm_picture_detail_replyInput" placeholder="댓글입력..."
+								name="cpr_txt" class="cpr_txt"> <input type="hidden"
+								name="no" value="${picture.comm_picture_no }"> <input
 								type="hidden" name="token2" value="${token2}"></td>
 							<td colspan="2" style="text-align: center;"><c:if
 									test="${sessionScope.loginMember != null }">

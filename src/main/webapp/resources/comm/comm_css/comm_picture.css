@@ -241,7 +241,6 @@ text-align: center;
 }
 .comm_write_hr{
 	margin-left: 150px;
-	margin-top: -5px;
 	width: 600px;
 }
 .comm_write_hr2{
@@ -250,7 +249,6 @@ text-align: center;
 }
 .comm_update_hr{
 	margin-left: 300px;
-	margin-top: -5px;
 	width: 800px;
 }
 #sdf_img{
@@ -517,7 +515,7 @@ height: auto;
 }
 .image_container_div{
 	padding-left: 80%;
-	margin-top: -35%;
+	margin-top: -32.5%;
 
 }
 .image_container_div img{
@@ -526,7 +524,7 @@ outline: none;
 	}
 .image_container_div2{
 	padding-left: 80%;
-	margin-top: -40%;
+	margin-top: -37.5%;
 }
 
 #p_preview{

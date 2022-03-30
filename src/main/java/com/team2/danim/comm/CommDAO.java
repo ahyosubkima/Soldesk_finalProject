@@ -65,11 +65,7 @@ public void getPageMaker(HttpServletRequest req,Criteria cri) {
 	
 	PageMakerDTO pageMake = new PageMakerDTO(cri, total);
 	req.setAttribute("pageMaker", pageMake);
-	/*System.out.println(pageMake.getEndPage());
-	System.out.println(pageMake.getStartPage());
-	System.out.println(pageMake.getTotal());
-	System.out.println("페이지메이커 실행후");
-	*/
+	
 	
 }
 
@@ -218,10 +214,8 @@ try {
           newFile.transferTo(saveFile);
 		
 		if (fileName != "") {
-			
 			cp.setComm_picture_name(storedFileName);
-			
-			
+				
 		}
 		else {
 			cp.setComm_picture_name(oldFile);

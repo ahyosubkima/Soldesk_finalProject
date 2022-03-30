@@ -226,13 +226,15 @@ function deleteDay(e){
     }
     else{
 
+        console.log(e.parentNode.parentNode.parentNode);
         console.log(e.parentNode.parentNode.parentNode.getAttribute('data-day'));
 
         if(e.parentNode.parentNode.parentNode.classList.contains('active')){
-                
+                console.log(e.parentNode.parentNode.parentNode.previousElementSibling);
             e.parentNode.parentNode.parentNode.previousElementSibling.classList.add('active');
 
         }
+        console.log('여기실행여부확인');
         e.parentNode.parentNode.parentNode.remove();
         --daycount;
         document.getElementById('totalday').value=daycount;
@@ -240,11 +242,18 @@ function deleteDay(e){
                 console.log(i, curidx);
                i.setAttribute('data-day',curidx+1);
                let dayNum = curidx +1;
+              // console.log(i.childNodes[2].firstChild);
                i.childNodes[2].firstChild.textContent = 'day ' + dayNum;
                 i.style.display ='none';
         })
 
+
+        //액티브 설정 후 앞뒤 값 있을때만 보이기
         document.querySelector('.daily_schedule.active').style.display = 'block';
+        let dayselect = document.querySelector('.daily_schedule.active');
+        //선택한 곳 보여주는 함수실행
+        onlyShowselected(dayselect);
+
         if(document.querySelector('.daily_schedule.active').previousElementSibling != null){
         document.querySelector('.daily_schedule.active').previousElementSibling.style.display ='block';}
         if(document.querySelector('.daily_schedule.active').nextElementSibling != null){

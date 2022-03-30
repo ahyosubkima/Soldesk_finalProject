@@ -97,7 +97,7 @@ function adjustHeight() {
 								</td>
 					</tr>
 					<tr>
-						<td colspan="2" class="comm_video_txt"><textarea 
+						<td colspan="2" ><textarea 
 						readonly="readonly"
 						id="video_txt_area">${v.cv_txt }</textarea></td>
 					</tr>

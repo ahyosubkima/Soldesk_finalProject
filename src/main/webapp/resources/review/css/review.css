@@ -5,24 +5,26 @@
 	width: 0;
  height: 0;
  overflow: hidden;
- transition: opacity 1s ease-in;
+  
 }
 #penImg{
-	border: 1px solid #96e4d7;
-	border-radius: 20px;
 }
 #write_cover:hover #test{
 	/* display: block; */
 	opacity: 1;
 	width: auto;
  height: auto;
+ font-size:10pt;
 	text-decoration: underline;
 	text-decoration-color: aliceblue;
+	transition: opacity 1s ease-out;
+
 }
 #write_cover:hover{
 	background-color: aliceblue;
 	border: 1px solid #9f74b1;
 }
+
 
 #write_cover{
 	display: flex;
@@ -55,13 +57,13 @@
 	
 }
 #review_write_div{
-	padding-top: 12%;
 	padding-left: 94%;
 	position: fixed;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	transition : 2s;
 }
 
 

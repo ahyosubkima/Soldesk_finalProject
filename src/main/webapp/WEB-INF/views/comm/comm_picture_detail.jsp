@@ -101,7 +101,7 @@
 							src="resources/comm/file/${picture.comm_picture_name }"></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea id="picture_txt_area" cols="10"
+						<td colspan="2"  class="comm_video_txt"><textarea id="picture_txt_area" cols="10"
 								readonly="readonly">
 						${picture.comm_picture_txt }
 						</textarea></td>

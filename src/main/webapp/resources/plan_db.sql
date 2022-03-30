@@ -19,8 +19,29 @@ p_writedate date not null
 create sequence plan_write_seq;
 
 
-insert into plan_write values(plan_write_seq.nextval, 'dm_admin', 'Paging', 'danimPagingTest00', 1 ,'2022-03-02', 1, 
+insert into plan_write values(plan_write_seq.nextval, 'admin', 'Paging', 'danimPagingTest00', 1 ,'2022-03-02', 1, 
 'Paging','Paging' ,'Paging','Paging','Paging','Paging',1,sysdate);
+
+
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+insert into plan_write values(plan_write_seq.nextval, 'aaa', 'Paging', '사진', 3 ,'2022-03-02', 2, 
+'장소3','플랜' ,'예산','한마디','타이틀1','아이템2','1',sysdate);
+>>>>>>> ceb6b412b48cb64444cc86ffc49851299c11ee49
 
 drop table plan_write;
 

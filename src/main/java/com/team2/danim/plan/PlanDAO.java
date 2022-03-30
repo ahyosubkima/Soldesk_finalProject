@@ -291,6 +291,7 @@ public class PlanDAO {
 	}
 
 	public void deletePlan(HttpServletRequest req) {
+
 		try {
 			int p_no = Integer.parseInt(req.getParameter("p_no"));
 			

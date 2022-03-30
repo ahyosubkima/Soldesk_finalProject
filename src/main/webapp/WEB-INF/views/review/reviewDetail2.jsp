@@ -1,272 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>  
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <script src="resources/review/js/reviewDetail.js"></script>
+ <script type="resources/review/js/jquery.js"></script>
+<link rel="stylesheet" href="resources/review/css/reviewDetail.css">
 <style>
-.schedule_cell{
-	margin: 1px;
-}
-.arrowImg:hover{
-	filter: invert(81%) sepia(17%) saturate(1561%) hue-rotate(113deg) brightness(86%) contrast(89%);
-	transition: 0.3s;
-}
 
-.totalText{
-border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    width: 80%;
-    /* height: 140px; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.dtContent{
-	border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    width: 70%;
-    display: flex;
-    /* height: 80px; */
-    justify-content: center;
-    align-items: center;
-}
-
-.scheTitle, .dtTitle, .trTitle{
-margin-top: 10px;
-margin-bottom: 10px;
-}
-.scheduleBox{
-    display: flex;
-    justify-content: center;
-}
-.schedule_con{
-	border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    /* height: 50px; */
-    width: 33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 3px;
-    margin-right: 3px;
-	
-}
-
-.schedule_wrapper{
-	display: inline-block;
-    justify-content: center;
-    flex-direction: row;
-    width: 70%;
-	border: 2px solid rgb(232, 248, 240);
-    border-top: none;
-    padding-bottom: 10px;
-}
-
-
-	.scheduleController_wrapper{
-		display: flex;
-    justify-content: center;
-	margin-top: 20px;
-    margin-bottom: 0px;
-	}
-.scheduleController{
-	display: flex;
-    border: 2px solid  rgb(232, 248, 240);
-    width: 70%;
-}
-
-
-.totalroute_content{
-	text-align: center;
-	border-bottom: 2px solid #545479;
-	width: 60%;
-	display: inline-block;
-	padding-bottom: 5px;
-}
-.img_box{
-	width: 33%;
-    height: 400px;
-    margin-right: 20px;
-    margin-left: 20px;
-}
-
-
-.imgContainer_wrapper{
-text-align: center;
-}
-.imgContainer{
-	/* border: 1px solid #38CEB5; */
-}
-
-.totalroute_title{
-	margin-bottom: 10px;
-}	
-.totalRoute_wrapper{
-
-	margin-top: 20px;
-	margin-bottom: 20px ;
-	text-align: center;
-}
-
-.uninInfo_content{
-margin-left: 10px;
-margin-right: 10px;
-
-}
-
-.unitInfo{
-	border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-	text-align: center;
-	margin-right: 10px;
-}
-
-.content_wrapper{
-	margin-top: 30px;
-}
-.titleBox{
-	text-align: center;
-	margin-bottom: 20px;
-}
-
-.totalReview{
-	text-align: center;
-}
-
-.dailySelected{
-	display: none;
-    height: 100%;
-    font-size: 22pt;
-}
-
-.dailySelected.activate{
-	display: block;
-	background-color: aliceblue;
-	
-}
-
-
-.daySelector_wrapper{
- width: 80%;
- text-align: center;
- 
-}
-
-textarea{
-	width: 100%;
-	resize: none;
-}
-
-.dailyBox{
-	display: none;
-	text-align: center;
-	justify-content: center;
-}
-
-.dailyBox.activate{
-	display: block;
-}
-
-.daily_schedule.active{
-
-	background-color: red;
-}
-
-#daily_schedule_con{
-width: 25%;
-}
-
-.axis{
-	width: 15%;
-}
-
-.cell{
-	width: 25%;
-}
-
-#schedule_inner_nav>a {
-	border: 1px solid black;
-}
-/* Dropdown Button */
-.dropbtn {
-	background-color: #4CAF50;
-	color: white;
-	padding: 16px;
-	font-size: 16px;
-	border: none;
-	cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
-	background-color: #3e8e41;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-	position: relative;
-	display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-	background-color: #f1f1f1
-}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-	display: block;
-}
-
-td, tr {
-	border: 1px solid black;
-}
-/* div{
-	border: 1px solid red;
-} */
-
-
-
-.flex-container {
-	display: flex;
-	justify-content: center;
-}
 </style>
 <!-- <script type="text/javascript" src="resources/review/js/reviewWrite.js"></script> -->
 <script type="text/javascript">
@@ -343,7 +89,6 @@ function initMap() {
   
   
 }
-
 </script>
 </head>
 
@@ -351,7 +96,9 @@ function initMap() {
 
 	<div class="content_wrapper">
 		<div class="titleBox"> <h2>${result.rb_title}</h2> </div>
-
+		<c:if test="${sessionScope.loginMember.dm_id eq result.rb_username}">
+<div style="width: 90%; text-align: right;"><button type="button" onclick="deleteRD()">글삭제</button></div>
+		</c:if>
 		<div class="flex-container">
 
 			<div class="unitInfo">
@@ -619,9 +366,40 @@ function initMap() {
 	</div>
 
 	<input type="text" id="totalday" value="${result.rb_totalday}" hidden ="hidden">
+	<input type="text" id="token" value="${token}"  hidden ="hidden">
 
-
-
+<!-- 댓글란  -->
+ <div id="repbox_title">댓글</div>
+	<div id="repBox" class="repBox">
+	<c:forEach items="${reply}" var="eachReply">
+		<div class="reply_wrapper">
+		<%-- <div>댓글번호 ${eachReply.rbr_no}</div> --%>
+					<div style="text-align: left;">${eachReply.rbr_owner}</div>
+					<div style=" width: 60%; text-align: center;">${eachReply.rbr_txt}</div>
+					<div style="    text-align: right;">작성일 : <fmt:formatDate value="${eachReply.rbr_when}" pattern="MM.dd"/> </div>
+					<c:if test="${sessionScope.loginMember.dm_id eq eachReply.rbr_owner }">
+					<div>
+						<button class="btnCover" type="button" onclick="delReply(this)" value="${eachReply.rbr_no}">
+							<img class="deleteBtn" src="resources/review/img/close.png">
+						</button>
+						</div>
+				</c:if>
+					</div>
+				</c:forEach>
+	
+	</div>
+	<!-- 로그인시 댓글작성 -->
+	<c:if test="${not empty sessionScope.loginMember.dm_id }">
+		<input type="text" id="set_rbr_owner" hidden="hidden"  value="${sessionScope.loginMember.dm_id}">
+		<input type="text" id="set_rbr_rb_no" value="${param.rb_no}" hidden="hidden">
+		
+		<div class="textarea_wrapper" >
+		<div class="textarea_con" style="width: 70%;">
+		<textarea id="set_rbr_txt"  placeholder="댓글작성 50자까지 가능" maxlength="50"></textarea>
+		<button type="button" onclick="writeReply()">댓글쓰기</button>
+		</div>
+		</div>
+	</c:if>
 </body>
 
 </html>

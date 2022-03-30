@@ -35,7 +35,7 @@ select * from REVIEW_BOARD
 
 select * from REVIEW_BOARD where  rb_budget <= '100000' and rb_theme like '%%' and rb_location like '%%';
 
-delete REVIEW_BOARD where rb_no = 102;
+delete REVIEW_BOARD where rb_no = 304;
 
 
 alter table REVIEW_BOARD add (
@@ -85,3 +85,26 @@ insert into REVIEW_BOARD values(review_board_seq.nextval, 'title', 0, 0, 0, sysd
 
 alter table REVIEW_BOARD add (rb_totalroute varchar2(2000 char) not null);
 alter table REVIEW_BOARD add (rb_totalday number(20) not null);
+
+/*리뷰댓글*/
+create table review_reply(
+rbr_no number(3) primary key,
+rbr_rb_no number(3) not null,
+rbr_owner varchar(30 char) not null,
+rbr_txt varchar(300 char) not null,
+rbr_when date not null,
+
+constraint cons_rb_no 
+foreign key(rbr_rb_no)
+		references REVIEW_BOARD(rb_no)
+		on delete cascade
+);
+create sequence review_reply_seq
+
+select * from review_reply;
+insert into comm_picture_reply values(comm_picture_reply_seq.nextval,#{cpr_cp_no},'김진현',#{cpr_txt},sysdate);
+insert into review_reply values(review_reply_seq.nextval,'281','rbr_owner','rbr_txt',sysdate);
+
+select * from review_reply where rbr_rb_no = 281 order by
+		rbr_when desc
+		

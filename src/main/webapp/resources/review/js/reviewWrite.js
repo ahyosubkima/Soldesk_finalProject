@@ -302,6 +302,72 @@ function showPreview(event) {
                 //     });
                 });
             }
+            function dosubmit(){
+
+               let dd = document.getElementById('form');
+               let cc = document.getElementsByName('form');
+               console.log(cc);
+             //   console.log(dd);
+
+             //유효성검사필요
+            let rvTitle = document.getElementById('rvTitle'); 
+            let head = document.getElementById('selectBox');
+            let headDirect = document.getElementById('selectBoxDirect');
+            let bud = document.getElementById('selectBox2');
+            let theme = document.getElementById('selectBox3');
+            let loca = document.getElementById('selectBox4');
+            let day1S = document.getElementsByName('d1Schedule');
+            let totalText = document.getElementById('totalText');
+            let img = document.getElementById('d1Img');
+
+            console.log(head.value);
+            console.log(headDirect.value);
+            console.log(day1S[0]);
+            
+
+
+            if(rvTitle.value ==""){
+                alert('제목을 입력해주세요');
+                
+                return false;
+            }
+            if(head.value =="인원" && headDirect.value == ""){
+                alert('인원선택필요');
+                
+                return false;
+            }
+            if(head.value =="direct" && headDirect.value == ""){
+                alert('직접입력필요');
+                return false;
+            }
+            if(bud.value =="비용"){
+                alert('비용선택필요');
+                return false;
+            }
+            if(theme.value =="테마"){
+                alert('테마선택필요');
+                return false;
+            }
+            if(loca.value =="지역"){
+                alert('지역선택필요');
+                return false;
+            }
+            if(day1S[0].value ==""){
+                alert('day1일정은 필수입력사항입니다');
+                return false;
+            }
+            if(totalText.value ==""){
+                alert('총후기는 필수입력사항입니다.');
+                return false;
+            }
+            if(img.value ==""){
+                alert('최소1개이상의 이미지를넣어주세요');
+                return false;
+            }
+
+            //필요값 확인후 제출
+                dd.submit();
+                        }
  
 
 

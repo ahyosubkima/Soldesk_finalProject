@@ -6,19 +6,21 @@
 		resultType="com.team2.danim.comm.Comm_picture">
 		select * from comm_picture order by comm_picture_date desc
 	</select>
-	
-	
+
+
 	<select id="getCommVideo"
 		resultType="com.team2.danim.comm.Comm_video">
 		select * from comm_video order by cv_date desc
 	</select>
 
-	<select id="getImport" resultType="com.team2.danim.comm.Comm_import">
-	select * from comm_import order by ci_date desc
+	<select id="getImport"
+		resultType="com.team2.danim.comm.Comm_import">
+		select * from comm_import order by ci_date desc
 	</select>
 	<insert id="upload"
 		parameterType="com.team2.danim.comm.Comm_picture">
-		insert into comm_picture values(comm_picture_seq.nextval,
+		insert into comm_picture
+		values(comm_picture_seq.nextval,
 		#{comm_picture_name},
 		#{comm_picture_write_name},
 		#{comm_picture_writer},
@@ -66,7 +68,8 @@
 	<select id="getCommPicture2"
 		resultType="com.team2.danim.comm.Comm_picture"
 		parameterType="com.team2.danim.comm.Comm_picture">
-		select * from comm_picture where comm_picture_no = #{comm_picture_no}
+		select * from comm_picture where comm_picture_no =
+		#{comm_picture_no}
 	</select>
 
 	<select id="getCommImport2"
@@ -89,7 +92,8 @@
 
 	<delete id="delPicture"
 		parameterType="com.team2.danim.comm.Comm_picture">
-		delete from comm_picture where comm_picture_no = #{comm_picture_no}
+		delete from comm_picture where comm_picture_no =
+		#{comm_picture_no}
 	</delete>
 
 	<delete id="delVideo"
@@ -117,14 +121,17 @@
 
 	<update id="updateVideo"
 		parameterType="com.team2.danim.comm.Comm_video">
-		update comm_video set cv_name = #{cv_name},cv_write_name =
+		update comm_video set cv_name = #{cv_name},cv_write_name
+		=
 		#{cv_write_name},cv_txt = #{cv_txt} where cv_no = #{cv_no}
 	</update>
 
 	<update id="updateFree"
 		parameterType="com.team2.danim.comm.Comm_free">
-		update comm_free set cf_file_name = #{cf_file_name},cf_write_name =
-		#{cf_write_name},cf_txt = #{cf_txt} where cf_no = #{cf_no}
+		update comm_free set cf_file_name =
+		#{cf_file_name},cf_write_name =
+		#{cf_write_name},cf_txt = #{cf_txt}
+		where cf_no = #{cf_no}
 	</update>
 
 	<select id="searchTitle"
@@ -133,13 +140,16 @@
 		from (
 		select rownum as rn, comm_picture_no, comm_picture_name,
 		comm_picture_write_name,comm_picture_writer,
-		comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+		comm_picture_txt,
+		comm_picture_good,comm_picture_view,comm_picture_date
 		from (
-		select * from comm_picture where comm_picture_write_name LIKE
+		select *
+		from comm_picture where comm_picture_write_name LIKE
 		'%'||#{search_input}||'%' order by comm_picture_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn
+		&lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -149,13 +159,16 @@
 		from (
 		select rownum as rn, comm_picture_no, comm_picture_name,
 		comm_picture_write_name,comm_picture_writer,
-		comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+		comm_picture_txt,
+		comm_picture_good,comm_picture_view,comm_picture_date
 		from (
-		select * from comm_picture where comm_picture_writer LIKE
+		select *
+		from comm_picture where comm_picture_writer LIKE
 		'%'||#{search_input}||'%' order by comm_picture_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn
+		&lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -165,13 +178,16 @@
 		from (
 		select rownum as rn, comm_picture_no, comm_picture_name,
 		comm_picture_write_name,comm_picture_writer,
-		comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+		comm_picture_txt,
+		comm_picture_good,comm_picture_view,comm_picture_date
 		from (
-		select * from comm_picture where comm_picture_txt LIKE
+		select *
+		from comm_picture where comm_picture_txt LIKE
 		'%'||#{search_input}||'%' order by comm_picture_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn
+		&lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 	</select>
 	<!--비디오 검색 -->
@@ -182,7 +198,8 @@
 		select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		cv_txt, cv_good,cv_view,cv_date
 		from (
-		select * from comm_video where cv_write_name LIKE '%'||#{search_input}||'%'
+		select * from comm_video where
+		cv_write_name LIKE '%'||#{search_input}||'%'
 		order by cv_date desc
 		)
 		)
@@ -197,11 +214,13 @@
 		select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		cv_txt, cv_good,cv_view,cv_date
 		from (
-		select * from comm_video where cv_writer LIKE '%'||#{search_input}||'%'
+		select * from comm_video where
+		cv_writer LIKE '%'||#{search_input}||'%'
 		order by cv_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where
+		rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -212,11 +231,13 @@
 		select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		cv_txt, cv_good,cv_view,cv_date
 		from (
-		select * from comm_video where cv_txt LIKE '%'||#{search_input}||'%' order
+		select * from comm_video where
+		cv_txt LIKE '%'||#{search_input}||'%' order
 		by cv_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn
+		&lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -224,14 +245,17 @@
 		resultType="com.team2.danim.comm.Comm_free" parameterType="map">
 		SELECT *
 		from (
-		select rownum as rn, cf_no, cf_file_name, cf_write_name,cf_writer,
+		select rownum as rn, cf_no, cf_file_name,
+		cf_write_name,cf_writer,
 		cf_txt, cf_good,cf_view,cf_date
 		from (
-		select * from comm_free where cf_write_name LIKE '%'||#{search_input}||'%'
+		select *
+		from comm_free where cf_write_name LIKE '%'||#{search_input}||'%'
 		order by cf_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;= (#{pageNum} * #{amount}) and rn
+		> (#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -239,14 +263,18 @@
 		resultType="com.team2.danim.comm.Comm_free" parameterType="map">
 		SELECT *
 		from (
-		select rownum as rn, cf_no, cf_file_name, cf_write_name,cf_writer,
+		select rownum as rn, cf_no, cf_file_name,
+		cf_write_name,cf_writer,
 		cf_txt, cf_good,cf_view,cf_date
 		from (
-		select * from comm_free where cf_writer LIKE '%'||#{search_input}||'%' order
-		by cf_date desc
+		select *
+		from comm_free where cf_writer LIKE '%'||#{search_input}||'%' order
+		by
+		cf_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;= (#{pageNum} * #{amount}) and rn >
+		(#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -254,14 +282,17 @@
 		resultType="com.team2.danim.comm.Comm_free" parameterType="map">
 		SELECT *
 		from (
-		select rownum as rn, cf_no, cf_file_name, cf_write_name,cf_writer,
+		select rownum as rn, cf_no, cf_file_name,
+		cf_write_name,cf_writer,
 		cf_txt, cf_good,cf_view,cf_date
 		from (
-		select * from comm_free where cf_txt LIKE '%'||#{search_input}||'%' order by
+		select *
+		from comm_free where cf_txt LIKE '%'||#{search_input}||'%' order by
 		cf_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;= (#{pageNum} * #{amount}) and rn >
+		(#{pageNum} -1) *
 		#{amount}
 	</select>
 
@@ -269,62 +300,73 @@
 
 	<update id="viewPlus"
 		parameterType="com.team2.danim.comm.Comm_picture">
-		update comm_picture set comm_picture_view = comm_picture_view + 1 where
+		update comm_picture set comm_picture_view =
+		comm_picture_view + 1 where
 		comm_picture_no = #{comm_picture_no}
 	</update>
 	<update id="viewImportPlus"
 		parameterType="com.team2.danim.comm.Comm_import">
 		update comm_import set ci_view = ci_view + 1 where
-		ci_no = #{ci_no}
+		ci_no
+		= #{ci_no}
 	</update>
 
 	<update id="viewVideoPlus"
 		parameterType="com.team2.danim.comm.Comm_video">
-		update comm_video set cv_view = cv_view + 1 where cv_no = #{cv_no}
+		update comm_video set cv_view = cv_view + 1 where cv_no
+		= #{cv_no}
 	</update>
 
 	<update id="viewFreePlus"
 		parameterType="com.team2.danim.comm.Comm_free">
-		update comm_free set cf_view = cf_view + 1 where cf_no = #{cf_no}
+		update comm_free set cf_view = cf_view + 1 where cf_no =
+		#{cf_no}
 	</update>
 
 	<update id="goodPlus"
 		parameterType="com.team2.danim.comm.Comm_picture">
-		update comm_picture set comm_picture_good = comm_picture_good + 1 where
+		update comm_picture set comm_picture_good =
+		comm_picture_good + 1 where
 		comm_picture_no = #{comm_picture_no}
 	</update>
 
 	<update id="goodVideoPlus"
 		parameterType="com.team2.danim.comm.Comm_video">
-		update comm_video set cv_good = cv_good + 1 where cv_no = #{cv_no}
+		update comm_video set cv_good = cv_good + 1 where cv_no
+		= #{cv_no}
 	</update>
 
 	<update id="goodFreePlus"
 		parameterType="com.team2.danim.comm.Comm_free">
-		update comm_free set cf_good = cf_good + 1 where cf_no = #{cf_no}
+		update comm_free set cf_good = cf_good + 1 where cf_no =
+		#{cf_no}
 	</update>
 
 	<select id="getReply"
 		resultType="com.team2.danim.comm.Comm_picture_reply">
-		select * from comm_picture_reply where cpr_cp_no = #{cpr_cp_no} order by
-		cpr_when desc
+		select * from comm_picture_reply where cpr_cp_no =
+		#{cpr_cp_no} order by
+		cpr_when 
 	</select>
-	
+
 	<select id="getImportReply"
 		resultType="com.team2.danim.comm.Comm_import_reply">
-		select * from comm_import_reply where cir_ci_no = #{cir_ci_no} order by
+		select * from comm_import_reply where cir_ci_no =
+		#{cir_ci_no} order by
 		cir_when desc
 	</select>
 
 	<select id="getVideoReply"
 		resultType="com.team2.danim.comm.Comm_Video_reply">
-		select * from comm_video_reply where cvr_cv_no = #{cvr_cv_no} order by
+		select * from comm_video_reply where cvr_cv_no =
+		#{cvr_cv_no} order by
 		cvr_when desc
 	</select>
 
 	<select id="getFreeReply"
 		resultType="com.team2.danim.comm.Comm_free_reply">
-		select * from comm_free_reply where cfr_cf_no = #{cfr_cf_no} order by
+		select * from comm_free_reply where cfr_cf_no =
+		#{cfr_cf_no} order by
 		cfr_when desc
 	</select>
 
@@ -367,39 +409,47 @@
 
 	<select id="getGoodPicture"
 		resultType="com.team2.danim.comm.Comm_picture">
-		select * 
-from (	
-select rownum as rn, comm_picture_no, comm_picture_name, comm_picture_write_name,comm_picture_writer, 
-				comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
-				from (
-					select * from comm_picture order by comm_picture_good desc
-				)
-			)
-			where rn &lt;= 6
+		select *
+		from (
+		select rownum as rn, comm_picture_no,
+		comm_picture_name,
+		comm_picture_write_name,comm_picture_writer,
+		comm_picture_txt,
+		comm_picture_good,comm_picture_view,comm_picture_date
+		from (
+		select *
+		from comm_picture order by comm_picture_good desc
+		)
+		)
+		where rn &lt;= 6
 	</select>
 
 
 	<select id="getGoodVideo"
 		resultType="com.team2.danim.comm.Comm_video">
-			select * 
-from (	
-select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer, 
-				cv_txt, cv_good,cv_view,cv_date
-				from (
-					select * from comm_video order by cv_good desc
-				)
-			)
-			where rn &lt;= 6
+		select *
+		from (
+		select rownum as rn, cv_no, cv_name,
+		cv_write_name,cv_writer,
+		cv_txt, cv_good,cv_view,cv_date
+		from (
+		select *
+		from comm_video order by cv_good desc
+		)
+		)
+		where rn &lt;= 6
 	</select>
 
 	<insert id="goodPlusById"
 		parameterType="com.team2.danim.comm.Comm_Picture_good">
-		insert into comm_picture_good values(#{cpg_id},1,#{cpg_no})
+		insert into comm_picture_good
+		values(#{cpg_id},1,#{cpg_no})
 	</insert>
 
 	<insert id="goodVideoPlusById"
 		parameterType="com.team2.danim.comm.Comm_Video_good">
-		insert into comm_video_good values(#{cvg_id},1,#{cvg_no})
+		insert into comm_video_good
+		values(#{cvg_id},1,#{cvg_no})
 	</insert>
 
 	<insert id="goodFreePlusById"
@@ -409,46 +459,55 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 
 	<select id="goodCheck"
 		resultType="com.team2.danim.comm.Comm_Picture_good">
-		select * from comm_picture_good where cpg_id = #{cpg_id} and cpg_no=
+		select * from comm_picture_good where cpg_id = #{cpg_id}
+		and cpg_no=
 		#{cpg_no}
 	</select>
 
 	<select id="goodVideoCheck"
 		resultType="com.team2.danim.comm.Comm_Video_good">
-		select * from comm_video_good where cvg_id = #{cvg_id} and cvg_no= #{cvg_no}
+		select * from comm_video_good where cvg_id = #{cvg_id} and
+		cvg_no= #{cvg_no}
 	</select>
 
 	<select id="goodFreeCheck"
 		resultType="com.team2.danim.comm.Comm_free_good">
-		select * from comm_free_good where cfg_id = #{cfg_id} and cfg_no= #{cfg_no}
+		select * from comm_free_good where cfg_id = #{cfg_id} and
+		cfg_no= #{cfg_no}
 	</select>
 
 	<delete id="goodMinuById">
-		delete from comm_picture_good where cpg_id = #{cpg_id} and cpg_no= #{cpg_no}
+		delete from comm_picture_good where cpg_id =
+		#{cpg_id} and cpg_no= #{cpg_no}
 	</delete>
 
 	<delete id="goodVideoMinuById">
-		delete from comm_video_good where cvg_id = #{cvg_id} and cvg_no= #{cvg_no}
+		delete from comm_video_good where cvg_id = #{cvg_id}
+		and cvg_no= #{cvg_no}
 	</delete>
 
 	<delete id="goodFreeMinuById">
-		delete from comm_free_good where cfg_id = #{cfg_id} and cfg_no= #{cfg_no}
+		delete from comm_free_good where cfg_id = #{cfg_id}
+		and cfg_no= #{cfg_no}
 	</delete>
 
 
 	<update id="goodMinus">
-		update comm_picture set comm_picture_good = comm_picture_good - 1 where
+		update comm_picture set comm_picture_good =
+		comm_picture_good - 1 where
 		comm_picture_no = #{comm_picture_no}
 	</update>
 
 	<update id="goodVideoMinus"
 		parameterType="com.team2.danim.comm.Comm_video">
-		update comm_video set cv_good = cv_good - 1 where cv_no = #{cv_no}
+		update comm_video set cv_good = cv_good - 1 where cv_no
+		= #{cv_no}
 	</update>
 
 	<update id="goodFreeMinus"
 		parameterType="com.team2.danim.comm.Comm_video">
-		update comm_free set cf_good = cf_good - 1 where cf_no = #{cf_no}
+		update comm_free set cf_good = cf_good - 1 where cf_no =
+		#{cf_no}
 	</update>
 
 	<select id="getCommPicturePaging"
@@ -456,14 +515,18 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		resultType="com.team2.danim.comm.Comm_picture">
 		select *
 		from (
-		select rownum as rn, comm_picture_no, comm_picture_name,
+		select rownum as rn, comm_picture_no,
+		comm_picture_name,
 		comm_picture_write_name,comm_picture_writer,
-		comm_picture_txt, comm_picture_good,comm_picture_view,comm_picture_date
+		comm_picture_txt,
+		comm_picture_good,comm_picture_view,comm_picture_date
 		from (
-		select * from comm_picture order by comm_picture_date desc
+		select *
+		from comm_picture order by comm_picture_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;=
+		(#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 
 
@@ -474,13 +537,16 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		resultType="com.team2.danim.comm.Comm_video">
 		select *
 		from (
-		select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
+		select rownum as rn, cv_no, cv_name,
+		cv_write_name,cv_writer,
 		cv_txt, cv_good,cv_view,cv_date
 		from (
-		select * from comm_video order by cv_date desc
+		select *
+		from comm_video order by cv_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;= (#{pageNum} *
+		#{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 
 
@@ -491,13 +557,16 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		resultType="com.team2.danim.comm.Comm_free">
 		select *
 		from (
-		select rownum as rn, cf_no, cf_file_name, cf_write_name,cf_writer,
+		select rownum as rn, cf_no, cf_file_name,
+		cf_write_name,cf_writer,
 		cf_txt, cf_good,cf_view,cf_date
 		from (
-		select * from comm_free order by cf_date desc
+		select *
+		from comm_free order by cf_date desc
 		)
 		)
-		where rn &lt;= (#{pageNum} * #{amount}) and rn > (#{pageNum} -1) *
+		where rn &lt;= (#{pageNum} *
+		#{amount}) and rn > (#{pageNum} -1) *
 		#{amount}
 
 
@@ -505,18 +574,21 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 
 	<select id="getTotal" resultType="java.lang.Integer">
 
-		select count(*) from comm_picture
+		select count(*) from
+		comm_picture
 
 	</select>
 	<select id="getTotalVideo" resultType="java.lang.Integer">
 
-		select count(*) from comm_video
+		select count(*) from
+		comm_video
 
 	</select>
 
 	<select id="getFreeTotal" resultType="java.lang.Integer">
 
-		select count(*) from comm_free
+		select count(*) from
+		comm_free
 
 	</select>
 
@@ -577,16 +649,22 @@ select rownum as rn, cv_no, cv_name, cv_write_name,cv_writer,
 		select count(*) from comm_free where cf_txt LIKE
 		'%'||#{cf_txt}||'%'
 	</select>
-	
-	<update id="pictureReplyUpdate" parameterType="com.team2.danim.comm.Comm_picture_reply">
-		update comm_picture_reply set cpr_txt = #{cpr_txt} where cpr_no = #{cpr_no} 
+
+	<update id="pictureReplyUpdate"
+		parameterType="com.team2.danim.comm.Comm_picture_reply">
+		update comm_picture_reply set cpr_txt = #{cpr_txt} where
+		cpr_no = #{cpr_no}
 	</update>
 
-	<update id="videoReplyUpdate" parameterType="com.team2.danim.comm.Comm_Video_reply">
-		update comm_video_reply set cvr_txt = #{cvr_txt} where cvr_no = #{cvr_no} 
+	<update id="videoReplyUpdate"
+		parameterType="com.team2.danim.comm.Comm_Video_reply">
+		update comm_video_reply set cvr_txt = #{cvr_txt} where
+		cvr_no = #{cvr_no}
 	</update>
 
-	<update id="freeReplyUpdate" parameterType="com.team2.danim.comm.Comm_free_reply">
-		update comm_free_reply set cfr_txt = #{cfr_txt} where cfr_no = #{cfr_no} 
+	<update id="freeReplyUpdate"
+		parameterType="com.team2.danim.comm.Comm_free_reply">
+		update comm_free_reply set cfr_txt = #{cfr_txt} where
+		cfr_no = #{cfr_no}
 	</update>
 </mapper>

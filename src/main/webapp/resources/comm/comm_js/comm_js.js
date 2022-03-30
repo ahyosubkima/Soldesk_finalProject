@@ -423,6 +423,7 @@ function mouse_out3(i){
 }
 
 
+
 function mouse_out(i){
 	
 	let aa = "hz"+i	    
@@ -430,6 +431,8 @@ function mouse_out(i){
 	document.getElementById('play_img'+i).style.visibility="visible";
 	
 }
+
+
 
 function mouse_over2(i){
 	let aa = "mz"+i

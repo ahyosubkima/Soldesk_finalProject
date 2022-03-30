@@ -76,7 +76,7 @@ $(function() {
 								<option value="title">제목</option>
 								<option value="writer">작성자</option>
 								<option value="txt">내용</option>
-						</select> <input name="search_input"  id="search_input">
+						</select> <input name="search_input"  id="search_input" value="${param.search_input }">
 						<input type="hidden" value="1" name="pageNum">
 						 <input type="hidden" name="pageNum" value="${param.pageNum }" id="pgn">
 						 <input type="hidden" name="search_option" value="${param.search_option }" id="so">
@@ -153,6 +153,7 @@ $(function() {
 					<table class="comm_empty_Tbl">
 						<tr>
 							<td id="comm_empty_write">${param.search_input }(으)로 등록된 영상이 없습니다.</td>
+							<td><a onclick="window.history.back()">&nbsp;&nbsp;&nbsp;돌아가기</a></td>
 						</tr>
 					</table>
 				</c:if>

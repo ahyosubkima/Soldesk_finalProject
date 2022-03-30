@@ -261,4 +261,18 @@ foreign key(cir_ci_no)
 
 create sequence comm_import_reply_seq
 
-select * from comm_import 
+
+select * from comm_import
+
+delete from COMM_FREE
+
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','낼 혼자 속초 여행가는데','진지밥','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','혼자,뚜벅이로 제주도 간다면','준모','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','돈파스팔레(DONPAS PALAIS)','장빡','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','제주도 사람적은데가 경치더이쁜듯?','마당을나온암탉','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','제주도 예매 언제까지 기다리는게?','맨발의동수','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','입대전 부산여행 간다 맛집 추천좀','캉문진','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','대검찰청 - 서울 여행','킹스윙스','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','가을이네요','유럽쟁이','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','속리산 법주사','유희왕','더미데이터',0,0,sysdate);
+insert into COMM_FREE values(cf_seq.nextval,'a.jpg','일 끝나고 한 일주일 요양차','우왁굳','더미데이터',0,0,sysdate);

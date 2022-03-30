@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
+$(function() {
+	adjustHeight();
+});
+
 window.onpageshow = function(event) {
 	if (event.persisted
 			|| (window.performance && window.performance.navigation.type == 2)) {
@@ -28,6 +32,12 @@ window.onpageshow = function(event) {
 		}
 	}
 }
+function adjustHeight() {
+	  var textEle = $('#video_txt_area');
+	  textEle[0].style.height = 'auto';
+	  var textEleHeight = textEle.prop('scrollHeight');
+	  textEle.css('height', textEleHeight);
+	};
 </script>
 </head>
 <body>
@@ -92,10 +102,9 @@ window.onpageshow = function(event) {
 						</c:if>
 					</tr>
 					<tr>
-						<td colspan="2" class="comm_picture_detail_td4">
-						<pre class="comm_picture_detail_td4">${f.cf_txt }
-						</pre>
-						</td>
+						<td colspan="2" ><textarea 
+						readonly="readonly"
+						id="video_txt_area">${f.cf_txt }</textarea></td>
 					</tr>
 					<tr>
 					<td>

@@ -33,7 +33,7 @@ insert into REVIEW_BOARD values(review_board_seq.nextval, 'test6', 0, 0, 0, sysd
 insert into REVIEW_BOARD values(review_board_seq.nextval, 'test7', 0, 0, 0, sysdate, 'test','8','80000','비즈니스여행','대구','2.jpg','ㅋㅋㅋ');
 
 select * from REVIEW_BOARD where rb_headnum like '1'
-select * from REVIEW_BOARD 
+select * from REVIEW_BOARD order by rb_date desc
 
 
 select * from REVIEW_BOARD where  rb_budget <= '100000' and rb_theme like '%%' and rb_location like '%%';

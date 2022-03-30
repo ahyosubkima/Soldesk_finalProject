@@ -587,7 +587,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 		</div>
 	</div>
 	<div class="dailyBox" id="day1" data-day="1">
-		<h3 style="margin-bottom: 20px;">day1 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day1 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 
@@ -596,7 +596,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 	</div>
 	<div class="dailyBox" id="day2" data-day="2">
-		<h3 style="margin-bottom: 20px;">day2 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day2 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d2Schedule" id="day2" value="">
@@ -604,7 +604,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 	</div>
 	<div class="dailyBox"  id="day3" data-day="3">
-		<h3 style="margin-bottom: 20px;">day3 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day3 일정표시</h3>
 		<div class="scehduleBox"></div> 
 
 		<input class="dScedule" type="hidden" name="d3Schedule" id="day3" value="">
@@ -612,14 +612,14 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 	</div>
 	<div class="dailyBox" id="day4" data-day="4">
-		<h3 style="margin-bottom: 20px;">day4 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day4 일정표시</h3>
 		<div class="scehduleBox"></div>
 		<input class="dScedule" type="hidden" name="d4Schedule" id="day4" value="">
 		<div class="dTextDiv"><textarea name="d4Text" id="d4Text" cols="30" rows="10" placeholder="day4의 후기를 작성해주세요"></textarea></div>
 
 	</div>
 	<div class="dailyBox" id="day5" data-day="5">
-		<h3 style="margin-bottom: 20px;">day5 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day5 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d5Schedule" id="day5" value="">
@@ -627,7 +627,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 	</div>
 	<div class="dailyBox" id="day6" data-day="6">
-		<h3 style="margin-bottom: 20px;">day6 일정표시</h3>
+		<h3 style="margin-bottom: 20px; margin-top: 65px;">day6 일정표시</h3>
 		<div class="scehduleBox"></div>
 
 		<input class="dScedule" type="hidden" name="d6Schedule" id="day6" value="">

@@ -4,7 +4,7 @@
 
 
 <select id="getAllReview" resultType="com.team2.danim.review.ReviewBean">
-select * from REVIEW_BOARD
+select * from REVIEW_BOARD order by rb_date desc
 
 </select>
 
@@ -25,7 +25,7 @@ rb_headNum = #{rb_headNum} and
 <if test="rb_budget !=''">
 rb_budget &lt;= #{rb_budget} and 
 </if>
-rb_theme like '%'||#{rb_theme}||'%' and rb_location like '%'||#{rb_location}||'%'
+rb_theme like '%'||#{rb_theme}||'%' and rb_location like '%'||#{rb_location}||'%' order by rb_date desc
 
 </select>
 

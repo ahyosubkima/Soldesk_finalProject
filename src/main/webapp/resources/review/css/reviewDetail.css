@@ -43,6 +43,8 @@
 }
 
 .totalText{
+	width:80%;
+	height:150px;
 border: 2px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
@@ -56,6 +58,8 @@ border: 2px solid transparent;
 }
 
 .dtContent{
+	width:80%;
+	height:120px;
 	border: 2px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(to bottom right, #38CEB5, #6D1E91);
@@ -278,15 +282,55 @@ width: 25%;
 	display: block;
 }
 
-td, tr {
-	border: 1px solid black;
-}
-/* div{
-	border: 1px solid red;
-} */
-
-
-
 .flex-container {
 	display: flex;
 	justify-content: center;
+}
+
+#set_rbr_txt{
+	height: 80px;
+	padding-top: 12px;
+	font-size: 13pt;
+}
+
+#set_rbr_txt::placeholder{
+	font-size: 13pt;
+	padding-top: 10px;
+}
+
+#set_rbr_txt:focus{
+	outline: none;
+}
+
+.textarea_con button{
+	width: 150px;
+    height: 40px;
+    font-size: 13pt;
+    border: 1px dotted #353535;
+    color: #404040;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 5px;
+    margin-top: 15px;
+}
+
+#r_delDiv{
+	width: 90%;
+	text-align: right;
+}
+
+#r_delDiv button{
+	width: 150px;
+    height: 40px;
+    font-size: 13pt;
+    border: 1px dotted #353535;
+    color: #404040;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 5px;
+}
+
+
+
+
+

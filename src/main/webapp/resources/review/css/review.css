@@ -1,17 +1,20 @@
 @charset "UTF-8";
 #test{
-
 opacity:0;
+right:40px;
+top : 205px;
   
-/*   overflow: hidden;*/}
+/*   overflow: hidden;*/
+}
 #penImg #penimgg{
 	/* border: 1px solid #96e4d7; */
-	position:absolute;
-	right:40px;
-	top : 205px;
+	position:fixed;
+	right:65px;
+	top : 404px;
 	border-radius: 20px;
 }
 #write_cover:hover #test{
+	
 	transition:all 3s;
 	opacity:1;
 	width: auto;
@@ -21,8 +24,8 @@ opacity:0;
 }
 #write_cover:hover #penimgg{
 	transition:all 0.7s ease-out;
-	right:5px;
-	top : 205px;
+	right:15px;
+	top : 404px;
 	
 	/* border: 1px solid #9f74b1; */
 
@@ -30,8 +33,12 @@ opacity:0;
 
 
 #write_cover{
+	position:fixed;
+	right:30px;
+top : 400px;
+	width : 100px;
+	height : 40px;
 	display: flex;
-	/* border: 1px solid #38CEB5; */
     border-radius: 20px;
     padding: 5px;
     font-size: 11pt;

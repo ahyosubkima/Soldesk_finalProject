@@ -71,4 +71,8 @@ insert into review_reply values(review_reply_seq.nextval,#{rbr_rb_no},#{rbr_owne
 	update REVIEW_BOARD set rb_commentcount = #{rb_commentcount} where rb_no = #{rb_no}
 	</update>
 
+	<delete id="deleteReivew" parameterType="com.team2.danim.review.ReviewBean">
+	
+	delete from REVIEW_BOARD where rb_no = #{rb_no}
+	</delete>
 </mapper>

@@ -147,10 +147,11 @@ else{
 
   // 내위치 찾기
 
-  const locationButton = document.createElement("button");
+  const locationButton = document.getElementById('locationButton');
 
-  locationButton.textContent = "현재위치로";
+ // locationButton.textContent = "현재위치로";
   locationButton.classList.add("custom-map-control-button");
+//  locationButton.setAttribute('type','button');
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
   locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
@@ -455,20 +456,17 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 </head>
 
 <body>
-	<form name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
+	<form id="form" name="form" action="/danim/reviewinsert.do" method="post" enctype="multipart/form-data">
 	<div class="content_wrapper">
 
 		<div id="r_write_Title"><h1>여행 후기 작성하기</h1></div>
 
 
-		<div id="r_reviewTitle"><input type="text" name="title" placeholder="여행 후기 제목을 입력해주세요"></div>
+		<div id="r_reviewTitle"><input type="text" name="title" id="rvTitle"placeholder="여행 후기 제목을 입력해주세요"></div>
 			
 			<!-- 좌표히든 --><input type="hidden" name ="coordinate" id="coordinate" value="">
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ceb6b412b48cb64444cc86ffc49851299c11ee49
 		<div class="flex-container">
 					
 			<div>
@@ -544,7 +542,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 	<div style="text-align: center; margin-bottom: 20px;"><h2>여행spot 지도</h2></div>
 	<!-- The div element for the map -->
-	 <div><input
+	 <div>
+		<input id="locationButton"type="button" value="현재위치로"> 
+		<input
       id="pac-input"
       class="controls"
       type="text"
@@ -678,8 +678,9 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 	<div id="r_writeAllreview"><h2>총 여행사진 업로드</h2>❗업로드할 사진을 한꺼번에 업로드해주세요</div>
 	<div style="text-align: center; padding-left: 100px;"><input type="file" multiple="multiple" name="d1Img" id="d1Img" onchange="showPreview(event);"></div>
 	<div id="d1Img_container"></div>
-	<input type="hidden" name="totalday" id="totalday" value="1"> <!-- 히든토탈데이 -->
-<div id="review_submit"><button type="button">여행후기 등록</button></div>
+	<input type="text" name="totalday" id="totalday" value="1" hidden="hidden"> <!-- 히든토탈데이 -->
+
+<div id="review_submit"><button type="button" onclick="dosubmit()" >여행후기 등록</button></div>
 
 
 </form>

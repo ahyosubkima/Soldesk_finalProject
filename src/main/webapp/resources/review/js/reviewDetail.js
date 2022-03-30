@@ -215,3 +215,9 @@ function delReply(e){
       /* 정의된 서버에 요청을 전송 */
       httpRequest.send();
 }
+
+function deleteRD(){
+
+    let rb_no =document.getElementById('set_rbr_rb_no').value;
+    location.href = '/danim/deleteReview?rb_no='+rb_no;
+}

@@ -326,7 +326,8 @@ ul, li {
 					<div>
 						<span>#<fmt:formatNumber value="${reviews.rb_budget }"	type="currency" />이하
 						</span> | <span> #${reviews.rb_theme }</span> | <span>
-							#${reviews.rb_location }</span>
+							#${reviews.rb_location }</span>| <span>
+							#${reviews.rb_headNum } 인</span>
 					</div>
 					<%-- <div>날짜 : <fmt:formatDate value="${reviews.rb_date  }" type="date" pattern="MM.dd"/>  | 작성자 : ${reviews.rb_username } </div> --%>
 				</div>

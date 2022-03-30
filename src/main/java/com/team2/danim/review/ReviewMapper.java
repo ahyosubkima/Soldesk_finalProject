@@ -26,6 +26,8 @@ public interface ReviewMapper {
 
 	public int repCountMinus(ReviewBean rb);
 
+	public int deleteReivew(ReviewBean rb);
+
 
 
 	

@@ -156,7 +156,7 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 		
 		ReviewBean result = ss.getMapper(ReviewMapper.class).selectDetail(rb);
 		req.setAttribute("result", result);
-		System.out.println("set성공");
+//		System.out.println("set성공");
 		
 		
 		
@@ -264,6 +264,19 @@ List<ReviewBean> reviews =	ss.getMapper(ReviewMapper.class).getfilterdByJSON(rb)
 		return null;
 				}
 	}
+
+
+	public void deleteReview(HttpServletRequest req) {
+		ReviewBean rb = new ReviewBean();
+		
+		rb.setRb_no(Integer.parseInt(req.getParameter("rb_no")));
+		
+		int delR =ss.getMapper(ReviewMapper.class).deleteReivew(rb);
+		
+		if(delR == 1) {
+		System.out.println("삭제성공");
+		}
+		}
 	
 
 }

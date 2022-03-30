@@ -341,7 +341,7 @@ function getReviews(result){
     newDiv.insertAdjacentHTML('beforeend', '<div class="content_title" style="font-size: 30px">'+ i.rb_title +'</div>');
     newDiv.insertAdjacentHTML('beforeend', '<div id="icon_div"> <img src="resources/review/img/eye2.png" id="review_icon">&nbsp;:'+i.rb_viewcount+' <img src="resources/review/img/ripple2.png" id="review_icon">&nbsp;:'+i.rb_commentcount+'</div>');
     //newDiv.insertAdjacentHTML('beforeend', '<div>'+backTODate+'작성자 :'+i.rb_username +' </div>' );
-    newDiv.insertAdjacentHTML('beforeend', '<div> <span># '+korCurrency+' 이하 </span> | <span>#'+i.rb_theme+' </span> | <span>#'+i.rb_location+'</span> </div>' );
+    newDiv.insertAdjacentHTML('beforeend', '<div> <span># '+korCurrency+' 이하 </span> | <span>#'+i.rb_theme+' </span> | <span>#'+i.rb_location+'</span> | <span>#'+i.rb_headNum+'인</span> </div>' );
 
 
      });

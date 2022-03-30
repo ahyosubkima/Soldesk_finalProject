@@ -68,6 +68,17 @@ public class ReviewController {
 			
 			return "home";
 		}
+		@RequestMapping(value = "/deleteReview", method = RequestMethod.GET)
+		public String deleteReview(HttpServletRequest req) {
+			
+			reviewDAO.deleteReview(req);
+			reviewDAO.getAllreview(req);
+			
+			req.setAttribute("contentPage", "review/reviewMain.jsp");
+			
+			
+			return "home";
+		}
 		
 		
 // 비동기로 선택메뉴 필터

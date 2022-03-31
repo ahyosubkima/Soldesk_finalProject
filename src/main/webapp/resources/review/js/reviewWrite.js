@@ -225,6 +225,17 @@ function deleteDay(e){
         return false;
     }
     else{
+        let daycheck = e.parentNode.parentNode.parentNode.getAttribute('data-day');
+       
+        let scheduledcheck = document.querySelector('input#day'+daycheck);
+        console.log(scheduledcheck);
+
+        //일정있으면 삭제불가하게설정
+        if(scheduledcheck.value != ""){
+            alert('일정이 있으면 삭제할 수 없어요');
+
+            return false;
+        }
 
         console.log(e.parentNode.parentNode.parentNode);
         console.log(e.parentNode.parentNode.parentNode.getAttribute('data-day'));
@@ -234,7 +245,7 @@ function deleteDay(e){
             e.parentNode.parentNode.parentNode.previousElementSibling.classList.add('active');
 
         }
-        console.log('여기실행여부확인');
+       // console.log('여기실행여부확인');
         e.parentNode.parentNode.parentNode.remove();
         --daycount;
         document.getElementById('totalday').value=daycount;

@@ -35,9 +35,11 @@ insert into danim_member values('bg1','1004','서병관','병관띠','대구','d
 
 select * from danim_member;
 
+update danim_member set dm_isadmin = 'Y' where dm_id = 'admin1'
 
 drop table danim_member cascade constraints;
 insert into danim_member values('bg1','1004','서병관','병관띠','대구','dog.jpg')
 
 select * from danim_member;
 
+delete danim_member;

@@ -145,7 +145,6 @@ public class CommController {
 
 	@RequestMapping(value = "/comm_picture_detail", method = RequestMethod.GET)
 	public String comm_picture_detail(HttpServletRequest req,Comm_picture cp,Comm_picture_reply cpr,Comm_Picture_good cpg) {
-			
 		cDAO.viewPlus(cp,req);
 		cDAO.goodCheck(cpg, req, cp);
 		cDAO.getReply(cpr,req);

@@ -49,7 +49,7 @@ select * from plan_write;
 
 delete from plan_write where p_no = 1042;
 
-update plan_write set p_title = '대전 맛집 투어 :p' where p_no=130;
+update plan_write set p_title = '해운대' where p_no=3;
 
 select *
 		from (

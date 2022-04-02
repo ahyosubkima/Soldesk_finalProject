@@ -22,7 +22,7 @@ insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','에펠탑명�
 insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','도톤보리','유희왕','더미데이터',0,0,sysdate)
 insert into COMM_PICTURE values(comm_picture_seq.nextval,'a.jpg','그림같은 사진','우왁굳','더미데이터',0,0,sysdate)
 
-
+delete comm_picture where comm_picture_no = 317
 
 select * from COMM_PICTURE
 

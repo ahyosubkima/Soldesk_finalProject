@@ -476,7 +476,7 @@ public void delPictureReply(Comm_picture_reply cpr, HttpServletRequest req) {
 	
 	try {
 		System.out.println(req.getParameter("no"));
-		cpr.setCpr_no(Integer.parseInt(req.getParameter("no")));
+		cpr.setCpr_no(Integer.parseInt(req.getParameter("cpr_no")));
 		if (ss.getMapper(CommMapper.class).delPictureReply(cpr)==1) {
 			System.out.println("삭제성공");
 		}
@@ -905,7 +905,7 @@ public void videoReplyUpload(Comm_Video_reply cvr, HttpServletRequest req) {
 public void delVideoReply(Comm_Video_reply cvr, HttpServletRequest req) {
 	try {
 		System.out.println(req.getParameter("no"));
-		cvr.setCvr_no(Integer.parseInt(req.getParameter("no")));
+		cvr.setCvr_no(Integer.parseInt(req.getParameter("cvr_no")));
 		if (ss.getMapper(CommMapper.class).delVideoReply(cvr)==1) {
 			System.out.println("삭제성공");
 		}
@@ -1464,7 +1464,7 @@ public void freeReplyUpdate(Comm_free_reply cfr, HttpServletRequest req) {
 public void delFreeReply(Comm_free_reply cfr, HttpServletRequest req) {
 	try {
 		System.out.println(req.getParameter("no"));
-		cfr.setCfr_no(Integer.parseInt(req.getParameter("no")));
+		cfr.setCfr_no(Integer.parseInt(req.getParameter("cfr_no")));
 		if (ss.getMapper(CommMapper.class).delFreeReply(cfr)==1) {
 			System.out.println("삭제성공");
 		}

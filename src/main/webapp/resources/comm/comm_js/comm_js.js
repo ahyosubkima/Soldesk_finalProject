@@ -97,12 +97,14 @@ function comm_goodOK(no,id) {
 
 
 
-function pictureReplyDel(no) {
+function pictureReplyDel(no,no1) {
 	
 var ok = confirm('정말 삭제하시겠습니까?!!')
 	
 	if (ok) {
-		location.href='comm_picture_reply_delete?no='+no;
+		console.log('여기니');
+		//return false;
+		location.href='comm_picture_reply_delete?no='+no+'&cpr_no='+no1;
 	}
 	
 	
@@ -155,7 +157,7 @@ function videoReplyDel(no) {
 	var ok = confirm('정말 삭제하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_video_reply_delete?no='+no;
+		location.href='comm_video_reply_delete?cvr_no='+no;
 	}
 	
 	
@@ -166,7 +168,7 @@ function freeReplyDel(no) {
 	var ok = confirm('정말 삭제하시겠습니까?')
 	
 	if (ok) {
-		location.href='comm_free_reply_delete?no='+no;
+		location.href='comm_free_reply_delete?cfr_no='+no;
 	}
 	
 	

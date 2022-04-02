@@ -162,15 +162,12 @@
 					<c:if test="${sessionScope.loginMember.dm_nickname eq picture.comm_picture_writer 
 						|| sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 						<tr>
-							<td colspan="2" style="text-align: right"><button
-									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_updateOK(${picture.comm_picture_no},${param.pageNum },
-									'${param.search_option }','${param.search_input }')">
+							<td colspan="2" style="text-align: right"><button type ="button"
+									style="width: 70px; margin-right: 10px; font-size: 15pt; border: none; background: none;" onclick="comm_updateOK('${picture.comm_picture_no}','${param.pageNum }','${param.search_option }','${param.search_input }')">
 									<img id="detail_icon" src="resources/comm/comm_img/edit.png">
 								</button>
 								<button
-									style="width: 70px; font-size: 15pt; border: none; background: none;"
-									onclick="comm_delOK(${picture.comm_picture_no})">
+									style="width: 70px; font-size: 15pt; border: none; background: none;" onclick="comm_delOK(${picture.comm_picture_no})" type ="button">
 									<img id="detail_icon" src="resources/comm/comm_img/delete.png">
 								</button></td>
 
@@ -179,7 +176,7 @@
 
 				</table>
 				<hr class="comm_detail_hr">
-				<button id="list_btn" onclick="window.history.back()">목록</button>
+				<button id="list_btn" type ="button" onclick="window.history.back()">목록</button>
 				<table id="comm_picture_detail_reply_title">
 					<tr>
 						<td><div id="comment_div">
@@ -204,12 +201,12 @@
 										<c:if
 											test="${sessionScope.loginMember.dm_id eq r.cpr_owner_id  || sessionScope.loginMember.dm_isAdmin eq 'Y'}">
 
-										&nbsp;<button id="reply_btn"
+										&nbsp;<button id="reply_btn" type ="button"
 												onclick="pictureReplyUpdate(${r.cpr_no},${param.no })">
 												<img id="reply_icon" src="resources/comm/comm_img/edit.png">
 											</button>
-										&nbsp;<button id="reply_btn"
-												onclick="pictureReplyDel(${r.cpr_no})">
+										&nbsp;<button type ="button" id="reply_btn"
+												onclick="pictureReplyDel(${param.no},${r.cpr_no})">
 												<img id="reply_icon"
 													src="resources/comm/comm_img/delete.png">
 											</button>

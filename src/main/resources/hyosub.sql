@@ -38,7 +38,7 @@ select * from REVIEW_BOARD order by rb_date desc
 
 select * from REVIEW_BOARD where  rb_budget <= '100000' and rb_theme like '%%' and rb_location like '%%';
 
-delete REVIEW_BOARD where rb_no = 304;
+delete REVIEW_BOARD where rb_no=11;
 
 
 alter table REVIEW_BOARD add (

@@ -314,7 +314,8 @@ marker = new google.maps.Marker();
 		poly.getPath().clear();
 		console.log(poly.getPath());
 		console.log(destination);
-
+		
+		coordinate = "";
 
 		//모든경로비우기
 		document.getElementById('allSchedule').innerHTML =""
